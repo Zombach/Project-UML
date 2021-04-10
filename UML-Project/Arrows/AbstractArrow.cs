@@ -10,10 +10,11 @@ namespace UML_Project.Arrows
     public abstract class AbstractArrow
     {
         protected Pen _pen;
+        protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
         public Axises StartDirectionAxis;
         public Axises EndDirectionAxis;
         public List<Point> Points;
-        
+
         public virtual void Draw(Graphics graphics)
         {
             graphics.DrawLines(_pen, Points.ToArray());
@@ -32,7 +33,7 @@ namespace UML_Project.Arrows
                     Points.Add(endPoint);
                 }
                 else
-                {                    
+                {
                     int middleY = (startPoint.Y + endPoint.Y) / 2;
                     Points.Add(new Point(startPoint.X, middleY));
                     Points.Add(new Point(endPoint.X, middleY));
@@ -59,12 +60,69 @@ namespace UML_Project.Arrows
         {
             _pen.Color = color;
         }
-        public void ChangeWidth(int width)
+        public virtual void ChangeWidth(int width)
         {
             _pen.Width = width;
         }
 
+        public bool CheckSelection(Point point)
+        {
+            bool selected = false;
+            int maxX;
+            int minX;
+            int maxY;
+            int minY;
+            for (int i = 1; i < Points.Count; i++)
+            {
+                if (Points[i - 1].X > Points[i].X)
+                {
+                    maxX = Points[i - 1].X + 2;
+                    minX = Points[i].X - 2;
+                }
+                else
+                {
+                    minX = Points[i - 1].X - 2;
+                    maxX = Points[i].X + 2;
+                }
+                if (Points[i - 1].Y > Points[i].Y)
+                {
+                    maxY = Points[i - 1].Y + 2;
+                    minY = Points[i].Y - 2;
+                }
+                else
+                {
+                    minY = Points[i - 1].Y - 2;
+                    maxY = Points[i].Y + 2;
+                }
+                if (point.X <= maxX &&
+                    point.X >= minX &&
+                    point.Y <= maxY &&
+                    point.Y >= minY)
+                {
+                    selected = true;
+                    return selected;
+                }
+            }
+            return selected;
+        }
 
+        public void ViewSelection(Graphics graphics)
+        {
+            foreach (Point point in Points)
+            {
+                graphics.DrawEllipse(_selectionPen, point.X - (_pen.Width * 3)/2, point.Y - (_pen.Width * 3) / 2, _pen.Width * 3, _pen.Width * 3);
+            }
+        }
+
+        public void Move(int deltaX, int deltaY)
+        {
+            foreach(Point point in Points)
+            {
+                Point currentPoint = point;
+                currentPoint.X += deltaX;
+                currentPoint.Y += deltaY;
+            }
+        }
 
         //protected virtual Point GetPoint(Point currentPoint, int currentWay)
         //{

@@ -12,12 +12,12 @@ namespace UML_Project.Arrows
     {
         public CompositionArrow()
         {
-            _pen = new Pen(Color.Black, 2);
+            _pen = new Pen(Color.Black, 1);
             SetEndCap();
         }
         public CompositionArrow(Point startPoint, Point endPoint, Axises startDirectionAxis, Axises endDirectionAxis)
         {
-            _pen = new Pen(Color.Black, 2);
+            _pen = new Pen(Color.Black, 1);
             Points = GetPoints(startPoint, endPoint);
             StartDirectionAxis = startDirectionAxis;
             EndDirectionAxis = endDirectionAxis;
@@ -26,12 +26,27 @@ namespace UML_Project.Arrows
 
         private void SetEndCap()
         {
+            int tmp;
+            if (_pen.Width == 1)
+            {
+                tmp = 2;
+            }
+            else
+            {
+                tmp = 1;
+            }
             GraphicsPath _graphicsPath = new GraphicsPath();
-            _graphicsPath.AddLine(new Point(0, 0), new Point((int)(_pen.Width * 4), -(int)_pen.Width * 6));
-            _graphicsPath.AddLine(new Point((int)(_pen.Width * 4), -(int)_pen.Width * 6), new Point(0, -(int)_pen.Width * 12));
-            _graphicsPath.AddLine(new Point(0, -(int)_pen.Width * 12), new Point(-(int)(_pen.Width * 4), -(int)_pen.Width * 6));
-            _graphicsPath.AddLine(new Point(-(int)(_pen.Width * 4), -(int)_pen.Width * 6), new Point(0, 0));
+            _graphicsPath.AddLine(new Point(0, 0), new Point(8/tmp, -12 / tmp));
+            _graphicsPath.AddLine(new Point(8 / tmp, -12 / tmp), new Point(0, -24 / tmp));
+            _graphicsPath.AddLine(new Point(0, -24 / tmp), new Point(-8 / tmp, -12 / tmp));
+            _graphicsPath.AddLine(new Point(-8 / tmp, -12 / tmp), new Point(0, 0));
             _pen.CustomEndCap = new CustomLineCap(_graphicsPath, null, LineCap.Custom, 24);
+        }
+
+        public override void ChangeWidth(int width)
+        {
+            _pen.Width = width;
+            SetEndCap();
         }
     }
 }

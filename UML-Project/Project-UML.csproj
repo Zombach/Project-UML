@@ -46,9 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Act.cs" />
     <Compile Include="Arrows\AbstractArrow.cs" />
     <Compile Include="Arrows\AggregationArrow.cs" />
     <Compile Include="Arrows\Arrow.cs" />
+    <Compile Include="Arrows\ArrowType.cs" />
     <Compile Include="Arrows\Axises.cs" />
     <Compile Include="Arrows\CompositionArrow.cs" />
     <Compile Include="Arrows\InheritanceArrow.cs" />

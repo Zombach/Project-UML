@@ -20,6 +20,9 @@ namespace UML_Project
         AbstractArrow _currentArrow;
         Axises _startAxis = Axises.X;
         Axises _endAxis = Axises.X;
+        List<AbstractArrow> _arrows = new List<AbstractArrow>();
+        Act _act = Act.Aggregation;
+        int _width = 1;
         public NewProject()
         {
             InitializeComponent();
@@ -37,12 +40,56 @@ namespace UML_Project
         {
             _point = new Point(e.X, e.Y);
             _isTapped = true;
-            _currentArrow = new AggregationArrow();
+            switch (_act)
+            {
+                case Act.Aggregation:
+                    _currentArrow = new AggregationArrow();
+                    _currentArrow.ChangeWidth(_width);
+                    break;
+                case Act.Composition:
+                    _currentArrow = new CompositionArrow();
+                    _currentArrow.ChangeWidth(_width);
+                    break;
+                case Act.Inheritance:
+                    _currentArrow = new InheritanceArrow();
+                    _currentArrow.ChangeWidth(_width);
+                    break;
+                case Act.Select:
+                    bool selected;
+                    foreach(AbstractArrow arrow in _arrows)
+                    {
+                        selected = arrow.CheckSelection(_point);
+                    if (selected)
+                        {
+                            arrow.ViewSelection(_graphics);
+                            pictureBox1.Invalidate();
+                        }
+                    }
+                    break;
+            }
+            
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (_isTapped) _bitmap = _bitmapTmp;
+            switch (_act)
+            {
+                case Act.Aggregation:
+                    if (_isTapped) _bitmap = _bitmapTmp;
+                    _arrows.Add(_currentArrow);
+                    break;
+                case Act.Composition:
+                    if (_isTapped) _bitmap = _bitmapTmp;
+                    _arrows.Add(_currentArrow);
+                    break;
+                case Act.Inheritance:
+                    if (_isTapped) _bitmap = _bitmapTmp;
+                    _arrows.Add(_currentArrow);
+                    break;
+                case Act.Select:
+                    break;
+            }
+            
             _isTapped = false;
         }
 
@@ -78,6 +125,36 @@ namespace UML_Project
         private void radioButton6_CheckedChanged(object sender, EventArgs e)
         {
             _endAxis = Axises.Y;
+        }
+
+        private void radioButtonAggregation_CheckedChanged(object sender, EventArgs e)
+        {
+            _act = Act.Aggregation;
+        }
+
+        private void radioButtonComposition_CheckedChanged(object sender, EventArgs e)
+        {
+            _act = Act.Composition;
+        }
+
+        private void radioButtonInheritance_CheckedChanged(object sender, EventArgs e)
+        {
+            _act = Act.Inheritance;
+        }
+
+        private void radioButtonSelect_CheckedChanged(object sender, EventArgs e)
+        {
+            _act = Act.Select;
+        }
+
+        private void radioButtonClear_CheckedChanged(object sender, EventArgs e)
+        {
+            _act = Act.Clear;
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            _width = trackBar1.Value;
         }
     }
 }
