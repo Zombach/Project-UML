@@ -80,7 +80,7 @@ namespace UML_Project
             _endAxis = Axises.Y;
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
