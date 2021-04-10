@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 using UML_Project.Arrows;
+using UML_Project._Core;
 
-namespace UML_Project
+namespace UML_Project._Forms
 {
     public partial class NewProject : Form
     {
@@ -127,34 +128,40 @@ namespace UML_Project
             _endAxis = Axises.Y;
         }
 
-        private void radioButtonAggregation_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtonAggregation_CheckedChanged(object sender, EventArgs e)
         {
             _act = Act.Aggregation;
         }
 
-        private void radioButtonComposition_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtonComposition_CheckedChanged(object sender, EventArgs e)
         {
             _act = Act.Composition;
         }
 
-        private void radioButtonInheritance_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtonInheritance_CheckedChanged(object sender, EventArgs e)
         {
             _act = Act.Inheritance;
         }
 
-        private void radioButtonSelect_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtonSelect_CheckedChanged(object sender, EventArgs e)
         {
             _act = Act.Select;
         }
 
-        private void radioButtonClear_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtonClear_CheckedChanged(object sender, EventArgs e)
         {
             _act = Act.Clear;
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void TrackBar1_Scroll(object sender, EventArgs e)
         {
             _width = trackBar1.Value;
+        }
+
+        private void SaveData_Click(object sender, EventArgs e)
+        {
+            Core.SaveDate();
+            MessageBox.Show("Сохранение прошло удачно");
         }
     }
 }

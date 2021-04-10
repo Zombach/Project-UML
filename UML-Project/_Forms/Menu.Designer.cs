@@ -1,7 +1,7 @@
 ﻿
-namespace UML_Project
+namespace UML_Project._Forms
 {
-    partial class MainMenu
+    partial class Menu
     {
         /// <summary>
         /// Required designer variable.

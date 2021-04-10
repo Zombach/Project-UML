@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UML_Project.CoreFolders;
+using UML_Project._Core;
 
-namespace UML_Project
+namespace UML_Project._Forms
 {
-    public partial class MainMenu : Form
+    public partial class Menu : Form
     {
-        public MainMenu()
+        public Menu()
         {
             InitializeComponent();
         }
@@ -27,8 +27,9 @@ namespace UML_Project
 
         private void LoadProject_Click(object sender, EventArgs e)
         {
-            this.Enabled = true;
-            //Loading loading = new Loading();
+            Loading loading = new Loading();
+            Enabled = false;
+            loading.Show();
         }
     }
 }

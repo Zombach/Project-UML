@@ -7,37 +7,38 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UML_Project.Interfaces;
+using UML_Project._Core;
+
 
 namespace UML_Project
 {
     public static class BinaryConversion
     {
-        private static string _myPath;
-
-        public static void SerializationDictionary(Dictionary<string, IFigure> data)
+        public static bool SerializationDictionary()
         {
             SetMyPath();
-            FileStream fileStream = new FileStream(_myPath, FileMode.Create, FileAccess.Write, FileShare.None);
+            FileStream fileStream = new FileStream(Core._myPath, FileMode.Create, FileAccess.Write, FileShare.None);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            binaryFormatter.Serialize(fileStream, data);
+            binaryFormatter.Serialize(fileStream, Core.Figures);
             fileStream.Close();
+            return true;
         }
-        public static Dictionary<string, IFigure> DeserializationDictionary()
+        public static bool DeserializationDictionary()
         {
-            FileStream fileStream = new FileStream(_myPath, FileMode.Open, FileAccess.Read, FileShare.None);
+            FileStream fileStream = new FileStream(Core._myPath, FileMode.Open, FileAccess.Read, FileShare.None);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            Dictionary<string, IFigure> objData = (Dictionary<string, IFigure>)binaryFormatter.Deserialize(fileStream);
+            Core.Figures = (Dictionary<string, IFigure>)binaryFormatter.Deserialize(fileStream);
             fileStream.Close();
-            return objData;
+            return true;
         }
 
         private static void SetMyPath()
         {
             DateTime _dateTime = DateTime.Now;
-            string _tmpName = $"../../Save/Save_{_dateTime}.dat";
+            string _tmpName = $"../../Save/Save_{_dateTime}.Мы.Програмист";
             Regex regex = new Regex(":");
             _tmpName = regex.Replace(_tmpName, ".");
-            _myPath = Path.GetFullPath(_tmpName);
+            Core._myPath = Path.GetFullPath(_tmpName);
         }
     }
 }

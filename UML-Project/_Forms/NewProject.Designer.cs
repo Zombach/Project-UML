@@ -1,5 +1,5 @@
 ﻿
-namespace UML_Project
+namespace UML_Project._Forms
 {
     partial class NewProject
     {
@@ -37,12 +37,13 @@ namespace UML_Project
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButtonClear = new System.Windows.Forms.RadioButton();
+            this.radioButtonSelect = new System.Windows.Forms.RadioButton();
+            this.radioButtonInheritance = new System.Windows.Forms.RadioButton();
             this.radioButtonAggregation = new System.Windows.Forms.RadioButton();
             this.radioButtonComposition = new System.Windows.Forms.RadioButton();
-            this.radioButtonInheritance = new System.Windows.Forms.RadioButton();
-            this.radioButtonSelect = new System.Windows.Forms.RadioButton();
-            this.radioButtonClear = new System.Windows.Forms.RadioButton();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxStartAxis.SuspendLayout();
             this.groupBoxEndAxis.SuspendLayout();
@@ -145,6 +146,39 @@ namespace UML_Project
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Act";
             // 
+            // radioButtonClear
+            // 
+            this.radioButtonClear.AutoSize = true;
+            this.radioButtonClear.Location = new System.Drawing.Point(6, 111);
+            this.radioButtonClear.Name = "radioButtonClear";
+            this.radioButtonClear.Size = new System.Drawing.Size(49, 17);
+            this.radioButtonClear.TabIndex = 9;
+            this.radioButtonClear.Text = "Clear";
+            this.radioButtonClear.UseVisualStyleBackColor = true;
+            this.radioButtonClear.CheckedChanged += new System.EventHandler(this.RadioButtonClear_CheckedChanged);
+            // 
+            // radioButtonSelect
+            // 
+            this.radioButtonSelect.AutoSize = true;
+            this.radioButtonSelect.Location = new System.Drawing.Point(6, 88);
+            this.radioButtonSelect.Name = "radioButtonSelect";
+            this.radioButtonSelect.Size = new System.Drawing.Size(87, 17);
+            this.radioButtonSelect.TabIndex = 8;
+            this.radioButtonSelect.Text = "Select/Move";
+            this.radioButtonSelect.UseVisualStyleBackColor = true;
+            this.radioButtonSelect.CheckedChanged += new System.EventHandler(this.RadioButtonSelect_CheckedChanged);
+            // 
+            // radioButtonInheritance
+            // 
+            this.radioButtonInheritance.AutoSize = true;
+            this.radioButtonInheritance.Location = new System.Drawing.Point(6, 65);
+            this.radioButtonInheritance.Name = "radioButtonInheritance";
+            this.radioButtonInheritance.Size = new System.Drawing.Size(78, 17);
+            this.radioButtonInheritance.TabIndex = 3;
+            this.radioButtonInheritance.Text = "Inheritance";
+            this.radioButtonInheritance.UseVisualStyleBackColor = true;
+            this.radioButtonInheritance.CheckedChanged += new System.EventHandler(this.RadioButtonInheritance_CheckedChanged);
+            // 
             // radioButtonAggregation
             // 
             this.radioButtonAggregation.AutoSize = true;
@@ -156,7 +190,7 @@ namespace UML_Project
             this.radioButtonAggregation.TabStop = true;
             this.radioButtonAggregation.Text = "Aggregation";
             this.radioButtonAggregation.UseVisualStyleBackColor = true;
-            this.radioButtonAggregation.CheckedChanged += new System.EventHandler(this.radioButtonAggregation_CheckedChanged);
+            this.radioButtonAggregation.CheckedChanged += new System.EventHandler(this.RadioButtonAggregation_CheckedChanged);
             // 
             // radioButtonComposition
             // 
@@ -167,40 +201,7 @@ namespace UML_Project
             this.radioButtonComposition.TabIndex = 2;
             this.radioButtonComposition.Text = "Composition";
             this.radioButtonComposition.UseVisualStyleBackColor = true;
-            this.radioButtonComposition.CheckedChanged += new System.EventHandler(this.radioButtonComposition_CheckedChanged);
-            // 
-            // radioButtonInheritance
-            // 
-            this.radioButtonInheritance.AutoSize = true;
-            this.radioButtonInheritance.Location = new System.Drawing.Point(6, 65);
-            this.radioButtonInheritance.Name = "radioButtonInheritance";
-            this.radioButtonInheritance.Size = new System.Drawing.Size(78, 17);
-            this.radioButtonInheritance.TabIndex = 3;
-            this.radioButtonInheritance.Text = "Inheritance";
-            this.radioButtonInheritance.UseVisualStyleBackColor = true;
-            this.radioButtonInheritance.CheckedChanged += new System.EventHandler(this.radioButtonInheritance_CheckedChanged);
-            // 
-            // radioButtonSelect
-            // 
-            this.radioButtonSelect.AutoSize = true;
-            this.radioButtonSelect.Location = new System.Drawing.Point(6, 88);
-            this.radioButtonSelect.Name = "radioButtonSelect";
-            this.radioButtonSelect.Size = new System.Drawing.Size(87, 17);
-            this.radioButtonSelect.TabIndex = 8;
-            this.radioButtonSelect.Text = "Select/Move";
-            this.radioButtonSelect.UseVisualStyleBackColor = true;
-            this.radioButtonSelect.CheckedChanged += new System.EventHandler(this.radioButtonSelect_CheckedChanged);
-            // 
-            // radioButtonClear
-            // 
-            this.radioButtonClear.AutoSize = true;
-            this.radioButtonClear.Location = new System.Drawing.Point(6, 111);
-            this.radioButtonClear.Name = "radioButtonClear";
-            this.radioButtonClear.Size = new System.Drawing.Size(49, 17);
-            this.radioButtonClear.TabIndex = 9;
-            this.radioButtonClear.Text = "Clear";
-            this.radioButtonClear.UseVisualStyleBackColor = true;
-            this.radioButtonClear.CheckedChanged += new System.EventHandler(this.radioButtonClear_CheckedChanged);
+            this.radioButtonComposition.CheckedChanged += new System.EventHandler(this.RadioButtonComposition_CheckedChanged);
             // 
             // trackBar1
             // 
@@ -211,13 +212,24 @@ namespace UML_Project
             this.trackBar1.Size = new System.Drawing.Size(104, 45);
             this.trackBar1.TabIndex = 8;
             this.trackBar1.Value = 1;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.trackBar1.Scroll += new System.EventHandler(this.TrackBar1_Scroll);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(40, 430);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Сохранить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.SaveData_Click);
             // 
             // NewProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1158, 586);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxEndAxis);
@@ -254,6 +266,7 @@ namespace UML_Project
         private System.Windows.Forms.RadioButton radioButtonComposition;
         private System.Windows.Forms.RadioButton radioButtonClear;
         private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
