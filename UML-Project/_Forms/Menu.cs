@@ -18,17 +18,22 @@ namespace UML_Project._Forms
             InitializeComponent();
         }
 
+        public void EnabledMenu()
+        {
+            Show();
+        }
+
         private void NewProject_Click(object sender, EventArgs e)
         {
             License licenseAgreement = new License();
-            this.Hide();
+            Hide();
             licenseAgreement.Show();
         }
 
         private void LoadProject_Click(object sender, EventArgs e)
         {
             Loading loading = new Loading();
-            Enabled = false;
+            Hide();
             loading.Show();
         }
     }

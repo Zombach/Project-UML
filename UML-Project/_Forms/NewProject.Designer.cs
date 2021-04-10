@@ -46,6 +46,7 @@ namespace UML_Project._Forms
             this.ButtonClear = new System.Windows.Forms.Button();
             this.ButtonColor = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.SaveData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxStartAxis.SuspendLayout();
             this.groupBoxEndAxis.SuspendLayout();
@@ -143,7 +144,7 @@ namespace UML_Project._Forms
             this.trackBar1.Size = new System.Drawing.Size(104, 45);
             this.trackBar1.TabIndex = 8;
             this.trackBar1.Value = 1;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.trackBar1.Scroll += new System.EventHandler(this.TrackBar1_Scroll);
             // 
             // groupBox2
             // 
@@ -224,11 +225,22 @@ namespace UML_Project._Forms
             this.ButtonColor.UseVisualStyleBackColor = false;
             this.ButtonColor.Click += new System.EventHandler(this.ButtonColor_Click);
             // 
+            // SaveData
+            // 
+            this.SaveData.Location = new System.Drawing.Point(1046, 0);
+            this.SaveData.Name = "SaveData";
+            this.SaveData.Size = new System.Drawing.Size(113, 19);
+            this.SaveData.TabIndex = 17;
+            this.SaveData.Text = "Save Data";
+            this.SaveData.UseVisualStyleBackColor = true;
+            this.SaveData.Click += new System.EventHandler(this.SaveData_Click);
+            // 
             // NewProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1158, 586);
+            this.Controls.Add(this.SaveData);
             this.Controls.Add(this.ButtonColor);
             this.Controls.Add(this.ButtonClear);
             this.Controls.Add(this.ButtonSelect);
@@ -273,6 +285,7 @@ namespace UML_Project._Forms
         private System.Windows.Forms.Button ButtonClear;
         private System.Windows.Forms.Button ButtonColor;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button SaveData;
     }
 }
 

@@ -25,18 +25,19 @@ namespace UML_Project._Forms
             {
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    //if (Path.GetExtension(ofd.FileName).Equals("*.Мы.Програмист", StringComparison.CurrentCultureIgnoreCase))
-                    //{
                     Core._myPath = ofd.FileName;
-                    Menu menu = new Menu();
-                    menu.Show();
-                    menu.Enabled = true;
+                    BinaryConversion.DeserializationDictionary();
                     MessageBox.Show("Загрузка успешно завершена");
-                    this.Close();
-                    //}
                 }
             }
-
+            int s = Core.Figures[0];
+            int s1 = Core.Figures[1];
+            int s2 = Core.Figures[2];
+            int s3 = Core.Figures[3];
+            MessageBox.Show($"s = {s} s1 = {s1} s2 = {s2} s3 = {s3}");
+            NewProject newProject = new NewProject();
+            Hide();
+            newProject.Show();
         }
     }
 }

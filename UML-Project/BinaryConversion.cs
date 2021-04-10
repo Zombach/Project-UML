@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UML_Project.Interfaces;
 using UML_Project._Core;
+using UML_Project.Arrows;
 
 
 namespace UML_Project
@@ -27,7 +28,7 @@ namespace UML_Project
         {
             FileStream fileStream = new FileStream(Core._myPath, FileMode.Open, FileAccess.Read, FileShare.None);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            Core.Figures = (Dictionary<string, IFigure>)binaryFormatter.Deserialize(fileStream);
+            Core.Figures = (List<int>)binaryFormatter.Deserialize(fileStream);
             fileStream.Close();
             return true;
         }

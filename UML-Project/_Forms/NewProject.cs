@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 using UML_Project.Arrows;
+using UML_Project._Core;
 
 namespace UML_Project._Forms
 {
@@ -95,7 +96,10 @@ namespace UML_Project._Forms
                 case Act.Select:
                     break;
             }
-
+            Core.Figures.Add(_currentArrow.Points[0].X);
+            Core.Figures.Add(_currentArrow.Points[0].Y);
+            Core.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].X);
+            Core.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].Y);
             _isTapped = false;
         }
 
@@ -133,7 +137,7 @@ namespace UML_Project._Forms
             _endAxis = Axises.Y;
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void TrackBar1_Scroll(object sender, EventArgs e)
         {
             _width = trackBar1.Value;
         }
@@ -167,6 +171,12 @@ namespace UML_Project._Forms
         private void ButtonClear_Click(object sender, EventArgs e)
         {
             _act = Act.Clear;
+        }
+
+        private void SaveData_Click(object sender, EventArgs e)
+        {
+            Core.SaveDate();
+            MessageBox.Show("Сохранено");
         }
     }
 }

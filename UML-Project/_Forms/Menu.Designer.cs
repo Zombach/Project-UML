@@ -1,7 +1,7 @@
 ﻿
 namespace UML_Project._Forms
 {
-    partial class Menu
+    public partial class Menu
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,6 @@ namespace UML_Project._Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.NewProject = new System.Windows.Forms.Button();
             this.LoadProject = new System.Windows.Forms.Button();
             this.AboutUs = new System.Windows.Forms.Button();
@@ -75,7 +73,7 @@ namespace UML_Project._Forms
             this.ExitProgramm.Text = "Exit";
             this.ExitProgramm.UseVisualStyleBackColor = true;
             // 
-            // MainMenu
+            // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -84,15 +82,13 @@ namespace UML_Project._Forms
             this.Controls.Add(this.ExitProgramm);
             this.Controls.Add(this.LoadProject);
             this.Controls.Add(this.NewProject);
-            this.Name = "MainMenu";
+            this.Name = "Menu";
             this.Text = "UML Manager";
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button NewProject;
         private System.Windows.Forms.Button LoadProject;
         private System.Windows.Forms.Button AboutUs;
