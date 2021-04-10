@@ -118,13 +118,13 @@ namespace UML_Project.Arrows
         {
             foreach (Point point in Points)
             {
-                graphics.DrawEllipse(_selectionPen, point.X - (_pen.Width * 3)/2, point.Y - (_pen.Width * 3) / 2, _pen.Width * 3, _pen.Width * 3);
+                graphics.DrawEllipse(_selectionPen, point.X - (_pen.Width * 3) / 2, point.Y - (_pen.Width * 3) / 2, _pen.Width * 3, _pen.Width * 3);
             }
         }
 
         public void Move(int deltaX, int deltaY)
         {
-            foreach(Point point in Points)
+            foreach (Point point in Points)
             {
                 Point currentPoint = point;
                 currentPoint.X += deltaX;

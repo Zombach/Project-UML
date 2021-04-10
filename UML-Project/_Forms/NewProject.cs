@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 using UML_Project.Arrows;
-using UML_Project._Core;
 
 namespace UML_Project._Forms
 {
@@ -57,18 +56,24 @@ namespace UML_Project._Forms
                     break;
                 case Act.Select:
                     bool selected;
-                    foreach(AbstractArrow arrow in _arrows)
+                    foreach (AbstractArrow arrow in _arrows)
                     {
                         selected = arrow.CheckSelection(_point);
-                    if (selected)
+                        if (selected)
                         {
-                            arrow.ViewSelection(_graphics);
+                            _graphics.Clear(Color.White);
+                            arrow.Reverse();
+                            foreach (AbstractArrow arrow2 in _arrows)
+                            {
+                                arrow2.Draw(_graphics);
+                            }
                             pictureBox1.Invalidate();
+                            break;
                         }
                     }
                     break;
             }
-            
+
         }
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -90,13 +95,13 @@ namespace UML_Project._Forms
                 case Act.Select:
                     break;
             }
-            
+
             _isTapped = false;
         }
 
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_isTapped)
+            if (_isTapped && (_act == Act.Aggregation || _act == Act.Composition || _act == Act.Inheritance))
             {
                 _bitmapTmp = (Bitmap)_bitmap.Clone();
                 _graphics = Graphics.FromImage(_bitmapTmp);
@@ -128,40 +133,40 @@ namespace UML_Project._Forms
             _endAxis = Axises.Y;
         }
 
-        private void RadioButtonAggregation_CheckedChanged(object sender, EventArgs e)
-        {
-            _act = Act.Aggregation;
-        }
-
-        private void RadioButtonComposition_CheckedChanged(object sender, EventArgs e)
-        {
-            _act = Act.Composition;
-        }
-
-        private void RadioButtonInheritance_CheckedChanged(object sender, EventArgs e)
-        {
-            _act = Act.Inheritance;
-        }
-
-        private void RadioButtonSelect_CheckedChanged(object sender, EventArgs e)
-        {
-            _act = Act.Select;
-        }
-
-        private void RadioButtonClear_CheckedChanged(object sender, EventArgs e)
-        {
-            _act = Act.Clear;
-        }
-
-        private void TrackBar1_Scroll(object sender, EventArgs e)
+        private void trackBar1_Scroll(object sender, EventArgs e)
         {
             _width = trackBar1.Value;
         }
 
-        private void SaveData_Click(object sender, EventArgs e)
+        private void ButtonColor_Click(object sender, EventArgs e)
         {
-            Core.SaveDate();
-            MessageBox.Show("Сохранение прошло удачно");
+            colorDialog1.ShowDialog();
+            ButtonColor.BackColor = colorDialog1.Color;
+        }
+
+        private void ButtonAggregation_Click(object sender, EventArgs e)
+        {
+            _act = Act.Aggregation;
+        }
+
+        private void ButtonComposition_Click(object sender, EventArgs e)
+        {
+            _act = Act.Composition;
+        }
+
+        private void ButtonInheritance_Click(object sender, EventArgs e)
+        {
+            _act = Act.Inheritance;
+        }
+
+        private void ButtonSelect_Click(object sender, EventArgs e)
+        {
+            _act = Act.Select;
+        }
+
+        private void ButtonClear_Click(object sender, EventArgs e)
+        {
+            _act = Act.Clear;
         }
     }
 }
