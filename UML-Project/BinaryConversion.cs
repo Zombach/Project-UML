@@ -13,7 +13,7 @@ namespace UML_Project
     {
         private static string _myPath;
 
-        public static void SaveOperandsDictionary(Dictionary<string, string/*IFigure*/> data)
+        public static void SerializationDictionary(Dictionary<string, string/*IFigure*/> data)
         {
             DateTime _dateTime = DateTime.Now;
             string _tmpName = $"../../Save/Save_{_dateTime}.dat";
@@ -26,7 +26,7 @@ namespace UML_Project
             fileStream.Close();
 
         }
-        public static Dictionary<string, string/*IFigure*/> LoadOperandsDictionary()
+        public static Dictionary<string, string/*IFigure*/> DeserializationDictionary()
         {
             FileStream fileStream = new FileStream(_myPath, FileMode.Open, FileAccess.Read, FileShare.None);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
