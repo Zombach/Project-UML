@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace UML_Project.Arrows
 {
-    public class Tip : AbstractArrow
+    public class InheritanceArrow : AbstractArrow
     {
-        public Tip()
+        public InheritanceArrow()
         {
             _pen = new Pen(Color.Black, 4);
         }
