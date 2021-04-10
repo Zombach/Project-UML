@@ -6,6 +6,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using UML_Project.Interfaces;
+using UML_Project.CoreFolders;
 
 namespace UML_Project
 {
@@ -13,26 +15,30 @@ namespace UML_Project
     {
         private static string _myPath;
 
-        public static void SerializationDictionary(Dictionary<string, string/*IFigure*/> data)
+        public static void SerializationDictionary(Dictionary<string, IFigure> data)
+        {
+            SetMyPath();
+            FileStream fileStream = new FileStream(_myPath, FileMode.Create, FileAccess.Write, FileShare.None);
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            binaryFormatter.Serialize(fileStream, data);
+            fileStream.Close();
+        }
+        public static Dictionary<string, IFigure> DeserializationDictionary()
+        {
+            FileStream fileStream = new FileStream(_myPath, FileMode.Open, FileAccess.Read, FileShare.None);
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            Dictionary<string, IFigure> objData = (Dictionary<string, IFigure>)binaryFormatter.Deserialize(fileStream);
+            fileStream.Close();
+            return objData;
+        }
+
+        private static void SetMyPath()
         {
             DateTime _dateTime = DateTime.Now;
             string _tmpName = $"../../Save/Save_{_dateTime}.dat";
             Regex regex = new Regex(":");
             _tmpName = regex.Replace(_tmpName, ".");
             _myPath = Path.GetFullPath(_tmpName);
-            FileStream fileStream = new FileStream(_myPath, FileMode.Create, FileAccess.Write, FileShare.None);
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            binaryFormatter.Serialize(fileStream, data);
-            fileStream.Close();
-
-        }
-        public static Dictionary<string, string/*IFigure*/> DeserializationDictionary()
-        {
-            FileStream fileStream = new FileStream(_myPath, FileMode.Open, FileAccess.Read, FileShare.None);
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            Dictionary<string, string/*IFigure*/> obj = (Dictionary<string, string/*IFigure*/>)binaryFormatter.Deserialize(fileStream);
-            fileStream.Close();
-            return obj;
         }
     }
 }
