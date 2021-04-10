@@ -59,6 +59,11 @@ namespace UML_Project.Arrows
             return Points;
         }
 
+        public void Reverse()
+        {
+            Points.Reverse();
+        }
+
         public void ChangeColor(Color color)
         {
             _pen.Color = color;
@@ -109,7 +114,7 @@ namespace UML_Project.Arrows
             return selected;
         }
 
-        public void ViewSelection(Graphics graphics)
+        public void Select(Graphics graphics)
         {
             foreach (Point point in Points)
             {
@@ -136,12 +141,10 @@ namespace UML_Project.Arrows
         {
             throw new NotImplementedException();
         }
-
         public void Select()
         {
             throw new NotImplementedException();
         }
-
         public void IsHovered(Point point)
         {
             throw new NotImplementedException();
