@@ -32,7 +32,6 @@ namespace UML_Project
             this.components = new System.ComponentModel.Container();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.NewProject = new System.Windows.Forms.Button();
-            this.ChangeLanguage = new System.Windows.Forms.Button();
             this.LoadProject = new System.Windows.Forms.Button();
             this.AboutUs = new System.Windows.Forms.Button();
             this.ExitProgramm = new System.Windows.Forms.Button();
@@ -47,15 +46,6 @@ namespace UML_Project
             this.NewProject.Text = "New project";
             this.NewProject.UseVisualStyleBackColor = true;
             this.NewProject.Click += new System.EventHandler(this.NewProject_Click);
-            // 
-            // ChangeLanguage
-            // 
-            this.ChangeLanguage.Location = new System.Drawing.Point(63, 134);
-            this.ChangeLanguage.Name = "ChangeLanguage";
-            this.ChangeLanguage.Size = new System.Drawing.Size(135, 45);
-            this.ChangeLanguage.TabIndex = 3;
-            this.ChangeLanguage.Text = "Language";
-            this.ChangeLanguage.UseVisualStyleBackColor = true;
             // 
             // LoadProject
             // 
@@ -92,7 +82,6 @@ namespace UML_Project
             this.Controls.Add(this.AboutUs);
             this.Controls.Add(this.ExitProgramm);
             this.Controls.Add(this.LoadProject);
-            this.Controls.Add(this.ChangeLanguage);
             this.Controls.Add(this.NewProject);
             this.Name = "MainMenu";
             this.Text = "UML Manager";
@@ -104,7 +93,6 @@ namespace UML_Project
 
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button NewProject;
-        private System.Windows.Forms.Button ChangeLanguage;
         private System.Windows.Forms.Button LoadProject;
         private System.Windows.Forms.Button AboutUs;
         private System.Windows.Forms.Button ExitProgramm;

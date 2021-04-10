@@ -16,7 +16,7 @@ namespace UML_Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new NewProject());
+            Application.Run(new MainMenu());
         }
     }
 }

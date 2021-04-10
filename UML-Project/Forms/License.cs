@@ -12,11 +12,9 @@ namespace UML_Project
 {
     public partial class License : Form
     {
-        public License LicenseAgreement { get; set; }
         public License()
         {
             InitializeComponent();
-            LicenseAgreement = this;
         }
         private void CheckBox_License_CheckedChanged(object sender, EventArgs e)
         {
@@ -29,10 +27,10 @@ namespace UML_Project
                 CreateProject_Button.Enabled = false;
             }
         }
-        private void CreateProject_Button_Click(object sender, EventArgs e)
+        private void CreateNewProject_Button_Click(object sender, EventArgs e)
         {
             NewProject newProject = new NewProject();
-            LicenseAgreement.Close();
+            this.Close();
             newProject.Show();
             //MainMenu.Main.Visible = true; Это строка кода для отображения главноего меню
         }

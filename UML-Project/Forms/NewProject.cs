@@ -79,5 +79,10 @@ namespace UML_Project
         {
             _endAxis = Axises.Y;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
