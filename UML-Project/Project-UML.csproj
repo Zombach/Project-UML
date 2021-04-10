@@ -118,6 +118,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\icons\aggregation.png" />
+    <Content Include="Resources\icons\association.jpeg" />
+    <Content Include="Resources\icons\composition.png" />
+    <Content Include="Resources\icons\inheritance.png" />
+    <Content Include="Resources\icons\realisation.png" />
+    <Content Include="Resources\icons\winArrow.png" />
     <Content Include="Resources\Arrows.png" />
   </ItemGroup>
   <ItemGroup>
