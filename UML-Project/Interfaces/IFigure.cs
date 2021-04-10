@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UML_Project
+namespace UML_Project.Interfaces
 {
-    interface IFigure
+    public interface IFigure
     {
         Point Location { get; set; }
         int GetWidth();
@@ -19,6 +19,5 @@ namespace UML_Project
         void IsHovered(Point point);
         void ChangeColor(Color color);
         void ChangeWidth(int width);
-
     }
 }

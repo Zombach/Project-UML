@@ -55,6 +55,7 @@ namespace UML_Project
             this.LoadProject.TabIndex = 4;
             this.LoadProject.Text = "Load project";
             this.LoadProject.UseVisualStyleBackColor = true;
+            this.LoadProject.Click += new System.EventHandler(this.LoadProject_Click);
             // 
             // AboutUs
             // 

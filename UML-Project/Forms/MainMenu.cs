@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UML_Project.CoreFolders;
 
 namespace UML_Project
 {
@@ -22,6 +23,12 @@ namespace UML_Project
             License licenseAgreement = new License();
             this.Hide();
             licenseAgreement.Show();
+        }
+
+        private void LoadProject_Click(object sender, EventArgs e)
+        {
+            this.Enabled = true;
+            //
         }
     }
 }
