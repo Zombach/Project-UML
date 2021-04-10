@@ -28,7 +28,7 @@ namespace UML_Project
         private void LoadProject_Click(object sender, EventArgs e)
         {
             this.Enabled = true;
-            //
+            //Loading loading = new Loading();
         }
     }
 }

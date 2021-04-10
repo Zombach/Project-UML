@@ -7,7 +7,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UML_Project.Interfaces;
-using UML_Project.CoreFolders;
 
 namespace UML_Project
 {

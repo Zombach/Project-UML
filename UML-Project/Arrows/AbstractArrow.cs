@@ -127,6 +127,26 @@ namespace UML_Project.Arrows
             }
         }
 
+        public int GetWidth()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetHeight()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void IsHovered(Point point)
+        {
+            throw new NotImplementedException();
+        }
+
         //protected virtual Point GetPoint(Point currentPoint, int currentWay)
         //{
         //    Point newPoint = new Point();
