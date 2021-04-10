@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace UML_Project.Arrows
 {
-    public abstract class AbstractArrow
+    public abstract class AbstractArrow : IFigure
     {
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
         public Axises StartDirectionAxis;
         public Axises EndDirectionAxis;
         public List<Point> Points;
+
+        public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public virtual void Draw(Graphics graphics)
         {

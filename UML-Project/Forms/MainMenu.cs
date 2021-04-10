@@ -12,17 +12,15 @@ namespace UML_Project
 {
     public partial class MainMenu : Form
     {
-        public static MainMenu Main { get; set; }
         public MainMenu()
         {
             InitializeComponent();
-            Main = this;
         }
 
         private void NewProject_Click(object sender, EventArgs e)
         {
             License licenseAgreement = new License();
-            Main.Hide();
+            this.Hide();
             licenseAgreement.Show();
         }
     }

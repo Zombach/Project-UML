@@ -65,7 +65,7 @@ namespace UML_Project
             this.CreateProject_Button.TabIndex = 2;
             this.CreateProject_Button.Text = "Create Project";
             this.CreateProject_Button.UseVisualStyleBackColor = true;
-            this.CreateProject_Button.Click += new System.EventHandler(this.CreateProject_Button_Click);
+            this.CreateProject_Button.Click += new System.EventHandler(this.CreateNewProject_Button_Click);
             // 
             // License
             // 
