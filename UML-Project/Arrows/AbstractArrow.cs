@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace UML_Project.Arrows
 {
-    public abstract class AbstractArrow
+    public abstract class AbstractArrow : IFigure
     {
         protected Pen _pen;
         public Axises StartDirectionAxis;
         public Axises EndDirectionAxis;
         public List<Point> Points;
-        
+
+        public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public virtual void Draw(Graphics graphics)
         {
             graphics.DrawLines(_pen, Points.ToArray());
@@ -62,6 +64,31 @@ namespace UML_Project.Arrows
         public void ChangeWidth(int width)
         {
             _pen.Width = width;
+        }
+
+        public void Move(int deltaX, int deltaY)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void IsHovered(Point point)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetWidth()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetHeight()
+        {
+            throw new NotImplementedException();
         }
 
 
