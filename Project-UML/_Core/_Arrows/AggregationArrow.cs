@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_UML.Arrows
+namespace Project_UML._Core._Arrows
 {
     public class AggregationArrow : AbstractArrow
     {

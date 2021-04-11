@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using Project_UML
+using Project_UML._Core._Arrows;
 
-namespace Project_UML._Core
+namespace Project_UML._Core._Serialize
 {
     /// <summary>
     /// Структура для сериализации объекта, для сохранения данных
@@ -14,9 +14,9 @@ namespace Project_UML._Core
     {
         public List<SerializePoints> Points;
 
-        //public StructSerialize(List<Points> points)
-        //{
+        public StructSerialize(AbstractArrow points)
+        {
 
-        //}
+        }
     }
 }

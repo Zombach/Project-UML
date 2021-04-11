@@ -6,12 +6,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Project_UML.Interfaces;
+using Project_UML._Core._Interfaces;
 using Project_UML._Core;
-using Project_UML.Arrows;
+using Project_UML._Core._Arrows;
 
 
-namespace Project_UML
+namespace Project_UML._Core._Serialize
 {
     public static class BinaryConversion
     {

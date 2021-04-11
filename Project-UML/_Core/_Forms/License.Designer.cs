@@ -1,5 +1,5 @@
 ﻿
-namespace Project_UML._Forms
+namespace Project_UML._Core._Forms
 {
     partial class License
     {
