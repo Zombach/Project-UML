@@ -15,6 +15,11 @@ namespace UML_Project.Arrows
             _pen = new Pen(Color.Black, 1);
             SetEndCap();
         }
+        public AggregationArrow(Color color, int width)
+        {
+            _pen = new Pen(color, width);
+            SetEndCap();
+        }
         public AggregationArrow(Point startPoint, Point endPoint, Axises startDirectionAxis, Axises endDirectionAxis)
         {
             _pen = new Pen(Color.Black, 1);

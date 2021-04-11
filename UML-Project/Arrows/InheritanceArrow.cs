@@ -13,6 +13,7 @@ namespace UML_Project.Arrows
         {
             _pen = new Pen(Color.Black, 4);
         }
+        
         private int _const;
         private int _tmp = 50;
         public override List<Point> GetPoints(Point startPoint, Point endPoint)

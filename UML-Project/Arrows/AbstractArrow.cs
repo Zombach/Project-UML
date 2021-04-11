@@ -124,12 +124,15 @@ namespace UML_Project.Arrows
 
         public void Move(int deltaX, int deltaY)
         {
+            List<Point> newPoints = new List<Point>();
             foreach (Point point in Points)
             {
                 Point currentPoint = point;
                 currentPoint.X += deltaX;
                 currentPoint.Y += deltaY;
+                newPoints.Add(currentPoint);
             }
+            Points = newPoints;
         }
 
         public int GetWidth()
