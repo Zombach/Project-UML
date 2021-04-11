@@ -144,7 +144,7 @@ namespace UML_Project._Forms
             this.trackBar1.Size = new System.Drawing.Size(104, 45);
             this.trackBar1.TabIndex = 8;
             this.trackBar1.Value = 1;
-            this.trackBar1.Scroll += new System.EventHandler(this.TrackBar1_Scroll);
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll_1);
             // 
             // groupBox2
             // 

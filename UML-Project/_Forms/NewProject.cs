@@ -124,10 +124,10 @@ namespace UML_Project._Forms
                     }
                     break;
             }
-            Core.Figures.Add(_currentArrow.Points[0].X);
-            Core.Figures.Add(_currentArrow.Points[0].Y);
-            Core.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].X);
-            Core.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].Y);
+            //Core.Figures.Add(_currentArrow.Points[0].X);
+            //Core.Figures.Add(_currentArrow.Points[0].Y);
+            //Core.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].X);
+            //Core.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].Y);
             _isTapped = false;
         }
 
@@ -174,11 +174,6 @@ namespace UML_Project._Forms
         private void RadioButton6_CheckedChanged(object sender, EventArgs e)
         {
             _endAxis = Axises.Y;
-        }
-
-        private void TrackBar1_Scroll(object sender, EventArgs e)
-        {
-            _width = trackBar1.Value;
         }
 
         private void ButtonColor_Click(object sender, EventArgs e)
@@ -253,7 +248,7 @@ namespace UML_Project._Forms
             _graphics = Graphics.FromImage(_bitmapTmp);
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void trackBar1_Scroll_1(object sender, EventArgs e)
         {
             if (!(_currentArrow is null))
             {
@@ -261,7 +256,5 @@ namespace UML_Project._Forms
                 UpdPicture();
             }
         }
-
-
     }
 }
