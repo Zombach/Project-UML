@@ -13,6 +13,7 @@ namespace Project_UML._Core
         Inheritance = 2,
         Clear = 3,
         Select = 4,
-        Implementation = 5
+        Implementation = 5,
+        Association = 6
     }
 }

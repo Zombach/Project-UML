@@ -54,6 +54,7 @@
     <Compile Include="_Core\_Arrows\ArrowType.cs" />
     <Compile Include="_Core\_Arrows\Axises.cs" />
     <Compile Include="_Core\_Arrows\CompositionArrow.cs" />
+    <Compile Include="_Core\_Arrows\AssociationArrow.cs" />
     <Compile Include="_Core\_Arrows\ImplementationArrow.cs" />
     <Compile Include="_Core\_Arrows\InheritanceArrow.cs" />
     <Compile Include="_Core\_Interfaces\IFigure.cs" />
