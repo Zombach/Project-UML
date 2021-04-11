@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UML_Project._Core;
+using Project_UML._Core;
 
-namespace UML_Project._Forms
+namespace Project_UML._Forms
 {
     public partial class Menu : Form
     {

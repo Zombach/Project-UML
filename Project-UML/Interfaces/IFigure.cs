@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UML_Project.Interfaces
+namespace Project_UML.Interfaces
 {
     public interface IFigure
     {

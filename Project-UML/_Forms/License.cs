@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UML_Project._Forms
+namespace Project_UML._Forms
 {
     public partial class License : Form
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UML_Project
+namespace Project_UML
 {
     public enum Act
     {

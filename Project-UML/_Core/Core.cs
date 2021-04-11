@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UML_Project.Interfaces;
-using UML_Project.Arrows;
+using Project_UML.Interfaces;
+using Project_UML.Arrows;
 
-namespace UML_Project._Core
+namespace Project_UML._Core
 {
     public static class Core
     {
