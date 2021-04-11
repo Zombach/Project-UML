@@ -40,11 +40,11 @@ namespace Project_UML._Core._Arrows
             {
                 tmp = 1;
             }
-            GraphicsPath _graphicsPath = new GraphicsPath();
-            _graphicsPath.AddLine(new Point(0, 0), new Point(12 / tmp, -24 / tmp));
-            _graphicsPath.AddLine(new Point(12 / tmp, -24 / tmp), new Point(-12 / tmp, -24 / tmp));
-            _graphicsPath.AddLine(new Point(-12 / tmp, -24 / tmp), new Point(0, 0));
-            _pen.CustomEndCap = new CustomLineCap(null, _graphicsPath, LineCap.Custom, 24 / tmp);
+            //GraphicsPath _graphicsPath = new GraphicsPath();
+            //_graphicsPath.AddLine(new Point(0, 0), new Point(12 / tmp, -24 / tmp));
+            //_graphicsPath.AddLine(new Point(12 / tmp, -24 / tmp), new Point(-12 / tmp, -24 / tmp));
+            //_graphicsPath.AddLine(new Point(-12 / tmp, -24 / tmp), new Point(0, 0));
+            //_pen.CustomEndCap = new CustomLineCap(null, _graphicsPath, LineCap.Custom, 24 / tmp);
         }
 
         public override void ChangeWidth(int width)
