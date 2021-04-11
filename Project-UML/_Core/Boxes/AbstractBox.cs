@@ -11,7 +11,7 @@ namespace Project_UML
 {
     public abstract class AbstractBox : IDraw, IChangeColor, IChangeWidth, ISelect, IisHovered, IMove
     {
-        protected Pen _pen;
+        protected Pen _pen = new Pen(Color.Blue, 5);
 
         private int widthFigure { get; set; }
         private int heightFigure { get; set; }
@@ -57,8 +57,6 @@ namespace Project_UML
         {
             throw new NotImplementedException();
         }
-
-        
 
 
     }

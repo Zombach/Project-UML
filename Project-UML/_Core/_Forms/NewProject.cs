@@ -23,6 +23,7 @@ namespace Project_UML._Core._Forms
         Axises _endAxis = Axises.X;
         List<AbstractArrow> _arrows = new List<AbstractArrow>();
         Act _act = Act.Aggregation;
+        Rectangle _currentBox;
         public NewProject()
         {
             InitializeComponent();
@@ -84,6 +85,9 @@ namespace Project_UML._Core._Forms
                         }
                     }
                     break;
+                case Act.Rectangle:
+                    _currentBox = new Rectangle(Location.X, Location.Y, 5, 5);
+                    break;
             }
         }
 
@@ -122,6 +126,9 @@ namespace Project_UML._Core._Forms
                         _graphics = Graphics.FromImage(_bitmap);
                     }
                     break;
+                //case Act.Rectangle:
+
+
             }
             Core.Figures.Add(_currentArrow.Points[0].X);
             Core.Figures.Add(_currentArrow.Points[0].Y);
@@ -254,6 +261,11 @@ namespace Project_UML._Core._Forms
                 _currentArrow.ChangeWidth(trackBar1.Value);
                 UpdPicture();
             }
+        }
+
+        private void ButtonRectangle_Click(object sender, EventArgs e)
+        {
+            _act = Act.Rectangle;
         }
     }
 }

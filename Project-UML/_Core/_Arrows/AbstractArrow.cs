@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Project_UML._Core._Interfaces;
+using Project_UML.Interfaces;
 
 namespace Project_UML._Core._Arrows
 {
-    public abstract class AbstractArrow : IFigure
+    public abstract class AbstractArrow : IDraw, IMove, ISelect, IChangeColor, IChangeWidth, IisHovered
     {
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
