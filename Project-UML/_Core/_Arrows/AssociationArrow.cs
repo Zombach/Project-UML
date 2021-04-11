@@ -13,23 +13,41 @@ namespace Project_UML._Core._Arrows
         public AssociationArrow()
         {
             _pen = new Pen(Color.Black, 1);
-            _pen.EndCap = LineCap.ArrowAnchor;
+            SetEndCap();
         }
 
         public AssociationArrow(Color color, int width)
         {
             _pen = new Pen(color, width);
-            _pen.EndCap = LineCap.ArrowAnchor;
+            SetEndCap();
 
         }
         public AssociationArrow(Point startPoint, Point endPoint, Axises startDirectionAxis, Axises endDirectionAxis)
         {
             _pen = new Pen(Color.Black, 1);
-            _pen.EndCap = LineCap.ArrowAnchor;
-
             Points = GetPoints(startPoint, endPoint);
             StartDirectionAxis = startDirectionAxis;
             EndDirectionAxis = endDirectionAxis;
+            SetEndCap();
+        }
+
+        private void SetEndCap()
+        {
+            int tmp;
+            if (_pen.Width == 1)
+            {
+                tmp = 2;
+            }
+            else
+            {
+                tmp = 1;
+            }
+            GraphicsPath _graphicsPath = new GraphicsPath();
+            _graphicsPath.AddLine(new Point(0, 0), new Point(8 / tmp, -12 / tmp));
+            _graphicsPath.AddLine(new Point(8 / tmp, -12 / tmp), new Point(0, 0));
+            _graphicsPath.AddLine(new Point(0, 0), new Point(-8 / tmp, -12 / tmp));
+            _graphicsPath.AddLine(new Point(-8 / tmp, -12 / tmp), new Point(0, 0));
+            _pen.CustomEndCap = new CustomLineCap(null, _graphicsPath, LineCap.Custom);
         }
 
         public override void ChangeWidth(int width)
