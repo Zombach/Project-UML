@@ -8,6 +8,7 @@ using System.IO;
 using System.Windows.Forms;
 using Project_UML._Core._Arrows;
 using Project_UML._Core;
+using Project_UML._Core._Boxes;
 
 namespace Project_UML._Core._Forms
 {
@@ -23,7 +24,8 @@ namespace Project_UML._Core._Forms
         Axises _endAxis = Axises.X;
         List<AbstractArrow> _arrows = new List<AbstractArrow>();
         Act _act = Act.Aggregation;
-        Rectangle _currentBox;
+        AbstractBox _currentBox;
+
         public NewProject()
         {
             InitializeComponent();
@@ -86,7 +88,8 @@ namespace Project_UML._Core._Forms
                     }
                     break;
                 case Act.Rectangle:
-                    _currentBox = new Rectangle(Location.X, Location.Y, 5, 5);
+                    _currentBox = new BestRectangles(e.X, e.Y);
+                    _currentBox.Draw(_graphics);
                     break;
             }
         }
@@ -127,7 +130,12 @@ namespace Project_UML._Core._Forms
                     }
                     break;
                 //case Act.Rectangle:
-
+                case Act.Rectangle:
+                    if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
+                    //_arrows.Add(_currentArrow);
+                    //_currentBox.Select(_graphics);
+                    pictureBox1.Invalidate();
+                    break;
 
             }
             Core.Figures.Add(_currentArrow.Points[0].X);
