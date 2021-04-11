@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Project_UML._Core;
+using Project_UML._Core._Serialize;
 
-namespace Project_UML._Forms
+namespace Project_UML._Core._Forms
 {
     public partial class Loading : Form
     {

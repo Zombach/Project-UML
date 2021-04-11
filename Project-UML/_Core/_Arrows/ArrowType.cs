@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_UML.Arrows
+namespace Project_UML._Core._Arrows
 {
-    public enum Axises
+    public enum ArrowType
     {
-        X = 0,
-        Y = 1
+        Aggregation = 0,
+        Composition = 1,
+        Inheritance = 2
     }
 }

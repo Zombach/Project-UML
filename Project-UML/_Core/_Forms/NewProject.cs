@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
-using Project_UML.Arrows;
+using Project_UML._Core._Arrows;
 using Project_UML._Core;
 
-namespace Project_UML._Forms
+namespace Project_UML._Core._Forms
 {
     public partial class NewProject : Form
     {

@@ -4,9 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Project_UML.Interfaces;
+using Project_UML._Core._Interfaces;
 
-namespace Project_UML.Arrows
+namespace Project_UML._Core._Arrows
 {
     public abstract class AbstractArrow : IFigure
     {
