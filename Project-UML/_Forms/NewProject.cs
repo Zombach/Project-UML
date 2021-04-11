@@ -85,7 +85,6 @@ namespace UML_Project._Forms
                     }
                     break;
             }
-
         }
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
