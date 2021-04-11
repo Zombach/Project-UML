@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project_UML._Core._Arrows
 {
-    public class ImplementationArrow : InheritanceArrow
+    public class ImplementationArrow : AbstractArrow
     {
         public ImplementationArrow()
         {

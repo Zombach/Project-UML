@@ -47,6 +47,7 @@ namespace Project_UML._Core._Forms
             this.ButtonColor = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.SaveData = new System.Windows.Forms.Button();
+            this.ButtonImplementation = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxStartAxis.SuspendLayout();
             this.groupBoxEndAxis.SuspendLayout();
@@ -235,11 +236,22 @@ namespace Project_UML._Core._Forms
             this.SaveData.UseVisualStyleBackColor = true;
             this.SaveData.Click += new System.EventHandler(this.SaveData_Click);
             // 
+            // ButtonImplementation
+            // 
+            this.ButtonImplementation.Location = new System.Drawing.Point(8, 281);
+            this.ButtonImplementation.Name = "ButtonImplementation";
+            this.ButtonImplementation.Size = new System.Drawing.Size(150, 25);
+            this.ButtonImplementation.TabIndex = 18;
+            this.ButtonImplementation.Text = "Implementation";
+            this.ButtonImplementation.UseVisualStyleBackColor = true;
+            this.ButtonImplementation.Click += new System.EventHandler(this.ButtonImplementation_Click);
+            // 
             // NewProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1158, 586);
+            this.Controls.Add(this.ButtonImplementation);
             this.Controls.Add(this.SaveData);
             this.Controls.Add(this.ButtonColor);
             this.Controls.Add(this.ButtonClear);
@@ -286,6 +298,7 @@ namespace Project_UML._Core._Forms
         private System.Windows.Forms.Button ButtonColor;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button SaveData;
+        private System.Windows.Forms.Button ButtonImplementation;
     }
 }
 
