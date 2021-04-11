@@ -55,6 +55,7 @@
     <Compile Include="Arrows\CompositionArrow.cs" />
     <Compile Include="Arrows\InheritanceArrow.cs" />
     <Compile Include="_Core\Core.cs" />
+    <Compile Include="_Core\SerializePoints.cs" />
     <Compile Include="_Core\StructSerialize.cs" />
     <Compile Include="_Forms\License.cs">
       <SubType>Form</SubType>
