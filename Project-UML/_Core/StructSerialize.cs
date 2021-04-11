@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//using Project_UML
 
 namespace Project_UML._Core
 {
@@ -11,6 +12,11 @@ namespace Project_UML._Core
     /// </summary>
     public class StructSerialize
     {
+        public List<SerializePoints> Points;
 
+        //public StructSerialize(List<Points> points)
+        //{
+
+        //}
     }
 }
