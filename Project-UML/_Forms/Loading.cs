@@ -21,11 +21,12 @@ namespace Project_UML._Forms
 
         private void Explorer_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                if (ofd.ShowDialog() == DialogResult.OK)
+                openFileDialog.InitialDirectory = "../../Save";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    Core._myPath = ofd.FileName;
+                    Core._myPath = openFileDialog.FileName;
                     BinaryConversion.DeserializationDictionary();
                     MessageBox.Show("Загрузка успешно завершена");
                 }
