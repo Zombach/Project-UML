@@ -36,7 +36,7 @@ namespace UML_Project
         private static void SetMyPath()
         {
             DateTime _dateTime = DateTime.Now;
-            string _tmpName = $"../../Save/Save_{_dateTime}.Мы.Програмист";
+            string _tmpName = $"../../Save/Save_{_dateTime}.Мы-Програмист";
             Regex regex = new Regex(":");
             _tmpName = regex.Replace(_tmpName, ".");
             Core._myPath = Path.GetFullPath(_tmpName);
