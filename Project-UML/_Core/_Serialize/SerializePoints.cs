@@ -8,7 +8,7 @@ namespace Project_UML._Core._Serialize
 {
     public class SerializePoints
     {
-        public int x;
-        public int y;
+        public int Point_X { get; set; }
+        public int Point_Y { get; set; }
     }
 }
