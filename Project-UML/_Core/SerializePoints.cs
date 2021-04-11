@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_UML.Arrows
+namespace Project_UML._Core
 {
-    public enum Axises
+    public class SerializePoints
     {
-        X = 0,
-        Y = 1
+        public int x;
+        public int y;
     }
 }

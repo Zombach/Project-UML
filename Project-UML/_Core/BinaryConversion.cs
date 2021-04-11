@@ -6,12 +6,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using UML_Project.Interfaces;
-using UML_Project._Core;
-using UML_Project.Arrows;
+using Project_UML.Interfaces;
+using Project_UML._Core;
+using Project_UML.Arrows;
 
 
-namespace UML_Project
+namespace Project_UML
 {
     public static class BinaryConversion
     {
@@ -36,7 +36,7 @@ namespace UML_Project
         private static void SetMyPath()
         {
             DateTime _dateTime = DateTime.Now;
-            string _tmpName = $"../../Save/Save_{_dateTime}.Мы.Програмист";
+            string _tmpName = $"../../Save/Save_{_dateTime}.Мы-Програмист";
             Regex regex = new Regex(":");
             _tmpName = regex.Replace(_tmpName, ".");
             Core._myPath = Path.GetFullPath(_tmpName);

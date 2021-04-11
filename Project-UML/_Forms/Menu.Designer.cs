@@ -1,5 +1,5 @@
 ﻿
-namespace UML_Project._Forms
+namespace Project_UML._Forms
 {
     public partial class Menu
     {

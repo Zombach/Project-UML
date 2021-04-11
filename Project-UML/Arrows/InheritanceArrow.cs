@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UML_Project.Arrows
+namespace Project_UML.Arrows
 {
     public class InheritanceArrow : AbstractArrow
     {

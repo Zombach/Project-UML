@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UML_Project._Core;
+using Project_UML._Core;
 
-namespace UML_Project._Forms
+namespace Project_UML._Forms
 {
     public partial class Loading : Form
     {
@@ -21,11 +21,12 @@ namespace UML_Project._Forms
 
         private void Explorer_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                if (ofd.ShowDialog() == DialogResult.OK)
+                openFileDialog.InitialDirectory = "../../Save";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    Core._myPath = ofd.FileName;
+                    Core._myPath = openFileDialog.FileName;
                     BinaryConversion.DeserializationDictionary();
                     MessageBox.Show("Загрузка успешно завершена");
                 }

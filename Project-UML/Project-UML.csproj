@@ -55,6 +55,8 @@
     <Compile Include="Arrows\CompositionArrow.cs" />
     <Compile Include="Arrows\InheritanceArrow.cs" />
     <Compile Include="_Core\Core.cs" />
+    <Compile Include="_Core\SerializePoints.cs" />
+    <Compile Include="_Core\StructSerialize.cs" />
     <Compile Include="_Forms\License.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,7 +84,7 @@
     <Compile Include="Interfaces\IFigure.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BinaryConversion.cs" />
+    <Compile Include="_Core\BinaryConversion.cs" />
     <EmbeddedResource Include="_Forms\License.resx">
       <DependentUpon>License.cs</DependentUpon>
     </EmbeddedResource>

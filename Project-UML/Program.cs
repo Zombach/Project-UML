@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UML_Project._Core;
 
-namespace UML_Project
+namespace Project_UML
 {
     static class Program
     {
