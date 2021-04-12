@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{754510AF-290C-470E-B506-BFBC76A9DB05}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>UML_Project</RootNamespace>
+    <AssemblyName>UML-Project</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Act.cs" />
+    <Compile Include="Arrows\AbstractArrow.cs" />
+    <Compile Include="Arrows\AggregationArrow.cs" />
+    <Compile Include="Arrows\Arrow.cs" />
+    <Compile Include="Arrows\ArrowType.cs" />
+    <Compile Include="Arrows\Axises.cs" />
+    <Compile Include="Arrows\CompositionArrow.cs" />
+    <Compile Include="Arrows\InheritanceArrow.cs" />
+    <Compile Include="_Core\Core.cs" />
+    <Compile Include="_Forms\License.cs" />
+    <Compile Include="_Forms\License.Designer.cs">
+      <DependentUpon>License.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Forms\Loading.cs" />
+    <Compile Include="_Forms\Loading.Designer.cs">
+      <DependentUpon>Loading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Forms\Menu.cs" />
+    <Compile Include="_Forms\Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Forms\NewProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Forms\NewProject.Designer.cs">
+      <DependentUpon>NewProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\IFigure.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BinaryConversion.cs" />
+    <EmbeddedResource Include="_Forms\License.resx">
+      <DependentUpon>License.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Forms\Loading.resx">
+      <DependentUpon>Loading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Forms\Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Forms\NewProject.resx">
+      <DependentUpon>NewProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\icons\aggregation.png" />
+    <Content Include="Resources\icons\association.jpeg" />
+    <Content Include="Resources\icons\composition.png" />
+    <Content Include="Resources\icons\inheritance.png" />
+    <Content Include="Resources\icons\realisation.png" />
+    <Content Include="Resources\icons\winArrow.png" />
+    <Content Include="Resources\Arrows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Save\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
