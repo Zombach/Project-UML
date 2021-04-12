@@ -15,7 +15,7 @@ namespace Project_UML._Core._Serialize
     {
         public List<SerializePoints> Points;
         public ArrowType Type;
-        public Color color;
+        public Color Color;
         public int Width;
     }
 }
