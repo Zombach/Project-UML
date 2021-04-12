@@ -87,6 +87,9 @@ namespace Project_UML._Core._Forms
                 case Act.Implementation:
                     _currentArrow = new ImplementationArrow();
                     break;
+                case Act.Association:
+                    _currentArrow = new AssociationArrow();
+                    break;
             }
         }
 
@@ -131,6 +134,12 @@ namespace Project_UML._Core._Forms
                     _currentArrow.Select(_graphics);
                     pictureBox1.Invalidate();
                     break;
+                case Act.Association:
+                    if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
+                    _arrows.Add(_currentArrow);
+                    _currentArrow.Select(_graphics);
+                    pictureBox1.Invalidate();
+                    break;
             }
             Core.Figures.Add(_currentArrow.Points[0].X);
             Core.Figures.Add(_currentArrow.Points[0].Y);
@@ -143,7 +152,7 @@ namespace Project_UML._Core._Forms
         {
             if (_isTapped)
             {
-                if (_act == Act.Aggregation || _act == Act.Composition || _act == Act.Inheritance || _act == Act.Implementation)
+                if (_act == Act.Aggregation || _act == Act.Composition || _act == Act.Inheritance || _act == Act.Implementation || _act == Act.Association)
                 {
                     SwitchToDrawInTmp();
                     _currentArrow.StartDirectionAxis = _startAxis;
@@ -268,6 +277,11 @@ namespace Project_UML._Core._Forms
         private void ButtonImplementation_Click(object sender, EventArgs e)
         {
             _act = Act.Implementation;
+        }
+
+        private void ButtonAssociation_Click(object sender, EventArgs e)
+        {
+            _act = Act.Association;
         }
     }
 }

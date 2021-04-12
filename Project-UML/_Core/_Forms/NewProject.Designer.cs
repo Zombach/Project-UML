@@ -185,6 +185,7 @@ namespace Project_UML._Core._Forms
             this.ButtonAssociation.TabIndex = 12;
             this.ButtonAssociation.Text = "Association";
             this.ButtonAssociation.UseVisualStyleBackColor = true;
+            this.ButtonAssociation.Click += new System.EventHandler(this.ButtonAssociation_Click);
             // 
             // ButtonInheritance
             // 
