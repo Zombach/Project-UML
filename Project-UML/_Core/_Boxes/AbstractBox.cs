@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Project_UML._Core._Boxes
 {
-    public abstract class AbstractBox
+    public abstract class AbstractBox : IDraw
     {
 
         protected Pen _pen;

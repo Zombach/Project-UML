@@ -9,7 +9,7 @@ using Project_UML.Interfaces;
 
 namespace Project_UML._Core._Arrows
 {
-    public abstract class AbstractArrow : IDraw, IMove, ISelect, IChangeColor, IChangeWidth, IisHovered
+    public abstract class AbstractArrow : IDraw, IMove, ISelect, IChangeColor, IChangeWidth, I_IsHovered
     {
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
