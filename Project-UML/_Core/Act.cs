@@ -12,6 +12,7 @@ namespace Project_UML._Core
         Composition = 1,
         Inheritance = 2,
         Clear = 3,
-        Select = 4
+        Select = 4,
+        Implementation = 5
     }
 }
