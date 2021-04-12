@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="_Core\Act.cs" />	
+    <Compile Include="_Core\Act.cs" />
     <Compile Include="_Core\Core.cs" />
     <Compile Include="_Core\_Arrows\AbstractArrow.cs" />
     <Compile Include="_Core\_Arrows\AggregationArrow.cs" />
@@ -54,11 +54,12 @@
     <Compile Include="_Core\_Arrows\ArrowType.cs" />
     <Compile Include="_Core\_Arrows\Axises.cs" />
     <Compile Include="_Core\_Arrows\CompositionArrow.cs" />
-    <Compile Include="_Core\_Arrows\InheritanceArrow.cs" />	
+    <Compile Include="_Core\_Arrows\InheritanceArrow.cs" />
     <Compile Include="_Core\_Interfaces\IFigure.cs" />
+    <Compile Include="_Core\_Serialize\ArrowsSerialize.cs" />
     <Compile Include="_Core\_Serialize\BinaryConversion.cs" />
-	<Compile Include="_Core\_Serialize\SerializePoints.cs" />
-	<Compile Include="_Core\_Serialize\StructSerialize.cs" />
+    <Compile Include="_Core\_Serialize\SerializePoints.cs" />
+    <Compile Include="_Core\_Serialize\StructSerialize.cs" />
     <Compile Include="_Core\_Forms\License.cs">
       <SubType>Form</SubType>
     </Compile>
