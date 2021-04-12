@@ -46,67 +46,67 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="_Core\Act.cs" />
-    <Compile Include="_Core\_Boxes\AbstractBox.cs" />
-    <Compile Include="_Core\_Boxes\BestRectangles.cs" />
-    <Compile Include="_Core\Core.cs" />
-    <Compile Include="_Core\_Interfaces\IChangeColor.cs" />
-    <Compile Include="_Core\_Interfaces\IChangeWidth.cs" />
-    <Compile Include="_Core\_Interfaces\IDraw.cs" />
-    <Compile Include="_Core\_Interfaces\I_IsHovered.cs" />
-    <Compile Include="_Core\_Interfaces\IMove.cs" />
-    <Compile Include="_Core\_Interfaces\ISelect.cs" />
-    <Compile Include="_Core\_Arrows\AbstractArrow.cs" />
-    <Compile Include="_Core\_Arrows\AggregationArrow.cs" />
-    <Compile Include="_Core\_Arrows\Arrow.cs" />
-    <Compile Include="_Core\_Arrows\ArrowType.cs" />
-    <Compile Include="_Core\_Arrows\Axises.cs" />
-    <Compile Include="_Core\_Arrows\CompositionArrow.cs" />
-    <Compile Include="_Core\_Arrows\AssociationArrow.cs" />
-    <Compile Include="_Core\_Arrows\ImplementationArrow.cs" />
-    <Compile Include="_Core\_Arrows\InheritanceArrow.cs" />
-    <Compile Include="_Core\_Interfaces\IFigure.cs" />
-    <Compile Include="_Core\_Serialize\AbstractFiguresSerialize.cs" />
-    <Compile Include="_Core\_Serialize\ArrowsSerialize.cs" />
-    <Compile Include="_Core\_Serialize\BinaryConversion.cs" />
-    <Compile Include="_Core\_Serialize\SerializePoints.cs" />
-    <Compile Include="_Core\_Serialize\StructSerialize.cs" />
-    <Compile Include="_Core\_Forms\License.cs">
+    <Compile Include="Core\Act.cs" />
+    <Compile Include="Core\Boxes\AbstractBox.cs" />
+    <Compile Include="Core\Boxes\BestRectangles.cs" />
+    <Compile Include="Core\CoreUML.cs" />
+    <Compile Include="Core\Interfaces\IChangeColor.cs" />
+    <Compile Include="Core\Interfaces\IChangeWidth.cs" />
+    <Compile Include="Core\Interfaces\IDraw.cs" />
+    <Compile Include="Core\Interfaces\I_IsHovered.cs" />
+    <Compile Include="Core\Interfaces\IMove.cs" />
+    <Compile Include="Core\Interfaces\ISelect.cs" />
+    <Compile Include="Core\Arrows\AbstractArrow.cs" />
+    <Compile Include="Core\Arrows\AggregationArrow.cs" />
+    <Compile Include="Core\Arrows\Arrow.cs" />
+    <Compile Include="Core\Arrows\ArrowType.cs" />
+    <Compile Include="Core\Arrows\Axises.cs" />
+    <Compile Include="Core\Arrows\CompositionArrow.cs" />
+    <Compile Include="Core\Arrows\AssociationArrow.cs" />
+    <Compile Include="Core\Arrows\ImplementationArrow.cs" />
+    <Compile Include="Core\Arrows\InheritanceArrow.cs" />
+    <Compile Include="Core\Interfaces\IFigure.cs" />
+    <Compile Include="Core\Serialize\AbstractFiguresSerialize.cs" />
+    <Compile Include="Core\Serialize\ArrowsSerialize.cs" />
+    <Compile Include="Core\Serialize\BinaryConversion.cs" />
+    <Compile Include="Core\Serialize\SerializePoints.cs" />
+    <Compile Include="Core\Serialize\StructSerialize.cs" />
+    <Compile Include="Core\FormsUML\License.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="_Core\_Forms\License.Designer.cs">
+    <Compile Include="Core\FormsUML\License.Designer.cs">
       <DependentUpon>License.cs</DependentUpon>
     </Compile>
-    <Compile Include="_Core\_Forms\Loading.cs">
+    <Compile Include="Core\FormsUML\Loading.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="_Core\_Forms\Loading.Designer.cs">
+    <Compile Include="Core\FormsUML\Loading.Designer.cs">
       <DependentUpon>Loading.cs</DependentUpon>
     </Compile>
-    <Compile Include="_Core\_Forms\Menu.cs">
+    <Compile Include="Core\FormsUML\Menu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="_Core\_Forms\Menu.Designer.cs">
+    <Compile Include="Core\FormsUML\Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="_Core\_Forms\NewProject.cs">
+    <Compile Include="Core\FormsUML\NewProject.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="_Core\_Forms\NewProject.Designer.cs">
+    <Compile Include="Core\FormsUML\NewProject.Designer.cs">
       <DependentUpon>NewProject.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="_Core\_Forms\License.resx">
+    <EmbeddedResource Include="Core\FormsUML\License.resx">
       <DependentUpon>License.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_Core\_Forms\Loading.resx">
+    <EmbeddedResource Include="Core\FormsUML\Loading.resx">
       <DependentUpon>Loading.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_Core\_Forms\Menu.resx">
+    <EmbeddedResource Include="Core\FormsUML\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_Core\_Forms\NewProject.resx">
+    <EmbeddedResource Include="Core\FormsUML\NewProject.resx">
       <DependentUpon>NewProject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
