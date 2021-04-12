@@ -48,6 +48,7 @@ namespace Project_UML._Core._Forms
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.SaveData = new System.Windows.Forms.Button();
             this.ButtonImplementation = new System.Windows.Forms.Button();
+            this.ButtonRectangle = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxStartAxis.SuspendLayout();
             this.groupBoxEndAxis.SuspendLayout();
@@ -220,7 +221,7 @@ namespace Project_UML._Core._Forms
             // ButtonColor
             // 
             this.ButtonColor.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ButtonColor.Location = new System.Drawing.Point(134, 198);
+            this.ButtonColor.Location = new System.Drawing.Point(138, 198);
             this.ButtonColor.Name = "ButtonColor";
             this.ButtonColor.Size = new System.Drawing.Size(25, 25);
             this.ButtonColor.TabIndex = 16;
@@ -247,12 +248,23 @@ namespace Project_UML._Core._Forms
             this.ButtonImplementation.UseVisualStyleBackColor = true;
             this.ButtonImplementation.Click += new System.EventHandler(this.ButtonImplementation_Click);
             // 
+            // ButtonRectangle
+            // 
+            this.ButtonRectangle.Location = new System.Drawing.Point(8, 446);
+            this.ButtonRectangle.Name = "ButtonRectangle";
+            this.ButtonRectangle.Size = new System.Drawing.Size(150, 25);
+            this.ButtonRectangle.TabIndex = 18;
+            this.ButtonRectangle.Text = "Rectangle";
+            this.ButtonRectangle.UseVisualStyleBackColor = true;
+            this.ButtonRectangle.Click += new System.EventHandler(this.ButtonRectangle_Click);
+            // 
             // NewProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1158, 586);
             this.Controls.Add(this.ButtonImplementation);
+            this.Controls.Add(this.ButtonRectangle);
             this.Controls.Add(this.SaveData);
             this.Controls.Add(this.ButtonColor);
             this.Controls.Add(this.ButtonClear);
@@ -300,6 +312,7 @@ namespace Project_UML._Core._Forms
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button SaveData;
         private System.Windows.Forms.Button ButtonImplementation;
+        private System.Windows.Forms.Button ButtonRectangle;
     }
 }
 

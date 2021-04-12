@@ -15,5 +15,6 @@ namespace Project_UML._Core
         Select = 4,
         Implementation = 5,
         Association = 6
+        Rectangle = 7
     }
 }

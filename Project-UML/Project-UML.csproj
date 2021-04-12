@@ -47,7 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="_Core\Act.cs" />
+    <Compile Include="_Core\_Boxes\AbstractBox.cs" />
+    <Compile Include="_Core\_Boxes\BestRectangles.cs" />
     <Compile Include="_Core\Core.cs" />
+    <Compile Include="_Core\_Interfaces\IChangeColor.cs" />
+    <Compile Include="_Core\_Interfaces\IChangeWidth.cs" />
+    <Compile Include="_Core\_Interfaces\IDraw.cs" />
+    <Compile Include="_Core\_Interfaces\I_IsHovered.cs" />
+    <Compile Include="_Core\_Interfaces\IMove.cs" />
+    <Compile Include="_Core\_Interfaces\ISelect.cs" />
     <Compile Include="_Core\_Arrows\AbstractArrow.cs" />
     <Compile Include="_Core\_Arrows\AggregationArrow.cs" />
     <Compile Include="_Core\_Arrows\Arrow.cs" />
