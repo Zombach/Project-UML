@@ -59,6 +59,7 @@
     <Compile Include="_Core\_Serialize\AbstractFiguresSerialize.cs" />
     <Compile Include="_Core\_Serialize\ArrowsSerialize.cs" />
     <Compile Include="_Core\_Serialize\BinaryConversion.cs" />
+    <Compile Include="_Core\_Serialize\BoxsSerialize.cs" />
     <Compile Include="_Core\_Serialize\SerializePoints.cs" />
     <Compile Include="_Core\_Serialize\StructSerialize.cs" />
     <Compile Include="_Core\_Forms\License.cs">
