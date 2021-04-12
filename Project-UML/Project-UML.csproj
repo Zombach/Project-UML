@@ -56,6 +56,7 @@
     <Compile Include="_Core\_Arrows\CompositionArrow.cs" />
     <Compile Include="_Core\_Arrows\InheritanceArrow.cs" />
     <Compile Include="_Core\_Interfaces\IFigure.cs" />
+    <Compile Include="_Core\_Serialize\AbstractFiguresSerialize.cs" />
     <Compile Include="_Core\_Serialize\ArrowsSerialize.cs" />
     <Compile Include="_Core\_Serialize\BinaryConversion.cs" />
     <Compile Include="_Core\_Serialize\SerializePoints.cs" />
