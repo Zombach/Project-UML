@@ -53,7 +53,7 @@
     <Compile Include="Core\Interfaces\IChangeColor.cs" />
     <Compile Include="Core\Interfaces\IChangeWidth.cs" />
     <Compile Include="Core\Interfaces\IDraw.cs" />
-    <Compile Include="Core\Interfaces\I_IsHovered.cs" />
+    <Compile Include="Core\Interfaces\IIsHovered.cs" />
     <Compile Include="Core\Interfaces\IMove.cs" />
     <Compile Include="Core\Interfaces\ISelect.cs" />
     <Compile Include="Core\Arrows\AbstractArrow.cs" />
@@ -141,6 +141,7 @@
     <Content Include="Resources\Arrows.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Resources\txt\" />
     <Folder Include="Save\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

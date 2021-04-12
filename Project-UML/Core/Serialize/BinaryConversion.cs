@@ -13,22 +13,25 @@ using Project_UML.Core.Arrows;
 
 namespace Project_UML.Core.Serialize
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class BinaryConversion
     {
         public static bool SerializationDictionary()
         {
             SetMyPath();
-            FileStream fileStream = new FileStream(Core._myPath, FileMode.Create, FileAccess.Write, FileShare.None);
+            FileStream fileStream = new FileStream(CoreUML.MyPath, FileMode.Create, FileAccess.Write, FileShare.None);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            binaryFormatter.Serialize(fileStream, Core.Figures);
+            binaryFormatter.Serialize(fileStream, CoreUML.Figures);
             fileStream.Close();
             return true;
         }
         public static bool DeserializationDictionary()
         {
-            FileStream fileStream = new FileStream(Core._myPath, FileMode.Open, FileAccess.Read, FileShare.None);
+            FileStream fileStream = new FileStream(CoreUML.MyPath, FileMode.Open, FileAccess.Read, FileShare.None);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            Core.Figures = (List<int>)binaryFormatter.Deserialize(fileStream);
+            CoreUML.Figures = (List<IFigure>)binaryFormatter.Deserialize(fileStream);
             fileStream.Close();
             return true;
         }
@@ -39,7 +42,7 @@ namespace Project_UML.Core.Serialize
             string _tmpName = $"../../Save/Save_{_dateTime}.Мы-Програмист";
             Regex regex = new Regex(":");
             _tmpName = regex.Replace(_tmpName, ".");
-            Core._myPath = Path.GetFullPath(_tmpName);
+            CoreUML.MyPath = Path.GetFullPath(_tmpName);
         }
     }
 }

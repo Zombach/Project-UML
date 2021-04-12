@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.Boxes
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class BestRectangles : AbstractBox
     {
 

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
     interface ISelect
     {
         void Select();

@@ -8,6 +8,9 @@ using Project_UML.Core.Arrows;
 
 namespace Project_UML.Core.Serialize
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AbstractFiguresSerialize
     {
         public AbstractFiguresSerialize(AbstractArrow arrow)

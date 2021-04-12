@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.Arrows
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Arrow : AbstractArrow
     {
         public Arrow()

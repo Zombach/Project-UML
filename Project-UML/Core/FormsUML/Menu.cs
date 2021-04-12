@@ -11,6 +11,9 @@ using Project_UML.Core;
 
 namespace Project_UML.Core.Forms
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class Menu : Form
     {
         public Menu()

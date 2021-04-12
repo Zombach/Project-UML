@@ -37,9 +37,6 @@ namespace Project_UML.Core.Forms
             // LicenseText
             // 
             this.LicenseText.FormattingEnabled = true;
-            this.LicenseText.Items.AddRange(new object[] {
-            "\t\t       Ололо Лицензия",
-            "Собственно тут будет какой-то текст. и тому подобная инфа"});
             this.LicenseText.Location = new System.Drawing.Point(49, 12);
             this.LicenseText.Name = "LicenseText";
             this.LicenseText.Size = new System.Drawing.Size(327, 147);

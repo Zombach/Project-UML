@@ -9,6 +9,9 @@ using Project_UML.Core.Arrows;
 namespace Project_UML.Core.Serialize
 {
     /// <summary>
+    /// 
+    /// </summary>
+    /// <summary>
     /// Структура для сериализации объекта, для сохранения данных
     /// </summary>
     public struct StructSerialize

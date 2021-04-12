@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
     interface IChangeColor
     {
         void ChangeColor(Color color);

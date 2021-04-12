@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.Arrows
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CompositionArrow : AbstractArrow
     {
         public CompositionArrow()

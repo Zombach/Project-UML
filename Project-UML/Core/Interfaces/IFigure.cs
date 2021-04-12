@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IFigure
     {
         Point Location { get; set; }

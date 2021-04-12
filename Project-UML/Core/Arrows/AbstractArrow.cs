@@ -9,13 +9,16 @@ using Project_UML.Interfaces;
 
 namespace Project_UML.Core.Arrows
 {
-    public abstract class AbstractArrow : IDraw, IMove, ISelect, IChangeColor, IChangeWidth, I_IsHovered
+    /// <summary>
+    /// 
+    /// </summary>
+    public abstract class AbstractArrow : IDraw, IMove, ISelect, IChangeColor, IChangeWidth, IIsHovered
     {
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
-        public Axises StartDirectionAxis;
-        public Axises EndDirectionAxis;
-        public List<Point> Points;
+        public Axises StartDirectionAxis {get; set;}
+        public Axises EndDirectionAxis { get; set; }
+        public List<Point> Points { get; set; }
 
         public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 

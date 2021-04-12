@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +11,18 @@ using System.Windows.Forms;
 
 namespace Project_UML.Core.Forms
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class License : Form
     {
+        private string _myPath = Path.GetFullPath("../../Resources/txt/License.txt");
+        
         public License()
         {
             InitializeComponent();
+            StreamReader sr = new StreamReader(_myPath);
+            LicenseText.Items.Add(sr.ReadLine());
         }
         private void CheckBox_License_CheckedChanged(object sender, EventArgs e)
         {

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public enum Act
     {
         Aggregation = 0,

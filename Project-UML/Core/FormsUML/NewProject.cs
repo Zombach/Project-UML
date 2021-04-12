@@ -12,6 +12,9 @@ using Project_UML.Core.Boxes;
 
 namespace Project_UML.Core.Forms
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class NewProject : Form
     {
         Point _point;
@@ -156,10 +159,10 @@ namespace Project_UML.Core.Forms
                     break;
 
             }
-            Core.Figures.Add(_currentArrow.Points[0].X);
-            Core.Figures.Add(_currentArrow.Points[0].Y);
-            Core.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].X);
-            Core.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].Y);
+            //CoreUML.Figures.Add(_currentArrow.Points[0].X);
+            //CoreUML.Figures.Add(_currentArrow.Points[0].Y);
+            //CoreUML.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].X);
+            //CoreUML.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].Y);
             _isTapped = false;
         }
 
@@ -252,7 +255,7 @@ namespace Project_UML.Core.Forms
 
         private void SaveData_Click(object sender, EventArgs e)
         {
-            Core.SaveDate();
+            CoreUML.SaveDate();
             MessageBox.Show("Сохранено");
         }
 

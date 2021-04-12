@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Interfaces
 {
-    interface I_IsHovered
+    /// <summary>
+    /// 
+    /// </summary>
+    interface IIsHovered
     {
         void IsHovered(Point point);
     }

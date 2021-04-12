@@ -9,11 +9,13 @@ using Project_UML.Core.Serialize;
 
 namespace Project_UML.Core
 {
-    public static class Core
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class CoreUML
     {
-        public static List<int> Figures = new List<int>();
-        public static string _myPath = "";
-        public static string Index = "0";
+        public static List<IFigure> Figures { get; set; } = new List<IFigure>();
+        public static string MyPath { get; set; } = "";
 
         public static bool SaveDate()
         {
