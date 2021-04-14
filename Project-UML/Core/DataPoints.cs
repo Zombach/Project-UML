@@ -10,28 +10,25 @@ namespace Project_UML.Core
 {
     public class DataPoints
     {
-        public object FirstSendler { get; set; }
-        public object EndSendler { get; set; }
+        public object FirstSender { get; set; }
+        public object EndSender { get; set; }
         public Point FirstPoint { get; set; }
         public Point EndPoint { get; set; }
 
-        public DataPoints()
-        {
-            FirstSendler = null;
-            EndSendler = null;
-            FirstPoint = new Point();
-            EndPoint = new Point();
-        }
-        public DataPoints(object sendler, MouseEventArgs e, bool isFirstPoint)
+        public DataPoints(object sender, MouseEventArgs e, bool isFirstPoint)
         {
             if (isFirstPoint)
             {
-                FirstSendler = sendler;
+                FirstSender = sender;
                 FirstPoint = new Point(e.X, e.Y);
+                EndSender = null;
+                EndPoint = new Point();
             } 
             else
             {
-                EndSendler = sendler;
+                FirstSender = null;
+                FirstPoint = new Point();
+                EndSender = sender;
                 EndPoint = new Point(e.X, e.Y);
             }
         }
