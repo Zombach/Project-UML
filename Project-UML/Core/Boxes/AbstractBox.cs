@@ -12,7 +12,7 @@ namespace Project_UML.Core.Boxes
     /// <summary>
     /// 
     /// </summary>
-    public abstract class AbstractBox : IDraw
+    public abstract class AbstractBox : IChangeColor, IChangeWidth
     {
 
         protected Pen _pen;
@@ -23,6 +23,14 @@ namespace Project_UML.Core.Boxes
         protected int RectangleHeight { get; set; }
 
         public abstract void Draw(Graphics graphics);
+        public void ChangeColor(Color color)
+        {
+            _pen.Color = color;
+        }
+        public virtual void ChangeWidth(int width)
+        {
+            _pen.Width = width;
+        }
 
         //protected Pen _pen = new Pen(Color.Blue, 5);
 

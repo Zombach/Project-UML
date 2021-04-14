@@ -28,6 +28,7 @@ namespace Project_UML.Core.Forms
         List<AbstractArrow> _arrows = new List<AbstractArrow>();
         Act _act = Act.Aggregation;
         AbstractBox _currentBox;
+        List<AbstractBox> _boxes = new List<AbstractBox>();
 
         public NewProject()
         {
@@ -97,7 +98,7 @@ namespace Project_UML.Core.Forms
                     _currentArrow = new AssociationArrow();
                     break;
                 case Act.Rectangle:
-                    _currentBox = new BestRectangles(e.X, e.Y);
+                    _currentBox = new BestRectangles(e.X, e.Y);                    
                     _currentBox.Draw(_graphics);
                     break;
             }
@@ -153,7 +154,7 @@ namespace Project_UML.Core.Forms
                 //case Act.Rectangle:
                 case Act.Rectangle:
                     if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
-                    //_arrows.Add(_currentArrow);
+                    _boxes.Add(_currentBox);
                     //_currentBox.Select(_graphics);
                     pictureBox1.Invalidate();
                     break;
@@ -217,9 +218,9 @@ namespace Project_UML.Core.Forms
             ButtonColor.BackColor = colorDialog1.Color;
             if (!(_currentArrow is null))
             {
-                _currentArrow.ChangeColor(colorDialog1.Color);
+                _currentArrow.ChangeColor(colorDialog1.Color);                
                 UpdPicture();
-            }
+            }            
         }
 
         private void ButtonAggregation_Click(object sender, EventArgs e)
@@ -306,5 +307,7 @@ namespace Project_UML.Core.Forms
         {
             _act = Act.Rectangle;
         }
+
+
     }
 }
