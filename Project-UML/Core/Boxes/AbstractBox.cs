@@ -17,10 +17,13 @@ namespace Project_UML.Core.Boxes
 
         protected Pen _pen;
         public List<Point> PointsBox { get; set; } = new List<Point>();
-        protected int RectangleWidth { get; set; }
-        protected int RectangleHeight { get; set; }
+        public List<Point> CommonPoints { get; set; } = new List<Point>();
+        protected int RectangleWidth { get; set; } = 100;
+        protected int RectangleHeight { get; set; } = 150;
 
         public abstract void Draw(Graphics graphics);
+
+
         public void ChangeColor(Color color)
         {
             _pen.Color = color;
@@ -29,6 +32,27 @@ namespace Project_UML.Core.Boxes
         {
             _pen.Width = width;
         }
+
+        public void WriteCommonPoints(int X, int Y, bool pointEnd)
+        {
+            
+            if (pointEnd)
+            {
+                Point point = new Point(X, Y);
+                CommonPoints.Add(point);
+            }
+
+        }
+
+        public void RemoveCommonPoints(int X, int Y)
+        {
+
+            Point point = new Point(X, Y);
+            CommonPoints.Remove(point);
+        }
+
+
+
 
         //protected Pen _pen = new Pen(Color.Blue, 5);
 

@@ -308,6 +308,5 @@ namespace Project_UML.Core.Forms
             _act = Act.Rectangle;
         }
 
-
     }
 }
