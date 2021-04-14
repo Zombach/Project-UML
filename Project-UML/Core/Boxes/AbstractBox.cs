@@ -16,9 +16,7 @@ namespace Project_UML.Core.Boxes
     {
 
         protected Pen _pen;
-        public int StartPoint_X { get; set; }
-        public int StartPoint_Y { get; set; }
-        public Point EndPoint { get; set; }
+        public List<Point> PointsBox { get; set; } = new List<Point>();
         protected int RectangleWidth { get; set; }
         protected int RectangleHeight { get; set; }
 
