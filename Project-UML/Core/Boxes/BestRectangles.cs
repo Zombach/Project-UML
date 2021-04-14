@@ -29,5 +29,6 @@ namespace Project_UML.Core.Boxes
             graphics.DrawRectangle(_pen, StartPoint_X, StartPoint_Y, RectangleWidth, RectangleHeight);
         }
 
+
     }
 }
