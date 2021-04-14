@@ -15,23 +15,20 @@ namespace Project_UML.Core
         public Point FirstPoint { get; set; }
         public Point EndPoint { get; set; }
 
-        public DataPoints()
-        {
-            FirstSendler = null;
-            EndSendler = null;
-            FirstPoint = new Point();
-            EndPoint = new Point();
-        }
-        public DataPoints(object sendler, MouseEventArgs e, bool isFirstPoint)
+        public DataPoints(object sender, MouseEventArgs e, bool isFirstPoint)
         {
             if (isFirstPoint)
             {
-                FirstSendler = sendler;
+                FirstSendler = sender;
                 FirstPoint = new Point(e.X, e.Y);
+                EndSendler = null;
+                EndPoint = new Point();
             } 
             else
             {
-                EndSendler = sendler;
+                FirstSendler = null;
+                FirstPoint = new Point();
+                EndSendler = sender;
                 EndPoint = new Point(e.X, e.Y);
             }
         }
