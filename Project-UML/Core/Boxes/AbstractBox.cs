@@ -17,7 +17,7 @@ namespace Project_UML.Core.Boxes
 
         protected Pen _pen;
         public List<Point> PointsBox { get; set; } = new List<Point>();
-        public List<Point> CommonPoints { get; set; } = new List<Point>();
+        public List<DataPoints> CommonPoints { get; set; } = new List<DataPoints>();
         protected int RectangleWidth { get; set; } = 100;
         protected int RectangleHeight { get; set; } = 150;
 
@@ -33,22 +33,14 @@ namespace Project_UML.Core.Boxes
             _pen.Width = width;
         }
 
-        public void WriteCommonPoints(int X, int Y, bool pointEnd)
+        public void WriteCommonPoints(DataPoints dataPoints)
         {
-            
-            if (pointEnd)
-            {
-                Point point = new Point(X, Y);
-                CommonPoints.Add(point);
-            }
-
+            CommonPoints.Add(dataPoints);
         }
 
-        public void RemoveCommonPoints(int X, int Y)
+        public void RemoveCommonPoints(DataPoints dataPoints)
         {
-
-            Point point = new Point(X, Y);
-            CommonPoints.Remove(point);
+            CommonPoints.Remove(dataPoints);
         }
 
 
