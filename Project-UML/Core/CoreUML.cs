@@ -15,6 +15,7 @@ namespace Project_UML.Core
     public static class CoreUML
     {
         public static List<IFigure> Figures { get; set; } = new List<IFigure>();
+        public static List<IFigure> SelectedFigures { get; set; } = new List<IFigure>();
         public static string MyPath { get; set; } = "";
 
         public static bool SaveDate()
