@@ -37,9 +37,9 @@ namespace Project_UML.Core.Forms
             // 
             // NewProject
             // 
-            this.NewProject.Location = new System.Drawing.Point(63, 32);
+            this.NewProject.Location = new System.Drawing.Point(63, 34);
             this.NewProject.Name = "NewProject";
-            this.NewProject.Size = new System.Drawing.Size(135, 45);
+            this.NewProject.Size = new System.Drawing.Size(135, 48);
             this.NewProject.TabIndex = 0;
             this.NewProject.Text = "New project";
             this.NewProject.UseVisualStyleBackColor = true;
@@ -47,9 +47,9 @@ namespace Project_UML.Core.Forms
             // 
             // LoadProject
             // 
-            this.LoadProject.Location = new System.Drawing.Point(63, 83);
+            this.LoadProject.Location = new System.Drawing.Point(63, 89);
             this.LoadProject.Name = "LoadProject";
-            this.LoadProject.Size = new System.Drawing.Size(135, 45);
+            this.LoadProject.Size = new System.Drawing.Size(135, 48);
             this.LoadProject.TabIndex = 4;
             this.LoadProject.Text = "Load project";
             this.LoadProject.UseVisualStyleBackColor = true;
@@ -57,31 +57,32 @@ namespace Project_UML.Core.Forms
             // 
             // AboutUs
             // 
-            this.AboutUs.Location = new System.Drawing.Point(63, 185);
+            this.AboutUs.Location = new System.Drawing.Point(63, 199);
             this.AboutUs.Name = "AboutUs";
-            this.AboutUs.Size = new System.Drawing.Size(135, 45);
+            this.AboutUs.Size = new System.Drawing.Size(135, 48);
             this.AboutUs.TabIndex = 1;
             this.AboutUs.Text = "About us";
             this.AboutUs.UseVisualStyleBackColor = true;
             // 
             // ExitProgramm
             // 
-            this.ExitProgramm.Location = new System.Drawing.Point(63, 236);
+            this.ExitProgramm.Location = new System.Drawing.Point(63, 254);
             this.ExitProgramm.Name = "ExitProgramm";
-            this.ExitProgramm.Size = new System.Drawing.Size(135, 45);
+            this.ExitProgramm.Size = new System.Drawing.Size(135, 48);
             this.ExitProgramm.TabIndex = 2;
             this.ExitProgramm.Text = "Exit";
             this.ExitProgramm.UseVisualStyleBackColor = true;
             // 
             // Menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(264, 313);
+            this.ClientSize = new System.Drawing.Size(264, 337);
             this.Controls.Add(this.AboutUs);
             this.Controls.Add(this.ExitProgramm);
             this.Controls.Add(this.LoadProject);
             this.Controls.Add(this.NewProject);
+            this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "Menu";
             this.Text = "UML Manager";
             this.ResumeLayout(false);
