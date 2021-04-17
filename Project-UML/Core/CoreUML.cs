@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Project_UML.Core.Interfaces;
 using Project_UML.Core.Arrows;
 using Project_UML.Core.Serialize;
-using System.Drawing;
 
 namespace Project_UML.Core
 {
