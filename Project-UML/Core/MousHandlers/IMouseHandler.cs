@@ -12,5 +12,6 @@ namespace Project_UML.Core.MousHandlers
         void MouseDown(Point e);
         void MouseUp(Point e);
         void MouseMove(Point e);
+        void MouseHover(Point e);
     }
 }

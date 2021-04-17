@@ -29,6 +29,7 @@ namespace Project_UML.Core.Forms
         List<AbstractArrow> _arrows = new List<AbstractArrow>();
         Act _act = Act.Aggregation;
         AbstractBox _currentBox;
+        IMouseHandler _crntMH ;
 
         public NewProject()
         {
@@ -52,7 +53,7 @@ namespace Project_UML.Core.Forms
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-
+            //_crntMH = 
             //_point = new Point(e.X, e.Y);
             //_isTapped = true;
             //switch (_act)
