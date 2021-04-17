@@ -67,7 +67,14 @@
     <Compile Include="Core\Arrows\InheritanceArrow.cs" />
     <Compile Include="Core\Interfaces\IFigure.cs" />
     <Compile Include="Core\MousHandlers\IMouseHandler.cs" />
-    <Compile Include="Core\MousHandlers\MouseHandlerOnDrawArrows.cs" />
+    <Compile Include="Core\MousHandlers\MouseHandlerOnDrawArrows.cs" />	
+    <Compile Include="Core\FigureFactory\AggregationArrowFactory.cs" />
+    <Compile Include="Core\FigureFactory\AssociationArrowFactory.cs" />
+    <Compile Include="Core\FigureFactory\BestRectangleFactory.cs" />
+    <Compile Include="Core\FigureFactory\CompositionArrowFactory.cs" />
+    <Compile Include="Core\FigureFactory\IFigureFactory.cs" />
+    <Compile Include="Core\FigureFactory\ImplementationArrowFactory.cs" />
+    <Compile Include="Core\FigureFactory\InheritanceArrowFactory.cs" />
     <Compile Include="Core\Serialize\AbstractFiguresSerialize.cs" />
     <Compile Include="Core\Serialize\ArrowsSerialize.cs" />
     <Compile Include="Core\Serialize\BinaryConversion.cs" />
@@ -143,7 +150,6 @@
     <Content Include="Resources\icons\winArrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\FigureFactory\" />
     <Folder Include="Resources\txt\" />
     <Folder Include="Save\" />
   </ItemGroup>
