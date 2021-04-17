@@ -58,17 +58,15 @@ namespace Project_UML.Core.MousHandlers
 
         public void MouseUp(Point e)
         {
-            if (_isTapped) CoreUML.BitmapMain = (Bitmap)CoreUML.BitmapTmp.Clone();
-            if (_point.X == e.X && _point.Y == e.Y)
-            {
-            }
-            else
-            {
-                CoreUML.Figures.Add(_newArrow);
-                _newArrow.Select(CoreUML.Graphics);
-                _isTapped = false;
-            }
-            CoreUML.PictureBox.Invalidate();
+            if (_isTapped)
+                if (_point.X != e.X || _point.Y != e.Y)
+                {
+                    CoreUML.BitmapMain = (Bitmap)CoreUML.BitmapTmp.Clone();
+                    CoreUML.Figures.Add(_newArrow);
+                    _newArrow.Select(CoreUML.Graphics);
+                    _isTapped = false;
+                    CoreUML.PictureBox.Invalidate();
+                }
         }
 
         public void MouseHover(Point e)
