@@ -50,6 +50,12 @@
     <Compile Include="Core\Boxes\AbstractBox.cs" />
     <Compile Include="Core\Boxes\BestRectangles.cs" />
     <Compile Include="Core\CoreUML.cs" />
+    <Compile Include="Core\FigureFactory\AggregationArrowFactory.cs" />
+    <Compile Include="Core\FigureFactory\AssociationArrowFactory.cs" />
+    <Compile Include="Core\FigureFactory\BestRectangleFactory.cs" />
+    <Compile Include="Core\FigureFactory\CompositionArrowFactory.cs" />
+    <Compile Include="Core\FigureFactory\ImplementationArrowFactory.cs" />
+    <Compile Include="Core\FigureFactory\InheritanceArrowFactory.cs" />
     <Compile Include="Core\Interfaces\IChangeColor.cs" />
     <Compile Include="Core\Interfaces\IChangeWidth.cs" />
     <Compile Include="Core\Interfaces\IDraw.cs" />

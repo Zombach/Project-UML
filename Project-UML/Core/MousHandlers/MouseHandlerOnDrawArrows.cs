@@ -26,7 +26,8 @@ namespace Project_UML.Core.MousHandlers
         {
             _point = new Point(e.X, e.Y);
             _isTapped = true;
-            FigureFabric.GetFigure(Form.butt;
+            //FigureFabric.GetFigure(Form.butt;
+
         }
 
         public void MouseMove(Point e)
@@ -35,6 +36,11 @@ namespace Project_UML.Core.MousHandlers
         }
 
         public void MouseUp(Point e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void MouseHover(Point e)
         {
             throw new NotImplementedException();
         }

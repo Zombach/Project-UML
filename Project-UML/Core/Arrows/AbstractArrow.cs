@@ -118,6 +118,13 @@ namespace Project_UML.Core.Arrows
             return selected;
         }
 
+        public bool CheckSelection(Point pointStart, Point pointEnd)
+        {
+            bool selected = false;
+            
+            return selected;
+        }
+
         public void Select(Graphics graphics)
         {
             foreach (Point point in Points)
