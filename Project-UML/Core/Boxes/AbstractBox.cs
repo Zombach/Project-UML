@@ -54,7 +54,7 @@ namespace Project_UML.Core.Boxes
             throw new NotImplementedException();
         }
 
-        public void Select()
+        public void Select(Graphics graphics)
         {
             throw new NotImplementedException();
         }

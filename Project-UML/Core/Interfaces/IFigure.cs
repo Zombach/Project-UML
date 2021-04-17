@@ -17,7 +17,7 @@ namespace Project_UML.Core.Interfaces
         int GetHeight();
 
         void Move(int deltaX, int deltaY);
-        void Select();
+        void Select(Graphics graphics);
         void Draw(Graphics graphics);
         void IsHovered(Point point);
         void ChangeColor(Color color);

@@ -10,6 +10,7 @@ using Project_UML.Core.Arrows;
 using Project_UML.Core;
 using Project_UML.Core.Boxes;
 using Project_UML.Core.MousHandlers;
+using Project_UML.Core.FigureFactory;
 
 namespace Project_UML.Core.Forms
 {
@@ -18,6 +19,7 @@ namespace Project_UML.Core.Forms
     /// </summary>
     public partial class NewProject : Form
     {
+        CoreUML _core = CoreUML.GetCoreUML();
         Point _point;
         Bitmap _bitmap;
         Bitmap _bitmapTmp;
@@ -29,7 +31,7 @@ namespace Project_UML.Core.Forms
         List<AbstractArrow> _arrows = new List<AbstractArrow>();
         Act _act = Act.Aggregation;
         AbstractBox _currentBox;
-        IMouseHandler _crntMH ;
+        IMouseHandler _crntMH;
 
         public NewProject()
         {
@@ -44,16 +46,17 @@ namespace Project_UML.Core.Forms
             //_graphics.Clear(Color.White);
             //pictureBox1.Image = _bitmap;
             //pictureBox1.Image = _bitmap;
-            CoreUML _core = CoreUML.GetCoreUML();
             _core.BitmapMain = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             _core.BitmapTmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             _core.Graphics = Graphics.FromImage(_core.BitmapMain);
             _core.Graphics.Clear(Color.White);
+            _core.PictureBox = pictureBox1;
             pictureBox1.Image = _core.BitmapMain;
         }
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
+            if (!(_crntMH is null)) _crntMH.MouseDown(e.Location);
             //_crntMH = 
             //_point = new Point(e.X, e.Y);
             //_isTapped = true;
@@ -115,110 +118,112 @@ namespace Project_UML.Core.Forms
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            switch (_act)
-            {
-                case Act.Aggregation:
-                    if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
-                    _arrows.Add(_currentArrow);
-                    _currentArrow.Select(_graphics);
-                    pictureBox1.Invalidate();
-                    break;
-                case Act.Composition:
-                    if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
-                    _arrows.Add(_currentArrow);
-                    _currentArrow.Select(_graphics);
-                    pictureBox1.Invalidate();
-                    break;
-                case Act.Inheritance:
-                    if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
-                    _arrows.Add(_currentArrow);
-                    _currentArrow.Select(_graphics);
-                    pictureBox1.Invalidate();
-                    break;
-                case Act.Select:
-                    if (!(_currentArrow == null))
-                    {
-                        _arrows.Add(_currentArrow);
-                        _graphics = Graphics.FromImage(_bitmap);
-                        _currentArrow.Draw(_graphics);
-                        _bitmapTmp = (Bitmap)_bitmap.Clone();
-                        _graphics = Graphics.FromImage(_bitmapTmp);
-                        _currentArrow.Select(_graphics);
-                        pictureBox1.Image = _bitmapTmp;
-                        _graphics = Graphics.FromImage(_bitmap);
-                    }
-                    break;
-                case Act.Implementation:
-                    if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
-                    _arrows.Add(_currentArrow);
-                    _currentArrow.Select(_graphics);
-                    pictureBox1.Invalidate();
-                    break;
-                case Act.Association:
-                    if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
-                    _arrows.Add(_currentArrow);
-                    _currentArrow.Select(_graphics);
-                    pictureBox1.Invalidate();
-                    break;
-                //case Act.Rectangle:
-                case Act.Rectangle:
-                    if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
-                    //_boxes.Add(_currentBox);
-                    //_currentBox.Select(_graphics);
-                    pictureBox1.Invalidate();
-                    break;
+            if (!(_crntMH is null)) _crntMH.MouseUp(e.Location);
+            //switch (_act)
+            //{
+            //    case Act.Aggregation:
+            //        if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
+            //        _arrows.Add(_currentArrow);
+            //        _currentArrow.Select(_graphics);
+            //        pictureBox1.Invalidate();
+            //        break;
+            //    case Act.Composition:
+            //        if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
+            //        _arrows.Add(_currentArrow);
+            //        _currentArrow.Select(_graphics);
+            //        pictureBox1.Invalidate();
+            //        break;
+            //    case Act.Inheritance:
+            //        if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
+            //        _arrows.Add(_currentArrow);
+            //        _currentArrow.Select(_graphics);
+            //        pictureBox1.Invalidate();
+            //        break;
+            //    case Act.Select:
+            //        if (!(_currentArrow == null))
+            //        {
+            //            _arrows.Add(_currentArrow);
+            //            _graphics = Graphics.FromImage(_bitmap);
+            //            _currentArrow.Draw(_graphics);
+            //            _bitmapTmp = (Bitmap)_bitmap.Clone();
+            //            _graphics = Graphics.FromImage(_bitmapTmp);
+            //            _currentArrow.Select(_graphics);
+            //            pictureBox1.Image = _bitmapTmp;
+            //            _graphics = Graphics.FromImage(_bitmap);
+            //        }
+            //        break;
+            //    case Act.Implementation:
+            //        if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
+            //        _arrows.Add(_currentArrow);
+            //        _currentArrow.Select(_graphics);
+            //        pictureBox1.Invalidate();
+            //        break;
+            //    case Act.Association:
+            //        if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
+            //        _arrows.Add(_currentArrow);
+            //        _currentArrow.Select(_graphics);
+            //        pictureBox1.Invalidate();
+            //        break;
+            //    //case Act.Rectangle:
+            //    case Act.Rectangle:
+            //        if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
+            //        //_boxes.Add(_currentBox);
+            //        //_currentBox.Select(_graphics);
+            //        pictureBox1.Invalidate();
+            //        break;
 
-            }
-            //CoreUML.Figures.Add(_currentArrow.Points[0].X);
-            //CoreUML.Figures.Add(_currentArrow.Points[0].Y);
-            //CoreUML.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].X);
-            //CoreUML.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].Y);
-            _isTapped = false;
+            //}
+            ////CoreUML.Figures.Add(_currentArrow.Points[0].X);
+            ////CoreUML.Figures.Add(_currentArrow.Points[0].Y);
+            ////CoreUML.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].X);
+            ////CoreUML.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].Y);
+            //_isTapped = false;
         }
 
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_isTapped)
-            {
-                if (_act == Act.Aggregation || _act == Act.Composition || _act == Act.Inheritance || _act == Act.Implementation || _act == Act.Association)
-                {
-                    SwitchToDrawInTmp();
-                    _currentArrow.StartDirectionAxis = _startAxis;
-                    _currentArrow.EndDirectionAxis = _endAxis;
-                    _currentArrow.GetPoints(_point, e.Location);
-                    _currentArrow.Draw(_graphics);
-                    pictureBox1.Image = _bitmapTmp;
-                }
-                else if (_act == Act.Select && !(_currentArrow is null))
-                {
-                    SwitchToDrawInTmp();
-                    _currentArrow.Move(e.X - _point.X, e.Y - _point.Y);
-                    _point = e.Location;
-                    _currentArrow.Draw(_graphics);
-                    _currentArrow.Select(_graphics);
-                    pictureBox1.Image = _bitmapTmp;
-                }
-            }
+            if (!(_crntMH is null)) _crntMH.MouseMove(e.Location);
+            //if (_isTapped)
+            //{
+            //    if (_act == Act.Aggregation || _act == Act.Composition || _act == Act.Inheritance || _act == Act.Implementation || _act == Act.Association)
+            //    {
+            //        SwitchToDrawInTmp();
+            //        _currentArrow.StartDirectionAxis = _startAxis;
+            //        _currentArrow.EndDirectionAxis = _endAxis;
+            //        _currentArrow.GetPoints(_point, e.Location);
+            //        _currentArrow.Draw(_graphics);
+            //        pictureBox1.Image = _bitmapTmp;
+            //    }
+            //    else if (_act == Act.Select && !(_currentArrow is null))
+            //    {
+            //        SwitchToDrawInTmp();
+            //        _currentArrow.Move(e.X - _point.X, e.Y - _point.Y);
+            //        _point = e.Location;
+            //        _currentArrow.Draw(_graphics);
+            //        _currentArrow.Select(_graphics);
+            //        pictureBox1.Image = _bitmapTmp;
+            //    }
+            //}
         }
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            _startAxis = Axises.X;
+            _core.AxisStart = Axises.X;
         }
 
         private void RadioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            _startAxis = Axises.Y;
+            _core.AxisStart = Axises.Y;
         }
 
         private void RadioButton5_CheckedChanged(object sender, EventArgs e)
         {
-            _endAxis = Axises.X;
+            _core.AxisEnd = Axises.X;
         }
 
         private void RadioButton6_CheckedChanged(object sender, EventArgs e)
         {
-            _endAxis = Axises.Y;
+            _core.AxisEnd = Axises.Y;
         }
 
         private void ButtonColor_Click(object sender, EventArgs e)
@@ -227,24 +232,24 @@ namespace Project_UML.Core.Forms
             ButtonColor.BackColor = colorDialog1.Color;
             if (!(_currentArrow is null))
             {
-                _currentArrow.ChangeColor(colorDialog1.Color);                
+                _currentArrow.ChangeColor(colorDialog1.Color);
                 UpdPicture();
-            }            
+            }
         }
 
         private void ButtonAggregation_Click(object sender, EventArgs e)
         {
-            _act = Act.Aggregation;
+            _crntMH = new MouseHandlerOnDrawArrows( new AggregationArrowFactory());
         }
 
         private void ButtonComposition_Click(object sender, EventArgs e)
         {
-            _act = Act.Composition;
+            _crntMH = new MouseHandlerOnDrawArrows(new CompositionArrowFactory());
         }
 
         private void ButtonInheritance_Click(object sender, EventArgs e)
         {
-            _act = Act.Inheritance;
+            _crntMH = new MouseHandlerOnDrawArrows(new InheritanceArrowFactory());
         }
 
         private void ButtonSelect_Click(object sender, EventArgs e)
@@ -304,19 +309,18 @@ namespace Project_UML.Core.Forms
 
         private void ButtonImplementation_Click(object sender, EventArgs e)
         {
-            _act = Act.Implementation;
+            _crntMH = new MouseHandlerOnDrawArrows(new ImplementationArrowFactory());
         }
 
         private void ButtonAssociation_Click(object sender, EventArgs e)
         {
-            _act = Act.Association;
+            _crntMH = new MouseHandlerOnDrawArrows(new AssociationArrowFactory());
         }
 
         private void ButtonRectangle_Click(object sender, EventArgs e)
         {
             _act = Act.Rectangle;
         }
-
 
     }
 }
