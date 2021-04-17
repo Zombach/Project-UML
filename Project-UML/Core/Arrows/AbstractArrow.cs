@@ -12,7 +12,7 @@ namespace Project_UML.Core.Arrows
     /// <summary>
     /// 
     /// </summary>
-    public abstract class AbstractArrow : IDraw, IMove, ISelect, IChangeColor, IChangeWidth, IIsHovered
+    public abstract class AbstractArrow : IDraw, IMove, ISelect, IChangeColor, IChangeWidth, IIsHovered, IFigure
     {
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
@@ -115,6 +115,13 @@ namespace Project_UML.Core.Arrows
                     return selected;
                 }
             }
+            return selected;
+        }
+
+        public bool CheckSelection(Point pointStart, Point pointEnd)
+        {
+            bool selected = false;
+            
             return selected;
         }
 
