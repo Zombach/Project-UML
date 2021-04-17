@@ -50,6 +50,11 @@
     <Compile Include="Core\Boxes\AbstractBox.cs" />
     <Compile Include="Core\Boxes\BestRectangles.cs" />
     <Compile Include="Core\CoreUML.cs" />
+    <Compile Include="Core\FigureFabric\AggregationArrowFabric.cs" />
+    <Compile Include="Core\FigureFabric\AssociationArrowFabric.cs" />
+    <Compile Include="Core\FigureFabric\CompositionArrowFabric.cs" />
+    <Compile Include="Core\FigureFabric\ImplementationArrowFabric.cs" />
+    <Compile Include="Core\FigureFabric\InheritanceArrowFabric.cs" />
     <Compile Include="Core\Interfaces\IChangeColor.cs" />
     <Compile Include="Core\Interfaces\IChangeWidth.cs" />
     <Compile Include="Core\Interfaces\IDraw.cs" />
@@ -66,6 +71,9 @@
     <Compile Include="Core\Arrows\ImplementationArrow.cs" />
     <Compile Include="Core\Arrows\InheritanceArrow.cs" />
     <Compile Include="Core\Interfaces\IFigure.cs" />
+    <Compile Include="Core\FigureFabric\IFigureFabric.cs" />
+    <Compile Include="Core\MousHandlers\IMouseHandler.cs" />
+    <Compile Include="Core\MousHandlers\MouseHandlerOnDrawArrows.cs" />
     <Compile Include="Core\Serialize\AbstractFiguresSerialize.cs" />
     <Compile Include="Core\Serialize\ArrowsSerialize.cs" />
     <Compile Include="Core\Serialize\BinaryConversion.cs" />
@@ -132,13 +140,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\icons\c-sharp.ico" />
     <Content Include="Resources\icons\aggregation.png" />
     <Content Include="Resources\icons\association.jpeg" />
     <Content Include="Resources\icons\composition.png" />
     <Content Include="Resources\icons\inheritance.png" />
     <Content Include="Resources\icons\realisation.png" />
     <Content Include="Resources\icons\winArrow.png" />
-    <Content Include="Resources\Arrows.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\txt\" />
