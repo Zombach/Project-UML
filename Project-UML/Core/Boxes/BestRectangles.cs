@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_UML.Core.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -22,7 +23,15 @@ namespace Project_UML.Core.Boxes
             RectangleWidth = 100;
             RectangleHeight = 150;
         }
-
+        public BestRectangles(Color color, int width)
+        {
+            StartPoint_X = 0;
+            StartPoint_Y = 0;
+            _pen = new Pen(color, width);
+            RectangleWidth = 100;
+            RectangleHeight = 150;
+        }
+        
         
         public override void Draw(Graphics graphics)
         {

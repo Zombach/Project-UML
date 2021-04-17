@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Project_UML.Core.Arrows;
 using Project_UML.Core;
 using Project_UML.Core.Boxes;
+using Project_UML.Core.MousHandlers;
 
 namespace Project_UML.Core.Forms
 {
@@ -28,6 +29,7 @@ namespace Project_UML.Core.Forms
         List<AbstractArrow> _arrows = new List<AbstractArrow>();
         Act _act = Act.Aggregation;
         AbstractBox _currentBox;
+        IMouseHandler _crntMH ;
 
         public NewProject()
         {
@@ -37,70 +39,77 @@ namespace Project_UML.Core.Forms
 
         private void NewProject_Load(object sender, EventArgs e)
         {
-            _bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            _graphics = Graphics.FromImage(_bitmap);
-            _graphics.Clear(Color.White);
-            pictureBox1.Image = _bitmap;
+            //_bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            //_graphics = Graphics.FromImage(_bitmap);
+            //_graphics.Clear(Color.White);
+            //pictureBox1.Image = _bitmap;
+            //pictureBox1.Image = _bitmap;
+            CoreUML.BitmapMain = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            CoreUML.BitmapTmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            CoreUML.Graphics = Graphics.FromImage(CoreUML.BitmapMain);
+            CoreUML.Graphics.Clear(Color.White);
+            pictureBox1.Image = CoreUML.BitmapMain;
         }
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            _point = new Point(e.X, e.Y);
-            _isTapped = true;
-            switch (_act)
-            {
-                case Act.Aggregation:
-                    _currentArrow = new AggregationArrow(ButtonColor.BackColor, trackBar1.Value);
-                    break;
-                case Act.Composition:
-                    _currentArrow = new CompositionArrow(ButtonColor.BackColor, trackBar1.Value);
-                    break;
-                case Act.Inheritance:
-                    _currentArrow = new InheritanceArrow();
-                    break;
-                case Act.Select:
-                    bool selected;
-                    foreach (AbstractArrow arrow in _arrows)
-                    {
-                        selected = arrow.CheckSelection(_point);
-                        if (selected)
-                        {
-                            _arrows.Remove(arrow);
-                            UpdPicture();
-                            _currentArrow = arrow;
-                            SwitchToDrawInTmp();
-                            arrow.Draw(_graphics);
-                            arrow.Select(_graphics);
-                            pictureBox1.Image = _bitmapTmp;
-                            break;
-                        }
-                        _currentArrow = null;
-                        pictureBox1.Image = _bitmap;
-                    }
-                    break;
-                case Act.Clear:
-                    foreach (AbstractArrow arrow in _arrows)
-                    {
-                        selected = arrow.CheckSelection(_point);
-                        if (selected)
-                        {
-                            _arrows.Remove(arrow);
-                            UpdPicture();
-                            break;
-                        }
-                    }
-                    break;
-                case Act.Implementation:
-                    _currentArrow = new ImplementationArrow();
-                    break;
-                case Act.Association:
-                    _currentArrow = new AssociationArrow();
-                    break;
-                case Act.Rectangle:
-                    _currentBox = new BestRectangles(e.X, e.Y);
-                    _currentBox.Draw(_graphics);
-                    break;
-            }
+            //_crntMH = 
+            //_point = new Point(e.X, e.Y);
+            //_isTapped = true;
+            //switch (_act)
+            //{
+            //    case Act.Aggregation:
+            //        _currentArrow = new AggregationArrow(ButtonColor.BackColor, trackBar1.Value);
+            //        break;
+            //    case Act.Composition:
+            //        _currentArrow = new CompositionArrow(ButtonColor.BackColor, trackBar1.Value);
+            //        break;
+            //    case Act.Inheritance:
+            //        _currentArrow = new InheritanceArrow();
+            //        break;
+            //    case Act.Select:
+            //        bool selected;
+            //        foreach (AbstractArrow arrow in _arrows)
+            //        {
+            //            selected = arrow.CheckSelection(_point);
+            //            if (selected)
+            //            {
+            //                _arrows.Remove(arrow);
+            //                UpdPicture();
+            //                _currentArrow = arrow;
+            //                SwitchToDrawInTmp();
+            //                arrow.Draw(_graphics);
+            //                arrow.Select(_graphics);
+            //                pictureBox1.Image = _bitmapTmp;
+            //                break;
+            //            }
+            //            _currentArrow = null;
+            //            pictureBox1.Image = _bitmap;
+            //        }
+            //        break;
+            //    case Act.Clear:
+            //        foreach (AbstractArrow arrow in _arrows)
+            //        {
+            //            selected = arrow.CheckSelection(_point);
+            //            if (selected)
+            //            {
+            //                _arrows.Remove(arrow);
+            //                UpdPicture();
+            //                break;
+            //            }
+            //        }
+            //        break;
+            //    case Act.Implementation:
+            //        _currentArrow = new ImplementationArrow();
+            //        break;
+            //    case Act.Association:
+            //        _currentArrow = new AssociationArrow();
+            //        break;
+            //    case Act.Rectangle:
+            //        _currentBox = new BestRectangles(e.X, e.Y);
+            //        _currentBox.Draw(_graphics);
+            //        break;
+            //}
         }
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
