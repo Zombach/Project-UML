@@ -24,16 +24,6 @@ namespace Project_UML.Core.Boxes
         protected int RectangleWidth { get; set; }
         protected int RectangleHeight { get; set; }
 
-        public void ChangeColor(Color color)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ChangeWidth(int width)
-        {
-            throw new NotImplementedException();
-        }
-
         public abstract void Draw(Graphics graphics);
         public void ChangeColor(Color color)
         {

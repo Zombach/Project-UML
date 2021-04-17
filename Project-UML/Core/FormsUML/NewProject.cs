@@ -44,11 +44,12 @@ namespace Project_UML.Core.Forms
             //_graphics.Clear(Color.White);
             //pictureBox1.Image = _bitmap;
             //pictureBox1.Image = _bitmap;
-            CoreUML.BitmapMain = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            CoreUML.BitmapTmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            CoreUML.Graphics = Graphics.FromImage(CoreUML.BitmapMain);
-            CoreUML.Graphics.Clear(Color.White);
-            pictureBox1.Image = CoreUML.BitmapMain;
+            CoreUML _core = CoreUML.GetCoreUML();
+            _core.BitmapMain = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _core.BitmapTmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _core.Graphics = Graphics.FromImage(_core.BitmapMain);
+            _core.Graphics.Clear(Color.White);
+            pictureBox1.Image = _core.BitmapMain;
         }
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -162,7 +163,7 @@ namespace Project_UML.Core.Forms
                 //case Act.Rectangle:
                 case Act.Rectangle:
                     if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
-                    _boxes.Add(_currentBox);
+                    //_boxes.Add(_currentBox);
                     //_currentBox.Select(_graphics);
                     pictureBox1.Invalidate();
                     break;
