@@ -50,6 +50,7 @@
     <Compile Include="Core\Boxes\AbstractBox.cs" />
     <Compile Include="Core\Boxes\BestRectangles.cs" />
     <Compile Include="Core\CoreUML.cs" />
+    <Compile Include="Core\Encrypting\Encrypt.cs" />
     <Compile Include="Core\DataCommon.cs" />
     <Compile Include="Core\Interfaces\IChangeColor.cs" />
     <Compile Include="Core\Interfaces\IChangeWidth.cs" />
