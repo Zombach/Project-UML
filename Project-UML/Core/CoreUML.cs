@@ -30,7 +30,7 @@ namespace Project_UML.Core
         /// <summary>
         /// лист действий с фигурами, стрелками на холсте, для отмены действий.
         /// </summary>
-        public List<int> LogActs { get; set; }
+        public List<LogActs> Logs { get; set; }
         public Bitmap BitmapMain { get; set; }
         public Bitmap BitmapTmp { get; set; }
         public Graphics Graphics { get; set; }
@@ -60,14 +60,11 @@ namespace Project_UML.Core
         {
             Figures = new List<IFigure>();
             SelectedFigures = new List<IFigure>();
-            LogActs = new List<int>();
-            BitmapMain = new Bitmap(0, 0);
-            BitmapTmp = new Bitmap(0, 0);
-            Graphics = Graphics.FromImage(BitmapMain);
+            Logs = new List<LogActs>();
             DefaultWidth = 1;
             DefaultColor = Color.Black;
             DefaultFont = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-            DefaultSize = 1;
+            DefaultSize = 1F;
             MyPath = "";
         }
 
@@ -80,13 +77,15 @@ namespace Project_UML.Core
 
         public static bool SaveDate()
         {
-            //BinaryConversion.SerializationDictionary();
+            BinaryConversion binaryConversion = new BinaryConversion();
+            binaryConversion.SerializationDictionary();
             return true;
         }
 
         public static bool LoadData()
         {
-            //BinaryConversion.DeserializationDictionary();
+            BinaryConversion binaryConversion = new BinaryConversion();
+            binaryConversion.DeserializationDictionary();
             return true;
         }
     }

@@ -69,6 +69,7 @@
     <Compile Include="Core\Arrows\ImplementationArrow.cs" />
     <Compile Include="Core\Arrows\InheritanceArrow.cs" />
     <Compile Include="Core\Interfaces\IFigure.cs" />
+    <Compile Include="Core\LogActs.cs" />
     <Compile Include="Core\MousHandlers\IMouseHandler.cs" />
     <Compile Include="Core\MousHandlers\MouseHandlerOnDrawArrows.cs" />
     <Compile Include="Core\FigureFactory\AggregationArrowFactory.cs" />
@@ -78,7 +79,8 @@
     <Compile Include="Core\FigureFactory\IFigureFactory.cs" />
     <Compile Include="Core\FigureFactory\ImplementationArrowFactory.cs" />
     <Compile Include="Core\FigureFactory\InheritanceArrowFactory.cs" />
-    <Compile Include="Core\Serialize\AbstractSerialize.cs" />
+    <Compile Include="Core\Serialize\ReadData.cs" />
+    <Compile Include="Core\Serialize\WriteData.cs" />
     <Compile Include="Core\Serialize\BinaryConversion.cs" />
     <Compile Include="Core\Serialize\InterfacesSerialize\IArrow.cs" />
     <Compile Include="Core\Serialize\InterfacesSerialize\IBox.cs" />

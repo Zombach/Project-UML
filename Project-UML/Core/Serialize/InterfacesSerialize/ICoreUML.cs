@@ -10,8 +10,8 @@ namespace Project_UML.Core.Serialize.InterfacesSerialize
 {
     public interface ICoreUML
     {
-        List<IFigure> Figure { get; set; }
-        List<int> LogActs { get; set; }
+        List<IFigure> Figures { get; set; }
+        List<LogActs> Logs { get; set; }
         int DefaultWidth { get; set; }
         Color DefaultColor { get; set; }
         Font DefaultFont { get; set; }        
