@@ -12,21 +12,21 @@ namespace Project_UML.Core.Serialize.Structure
     [Serializable]
     public struct StructBox : IBox, IBase
     {
-        public List<string> Text { get; set; }
-        public Font Font { get; set; }
+        public List<DataText> DataText { get; set; }
         public List<DataCommon> Data { get; set; }
+        public Font Font { get; set; }
         public Color Color { get; set; }
         public float Width { get; set; }
         public float Size { get; set; }
 
         public StructBox(AbstractBox box)
         {
-            Text = null;
-            Font = null;
-            Data = null;
-            Color = Color.Black;
-            Width = 1;
-            Size = 1f;
+            DataText = box.DataText;
+            Data = box.DataCommon;
+            Font = box.GetFont();
+            Color = box.GetColor();
+            Width = box.GetWidth();
+            Size = box.GetSize();
         }
     }
 }
