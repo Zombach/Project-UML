@@ -7,6 +7,8 @@ using Project_UML.Core.Interfaces;
 using Project_UML.Core.Arrows;
 using Project_UML.Core.Serialize;
 using System.Drawing;
+using System.Windows.Forms;
+using Project_UML.Core.FigureFactory;
 
 namespace Project_UML.Core
 {
@@ -34,6 +36,8 @@ namespace Project_UML.Core
         public Bitmap BitmapMain { get; set; }
         public Bitmap BitmapTmp { get; set; }
         public Graphics Graphics { get; set; }
+
+        public PictureBox PictureBox { get; set; }
         /// <summary>
         /// Толщина линий
         /// </summary>
@@ -46,15 +50,12 @@ namespace Project_UML.Core
         public float DefaultSize { get; set; }
         public string MyPath { get; set; }
 
+        /// <summary>
+        /// Временные поля (заглушки)
+        /// </summary>
+        public Axises AxisStart = Axises.X;
+        public Axises AxisEnd = Axises.X;
 
-        public static CoreUML GetCoreUML()
-        {
-            if (_coreUML is null)
-            {
-                _coreUML = new CoreUML();
-            }
-            return _coreUML;
-        }
 
         private CoreUML()
         {
@@ -66,6 +67,43 @@ namespace Project_UML.Core
             DefaultFont = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
             DefaultSize = 1F;
             MyPath = "";
+        }
+
+
+        public static CoreUML GetCoreUML()
+        {
+            if (_coreUML is null)
+            {
+                _coreUML = new CoreUML();
+            }
+            return _coreUML;
+        }
+
+        public void SwitchToDrawInTmp()
+        {
+            BitmapTmp = (Bitmap)BitmapMain.Clone();
+            Graphics = Graphics.FromImage(BitmapTmp);
+        }
+
+        private void UpdPicture()
+        {
+            Graphics = Graphics.FromImage(BitmapTmp);
+            Graphics.Clear(Color.White);
+            foreach (IFigure figure in Figures) figure.Draw(Graphics);
+            if (SelectedFigures.Count != 0)
+            {
+                SwitchToDrawInTmp();
+                foreach (IFigure selectedFigure in SelectedFigures)
+                {
+                    selectedFigure.Select(Graphics);
+                }
+                PictureBox.Image = BitmapTmp;
+            }
+            else
+            {
+                PictureBox.Image = BitmapMain;
+            }
+            Graphics = Graphics.FromImage(BitmapMain);
         }
 
 
