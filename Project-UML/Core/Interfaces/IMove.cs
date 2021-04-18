@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_UML.Interfaces
+namespace Project_UML.Core.Interfaces
 {
     /// <summary>
     /// 
     /// </summary>
-    interface IMove
+    public interface IMove
     {
         void Move(int deltaX, int deltaY);
     }

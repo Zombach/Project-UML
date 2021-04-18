@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.Interfaces
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public interface IChangeWidth
+    public interface IFigureDrows : IDraw, IChangeColor, IChangeWidth
     {
-        void ChangeWidth(int width);
+
     }
 }

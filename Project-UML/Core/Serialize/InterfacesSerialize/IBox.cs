@@ -5,13 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_UML.Core.Interfaces
+namespace Project_UML.Core.Serialize.InterfacesSerialize
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public interface IIsHovered
+    public interface IBox
     {
-        void IsHovered(Point point);
+        List<string> Text { get; set; }
+        Font Font { get; set; }
     }
 }

@@ -13,31 +13,33 @@ namespace Project_UML.Core.Boxes
     /// </summary>
     public class BestRectangles : AbstractBox
     {
-
-
+        public BestRectangles(Color color,  int width)
+        {
+            
+        }
         public BestRectangles(int X, int Y)
         {
-            StartPoint_X = X;
-            StartPoint_Y = Y;
+            AddPoints(X, Y);
+            X += RectangleWidth;
+            AddPoints(X, Y);
+            Y += RectangleHeight;
+            AddPoints(X, Y);
+            X -= RectangleWidth;
+            AddPoints(X, Y);                      
+
             _pen = new Pen(Color.Blue, 6);
-            RectangleWidth = 100;
-            RectangleHeight = 150;
         }
-        public BestRectangles(Color color, int width)
+
+        private void AddPoints(int X, int Y)
         {
-            StartPoint_X = 0;
-            StartPoint_Y = 0;
-            _pen = new Pen(color, width);
-            RectangleWidth = 100;
-            RectangleHeight = 150;
+            Point point = new Point(X, Y);
+            Points.Add(point);
         }
         
         
         public override void Draw(Graphics graphics)
         {
-            graphics.DrawRectangle(_pen, StartPoint_X, StartPoint_Y, RectangleWidth, RectangleHeight);
+            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectangleHeight);
         }
-
-
     }
 }

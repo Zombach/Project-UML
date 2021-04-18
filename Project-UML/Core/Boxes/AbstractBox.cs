@@ -1,5 +1,4 @@
 ﻿using Project_UML.Core.Interfaces;
-using Project_UML.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,18 +12,17 @@ namespace Project_UML.Core.Boxes
     /// <summary>
     /// 
     /// </summary>
-    public abstract class AbstractBox : IDraw, IFigure
+    public abstract class AbstractBox : IFigure
     {
-
+        public List<Point> Points { get; set; } = new List<Point>();
+        public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
+        protected int RectangleWidth { get; set; } = 100;
+        protected int RectangleHeight { get; set; } = 150;
         protected Pen _pen;
-        public int StartPoint_X { get; set; }
-        public int StartPoint_Y { get; set; }
-        public Point EndPoint { get; set; }
-        public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        protected int RectangleWidth { get; set; }
-        protected int RectangleHeight { get; set; }
 
         public abstract void Draw(Graphics graphics);
+
+
         public void ChangeColor(Color color)
         {
             _pen.Color = color;
@@ -34,22 +32,17 @@ namespace Project_UML.Core.Boxes
             _pen.Width = width;
         }
 
-        public int GetHeight()
+        public void WriteCommonPoints(DataCommon dataPoints)
         {
-            throw new NotImplementedException();
+            DataCommon.Add(dataPoints);
         }
 
-        public int GetWidth()
+        public void RemoveCommonPoints(DataCommon dataPoints)
         {
-            throw new NotImplementedException();
+            DataCommon.Remove(dataPoints);
         }
 
         public void IsHovered(Point point)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Move(int deltaX, int deltaY)
         {
             throw new NotImplementedException();
         }
@@ -58,6 +51,14 @@ namespace Project_UML.Core.Boxes
         {
             throw new NotImplementedException();
         }
+
+        public void Select(Graphics graphics)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
 
         //protected Pen _pen = new Pen(Color.Blue, 5);
 

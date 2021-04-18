@@ -4,10 +4,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Project_UML.Core;
 
 namespace Project_UML.Core.MousHandlers
 {
-    interface IMouseHandler
+    public interface IMouseHandler
     {
         void MouseDown(Point e);
         void MouseUp(Point e);

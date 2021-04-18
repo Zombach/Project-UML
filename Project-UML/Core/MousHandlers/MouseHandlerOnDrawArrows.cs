@@ -1,5 +1,7 @@
-﻿using Project_UML.Core.FigureFactory;
+﻿using Project_UML.Core.Arrows;
+using Project_UML.Core.FigureFactory;
 using Project_UML.Core.Forms;
+using Project_UML.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,33 +13,61 @@ namespace Project_UML.Core.MousHandlers
 {
     public class MouseHandlerOnDrawArrows : IMouseHandler
     {
-        private bool _isTapped;
+        public bool _isTapped;
+
         private Point _point;
         public NewProject Form;
-        IFigureFactory FigureFabric { get; set; }
-        public MouseHandlerOnDrawArrows(IFigureFactory figureFabric, NewProject form)
+        public CoreUML CoreUML = CoreUML.GetCoreUML();
+        private AbstractArrow _newArrow;
+        IFigureFactory FigureFactory { get; set; }
+        public MouseHandlerOnDrawArrows(IFigureFactory figureFactory)
         {
             _isTapped = false;
-            FigureFabric = figureFabric;
-            Form = form;
+            FigureFactory = figureFactory;
+
+
         }
 
         public void MouseDown(Point e)
         {
-            _point = new Point(e.X, e.Y);
-            _isTapped = true;
-            //FigureFabric.GetFigure(Form.butt;
+            if (_isTapped)
+            {
+
+            }
+            else
+            {
+                _point = new Point(e.X, e.Y);
+                _isTapped = true;
+                _newArrow = (AbstractArrow)FigureFactory.GetFigure(CoreUML.Color, CoreUML.Width);
+            }
 
         }
 
         public void MouseMove(Point e)
         {
-            throw new NotImplementedException();
+            if (_isTapped)
+            {
+                CoreUML.SwitchToDrawInTmp();
+
+                _newArrow.StartDirectionAxis = CoreUML.AxisStart;
+                _newArrow.EndDirectionAxis = CoreUML.AxisEnd;
+                _newArrow.GetPoints(_point, e);
+                _newArrow.Draw(CoreUML.Graphics);
+                CoreUML.PictureBox.Image = CoreUML.BitmapTmp;
+            }
         }
 
         public void MouseUp(Point e)
         {
-            throw new NotImplementedException();
+            if (_isTapped)
+                if (_point.X != e.X || _point.Y != e.Y)
+                {
+                    CoreUML.BitmapMain = (Bitmap)CoreUML.BitmapTmp.Clone();
+                    CoreUML.Figures.Add(_newArrow);
+                    _newArrow.Select(CoreUML.Graphics);
+                    _isTapped = false;
+                    CoreUML.PictureBox.Invalidate();
+                }
         }
 
         public void MouseHover(Point e)

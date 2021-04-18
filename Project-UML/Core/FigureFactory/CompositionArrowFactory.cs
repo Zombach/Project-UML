@@ -13,7 +13,7 @@ namespace Project_UML.Core.FigureFactory
     {
         public IFigure GetFigure(Color color, int width)
         {
-            return new AggregationArrow(color, width);
+            return new CompositionArrow(color, width);
         }
     }
 }

@@ -16,36 +16,43 @@ namespace Project_UML.Core.Serialize
     /// <summary>
     /// 
     /// </summary>
-    public static class BinaryConversion
+    public class BinaryConversion
     {
-        //public static bool SerializationDictionary()
-        //{
-        //    SetMyPath();
-        //    FileStream fileStream = new FileStream(CoreUML.MyPath, FileMode.Create, FileAccess.Write, FileShare.None);
-        //    BinaryFormatter binaryFormatter = new BinaryFormatter();
-        //    binaryFormatter.Serialize(fileStream, CoreUML.Figures);
-        //    fileStream.Close();
-        //    return true;
-        //}
-        //public static bool DeserializationDictionary()
-        //{
-        //    FileStream fileStream = new FileStream(CoreUML.MyPath, FileMode.Open, FileAccess.Read, FileShare.None);
-        //    BinaryFormatter binaryFormatter = new BinaryFormatter();
-        //    CoreUML.Figures = (List<IFigure>)binaryFormatter.Deserialize(fileStream);
-        //    fileStream.Close();
-        //    return true;
-        //}
+        private CoreUML _coreUML = CoreUML.GetCoreUML();
+        private List<object> _objects;
 
-        //private static void SetMyPath()
-        //{
-        //    DateTime _dateTime = DateTime.Now;
-        //    string _tmpName = $"../../Save/Save_{_dateTime}.Мы-Програмист";
-        //    Regex regex = new Regex(":");
-        //    _tmpName = regex.Replace(_tmpName, ".");
-        //    CoreUML.MyPath = Path.GetFullPath(_tmpName);
-        //    Microsoft.Win32.Registry.SetValue("HKEY_CLASSES_ROOT\\.Мы-Програмист", "", "UML Manager");
-        //    Microsoft.Win32.Registry.SetValue("HKEY_CLASSES_ROOT\\UML Manager\\DefaultIcon", "", "C:\\WINDOWS\\explorer.exe" + ",1");
-           
-        //}
+        public bool SerializationDictionary()
+        {
+            SetMyPath();
+            FileStream fileStream = new FileStream(_coreUML.MyPath, FileMode.Create, FileAccess.Write, FileShare.None);
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            WriteData writeData = new WriteData();
+            _objects = writeData.WriteAll();
+            binaryFormatter.Serialize(fileStream, _objects);
+            fileStream.Close();
+            return true;
+        }
+        public bool DeserializationDictionary()
+        {
+            FileStream fileStream = new FileStream(_coreUML.MyPath, FileMode.Open, FileAccess.Read, FileShare.None);
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            _objects = (List<object>)binaryFormatter.Deserialize(fileStream);
+            fileStream.Close();
+            ReadData readData = new ReadData(_objects);
+            readData.ReadAll();
+            return true;
+        }
+
+        private void SetMyPath()
+        {
+            DateTime _dateTime = DateTime.Now;
+            string _tmpName = $"../../Save/Save_{_dateTime}.Мы-Програмист";
+            Regex regex = new Regex(":");
+            _tmpName = regex.Replace(_tmpName, ".");
+            _coreUML.MyPath = Path.GetFullPath(_tmpName);
+            Microsoft.Win32.Registry.SetValue("HKEY_CLASSES_ROOT\\.Мы-Програмист", "", "UML Manager");
+            Microsoft.Win32.Registry.SetValue("HKEY_CLASSES_ROOT\\UML Manager\\DefaultIcon", "", "C:\\WINDOWS\\explorer.exe" + ",1");
+
+        }
     }
 }

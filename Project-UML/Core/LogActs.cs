@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_UML.Core.Interfaces
+namespace Project_UML.Core
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public interface ISelect
+    [Serializable]
+    public class LogActs
     {
-        void Select();
+
     }
 }

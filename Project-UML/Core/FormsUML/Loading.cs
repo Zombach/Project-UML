@@ -29,8 +29,10 @@ namespace Project_UML.Core.Forms
                 openFileDialog.InitialDirectory = "../../Save";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    //CoreUML.MyPath = openFileDialog.FileName;
-                    //BinaryConversion.DeserializationDictionary();
+                    CoreUML coreUML = CoreUML.GetCoreUML();
+                    BinaryConversion binary = new BinaryConversion();
+                    coreUML.MyPath = openFileDialog.FileName;
+                    binary.DeserializationDictionary();
                     MessageBox.Show("Загрузка успешно завершена");
                 }
             }
