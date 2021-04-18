@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.MousHandlers
 {
-    interface IMouseHandler
+    public interface IMouseHandler
     {
         void MouseDown(Point e);
         void MouseUp(Point e);

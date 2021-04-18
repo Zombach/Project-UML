@@ -31,7 +31,7 @@ namespace Project_UML.Core.Forms
         AbstractBox _currentBox;
         IMouseHandler _crntMH ;
         List<AbstractBox> _boxes = new List<AbstractBox>();
-        private DataPoints dataPoints;
+        private DataCommon _dataCommon;
 
 
         public NewProject()
@@ -329,25 +329,25 @@ namespace Project_UML.Core.Forms
         {            
             if (isStartPoint)
             {
-                dataPoints = new DataPoints(sender, e, isStartPoint);
+                _dataCommon = new DataCommon(sender, e, isStartPoint);
             }
             else
             {
-                DataPoints tmpPoint = new DataPoints(sender, e, isStartPoint);
-                dataPoints.EndPoint = tmpPoint.EndPoint;
-                dataPoints.EndSender = tmpPoint.EndSender;
+                DataCommon tmpPoint = new DataCommon(sender, e, isStartPoint);
+                _dataCommon.LastPoint = tmpPoint.LastPoint;
+                _dataCommon.LastBox = tmpPoint.LastBox;
             }            
         }
         /// <summary>
         /// Необходимо перезаписать в CoreUML.List<IFigure> Figures
         /// </summary>
         /// <param name="dataPoints"></param>
-        private void AddArrowToListCommonPoints(DataPoints dataPoints)
+        private void AddArrowToListCommonPoints(DataCommon _dataCommon)
         {
-            BestRectangles boxFirst = (BestRectangles)dataPoints.FirstSender;
-            boxFirst.WriteCommonPoints(dataPoints);
-            BestRectangles boxSecond = (BestRectangles)dataPoints.EndSender;
-            boxSecond.WriteCommonPoints(dataPoints);
+            BestRectangles boxFirst = (BestRectangles)_dataCommon.FirstBox;
+            boxFirst.WriteCommonPoints(_dataCommon);
+            BestRectangles boxSecond = (BestRectangles)_dataCommon.LastBox;
+            boxSecond.WriteCommonPoints(_dataCommon);
         }
 
         private void AddArrowToListFigures()

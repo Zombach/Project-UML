@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Project_UML.Core.Interfaces;
-using Project_UML.Interfaces;
 
 namespace Project_UML.Core.Arrows
 {
     /// <summary>
     /// 
     /// </summary>
-    public abstract class AbstractArrow : IDraw, IMove, ISelect, IChangeColor, IChangeWidth, IIsHovered, IFigure
+    public abstract class AbstractArrow : IFigure
     {
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
@@ -20,7 +19,6 @@ namespace Project_UML.Core.Arrows
         public Axises EndDirectionAxis { get; set; }
         public List<Point> Points { get; set; }
 
-        public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public virtual void Draw(Graphics graphics)
         {
@@ -146,15 +144,6 @@ namespace Project_UML.Core.Arrows
             Points = newPoints;
         }
 
-        public int GetWidth()
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetHeight()
-        {
-            throw new NotImplementedException();
-        }
         public void Select()
         {
             throw new NotImplementedException();

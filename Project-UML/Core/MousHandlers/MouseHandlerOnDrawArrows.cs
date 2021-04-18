@@ -11,7 +11,8 @@ namespace Project_UML.Core.MousHandlers
 {
     public class MouseHandlerOnDrawArrows : IMouseHandler
     {
-        private bool _isTapped;
+        public bool _isTapped;
+
         private Point _point;
         public NewProject Form;
         IFigureFactory FigureFabric { get; set; }

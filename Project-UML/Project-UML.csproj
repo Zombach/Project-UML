@@ -51,10 +51,11 @@
     <Compile Include="Core\Boxes\BestRectangles.cs" />
     <Compile Include="Core\CoreUML.cs" />
     <Compile Include="Core\DataCommon.cs" />
-    <Compile Include="Core\DataPoints.cs" />
     <Compile Include="Core\Interfaces\IChangeColor.cs" />
     <Compile Include="Core\Interfaces\IChangeWidth.cs" />
     <Compile Include="Core\Interfaces\IDraw.cs" />
+    <Compile Include="Core\Interfaces\IFigureDrows.cs" />
+    <Compile Include="Core\Interfaces\IFigureLogics.cs" />
     <Compile Include="Core\Interfaces\IIsHovered.cs" />
     <Compile Include="Core\Interfaces\IMove.cs" />
     <Compile Include="Core\Interfaces\ISelect.cs" />

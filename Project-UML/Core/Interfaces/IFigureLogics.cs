@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.Interfaces
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public interface IChangeWidth
+    public interface IFigureLogics : IIsHovered, ISelect, IMove
     {
-        void ChangeWidth(int width);
+
     }
 }

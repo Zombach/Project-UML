@@ -1,5 +1,4 @@
 ﻿using Project_UML.Core.Interfaces;
-using Project_UML.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,14 +12,13 @@ namespace Project_UML.Core.Boxes
     /// <summary>
     /// 
     /// </summary>
-    public abstract class AbstractBox : IDraw, IFigure
+    public abstract class AbstractBox : IFigure
     {
-
-        protected Pen _pen;
-        public List<Point> PointsBox { get; set; } = new List<Point>();
-        public List<DataPoints> CommonPoints { get; set; } = new List<DataPoints>();
+        public List<Point> Points { get; set; } = new List<Point>();
+        public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
         protected int RectangleWidth { get; set; } = 100;
         protected int RectangleHeight { get; set; } = 150;
+        protected Pen _pen;
 
         public abstract void Draw(Graphics graphics);
 
@@ -34,14 +32,29 @@ namespace Project_UML.Core.Boxes
             _pen.Width = width;
         }
 
-        public void WriteCommonPoints(DataPoints dataPoints)
+        public void WriteCommonPoints(DataCommon dataPoints)
         {
-            CommonPoints.Add(dataPoints);
+            DataCommon.Add(dataPoints);
         }
 
-        public void RemoveCommonPoints(DataPoints dataPoints)
+        public void RemoveCommonPoints(DataCommon dataPoints)
         {
-            CommonPoints.Remove(dataPoints);
+            DataCommon.Remove(dataPoints);
+        }
+
+        public void IsHovered(Point point)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Move(int deltaX, int deltaY)
+        {
+            throw new NotImplementedException();
         }
 
 
