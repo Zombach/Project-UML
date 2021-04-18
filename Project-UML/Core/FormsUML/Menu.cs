@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Project_UML.Core;
+using Project_UML.Core.Encrypting;
 
 namespace Project_UML.Core.Forms
 {
@@ -18,6 +19,7 @@ namespace Project_UML.Core.Forms
     {
         public Menu()
         {
+            Encrypt en = new Encrypt();
             InitializeComponent();
         }
 
