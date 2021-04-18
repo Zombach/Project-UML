@@ -40,7 +40,7 @@ namespace Project_UML.Core.Serialize
             Logs = new List<LogActs>();
             Logs = CreateObjectsLogs();
 
-            DefaultWidth = coreUML.DefaultWidth;
+            DefaultWidth = (int)coreUML.DefaultWidth;
             DefaultColor = coreUML.DefaultColor;
             DefaultFont = coreUML.DefaultFont;
             DefaultSize = coreUML.DefaultSize;

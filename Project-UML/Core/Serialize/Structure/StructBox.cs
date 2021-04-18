@@ -16,7 +16,7 @@ namespace Project_UML.Core.Serialize.Structure
         public Font Font { get; set; }
         public List<DataCommon> Data { get; set; }
         public Color Color { get; set; }
-        public int Width { get; set; }
+        public float Width { get; set; }
         public float Size { get; set; }
 
         public StructBox(AbstractBox box)

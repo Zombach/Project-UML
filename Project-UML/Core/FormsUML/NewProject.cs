@@ -33,7 +33,8 @@ namespace Project_UML.Core.Forms
         //AbstractBox _currentBox;
         IMouseHandler _crntMH ;
         List<AbstractBox> _boxes = new List<AbstractBox>();
-        private DataCommon _dataCommon;
+        
+
 
 
         public NewProject()
@@ -41,7 +42,7 @@ namespace Project_UML.Core.Forms
             InitializeComponent();
             if (_coreUML.isLoading)
             {
-                TrackBar.Value = _coreUML.DefaultWidth;
+                TrackBar.Value = (int)_coreUML.DefaultWidth;
                 ButtonColor.BackColor = _coreUML.DefaultColor;
                 _coreUML.isLoading = false;
             }
@@ -333,36 +334,8 @@ namespace Project_UML.Core.Forms
         {
             _act = Act.Rectangle;
         }
-        /// <summary>
-        /// Создание дженерика первой и последней общих точек(бокс, стрелка, бокс) по координатам боксов.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <param name="isStartPoint"></param>
-        private void WriteDataPoint(object sender, MouseEventArgs e, bool isStartPoint)
-        {            
-            if (isStartPoint)
-            {
-                _dataCommon = new DataCommon(sender, e, isStartPoint);
-            }
-            else
-            {
-                DataCommon tmpPoint = new DataCommon(sender, e, isStartPoint);
-                _dataCommon.LastPoint = tmpPoint.LastPoint;
-                _dataCommon.LastBox = tmpPoint.LastBox;
-            }            
-        }
-        /// <summary>
-        /// Необходимо перезаписать в CoreUML.List<IFigure> Figures
-        /// </summary>
-        /// <param name="dataPoints"></param>
-        private void AddArrowToListCommonPoints(DataCommon _dataCommon)
-        {
-            BestRectangles boxFirst = (BestRectangles)_dataCommon.FirstBox;
-            boxFirst.WriteCommonPoints(_dataCommon);
-            BestRectangles boxSecond = (BestRectangles)_dataCommon.LastBox;
-            boxSecond.WriteCommonPoints(_dataCommon);
-        }
+        
+        
 
     }
 }

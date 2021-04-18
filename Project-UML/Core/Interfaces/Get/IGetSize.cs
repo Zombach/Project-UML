@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_UML.Core.Interfaces
+namespace Project_UML.Core.Interfaces.Get
 {
-    public interface IFigureDrows : IDraw, IChangeColor, IChangeWidth
+    public interface IGetSize
     {
+        float GetSize();
     }
 }
