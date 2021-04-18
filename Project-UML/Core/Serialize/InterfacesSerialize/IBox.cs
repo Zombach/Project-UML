@@ -9,7 +9,7 @@ namespace Project_UML.Core.Serialize.InterfacesSerialize
 {
     public interface IBox
     {
-        List<string> Text { get; set; }
+        List<DataText> DataText { get; set; }
         Font Font { get; set; }
     }
 }

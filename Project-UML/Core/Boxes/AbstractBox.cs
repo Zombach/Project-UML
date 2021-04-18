@@ -17,6 +17,7 @@ namespace Project_UML.Core.Boxes
     {
         public List<Point> Points { get; set; } = new List<Point>();
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
+        public List<DataText> DataText { get; set; } = new List<DataText>();
         protected int RectangleWidth { get; set; } = 100;
         protected int RectangleHeight { get; set; } = 150;
         protected Pen _pen;

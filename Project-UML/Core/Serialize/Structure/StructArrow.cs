@@ -21,11 +21,11 @@ namespace Project_UML.Core.Serialize.Structure
 
         public StructArrow(AbstractArrow arrow)
         {
-            ArrowType = 0;
-            Data = null;
-            Color = Color.Black;
-            Width = 1;
-            Size = 1f;
+            ArrowType = arrow.GetArrowType();
+            Data = arrow.DataCommon;
+            Color = arrow.GetColor();
+            Width = arrow.GetWidth();
+            Size = arrow.GetSize();
         }
     }
 }
