@@ -50,6 +50,7 @@
     <Compile Include="Core\Boxes\AbstractBox.cs" />
     <Compile Include="Core\Boxes\BestRectangles.cs" />
     <Compile Include="Core\CoreUML.cs" />
+    <Compile Include="Core\DataCommon.cs" />
     <Compile Include="Core\Interfaces\IChangeColor.cs" />
     <Compile Include="Core\Interfaces\IChangeWidth.cs" />
     <Compile Include="Core\Interfaces\IDraw.cs" />
@@ -67,7 +68,7 @@
     <Compile Include="Core\Arrows\InheritanceArrow.cs" />
     <Compile Include="Core\Interfaces\IFigure.cs" />
     <Compile Include="Core\MousHandlers\IMouseHandler.cs" />
-    <Compile Include="Core\MousHandlers\MouseHandlerOnDrawArrows.cs" />	
+    <Compile Include="Core\MousHandlers\MouseHandlerOnDrawArrows.cs" />
     <Compile Include="Core\FigureFactory\AggregationArrowFactory.cs" />
     <Compile Include="Core\FigureFactory\AssociationArrowFactory.cs" />
     <Compile Include="Core\FigureFactory\BestRectangleFactory.cs" />
@@ -75,11 +76,12 @@
     <Compile Include="Core\FigureFactory\IFigureFactory.cs" />
     <Compile Include="Core\FigureFactory\ImplementationArrowFactory.cs" />
     <Compile Include="Core\FigureFactory\InheritanceArrowFactory.cs" />
-    <Compile Include="Core\Serialize\AbstractFiguresSerialize.cs" />
-    <Compile Include="Core\Serialize\ArrowsSerialize.cs" />
+    <Compile Include="Core\Serialize\AbstractSerialize.cs" />
     <Compile Include="Core\Serialize\BinaryConversion.cs" />
-    <Compile Include="Core\Serialize\SerializePoints.cs" />
-    <Compile Include="Core\Serialize\StructSerialize.cs" />
+    <Compile Include="Core\Serialize\InterfacesSerialize\IArrow.cs" />
+    <Compile Include="Core\Serialize\InterfacesSerialize\IBox.cs" />
+    <Compile Include="Core\Serialize\InterfacesSerialize\ICoreUML.cs" />
+    <Compile Include="Core\Serialize\InterfacesSerialize\IFigures.cs" />
     <Compile Include="Core\FormsUML\License.cs">
       <SubType>Form</SubType>
     </Compile>
