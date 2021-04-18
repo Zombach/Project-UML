@@ -11,7 +11,7 @@ namespace Project_UML.Core.Serialize.InterfacesSerialize
     {
         List<DataCommon> Data { get; set; }
         Color Color { get; set; }
-        int Width { get; set; }        
+        float Width { get; set; }        
         float Size { get; set; }
     }
 }

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_UML.Core.Interfaces
+namespace Project_UML.Core.Interfaces.Draws
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface ISelect
+    public interface IDraw
     {
-        void Select();
+        void Draw(Graphics graphics);
     }
 }

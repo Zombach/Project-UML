@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Project_UML.Core.Interfaces.Get;
 
 
 namespace Project_UML.Core.Boxes
@@ -12,7 +13,7 @@ namespace Project_UML.Core.Boxes
     /// <summary>
     /// 
     /// </summary>
-    public abstract class AbstractBox : IFigure
+    public abstract class AbstractBox : IFigure, IGetFont
     {
         public List<Point> Points { get; set; } = new List<Point>();
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
@@ -61,6 +62,28 @@ namespace Project_UML.Core.Boxes
         {
             throw new NotImplementedException();
         }
+
+        public Color GetColor()
+        {
+            return _pen.Color;
+        }
+
+        public float GetSize()
+        {
+            throw new NotImplementedException();
+        }
+
+        public float GetWidth()
+        {
+            return _pen.Width;
+        }
+
+        public Font GetFont()
+        {
+            throw new NotImplementedException();
+        }
+
+
 
 
 

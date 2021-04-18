@@ -5,13 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_UML.Core.Interfaces
+namespace Project_UML.Core.Interfaces.Get
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public interface IDraw
+    public interface IGetColor
     {
-        void Draw(Graphics graphics);
+        Color GetColor();
     }
 }

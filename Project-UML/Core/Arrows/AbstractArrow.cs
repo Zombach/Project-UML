@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Project_UML.Core.Interfaces;
+using Project_UML.Core.Interfaces.Get;
 
 namespace Project_UML.Core.Arrows
 {
@@ -12,14 +13,14 @@ namespace Project_UML.Core.Arrows
     /// 
     /// </summary>
     [Serializable]
-    public abstract class AbstractArrow : IFigure
+    public abstract class AbstractArrow : IFigure, IGetArrowType
     {
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
         public Axises StartDirectionAxis {get; set;}
         public Axises EndDirectionAxis { get; set; }
         public List<Point> Points { get; set; }
-
+        public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
 
         public virtual void Draw(Graphics graphics)
         {
@@ -153,6 +154,28 @@ namespace Project_UML.Core.Arrows
         {
             throw new NotImplementedException();
         }
+
+        public Color GetColor()
+        {
+            return _pen.Color;
+        }
+
+        public float GetSize()
+        {
+            throw new NotImplementedException();
+        }
+
+        public float GetWidth()
+        {
+            return _pen.Width;
+        }
+
+        public ArrowType GetArrowType()
+        {
+            throw new NotImplementedException();
+        }
+
+
 
         //protected virtual Point GetPoint(Point currentPoint, int currentWay)
         //{

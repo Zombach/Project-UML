@@ -1,4 +1,5 @@
-﻿using Project_UML.Core.Interfaces;
+﻿using Project_UML.Core.Forms;
+using Project_UML.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,22 +18,25 @@ namespace Project_UML.Core
         public IFigure FirstBox { get; set; }
         public IFigure LastBox { get; set; }
 
-        public DataCommon(object sender, MouseEventArgs e, bool isFirstPoint)
+        public DataCommon()
         {
-            //if (isFirstPoint)
-            //{
-            //    FirstBox = (IFigure)sender;
-            //    FirstPoint = new Point(e.X, e.Y);
-            //    LastBox = null;
-            //    LastPoint = new Point();
-            //}
-            //else
-            //{
-            //    FirstBox = null;
-            //    FirstPoint = new Point();
-            //    LastBox = (IFigure)sender;
-            //    LastPoint = new Point(e.X, e.Y);
-            //}
+            Arrow = null;
+            FirstBox = null;
+            LastBox = null;
+        }
+
+        public void Write(Point point, bool isFirstPoint, object sender)
+        {
+            if (isFirstPoint)
+            {                
+                FirstBox = (IFigure)sender;                
+                FirstPoint = point;
+            }
+            else
+            {                
+                LastBox = (IFigure)sender;                
+                LastPoint = point;
+            }
         }
     }
 }

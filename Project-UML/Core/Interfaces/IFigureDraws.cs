@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Project_UML.Core.Interfaces.Draws;
 
 namespace Project_UML.Core.Interfaces
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public interface IChangeColor
+    public interface IFigureDraws : IDraw, IChangeColor, IChangeWidth
     {
-        void ChangeColor(Color color);
     }
 }

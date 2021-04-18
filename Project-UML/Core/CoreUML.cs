@@ -41,9 +41,9 @@ namespace Project_UML.Core
         /// <summary>
         /// Толщина линий
         /// </summary>
-        public int DefaultWidth { get; set; }
         public Color DefaultColor { get; set; }
         public Font DefaultFont { get; set; }
+        public float DefaultWidth { get; set; }
         /// <summary>
         /// Размер объектов для zoom.
         /// </summary>
