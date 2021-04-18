@@ -57,6 +57,11 @@ namespace Project_UML.Core.Boxes
             throw new NotImplementedException();
         }
 
+        public void Move(int deltaX, int deltaY)
+        {
+            throw new NotImplementedException();
+        }
+
 
 
 
