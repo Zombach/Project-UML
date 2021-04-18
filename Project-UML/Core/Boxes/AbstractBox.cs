@@ -17,14 +17,14 @@ namespace Project_UML.Core.Boxes
     {
 
         protected Pen _pen;
-        public int StartPoint_X { get; set; }
-        public int StartPoint_Y { get; set; }
-        public Point EndPoint { get; set; }
-        public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        protected int RectangleWidth { get; set; }
-        protected int RectangleHeight { get; set; }
+        public List<Point> PointsBox { get; set; } = new List<Point>();
+        public List<DataPoints> CommonPoints { get; set; } = new List<DataPoints>();
+        protected int RectangleWidth { get; set; } = 100;
+        protected int RectangleHeight { get; set; } = 150;
 
         public abstract void Draw(Graphics graphics);
+
+
         public void ChangeColor(Color color)
         {
             _pen.Color = color;
@@ -34,30 +34,18 @@ namespace Project_UML.Core.Boxes
             _pen.Width = width;
         }
 
-        public int GetHeight()
+        public void WriteCommonPoints(DataPoints dataPoints)
         {
-            throw new NotImplementedException();
+            CommonPoints.Add(dataPoints);
         }
 
-        public int GetWidth()
+        public void RemoveCommonPoints(DataPoints dataPoints)
         {
-            throw new NotImplementedException();
+            CommonPoints.Remove(dataPoints);
         }
 
-        public void IsHovered(Point point)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void Move(int deltaX, int deltaY)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void Select()
-        {
-            throw new NotImplementedException();
-        }
 
         //protected Pen _pen = new Pen(Color.Blue, 5);
 

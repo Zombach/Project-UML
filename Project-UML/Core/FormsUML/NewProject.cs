@@ -30,6 +30,9 @@ namespace Project_UML.Core.Forms
         Act _act = Act.Aggregation;
         AbstractBox _currentBox;
         IMouseHandler _crntMH ;
+        List<AbstractBox> _boxes = new List<AbstractBox>();
+        private DataPoints dataPoints;
+
 
         public NewProject()
         {
@@ -316,7 +319,46 @@ namespace Project_UML.Core.Forms
         {
             _act = Act.Rectangle;
         }
+        /// <summary>
+        /// Создание дженерика первой и последней общих точек(бокс, стрелка, бокс) по координатам боксов.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="isStartPoint"></param>
+        private void WriteDataPoint(object sender, MouseEventArgs e, bool isStartPoint)
+        {            
+            if (isStartPoint)
+            {
+                dataPoints = new DataPoints(sender, e, isStartPoint);
+            }
+            else
+            {
+                DataPoints tmpPoint = new DataPoints(sender, e, isStartPoint);
+                dataPoints.EndPoint = tmpPoint.EndPoint;
+                dataPoints.EndSender = tmpPoint.EndSender;
+            }            
+        }
+        /// <summary>
+        /// Необходимо перезаписать в CoreUML.List<IFigure> Figures
+        /// </summary>
+        /// <param name="dataPoints"></param>
+        private void AddArrowToListCommonPoints(DataPoints dataPoints)
+        {
+            BestRectangles boxFirst = (BestRectangles)dataPoints.FirstSender;
+            boxFirst.WriteCommonPoints(dataPoints);
+            BestRectangles boxSecond = (BestRectangles)dataPoints.EndSender;
+            boxSecond.WriteCommonPoints(dataPoints);
+        }
 
+        private void AddArrowToListFigures()
+        {
+
+        }
+
+        private void AddBoxToListFigures()
+        {
+
+        }
 
     }
 }
