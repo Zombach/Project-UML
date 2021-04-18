@@ -56,6 +56,8 @@ namespace Project_UML.Core
         public Axises AxisStart = Axises.X;
         public Axises AxisEnd = Axises.X;
 
+        public bool isLoading { get; set; } = false;
+
 
         private CoreUML()
         {
@@ -95,7 +97,7 @@ namespace Project_UML.Core
                 SwitchToDrawInTmp();
                 foreach (IFigure selectedFigure in SelectedFigures)
                 {
-                    selectedFigure.Select(Graphics);
+                    selectedFigure.Select(/*Graphics*/);
                 }
                 PictureBox.Image = BitmapTmp;
             }

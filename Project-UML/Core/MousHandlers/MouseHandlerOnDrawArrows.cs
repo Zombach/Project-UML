@@ -38,7 +38,7 @@ namespace Project_UML.Core.MousHandlers
             {
                 _point = new Point(e.X, e.Y);
                 _isTapped = true;
-                _newArrow = (AbstractArrow)FigureFactory.GetFigure(CoreUML.Color, CoreUML.Width);
+                _newArrow = (AbstractArrow)FigureFactory.GetFigure(CoreUML.DefaultColor, CoreUML.DefaultWidth);
             }
 
         }

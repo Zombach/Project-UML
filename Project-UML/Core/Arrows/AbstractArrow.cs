@@ -11,6 +11,7 @@ namespace Project_UML.Core.Arrows
     /// <summary>
     /// 
     /// </summary>
+    [Serializable]
     public abstract class AbstractArrow : IFigure
     {
         protected Pen _pen;

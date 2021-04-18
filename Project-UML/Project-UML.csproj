@@ -80,12 +80,14 @@
     <Compile Include="Core\FigureFactory\ImplementationArrowFactory.cs" />
     <Compile Include="Core\FigureFactory\InheritanceArrowFactory.cs" />
     <Compile Include="Core\Serialize\ReadData.cs" />
+    <Compile Include="Core\Serialize\Structure\StructArrow.cs" />
+    <Compile Include="Core\Serialize\Structure\StructBox.cs" />
     <Compile Include="Core\Serialize\WriteData.cs" />
     <Compile Include="Core\Serialize\BinaryConversion.cs" />
     <Compile Include="Core\Serialize\InterfacesSerialize\IArrow.cs" />
     <Compile Include="Core\Serialize\InterfacesSerialize\IBox.cs" />
     <Compile Include="Core\Serialize\InterfacesSerialize\ICoreUML.cs" />
-    <Compile Include="Core\Serialize\InterfacesSerialize\IFigures.cs" />
+    <Compile Include="Core\Serialize\InterfacesSerialize\IBase.cs" />
     <Compile Include="Core\FormsUML\License.cs">
       <SubType>Form</SubType>
     </Compile>

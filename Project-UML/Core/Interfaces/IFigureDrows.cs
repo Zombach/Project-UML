@@ -8,6 +8,5 @@ namespace Project_UML.Core.Interfaces
 {
     public interface IFigureDrows : IDraw, IChangeColor, IChangeWidth
     {
-
     }
 }
