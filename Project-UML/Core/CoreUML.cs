@@ -37,13 +37,13 @@ namespace Project_UML.Core
         /// <summary>
         /// Толщина линий
         /// </summary>
-        public int Width { get; set; }
-        public Color Color { get; set; }
-        public Font Font { get; set; }
+        public int DefaultWidth { get; set; }
+        public Color DefaultColor { get; set; }
+        public Font DefaultFont { get; set; }
         /// <summary>
         /// Размер объектов для zoom.
         /// </summary>
-        public float Size { get; set; }
+        public float DefaultSize { get; set; }
         public string MyPath { get; set; }
 
 
@@ -64,10 +64,10 @@ namespace Project_UML.Core
             BitmapMain = new Bitmap(0, 0);
             BitmapTmp = new Bitmap(0, 0);
             Graphics = Graphics.FromImage(BitmapMain);
-            Width = 1;
-            Color = Color.Black;
-            Font = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-            Size = 1;
+            DefaultWidth = 1;
+            DefaultColor = Color.Black;
+            DefaultFont = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+            DefaultSize = 1;
             MyPath = "";
         }
 
