@@ -19,27 +19,34 @@ namespace Project_UML.Core.Forms
     /// </summary>
     public partial class NewProject : Form
     {
-        CoreUML _core = CoreUML.GetCoreUML();
-        Point _point;
+        private CoreUML _coreUML = CoreUML.GetCoreUML();
+        //Point _point;
         Bitmap _bitmap;
         Bitmap _bitmapTmp;
         Graphics _graphics;
         bool _isTapped;
         AbstractArrow _currentArrow;
-        Axises _startAxis = Axises.X;
-        Axises _endAxis = Axises.X;
+        //Axises _startAxis = Axises.X;
+        //Axises _endAxis = Axises.X;
         List<AbstractArrow> _arrows = new List<AbstractArrow>();
         Act _act = Act.Aggregation;
-        AbstractBox _currentBox;
+        //AbstractBox _currentBox;
         IMouseHandler _crntMH ;
         List<AbstractBox> _boxes = new List<AbstractBox>();
-        private DataCommon _dataCommon;
-        IMouseHandler _crntMH;
+        
+
 
 
         public NewProject()
         {
             InitializeComponent();
+            if (_coreUML.isLoading)
+            {
+                TrackBar.Value = (int)_coreUML.DefaultWidth;
+                ButtonColor.BackColor = _coreUML.DefaultColor;
+                _coreUML.isLoading = false;
+            }
+
             //FixUpdate();            
         }
 
@@ -50,12 +57,12 @@ namespace Project_UML.Core.Forms
             //_graphics.Clear(Color.White);
             //pictureBox1.Image = _bitmap;
             //pictureBox1.Image = _bitmap;
-            _core.BitmapMain = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            _core.BitmapTmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            _core.Graphics = Graphics.FromImage(_core.BitmapMain);
-            _core.Graphics.Clear(Color.White);
-            _core.PictureBox = pictureBox1;
-            pictureBox1.Image = _core.BitmapMain;
+            _coreUML.BitmapMain = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _coreUML.BitmapTmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _coreUML.Graphics = Graphics.FromImage(_coreUML.BitmapMain);
+            _coreUML.Graphics.Clear(Color.White);
+            _coreUML.PictureBox = pictureBox1;
+            pictureBox1.Image = _coreUML.BitmapMain;
         }
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -212,28 +219,29 @@ namespace Project_UML.Core.Forms
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            _core.AxisStart = Axises.X;
+            _coreUML.AxisStart = Axises.X;
         }
 
         private void RadioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            _core.AxisStart = Axises.Y;
+            _coreUML.AxisStart = Axises.Y;
         }
 
         private void RadioButton5_CheckedChanged(object sender, EventArgs e)
         {
-            _core.AxisEnd = Axises.X;
+            _coreUML.AxisEnd = Axises.X;
         }
 
         private void RadioButton6_CheckedChanged(object sender, EventArgs e)
         {
-            _core.AxisEnd = Axises.Y;
+            _coreUML.AxisEnd = Axises.Y;
         }
 
         private void ButtonColor_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
             ButtonColor.BackColor = colorDialog1.Color;
+            _coreUML.DefaultColor = colorDialog1.Color;
             if (!(_currentArrow is null))
             {
                 _currentArrow.ChangeColor(colorDialog1.Color);
@@ -306,9 +314,10 @@ namespace Project_UML.Core.Forms
         {
             if (!(_currentArrow is null))
             {
-                _currentArrow.ChangeWidth(trackBar1.Value);
+                _currentArrow.ChangeWidth(TrackBar.Value);
                 UpdPicture();
             }
+            _coreUML.DefaultWidth = TrackBar.Value;
         }
 
         private void ButtonImplementation_Click(object sender, EventArgs e)
@@ -325,36 +334,8 @@ namespace Project_UML.Core.Forms
         {
             _act = Act.Rectangle;
         }
-        /// <summary>
-        /// Создание дженерика первой и последней общих точек(бокс, стрелка, бокс) по координатам боксов.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <param name="isStartPoint"></param>
-        private void WriteDataPoint(object sender, MouseEventArgs e, bool isStartPoint)
-        {            
-            if (isStartPoint)
-            {
-                _dataCommon = new DataCommon(sender, e, isStartPoint);
-            }
-            else
-            {
-                DataCommon tmpPoint = new DataCommon(sender, e, isStartPoint);
-                _dataCommon.LastPoint = tmpPoint.LastPoint;
-                _dataCommon.LastBox = tmpPoint.LastBox;
-            }            
-        }
-        /// <summary>
-        /// Необходимо перезаписать в CoreUML.List<IFigure> Figures
-        /// </summary>
-        /// <param name="dataPoints"></param>
-        private void AddArrowToListCommonPoints(DataCommon _dataCommon)
-        {
-            BestRectangles boxFirst = (BestRectangles)_dataCommon.FirstBox;
-            boxFirst.WriteCommonPoints(_dataCommon);
-            BestRectangles boxSecond = (BestRectangles)_dataCommon.LastBox;
-            boxSecond.WriteCommonPoints(_dataCommon);
-        }
+        
+        
 
     }
 }

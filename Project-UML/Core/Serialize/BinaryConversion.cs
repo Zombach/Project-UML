@@ -19,7 +19,6 @@ namespace Project_UML.Core.Serialize
     public class BinaryConversion
     {
         private CoreUML _coreUML = CoreUML.GetCoreUML();
-        private List<object> _objects;
 
         public bool SerializationDictionary()
         {
@@ -27,8 +26,7 @@ namespace Project_UML.Core.Serialize
             FileStream fileStream = new FileStream(_coreUML.MyPath, FileMode.Create, FileAccess.Write, FileShare.None);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             WriteData writeData = new WriteData();
-            _objects = writeData.WriteAll();
-            binaryFormatter.Serialize(fileStream, _objects);
+            binaryFormatter.Serialize(fileStream, writeData);
             fileStream.Close();
             return true;
         }
@@ -36,9 +34,9 @@ namespace Project_UML.Core.Serialize
         {
             FileStream fileStream = new FileStream(_coreUML.MyPath, FileMode.Open, FileAccess.Read, FileShare.None);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            _objects = (List<object>)binaryFormatter.Deserialize(fileStream);
+            WriteData writeData = (WriteData)binaryFormatter.Deserialize(fileStream);
             fileStream.Close();
-            ReadData readData = new ReadData(_objects);
+            ReadData readData = new ReadData(writeData);
             readData.ReadAll();
             return true;
         }

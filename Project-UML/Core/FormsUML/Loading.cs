@@ -34,6 +34,7 @@ namespace Project_UML.Core.Forms
                     coreUML.MyPath = openFileDialog.FileName;
                     binary.DeserializationDictionary();
                     MessageBox.Show("Загрузка успешно завершена");
+                    coreUML.isLoading = true;
                 }
             }
             //int s = CoreUML.Figures[0];

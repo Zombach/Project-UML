@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_UML.Core.Interfaces
+namespace Project_UML.Core.Interfaces.Get
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public interface ISelect
+    public interface IGetSize
     {
-        void Select();
+        float GetSize();
     }
 }

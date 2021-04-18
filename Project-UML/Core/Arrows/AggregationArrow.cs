@@ -11,6 +11,7 @@ namespace Project_UML.Core.Arrows
     /// <summary>
     /// 
     /// </summary>
+    [Serializable]
     public class AggregationArrow : AbstractArrow
     {
         public AggregationArrow()

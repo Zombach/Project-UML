@@ -36,7 +36,7 @@ namespace Project_UML.Core.Forms
             this.groupBoxEndAxis = new System.Windows.Forms.GroupBox();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.TrackBar = new System.Windows.Forms.TrackBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ButtonAggregation = new System.Windows.Forms.Button();
             this.ButtonComposition = new System.Windows.Forms.Button();
@@ -52,7 +52,7 @@ namespace Project_UML.Core.Forms
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxStartAxis.SuspendLayout();
             this.groupBoxEndAxis.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrackBar)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -139,18 +139,18 @@ namespace Project_UML.Core.Forms
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(6, 16);
-            this.trackBar1.Maximum = 5;
-            this.trackBar1.Minimum = 1;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(104, 45);
-            this.trackBar1.TabIndex = 8;
-            this.trackBar1.Value = 1;
-            this.trackBar1.Scroll += new System.EventHandler(this.TrackBar1_Scroll_1);
+            this.TrackBar.Location = new System.Drawing.Point(6, 16);
+            this.TrackBar.Maximum = 5;
+            this.TrackBar.Minimum = 1;
+            this.TrackBar.Name = "trackBar1";
+            this.TrackBar.Size = new System.Drawing.Size(104, 45);
+            this.TrackBar.TabIndex = 8;
+            this.TrackBar.Value = 1;
+            this.TrackBar.Scroll += new System.EventHandler(this.TrackBar1_Scroll_1);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.trackBar1);
+            this.groupBox2.Controls.Add(this.TrackBar);
             this.groupBox2.Location = new System.Drawing.Point(8, 198);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(120, 67);
@@ -285,7 +285,7 @@ namespace Project_UML.Core.Forms
             this.groupBoxStartAxis.PerformLayout();
             this.groupBoxEndAxis.ResumeLayout(false);
             this.groupBoxEndAxis.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrackBar)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -300,7 +300,7 @@ namespace Project_UML.Core.Forms
         private System.Windows.Forms.GroupBox groupBoxEndAxis;
         private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar TrackBar;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button ButtonAggregation;
         private System.Windows.Forms.Button ButtonComposition;

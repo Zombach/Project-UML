@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_UML.Core.Interfaces
+namespace Project_UML.Core.Interfaces.Draws
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IMove
+    public interface IChangeWidth
     {
-        void Move(int deltaX, int deltaY);
+        void ChangeWidth(int width);
     }
 }

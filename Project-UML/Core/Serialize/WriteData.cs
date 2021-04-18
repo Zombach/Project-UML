@@ -5,16 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Project_UML.Core.Arrows;
+using Project_UML.Core.Boxes;
+using System.Reflection;
 using Project_UML.Core.Interfaces;
 using Project_UML.Core.Serialize.InterfacesSerialize;
+using Project_UML.Core.Serialize.Structure;
 
 namespace Project_UML.Core.Serialize
 {
     /// <summary>
     /// 
     /// </summary>
-    public class WriteData : ICoreUML, IFigures 
+    [Serializable]
+    public class WriteData : ICoreUML
     {
+        private StructArrow _arrow;
+        private StructBox _box;
         /// <summary>
         /// Сериализация Ядра
         /// </summary>
@@ -28,39 +34,41 @@ namespace Project_UML.Core.Serialize
         public WriteData()
         {
             CoreUML coreUML = CoreUML.GetCoreUML();
-            Figures = coreUML.Figures;
-            Logs = coreUML.Logs;
-            DefaultWidth = coreUML.DefaultWidth;
+            Figures = new List<IFigure>();
+            Figures = CreateObjectsFigure();
+
+            Logs = new List<LogActs>();
+            Logs = CreateObjectsLogs();
+
+            DefaultWidth = (int)coreUML.DefaultWidth;
             DefaultColor = coreUML.DefaultColor;
             DefaultFont = coreUML.DefaultFont;
             DefaultSize = coreUML.DefaultSize;
         }
-        public List <object> WriteAll()
+
+        private List<IFigure> CreateObjectsFigure()
         {
-            List<object> Objects = new List<object>();
-            Objects.Add(Figures);
-            Objects.Add(Logs);
-            Objects.Add(DefaultWidth);
-            Objects.Add(DefaultColor);
-            Objects.Add(DefaultFont);
-            Objects.Add(DefaultSize);
-            return Objects;
-        }
-        public object SerelizeIFigure()
-        {
-            return new object();
+            List<IFigure> figure = new List<IFigure>();
+            for (int i = 0; i < Figures.Count; i++)
+            {
+                if (Figures[i].GetType() == typeof(AbstractArrow))
+                {
+                    _arrow = new StructArrow((AbstractArrow)Figures[i]);
+                }
+                if (Figures[i].GetType() == typeof(AbstractBox))
+                {
+                    _box = new StructBox((AbstractBox)Figures[i]);
+                }
+                figure.Add(Figures[i]);
+            }
+            return figure;
         }
 
+        private List<LogActs> CreateObjectsLogs()
+        {
+            List<LogActs> logs = new List<LogActs>();
+            return logs;
+        }
 
-        /// <summary>
-        /// Сериализация объектов
-        /// </summary>
-        public List<DataCommon> Data { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Color Color { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Font Font { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public List<string> Text { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public ArrowType ArrowType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Width { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public float Size { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

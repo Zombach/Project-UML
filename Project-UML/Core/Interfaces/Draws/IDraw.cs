@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_UML.Core.Interfaces
+namespace Project_UML.Core.Interfaces.Draws
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IChangeColor
+    public interface IDraw
     {
-        void ChangeColor(Color color);
+        void Draw(Graphics graphics);
     }
 }

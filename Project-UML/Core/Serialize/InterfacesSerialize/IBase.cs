@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.Serialize.InterfacesSerialize
 {
-    public interface IFigures : IBox, IArrow
+    public interface IBase
     {
         List<DataCommon> Data { get; set; }
         Color Color { get; set; }
-        int Width { get; set; }        
+        float Width { get; set; }        
         float Size { get; set; }
     }
 }

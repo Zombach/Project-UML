@@ -41,9 +41,9 @@ namespace Project_UML.Core
         /// <summary>
         /// Толщина линий
         /// </summary>
-        public int DefaultWidth { get; set; }
         public Color DefaultColor { get; set; }
         public Font DefaultFont { get; set; }
+        public float DefaultWidth { get; set; }
         /// <summary>
         /// Размер объектов для zoom.
         /// </summary>
@@ -55,6 +55,8 @@ namespace Project_UML.Core
         /// </summary>
         public Axises AxisStart = Axises.X;
         public Axises AxisEnd = Axises.X;
+
+        public bool isLoading { get; set; } = false;
 
 
         private CoreUML()
@@ -95,7 +97,7 @@ namespace Project_UML.Core
                 SwitchToDrawInTmp();
                 foreach (IFigure selectedFigure in SelectedFigures)
                 {
-                    selectedFigure.Select(Graphics);
+                    selectedFigure.Select(/*Graphics*/);
                 }
                 PictureBox.Image = BitmapTmp;
             }
