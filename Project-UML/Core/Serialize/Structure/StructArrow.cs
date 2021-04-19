@@ -13,19 +13,28 @@ namespace Project_UML.Core.Serialize.Structure
     [Serializable]
     public struct StructArrow : IArrow, IBase
     {
-        public ArrowType ArrowType { get; set; }
-        public List<DataCommon> Data { get; set; }
+        public Type ArrowType { get; set; }
         public Color Color { get; set; }
         public float Width { get; set; }
         public float Size { get; set; }
 
-        public StructArrow(AbstractArrow arrow)
+        public List<IDataCommon> Data { get; set; }
+        
+        public StructArrow(IFigure figure)
         {
-            ArrowType = arrow.GetArrowType();
-            Data = arrow.DataCommon;
+            AbstractArrow arrow = (AbstractArrow)figure;
+            ArrowType = arrow.GetType();
             Color = arrow.GetColor();
             Width = arrow.GetWidth();
-            Size = arrow.GetSize();
-        }
+            Size = 1f;//arrow.GetSize();
+
+            Data = null;
+            for (int i = 0; i < arrow.DataCommon.Count; i++)
+            {
+                Data = new List<IDataCommon>();
+                StructDataCommon structData = new StructDataCommon(arrow.DataCommon[i]);
+                Data.Add(structData);
+            }
+        }        
     }
 }

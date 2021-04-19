@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core
 {
+    [Serializable]
     public class DataText
     {
         public string Name { get; set; }

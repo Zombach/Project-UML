@@ -13,14 +13,15 @@ namespace Project_UML.Core.Arrows
     /// 
     /// </summary>
     [Serializable]
-    public abstract class AbstractArrow : IFigure, IGetArrowType
+    public abstract class AbstractArrow : IFigure
     {
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
-        public Axises StartDirectionAxis {get; set;}
-        public Axises EndDirectionAxis { get; set; }
+        public Axises StartDirectionAxis { get; set; } = Axises.X;
+        public Axises EndDirectionAxis { get; set; } = Axises.X;
         public List<Point> Points { get; set; }
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
+        public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public virtual void Draw(Graphics graphics)
         {
@@ -77,7 +78,49 @@ namespace Project_UML.Core.Arrows
             _pen.Width = width;
         }
 
-        public bool CheckSelection(Point point)
+        public bool IsHovered(Point point)
+        {
+            bool selected = false;
+            //int maxX;
+            //int minX;
+            //int maxY;
+            //int minY;
+            //for (int i = 1; i < Points.Count; i++)
+            //{
+            //    if (Points[i - 1].X > Points[i].X)
+            //    {
+            //        maxX = Points[i - 1].X + 2;
+            //        minX = Points[i].X - 2;
+            //    }
+            //    else
+            //    {
+            //        minX = Points[i - 1].X - 2;
+            //        maxX = Points[i].X + 2;
+            //    }
+            //    if (Points[i - 1].Y > Points[i].Y)
+            //    {
+            //        maxY = Points[i - 1].Y + 2;
+            //        minY = Points[i].Y - 2;
+            //    }
+            //    else
+            //    {
+            //        minY = Points[i - 1].Y - 2;
+            //        maxY = Points[i].Y + 2;
+            //    }
+            //    if (point.X <= maxX &&
+            //        point.X >= minX &&
+            //        point.Y <= maxY &&
+            //        point.Y >= minY)
+            //    {
+            //        selected = true;
+            //        return selected;
+            //    }
+            //}
+            return selected;
+
+        }
+
+        public bool CheckSelection(Point startPoint, Point endPoint, int inaccuracy = 0)
         {
             bool selected = false;
             int maxX;
@@ -88,28 +131,32 @@ namespace Project_UML.Core.Arrows
             {
                 if (Points[i - 1].X > Points[i].X)
                 {
-                    maxX = Points[i - 1].X + 2;
-                    minX = Points[i].X - 2;
+                    maxX = Points[i - 1].X + inaccuracy;
+                    minX = Points[i].X - inaccuracy;
                 }
                 else
                 {
-                    minX = Points[i - 1].X - 2;
-                    maxX = Points[i].X + 2;
+                    minX = Points[i - 1].X - inaccuracy;
+                    maxX = Points[i].X + inaccuracy;
                 }
                 if (Points[i - 1].Y > Points[i].Y)
                 {
-                    maxY = Points[i - 1].Y + 2;
-                    minY = Points[i].Y - 2;
+                    maxY = Points[i - 1].Y + inaccuracy;
+                    minY = Points[i].Y - inaccuracy;
                 }
                 else
                 {
-                    minY = Points[i - 1].Y - 2;
-                    maxY = Points[i].Y + 2;
+                    minY = Points[i - 1].Y - inaccuracy;
+                    maxY = Points[i].Y + inaccuracy;
                 }
-                if (point.X <= maxX &&
-                    point.X >= minX &&
-                    point.Y <= maxY &&
-                    point.Y >= minY)
+                if (!(startPoint.X > maxX
+                    ||
+                    startPoint.Y > maxY
+                    ||
+                    endPoint.X < minX
+                    ||
+                    endPoint.Y < minY
+                    ))
                 {
                     selected = true;
                     return selected;
@@ -118,12 +165,7 @@ namespace Project_UML.Core.Arrows
             return selected;
         }
 
-        public bool CheckSelection(Point pointStart, Point pointEnd)
-        {
-            bool selected = false;
-            
-            return selected;
-        }
+
 
         public void Select(Graphics graphics)
         {
@@ -150,11 +192,7 @@ namespace Project_UML.Core.Arrows
         {
             throw new NotImplementedException();
         }
-        public void IsHovered(Point point)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public Color GetColor()
         {
             return _pen.Color;
@@ -170,7 +208,12 @@ namespace Project_UML.Core.Arrows
             return _pen.Width;
         }
 
-        public ArrowType GetArrowType()
+        public int GetHeight()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ConnectionPoint GetConnectionPoint(Point point)
         {
             throw new NotImplementedException();
         }

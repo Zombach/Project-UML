@@ -48,8 +48,8 @@ namespace Project_UML.Core.Serialize
             Regex regex = new Regex(":");
             _tmpName = regex.Replace(_tmpName, ".");
             _coreUML.MyPath = Path.GetFullPath(_tmpName);
-            Microsoft.Win32.Registry.SetValue("HKEY_CLASSES_ROOT\\.Мы-Програмист", "", "UML Manager");
-            Microsoft.Win32.Registry.SetValue("HKEY_CLASSES_ROOT\\UML Manager\\DefaultIcon", "", "C:\\WINDOWS\\explorer.exe" + ",1");
+            //Microsoft.Win32.Registry.SetValue("HKEY_CLASSES_ROOT\\.Мы-Програмист", "", "UML Manager");
+            //Microsoft.Win32.Registry.SetValue("HKEY_CLASSES_ROOT\\UML Manager\\DefaultIcon", "", "C:\\WINDOWS\\explorer.exe" + ",1");
 
         }
     }

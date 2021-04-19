@@ -21,7 +21,7 @@ namespace Project_UML.Core.Serialize
 
         public void ReadAll()
         {
-            _coreUML.Figures = _writeData.Figures;
+            //_coreUML.Base = _writeData.Base;
             _coreUML.Logs = _writeData.Logs;
             _coreUML.DefaultWidth = _writeData.DefaultWidth;
             _coreUML.DefaultColor = _writeData.DefaultColor;

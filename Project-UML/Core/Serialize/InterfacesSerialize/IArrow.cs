@@ -9,6 +9,6 @@ namespace Project_UML.Core.Serialize.InterfacesSerialize
 {
     public interface IArrow
     {
-        ArrowType ArrowType { get; set; }
+        Type ArrowType { get; set; }
     }
 }
