@@ -87,19 +87,32 @@ namespace Project_UML.Core
             Graphics = Graphics.FromImage(BitmapTmp);
         }
 
-        private void UpdPicture()
+        public void ChangeColorInSelectedFigures(Color color )
         {
-            Graphics = Graphics.FromImage(BitmapTmp);
+            foreach (IFigure figure in SelectedFigures)
+            {
+                figure.ChangeColor(color);
+            }
+        }
+        public void ChangeWidthInSelectedFigures(int width )
+        {
+            foreach (IFigure figure in SelectedFigures)
+            {
+                figure.ChangeWidth(width);
+            }
+        }
+
+        public void UpdPicture()
+        {
+            Graphics = Graphics.FromImage(BitmapMain);
             Graphics.Clear(Color.White);
             foreach (IFigure figure in Figures) figure.Draw(Graphics);
             if (SelectedFigures.Count != 0)
             {
                 SwitchToDrawInTmp();
-                foreach (IFigure selectedFigure in SelectedFigures)
-                {
-                    selectedFigure.Select(/*Graphics*/);
-                }
+                DrawSelectionOfFigures();
                 PictureBox.Image = BitmapTmp;
+
             }
             else
             {
@@ -107,6 +120,16 @@ namespace Project_UML.Core
             }
             Graphics = Graphics.FromImage(BitmapMain);
         }
+
+        public void DrawSelectionOfFigures()
+        {
+            foreach (IFigure figure in SelectedFigures)
+            {
+                figure.Select(Graphics);
+            }
+        }
+
+
 
 
 

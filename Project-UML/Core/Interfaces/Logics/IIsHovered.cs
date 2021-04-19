@@ -12,6 +12,6 @@ namespace Project_UML.Core.Interfaces.Logics
     /// </summary>
     public interface IIsHovered
     {
-        void IsHovered(Point point);
+        bool IsHovered(Point point);
     }
 }

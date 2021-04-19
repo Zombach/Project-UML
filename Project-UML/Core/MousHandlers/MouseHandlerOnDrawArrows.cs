@@ -15,10 +15,8 @@ namespace Project_UML.Core.MousHandlers
 {
     public class MouseHandlerOnDrawArrows : IMouseHandler
     {
-        public bool _isTapped;
-
-        private Point _point;
-        public NewProject Form;
+        private bool _isTapped;
+        private Point startPoint;
         public CoreUML CoreUML = CoreUML.GetCoreUML();
         private AbstractArrow _newArrow;
         IFigureFactory FigureFactory { get; set; }
@@ -33,13 +31,9 @@ namespace Project_UML.Core.MousHandlers
 
         public void MouseDown(Point e, object sender)
         {
-            if (_isTapped)
+            if (!_isTapped)
             {
-
-            }
-            else
-            {
-                _point = new Point(e.X, e.Y);
+                startPoint = new Point(e.X, e.Y);
                 _isTapped = true;
                 _newArrow = (AbstractArrow)FigureFactory.GetFigure(CoreUML.DefaultColor, (int)CoreUML.DefaultWidth);
                 _dataCommon.Write(e, true, sender);
@@ -52,10 +46,9 @@ namespace Project_UML.Core.MousHandlers
             if (_isTapped)
             {
                 CoreUML.SwitchToDrawInTmp();
-
                 _newArrow.StartDirectionAxis = CoreUML.AxisStart;
                 _newArrow.EndDirectionAxis = CoreUML.AxisEnd;
-                _newArrow.GetPoints(_point, e);
+                _newArrow.GetPoints(startPoint, e);
                 _newArrow.Draw(CoreUML.Graphics);
                 CoreUML.PictureBox.Image = CoreUML.BitmapTmp;
             }
@@ -64,13 +57,15 @@ namespace Project_UML.Core.MousHandlers
         public void MouseUp(Point e, object sender = null)
         {
             if (_isTapped)
-                if (_point.X != e.X || _point.Y != e.Y)
+                if (startPoint.X != e.X || startPoint.Y != e.Y)
                 {
                     CoreUML.BitmapMain = (Bitmap)CoreUML.BitmapTmp.Clone();
                     CoreUML.Figures.Add(_newArrow);
+                    CoreUML.SelectedFigures.Clear();
+                    CoreUML.SelectedFigures.Add(_newArrow);
+                    CoreUML.DrawSelectionOfFigures();
                     _dataCommon.Write(e, false, sender);
                     AddArrowToListCommonPoints();
-                    _newArrow.Select(CoreUML.Graphics);
                     _isTapped = false;
                     CoreUML.PictureBox.Invalidate();
                 }

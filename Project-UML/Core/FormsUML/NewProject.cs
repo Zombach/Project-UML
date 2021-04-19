@@ -11,6 +11,7 @@ using Project_UML.Core;
 using Project_UML.Core.Boxes;
 using Project_UML.Core.MousHandlers;
 using Project_UML.Core.FigureFactory;
+using Project_UML.Core.Interfaces;
 
 namespace Project_UML.Core.Forms
 {
@@ -19,21 +20,13 @@ namespace Project_UML.Core.Forms
     /// </summary>
     public partial class NewProject : Form
     {
-        private CoreUML _coreUML = CoreUML.GetCoreUML();
-        //Point _point;
-        Bitmap _bitmap;
-        Bitmap _bitmapTmp;
-        Graphics _graphics;
-        bool _isTapped;
+        CoreUML _core = CoreUML.GetCoreUML();
         AbstractArrow _currentArrow;
-        //Axises _startAxis = Axises.X;
-        //Axises _endAxis = Axises.X;
+        Axises _startAxis = Axises.X;
+        Axises _endAxis = Axises.X;
         List<AbstractArrow> _arrows = new List<AbstractArrow>();
-        Act _act = Act.Aggregation;
         //AbstractBox _currentBox;
-        IMouseHandler _crntMH ;
-        List<AbstractBox> _boxes = new List<AbstractBox>();
-        
+        IMouseHandler _crntMH = new MouseHandlerOnSelection();
 
 
 
@@ -52,56 +45,18 @@ namespace Project_UML.Core.Forms
 
         private void NewProject_Load(object sender, EventArgs e)
         {
-            //_bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            //_graphics = Graphics.FromImage(_bitmap);
-            //_graphics.Clear(Color.White);
-            //pictureBox1.Image = _bitmap;
-            //pictureBox1.Image = _bitmap;
-            _coreUML.BitmapMain = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            _coreUML.BitmapTmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            _coreUML.Graphics = Graphics.FromImage(_coreUML.BitmapMain);
-            _coreUML.Graphics.Clear(Color.White);
-            _coreUML.PictureBox = pictureBox1;
-            pictureBox1.Image = _coreUML.BitmapMain;
+            _core.BitmapMain = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _core.BitmapTmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _core.Graphics = Graphics.FromImage(_core.BitmapMain);
+            _core.Graphics.Clear(Color.White);
+            _core.PictureBox = pictureBox1;
+            pictureBox1.Image = _core.BitmapMain;
         }
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (!(_crntMH is null)) _crntMH.MouseDown(e.Location);
-            //_crntMH = 
-            //_point = new Point(e.X, e.Y);
-            //_isTapped = true;
-            //switch (_act)
-            //{
-            //    case Act.Aggregation:
-            //        _currentArrow = new AggregationArrow(ButtonColor.BackColor, trackBar1.Value);
-            //        break;
-            //    case Act.Composition:
-            //        _currentArrow = new CompositionArrow(ButtonColor.BackColor, trackBar1.Value);
-            //        break;
-            //    case Act.Inheritance:
-            //        _currentArrow = new InheritanceArrow();
-            //        break;
-            //    case Act.Select:
-            //        bool selected;
-            //        foreach (AbstractArrow arrow in _arrows)
-            //        {
-            //            selected = arrow.CheckSelection(_point);
-            //            if (selected)
-            //            {
-            //                _arrows.Remove(arrow);
-            //                UpdPicture();
-            //                _currentArrow = arrow;
-            //                SwitchToDrawInTmp();
-            //                arrow.Draw(_graphics);
-            //                arrow.Select(_graphics);
-            //                pictureBox1.Image = _bitmapTmp;
-            //                break;
-            //            }
-            //            _currentArrow = null;
-            //            pictureBox1.Image = _bitmap;
-            //        }
-            //        break;
+            _crntMH.MouseDown(e.Location);
+            
             //    case Act.Clear:
             //        foreach (AbstractArrow arrow in _arrows)
             //        {
@@ -114,12 +69,6 @@ namespace Project_UML.Core.Forms
             //            }
             //        }
             //        break;
-            //    case Act.Implementation:
-            //        _currentArrow = new ImplementationArrow();
-            //        break;
-            //    case Act.Association:
-            //        _currentArrow = new AssociationArrow();
-            //        break;
             //    case Act.Rectangle:
             //        _currentBox = new BestRectangles(e.X, e.Y);
             //        _currentBox.Draw(_graphics);
@@ -129,52 +78,10 @@ namespace Project_UML.Core.Forms
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (!(_crntMH is null)) _crntMH.MouseUp(e.Location);
+            _crntMH.MouseUp(e.Location);
             //switch (_act)
             //{
-            //    case Act.Aggregation:
-            //        if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
-            //        _arrows.Add(_currentArrow);
-            //        _currentArrow.Select(_graphics);
-            //        pictureBox1.Invalidate();
-            //        break;
-            //    case Act.Composition:
-            //        if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
-            //        _arrows.Add(_currentArrow);
-            //        _currentArrow.Select(_graphics);
-            //        pictureBox1.Invalidate();
-            //        break;
-            //    case Act.Inheritance:
-            //        if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
-            //        _arrows.Add(_currentArrow);
-            //        _currentArrow.Select(_graphics);
-            //        pictureBox1.Invalidate();
-            //        break;
-            //    case Act.Select:
-            //        if (!(_currentArrow == null))
-            //        {
-            //            _arrows.Add(_currentArrow);
-            //            _graphics = Graphics.FromImage(_bitmap);
-            //            _currentArrow.Draw(_graphics);
-            //            _bitmapTmp = (Bitmap)_bitmap.Clone();
-            //            _graphics = Graphics.FromImage(_bitmapTmp);
-            //            _currentArrow.Select(_graphics);
-            //            pictureBox1.Image = _bitmapTmp;
-            //            _graphics = Graphics.FromImage(_bitmap);
-            //        }
-            //        break;
-            //    case Act.Implementation:
-            //        if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
-            //        _arrows.Add(_currentArrow);
-            //        _currentArrow.Select(_graphics);
-            //        pictureBox1.Invalidate();
-            //        break;
-            //    case Act.Association:
-            //        if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
-            //        _arrows.Add(_currentArrow);
-            //        _currentArrow.Select(_graphics);
-            //        pictureBox1.Invalidate();
-            //        break;
+            //    
             //    //case Act.Rectangle:
             //    case Act.Rectangle:
             //        if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
@@ -193,28 +100,7 @@ namespace Project_UML.Core.Forms
 
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!(_crntMH is null)) _crntMH.MouseMove(e.Location);
-            //if (_isTapped)
-            //{
-            //    if (_act == Act.Aggregation || _act == Act.Composition || _act == Act.Inheritance || _act == Act.Implementation || _act == Act.Association)
-            //    {
-            //        SwitchToDrawInTmp();
-            //        _currentArrow.StartDirectionAxis = _startAxis;
-            //        _currentArrow.EndDirectionAxis = _endAxis;
-            //        _currentArrow.GetPoints(_point, e.Location);
-            //        _currentArrow.Draw(_graphics);
-            //        pictureBox1.Image = _bitmapTmp;
-            //    }
-            //    else if (_act == Act.Select && !(_currentArrow is null))
-            //    {
-            //        SwitchToDrawInTmp();
-            //        _currentArrow.Move(e.X - _point.X, e.Y - _point.Y);
-            //        _point = e.Location;
-            //        _currentArrow.Draw(_graphics);
-            //        _currentArrow.Select(_graphics);
-            //        pictureBox1.Image = _bitmapTmp;
-            //    }
-            //}
+            _crntMH.MouseMove(e.Location);
         }
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
@@ -239,19 +125,19 @@ namespace Project_UML.Core.Forms
 
         private void ButtonColor_Click(object sender, EventArgs e)
         {
-            colorDialog1.ShowDialog();
-            ButtonColor.BackColor = colorDialog1.Color;
-            _coreUML.DefaultColor = colorDialog1.Color;
-            if (!(_currentArrow is null))
+            colorDialog.ShowDialog();
+            _core.Color = colorDialog.Color;
+            ButtonColor.BackColor = colorDialog.Color;
+            if (_core.SelectedFigures.Count > 0)
             {
-                _currentArrow.ChangeColor(colorDialog1.Color);
-                UpdPicture();
+                _core.ChangeColorInSelectedFigures(colorDialog.Color);
+                _core.UpdPicture();
             }
         }
 
         private void ButtonAggregation_Click(object sender, EventArgs e)
         {
-            _crntMH = new MouseHandlerOnDrawArrows( new AggregationArrowFactory());
+            _crntMH = new MouseHandlerOnDrawArrows(new AggregationArrowFactory());
         }
 
         private void ButtonComposition_Click(object sender, EventArgs e)
@@ -266,18 +152,24 @@ namespace Project_UML.Core.Forms
 
         private void ButtonSelect_Click(object sender, EventArgs e)
         {
-            _act = Act.Select;
+            _crntMH = new MouseHandlerOnSelection();
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)
         {
-            _act = Act.Clear;
-            if (!(_currentArrow is null))
+            //_act = Act.Clear;
+            //if (!(_currentArrow is null))
+            //{
+            //    _arrows.Remove(_currentArrow);
+            //    _currentArrow = null;
+                //UpdPicture();
+            //}
+            foreach(IFigure figure in _core.SelectedFigures)
             {
-                _arrows.Remove(_currentArrow);
-                _currentArrow = null;
-                UpdPicture();
+                _core.Figures.Remove(figure);
             }
+            _core.SelectedFigures.Clear();
+            _core.UpdPicture();
         }
 
         private void SaveData_Click(object sender, EventArgs e)
@@ -286,36 +178,14 @@ namespace Project_UML.Core.Forms
             MessageBox.Show("Сохранено");
         }
 
-        private void UpdPicture()
-        {
-            _graphics = Graphics.FromImage(_bitmap);
-            _graphics.Clear(Color.White);
-            foreach (AbstractArrow arr in _arrows) arr.Draw(_graphics);
-            if (!(_currentArrow is null))
-            {
-                SwitchToDrawInTmp();
-                _currentArrow.Select(_graphics);
-                pictureBox1.Image = _bitmapTmp;
-            }
-            else
-            {
-                pictureBox1.Image = _bitmap;
-            }
-            _graphics = Graphics.FromImage(_bitmap);
-        }
 
-        private void SwitchToDrawInTmp()
+        private void TrackBarOfWidth_Scroll(object sender, EventArgs e)
         {
-            _bitmapTmp = (Bitmap)_bitmap.Clone();
-            _graphics = Graphics.FromImage(_bitmapTmp);
-        }
-
-        private void TrackBar1_Scroll_1(object sender, EventArgs e)
-        {
-            if (!(_currentArrow is null))
+            _core.Width = trackBarOfWidth.Value;
+            if (_core.SelectedFigures.Count > 0)
             {
-                _currentArrow.ChangeWidth(TrackBar.Value);
-                UpdPicture();
+                _core.ChangeWidthInSelectedFigures(trackBarOfWidth.Value);
+                _core.UpdPicture();
             }
             _coreUML.DefaultWidth = TrackBar.Value;
         }
@@ -332,7 +202,7 @@ namespace Project_UML.Core.Forms
 
         private void ButtonRectangle_Click(object sender, EventArgs e)
         {
-            _act = Act.Rectangle;
+            //_act = Act.Rectangle;
         }
         
         

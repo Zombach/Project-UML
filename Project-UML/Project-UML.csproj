@@ -93,6 +93,7 @@
     <Compile Include="Core\Serialize\Structure\StructArrow.cs" />
     <Compile Include="Core\Serialize\Structure\StructBox.cs" />
     <Compile Include="Core\Serialize\WriteData.cs" />
+    <Compile Include="Core\MousHandlers\MouseHandlerOnSelection.cs" />
     <Compile Include="Core\Serialize\BinaryConversion.cs" />
     <Compile Include="Core\Serialize\InterfacesSerialize\IArrow.cs" />
     <Compile Include="Core\Serialize\InterfacesSerialize\IBox.cs" />
