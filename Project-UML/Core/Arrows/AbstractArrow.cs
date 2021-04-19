@@ -13,12 +13,12 @@ namespace Project_UML.Core.Arrows
     /// 
     /// </summary>
     [Serializable]
-    public abstract class AbstractArrow : IFigure, IGetArrowType
+    public abstract class AbstractArrow : IFigure
     {
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
-        public Axises StartDirectionAxis { get; set; }
-        public Axises EndDirectionAxis { get; set; }
+        public Axises StartDirectionAxis { get; set; } = Axises.X;
+        public Axises EndDirectionAxis { get; set; } = Axises.X;
         public List<Point> Points { get; set; }
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
         public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -208,12 +208,12 @@ namespace Project_UML.Core.Arrows
             return _pen.Width;
         }
 
-        public ArrowType GetArrowType()
+        public int GetHeight()
         {
             throw new NotImplementedException();
         }
 
-        public int GetHeight()
+        public ConnectionPoint GetConnectionPoint(Point point)
         {
             throw new NotImplementedException();
         }

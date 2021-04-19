@@ -49,6 +49,7 @@
     <Compile Include="Core\Act.cs" />
     <Compile Include="Core\Boxes\AbstractBox.cs" />
     <Compile Include="Core\Boxes\BestRectangles.cs" />
+    <Compile Include="Core\ConnectionPoint.cs" />
     <Compile Include="Core\CoreUML.cs" />
     <Compile Include="Core\DataText.cs" />
     <Compile Include="Core\Encrypting\DecryptSaving.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Core\Interfaces\Get\IGetArrowType.cs" />
     <Compile Include="Core\Interfaces\Get\IGetColor.cs" />
     <Compile Include="Core\Interfaces\Get\IGetFont.cs" />
+    <Compile Include="Core\Interfaces\Get\IGetPointOfConnection.cs" />
     <Compile Include="Core\Interfaces\Get\IGetSize.cs" />
     <Compile Include="Core\Interfaces\Get\IGetWidth.cs" />
     <Compile Include="Core\Interfaces\IFigureDraws.cs" />
@@ -72,7 +74,6 @@
     <Compile Include="Core\Arrows\AbstractArrow.cs" />
     <Compile Include="Core\Arrows\AggregationArrow.cs" />
     <Compile Include="Core\Arrows\Arrow.cs" />
-    <Compile Include="Core\Arrows\ArrowType.cs" />
     <Compile Include="Core\Arrows\Axises.cs" />
     <Compile Include="Core\Arrows\CompositionArrow.cs" />
     <Compile Include="Core\Arrows\AssociationArrow.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Core\FigureFactory\IFigureFactory.cs" />
     <Compile Include="Core\FigureFactory\ImplementationArrowFactory.cs" />
     <Compile Include="Core\FigureFactory\InheritanceArrowFactory.cs" />
+    <Compile Include="Core\MousHandlers\MouseHandlerOnDrawRectangle.cs" />
     <Compile Include="Core\Serialize\ReadData.cs" />
     <Compile Include="Core\Serialize\Structure\StructArrow.cs" />
     <Compile Include="Core\Serialize\Structure\StructBox.cs" />

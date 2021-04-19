@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Project_UML.Core.Interfaces.Get;
 using Project_UML.Core.Interfaces.Logics;
+using Project_UML.Core.Arrows;
 
 namespace Project_UML.Core.Boxes
 {
@@ -15,6 +16,9 @@ namespace Project_UML.Core.Boxes
     /// </summary>
     public abstract class AbstractBox : IFigure, IGetFont
     {
+        /// <summary>
+        /// Жестко заданы точки [0] - левая верхняя точка, [1] - правая нижняя точка
+        /// </summary>
         public List<Point> Points { get; set; } = new List<Point>();
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
         public List<DataText> DataText { get; set; } = new List<DataText>();
@@ -24,7 +28,17 @@ namespace Project_UML.Core.Boxes
 
         protected Pen _pen;
 
-        public abstract void Draw(Graphics graphics);
+
+        public virtual void AddPoints(Point point)
+        {
+            Points.Add(point);
+            Point pointTmp = new Point(point.X + RectangleWidth, point.Y + RectangleHeight);
+            Points.Add(pointTmp);
+        }
+        public virtual void Draw(Graphics graphics)
+        {
+            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectangleHeight);
+        }
 
 
         public void ChangeColor(Color color)
@@ -78,7 +92,22 @@ namespace Project_UML.Core.Boxes
 
         public bool CheckSelection(Point startPoint, Point endPoint, int inaccuracy)
         {
-            throw new NotImplementedException();
+            bool selected = false;
+
+            if (!(startPoint.X > Points[Points.Count - 1].X
+                ||
+                startPoint.Y > Points[Points.Count - 1].Y
+                ||
+                endPoint.X < Points[0].X
+                ||
+                endPoint.Y < Points[0].Y
+                ))
+            {
+                selected = true;
+                return selected;
+            }
+
+            return selected;
         }
 
         public float GetWidth()
@@ -99,6 +128,41 @@ namespace Project_UML.Core.Boxes
         bool IIsHovered.IsHovered(Point point)
         {
             throw new NotImplementedException();
+        }
+
+        public ConnectionPoint GetConnectionPoint(Point point)
+        {
+            Point Middle = new Point((Points[0].X + Points[1].X) / 2, (Points[0].Y + Points[1].Y) / 2);
+            ConnectionPoint connectionPoint = new ConnectionPoint();
+            int tmpX = Middle.X - point.X;
+            int tmpY = Middle.Y - point.Y;
+
+            if (Math.Abs(tmpX) < Math.Abs(tmpY))
+            {
+                connectionPoint.Axis = Axises.Y;
+                if (tmpY > 0)
+                {
+                    connectionPoint.Point = new Point(Middle.X, Points[1].Y);
+                }
+                else
+                {
+                    connectionPoint.Point = new Point(Middle.X, Points[0].Y);
+                }
+            }
+            else
+            {
+                connectionPoint.Axis = Axises.X;
+                if (tmpX > 0)
+                {
+                    connectionPoint.Point = new Point(Points[1].X, Middle.Y);
+                }
+                else
+                {
+                    connectionPoint.Point = new Point(Points[0].X, Middle.Y);
+                }
+
+            }
+            return connectionPoint;
         }
 
 
