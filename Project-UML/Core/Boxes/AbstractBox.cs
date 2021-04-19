@@ -27,6 +27,7 @@ namespace Project_UML.Core.Boxes
         //public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         protected Pen _pen;
+        protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
 
 
         public virtual void AddPoints(Point point)
@@ -72,7 +73,13 @@ namespace Project_UML.Core.Boxes
 
         public void Select(Graphics graphics)
         {
-            throw new NotImplementedException();
+            List<Point> pointsOfSelection = new List<Point> { Points[0], Points[1] };
+            pointsOfSelection.Add(new Point(Points[1].X, Points[0].Y));
+            pointsOfSelection.Add(new Point(Points[0].X, Points[1].Y));
+            foreach (Point point in pointsOfSelection)
+            {
+                graphics.DrawEllipse(_selectionPen, point.X - (_pen.Width * 3) / 2, point.Y - (_pen.Width * 3) / 2, _pen.Width * 3, _pen.Width * 3);
+            }
         }
 
         public void Move(int deltaX, int deltaY)
