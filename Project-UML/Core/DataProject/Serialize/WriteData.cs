@@ -1,17 +1,13 @@
-﻿using System;
+﻿using Project_UML.Core.DataProject.Serialize.Interfaces;
+using Project_UML.Core.DataProject.Serialize.Structure;
+using Project_UML.Core.Interfaces;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Project_UML.Core.Arrows;
 using Project_UML.Core.Boxes;
-using System.Reflection;
-using Project_UML.Core.Interfaces;
-using Project_UML.Core.Serialize.InterfacesSerialize;
-using Project_UML.Core.Serialize.Structure;
+using System.Drawing;
+using System;
 
-namespace Project_UML.Core.Serialize
+namespace Project_UML.Core.DataProject.Serialize
 {
     /// <summary>
     /// 

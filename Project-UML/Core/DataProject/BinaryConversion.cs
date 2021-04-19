@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
+﻿using System.Runtime.Serialization.Formatters.Binary;
+using Project_UML.Core.DataProject.Deserialize;
+using Project_UML.Core.DataProject.Serialize;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Project_UML.Core.Interfaces;
-using Project_UML.Core;
-using Project_UML.Core.Arrows;
+using System.IO;
+using System;
 
-
-namespace Project_UML.Core.Serialize
+namespace Project_UML.Core.DataProject
 {
     /// <summary>
     /// 

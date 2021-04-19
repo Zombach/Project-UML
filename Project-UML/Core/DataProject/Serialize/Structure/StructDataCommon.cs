@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Project_UML.Core.Interfaces;
-using Project_UML.Core.Serialize.InterfacesSerialize;
+﻿using Project_UML.Core.DataProject.Serialize.Interfaces;
+using System;
 
-namespace Project_UML.Core.Serialize.Structure
+namespace Project_UML.Core.DataProject.Serialize.Structure
 {
     [Serializable]
     public struct StructDataCommon :IDataCommon
