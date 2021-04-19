@@ -24,7 +24,7 @@ namespace Project_UML.Core.Boxes
         public List<DataText> DataText { get; set; } = new List<DataText>();
         protected int RectangleWidth { get; set; } = 100;
         protected int RectangleHeight { get; set; } = 150;
-        public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        //public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         protected Pen _pen;
 
@@ -142,11 +142,11 @@ namespace Project_UML.Core.Boxes
                 connectionPoint.Axis = Axises.Y;
                 if (tmpY > 0)
                 {
-                    connectionPoint.Point = new Point(Middle.X, Points[1].Y);
+                    connectionPoint.Point = new Point(Middle.X, Points[0].Y);
                 }
                 else
                 {
-                    connectionPoint.Point = new Point(Middle.X, Points[0].Y);
+                    connectionPoint.Point = new Point(Middle.X, Points[1].Y);
                 }
             }
             else
@@ -154,11 +154,11 @@ namespace Project_UML.Core.Boxes
                 connectionPoint.Axis = Axises.X;
                 if (tmpX > 0)
                 {
-                    connectionPoint.Point = new Point(Points[1].X, Middle.Y);
+                    connectionPoint.Point = new Point(Points[0].X, Middle.Y);
                 }
                 else
                 {
-                    connectionPoint.Point = new Point(Points[0].X, Middle.Y);
+                    connectionPoint.Point = new Point(Points[1].X, Middle.Y);
                 }
 
             }

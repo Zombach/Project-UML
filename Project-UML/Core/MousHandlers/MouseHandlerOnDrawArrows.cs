@@ -38,6 +38,7 @@ namespace Project_UML.Core.MousHandlers
                 _isTapped = true;
                 _newArrow = (AbstractArrow)FigureFactory.GetFigure(_coreUML.DefaultColor, (int)_coreUML.DefaultWidth);
                 _newArrow.DataCommon.Add(new DataCommon(_newArrow));
+                _newArrow.DataCommon[0].FirstPoint = e;
                 foreach (IFigure figure in _coreUML.Figures)
                 {
                     if (figure.GetType() == typeof(AbstractBox))
@@ -46,14 +47,11 @@ namespace Project_UML.Core.MousHandlers
                         {
                             _newArrow.DataCommon[0].FirstBox = figure;
 
-
-
-                            //_newArrow.StartDirectionAxis = 
-
                             break;
                         }
                     }
                 }
+
 
                 //_dataCommon.Write(e, true, sender);
             }
@@ -66,15 +64,15 @@ namespace Project_UML.Core.MousHandlers
             {
                 if (!(_newArrow.DataCommon[0].FirstBox is null))
                 {
-                    _coreUML.SwitchToDrawInTmp();
                     ConnectionPoint startConnectionPoint = _newArrow.DataCommon[0].FirstBox.GetConnectionPoint(e);
                     _newArrow.DataCommon[0].FirstPoint = startConnectionPoint.Point;
                     _newArrow.StartDirectionAxis = startConnectionPoint.Axis;
                 }
+                _coreUML.SwitchToDrawInTmp();
 
                 foreach (IFigure figure in _coreUML.Figures)
                 {
-                    if (figure.GetType() == typeof(AbstractBox) && figure != _newArrow.DataCommon[0].FirstBox)
+                    if (figure is AbstractBox && figure != _newArrow.DataCommon[0].FirstBox)
                     {
                         if (figure.CheckSelection(e, e, 0))
                         {
@@ -84,11 +82,12 @@ namespace Project_UML.Core.MousHandlers
                             _newArrow.EndDirectionAxis = endConnectionPoint.Axis;
                             break;
                         }
-                        else
-                        {
-                            _newArrow.DataCommon[0].LastBox = null;
-                        }
                     }
+                    _newArrow.DataCommon[0].LastBox = null;
+                }
+                if (_newArrow.DataCommon[0].LastBox == null)
+                {
+                    _newArrow.DataCommon[0].LastPoint = e;
                 }
                 _newArrow.GetPoints(_newArrow.DataCommon[0].FirstPoint, _newArrow.DataCommon[0].LastPoint);
                 _newArrow.Draw(_coreUML.Graphics);

@@ -167,6 +167,7 @@ namespace Project_UML.Core.Forms
             }
             _coreUML.SelectedFigures.Clear();
             _coreUML.UpdPicture();
+            _crntMH = new MouseHandlerOnSelection();
         }
 
         private void SaveData_Click(object sender, EventArgs e)
