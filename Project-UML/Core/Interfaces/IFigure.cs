@@ -19,7 +19,8 @@ namespace Project_UML.Core.Interfaces
         void Move(int deltaX, int deltaY);
         void Select(Graphics graphics);
         void Draw(Graphics graphics);
-        void IsHovered(Point point);
+        bool IsHovered(Point point);
+        bool CheckSelection(Point startPoint, Point endPoint, int inaccuracy = 0);
         void ChangeColor(Color color);
         void ChangeWidth(int width);
     }

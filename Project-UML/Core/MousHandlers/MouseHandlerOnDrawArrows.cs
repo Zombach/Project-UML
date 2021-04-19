@@ -14,8 +14,7 @@ namespace Project_UML.Core.MousHandlers
     public class MouseHandlerOnDrawArrows : IMouseHandler
     {
         private bool _isTapped;
-        private Point _point;
-        public NewProject Form;
+        private Point startPoint;
         public CoreUML CoreUML = CoreUML.GetCoreUML();
         private AbstractArrow _newArrow;
         IFigureFactory FigureFactory { get; set; }
@@ -29,13 +28,9 @@ namespace Project_UML.Core.MousHandlers
 
         public void MouseDown(Point e)
         {
-            if (_isTapped)
+            if (!_isTapped)
             {
-
-            }
-            else
-            {
-                _point = new Point(e.X, e.Y);
+                startPoint = new Point(e.X, e.Y);
                 _isTapped = true;
                 _newArrow = (AbstractArrow)FigureFactory.GetFigure(CoreUML.Color, CoreUML.Width);
             }
@@ -47,10 +42,9 @@ namespace Project_UML.Core.MousHandlers
             if (_isTapped)
             {
                 CoreUML.SwitchToDrawInTmp();
-
                 _newArrow.StartDirectionAxis = CoreUML.AxisStart;
                 _newArrow.EndDirectionAxis = CoreUML.AxisEnd;
-                _newArrow.GetPoints(_point, e);
+                _newArrow.GetPoints(startPoint, e);
                 _newArrow.Draw(CoreUML.Graphics);
                 CoreUML.PictureBox.Image = CoreUML.BitmapTmp;
             }
@@ -59,11 +53,13 @@ namespace Project_UML.Core.MousHandlers
         public void MouseUp(Point e)
         {
             if (_isTapped)
-                if (_point.X != e.X || _point.Y != e.Y)
+                if (startPoint.X != e.X || startPoint.Y != e.Y)
                 {
                     CoreUML.BitmapMain = (Bitmap)CoreUML.BitmapTmp.Clone();
                     CoreUML.Figures.Add(_newArrow);
-                    _newArrow.Select(CoreUML.Graphics);
+                    CoreUML.SelectedFigures.Clear();
+                    CoreUML.SelectedFigures.Add(_newArrow);
+                    CoreUML.DrawSelectionOfFigures();
                     _isTapped = false;
                     CoreUML.PictureBox.Invalidate();
                 }

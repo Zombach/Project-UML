@@ -36,7 +36,7 @@ namespace Project_UML.Core.Forms
             this.groupBoxEndAxis = new System.Windows.Forms.GroupBox();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.trackBarOfWidth = new System.Windows.Forms.TrackBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ButtonAggregation = new System.Windows.Forms.Button();
             this.ButtonComposition = new System.Windows.Forms.Button();
@@ -45,14 +45,14 @@ namespace Project_UML.Core.Forms
             this.ButtonSelect = new System.Windows.Forms.Button();
             this.ButtonClear = new System.Windows.Forms.Button();
             this.ButtonColor = new System.Windows.Forms.Button();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.SaveData = new System.Windows.Forms.Button();
             this.ButtonImplementation = new System.Windows.Forms.Button();
             this.ButtonRectangle = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxStartAxis.SuspendLayout();
             this.groupBoxEndAxis.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarOfWidth)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -139,18 +139,18 @@ namespace Project_UML.Core.Forms
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(6, 16);
-            this.trackBar1.Maximum = 5;
-            this.trackBar1.Minimum = 1;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(104, 45);
-            this.trackBar1.TabIndex = 8;
-            this.trackBar1.Value = 1;
-            this.trackBar1.Scroll += new System.EventHandler(this.TrackBar1_Scroll_1);
+            this.trackBarOfWidth.Location = new System.Drawing.Point(6, 16);
+            this.trackBarOfWidth.Maximum = 5;
+            this.trackBarOfWidth.Minimum = 1;
+            this.trackBarOfWidth.Name = "trackBar1";
+            this.trackBarOfWidth.Size = new System.Drawing.Size(104, 45);
+            this.trackBarOfWidth.TabIndex = 8;
+            this.trackBarOfWidth.Value = 1;
+            this.trackBarOfWidth.Scroll += new System.EventHandler(this.TrackBarOfWidth_Scroll);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.trackBar1);
+            this.groupBox2.Controls.Add(this.trackBarOfWidth);
             this.groupBox2.Location = new System.Drawing.Point(8, 198);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(120, 67);
@@ -285,7 +285,7 @@ namespace Project_UML.Core.Forms
             this.groupBoxStartAxis.PerformLayout();
             this.groupBoxEndAxis.ResumeLayout(false);
             this.groupBoxEndAxis.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarOfWidth)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -300,7 +300,7 @@ namespace Project_UML.Core.Forms
         private System.Windows.Forms.GroupBox groupBoxEndAxis;
         private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar trackBarOfWidth;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button ButtonAggregation;
         private System.Windows.Forms.Button ButtonComposition;
@@ -309,7 +309,7 @@ namespace Project_UML.Core.Forms
         private System.Windows.Forms.Button ButtonSelect;
         private System.Windows.Forms.Button ButtonClear;
         private System.Windows.Forms.Button ButtonColor;
-        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ColorDialog colorDialog;
         private System.Windows.Forms.Button SaveData;
         private System.Windows.Forms.Button ButtonImplementation;
         private System.Windows.Forms.Button ButtonRectangle;

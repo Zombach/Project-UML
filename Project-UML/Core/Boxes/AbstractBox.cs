@@ -44,7 +44,7 @@ namespace Project_UML.Core.Boxes
             throw new NotImplementedException();
         }
 
-        public void IsHovered(Point point)
+        public bool IsHovered(Point point)
         {
             throw new NotImplementedException();
         }
@@ -55,6 +55,11 @@ namespace Project_UML.Core.Boxes
         }
 
         public void Select(Graphics graphics)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckSelection(Point startPoint, Point endPoint, int inaccuracy)
         {
             throw new NotImplementedException();
         }
