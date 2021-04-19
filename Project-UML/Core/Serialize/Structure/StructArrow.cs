@@ -13,40 +13,27 @@ namespace Project_UML.Core.Serialize.Structure
     [Serializable]
     public struct StructArrow : IArrow, IBase
     {
-        public string ArrowType { get; set; }
+        public Type ArrowType { get; set; }
         public List<DataCommon> Data { get; set; }
         public Color Color { get; set; }
         public float Width { get; set; }
         public float Size { get; set; }
 
+        private Type[] _types { get; set; }
+
         public StructArrow(AbstractArrow arrow)
         {
-            string tmp = "";
-            if (arrow is AssociationArrow)
+            _types = new Type[5] { typeof(AggregationArrow), typeof(AssociationArrow), typeof(CompositionArrow), typeof(ImplementationArrow), typeof(InheritanceArrow) };
+            switch(_types)
             {
-                tmp = "Association";
+                //s
             }
-            if (arrow is AggregationArrow)
-            {
-                tmp = "Aggregation";
-            }
-            if (arrow is CompositionArrow)
-            {
-                tmp = "Composition";
-            }
-            if (arrow is ImplementationArrow)
-            {
-                tmp = "Implementation";
-            }
-            if (arrow is InheritanceArrow)
-            {
-                tmp = "Inheritance";
-            }
-            ArrowType = tmp;
+            ArrowType = _types[0];
+
             Data = arrow.DataCommon;
             Color = arrow.GetColor();
             Width = arrow.GetWidth();
-            Size = arrow.GetSize();
+            Size = 1f;//arrow.GetSize();
         }
     }
 }
