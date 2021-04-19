@@ -7,15 +7,12 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.Boxes
 {
-<<<<<<< HEAD:Project-UML/Core/Boxes/BestRectangles.cs
+
     /// <summary>
     /// 
     /// </summary>
     [Serializable]
-    public class BestRectangles : AbstractBox
-=======
-    class RectangleInterface : AbstractBox 
->>>>>>> BestRectangleMoreRectangle:Project-UML/Core/Boxes/RectangleInterface.cs
+    public class RectangleInterface : AbstractBox
     {
         public RectangleInterface(Color color, int width)
         {
