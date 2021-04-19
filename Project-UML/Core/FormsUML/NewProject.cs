@@ -12,6 +12,7 @@ using Project_UML.Core.Boxes;
 using Project_UML.Core.MousHandlers;
 using Project_UML.Core.FigureFactory;
 using Project_UML.Core.Interfaces;
+using Project_UML.Core.DataProject.Deserialize;
 
 namespace Project_UML.Core.Forms
 {
@@ -32,6 +33,8 @@ namespace Project_UML.Core.Forms
             InitializeComponent();
             if (_coreUML.isLoading)
             {
+                //ReadData readData = new ReadData(writeData);
+                //readData.LoadingData(readData);
                 trackBarOfWidth.Value = (int)_coreUML.DefaultWidth;
                 ButtonColor.BackColor = _coreUML.DefaultColor;
                 _coreUML.isLoading = false;

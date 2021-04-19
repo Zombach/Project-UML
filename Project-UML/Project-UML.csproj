@@ -51,6 +51,7 @@
     <Compile Include="Core\Boxes\BestRectangles.cs" />
     <Compile Include="Core\ConnectionPoint.cs" />
     <Compile Include="Core\CoreUML.cs" />
+    <Compile Include="Core\DataProject\Serialize\Interfaces\ILogs.cs" />
     <Compile Include="Core\DataText.cs" />
     <Compile Include="Core\Encrypting\DecryptSaving.cs" />
     <Compile Include="Core\Encrypting\Encrypt.cs" />

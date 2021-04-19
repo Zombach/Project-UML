@@ -29,6 +29,7 @@ namespace Project_UML.Core.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewProject));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -137,12 +138,12 @@ namespace Project_UML.Core.Forms
             this.radioButton6.UseVisualStyleBackColor = true;
             this.radioButton6.CheckedChanged += new System.EventHandler(this.RadioButton6_CheckedChanged);
             // 
-            // trackBar1
+            // trackBarOfWidth
             // 
             this.trackBarOfWidth.Location = new System.Drawing.Point(6, 16);
             this.trackBarOfWidth.Maximum = 5;
             this.trackBarOfWidth.Minimum = 1;
-            this.trackBarOfWidth.Name = "trackBar1";
+            this.trackBarOfWidth.Name = "trackBarOfWidth";
             this.trackBarOfWidth.Size = new System.Drawing.Size(104, 45);
             this.trackBarOfWidth.TabIndex = 8;
             this.trackBarOfWidth.Value = 1;
@@ -277,6 +278,7 @@ namespace Project_UML.Core.Forms
             this.Controls.Add(this.groupBoxEndAxis);
             this.Controls.Add(this.groupBoxStartAxis);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NewProject";
             this.Text = "Project";
             this.Load += new System.EventHandler(this.NewProject_Load);

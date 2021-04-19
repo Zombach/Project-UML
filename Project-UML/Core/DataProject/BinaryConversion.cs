@@ -31,7 +31,7 @@ namespace Project_UML.Core.DataProject
             WriteData writeData = (WriteData)binaryFormatter.Deserialize(fileStream);
             fileStream.Close();
             ReadData readData = new ReadData(writeData);
-            readData.ReadAll();
+            // readData.ReadAll(readData);
             return true;
         }
 
