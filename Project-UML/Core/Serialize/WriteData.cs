@@ -35,7 +35,7 @@ namespace Project_UML.Core.Serialize
         {
             CoreUML coreUML = CoreUML.GetCoreUML();
             Figures = new List<IFigure>();
-            Figures = CreateObjectsFigure();
+            Figures = CreateObjectsFigure(coreUML);
 
             Logs = new List<LogActs>();
             Logs = CreateObjectsLogs();
@@ -46,20 +46,20 @@ namespace Project_UML.Core.Serialize
             DefaultSize = coreUML.DefaultSize;
         }
 
-        private List<IFigure> CreateObjectsFigure()
+        private List<IFigure> CreateObjectsFigure(CoreUML coreUML)
         {
             List<IFigure> figure = new List<IFigure>();
-            for (int i = 0; i < Figures.Count; i++)
+            for (int i = 0; i < coreUML.Figures.Count; i++)
             {
-                if (Figures[i].GetType() == typeof(AbstractArrow))
+                if (coreUML.Figures[i] is AbstractArrow)
                 {
-                    _arrow = new StructArrow((AbstractArrow)Figures[i]);
+                    _arrow = new StructArrow((AbstractArrow)coreUML.Figures[i]);
                 }
-                if (Figures[i].GetType() == typeof(AbstractBox))
+                if (coreUML.Figures[i] is AbstractBox)
                 {
-                    _box = new StructBox((AbstractBox)Figures[i]);
+                    _box = new StructBox((AbstractBox)coreUML.Figures[i]);
                 }
-                figure.Add(Figures[i]);
+                figure.Add(coreUML.Figures[i]);
             }
             return figure;
         }
