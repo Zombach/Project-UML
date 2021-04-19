@@ -51,8 +51,10 @@
     <Compile Include="Core\Boxes\BestRectangles.cs" />
     <Compile Include="Core\CoreUML.cs" />
     <Compile Include="Core\DataText.cs" />
+    <Compile Include="Core\Encrypting\DecryptSaving.cs" />
     <Compile Include="Core\Encrypting\Encrypt.cs" />
     <Compile Include="Core\DataCommon.cs" />
+    <Compile Include="Core\Encrypting\EncryptSaving.cs" />
     <Compile Include="Core\Interfaces\Draws\IChangeColor.cs" />
     <Compile Include="Core\Interfaces\Draws\IChangeWidth.cs" />
     <Compile Include="Core\Interfaces\Draws\IDraw.cs" />
