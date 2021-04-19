@@ -24,6 +24,13 @@ namespace Project_UML.Core.Boxes
         public List<DataText> DataText { get; set; } = new List<DataText>();
         protected int RectangleWidth { get; set; } = 100;
         protected int RectangleHeight { get; set; } = 150;
+
+        protected int _rectNameHeight { get; set; } = 20;
+        protected int _rectFieldHeight { get; set; } = 20;
+        protected int _rectPropertyHeight { get; set; } = 20;
+        protected int _rectMethodsHeight { get; set; }
+        protected Font font = new Font("Arial", 10);
+
         //public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         protected Pen _pen;

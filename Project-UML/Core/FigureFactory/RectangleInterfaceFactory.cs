@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.FigureFactory
 {
-    public class BestRectangleFactory : IFigureFactory
+    class RectangleInterfaceFactory : IFigureFactory
     {
         public IFigure GetFigure(Color color, int width)
         {
-            return new BestRectangles(color, width);
+            return new RectangleInterface(color, width);
         }
     }
 }

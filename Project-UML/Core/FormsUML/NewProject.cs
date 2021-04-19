@@ -200,7 +200,7 @@ namespace Project_UML.Core.Forms
 
         private void ButtonRectangle_Click(object sender, EventArgs e)
         {
-            _crntMH = new MouseHandlerOnDrawRectangle(new BestRectangleFactory());
+            _crntMH = new MouseHandlerOnDrawRectangle(new RectangleObjectFactory());
         }
         
         
