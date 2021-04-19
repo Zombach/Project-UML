@@ -48,7 +48,10 @@ namespace Project_UML.Core.Forms
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.SaveData = new System.Windows.Forms.Button();
             this.ButtonImplementation = new System.Windows.Forms.Button();
-            this.ButtonRectangle = new System.Windows.Forms.Button();
+            this.ButtonRectangleObject = new System.Windows.Forms.Button();
+            this.ButtonRectangleEnum = new System.Windows.Forms.Button();
+            this.ButtonRectangleInterface = new System.Windows.Forms.Button();
+            this.ButtonRectangleClass = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxStartAxis.SuspendLayout();
             this.groupBoxEndAxis.SuspendLayout();
@@ -137,12 +140,12 @@ namespace Project_UML.Core.Forms
             this.radioButton6.UseVisualStyleBackColor = true;
             this.radioButton6.CheckedChanged += new System.EventHandler(this.RadioButton6_CheckedChanged);
             // 
-            // trackBar1
+            // trackBarOfWidth
             // 
             this.trackBarOfWidth.Location = new System.Drawing.Point(6, 16);
             this.trackBarOfWidth.Maximum = 5;
             this.trackBarOfWidth.Minimum = 1;
-            this.trackBarOfWidth.Name = "trackBar1";
+            this.trackBarOfWidth.Name = "trackBarOfWidth";
             this.trackBarOfWidth.Size = new System.Drawing.Size(104, 45);
             this.trackBarOfWidth.TabIndex = 8;
             this.trackBarOfWidth.Value = 1;
@@ -248,23 +251,56 @@ namespace Project_UML.Core.Forms
             this.ButtonImplementation.UseVisualStyleBackColor = true;
             this.ButtonImplementation.Click += new System.EventHandler(this.ButtonImplementation_Click);
             // 
-            // ButtonRectangle
+            // ButtonRectangleObject
             // 
-            this.ButtonRectangle.Location = new System.Drawing.Point(8, 446);
-            this.ButtonRectangle.Name = "ButtonRectangle";
-            this.ButtonRectangle.Size = new System.Drawing.Size(150, 25);
-            this.ButtonRectangle.TabIndex = 18;
-            this.ButtonRectangle.Text = "Rectangle";
-            this.ButtonRectangle.UseVisualStyleBackColor = true;
-            this.ButtonRectangle.Click += new System.EventHandler(this.ButtonRectangle_Click);
+            this.ButtonRectangleObject.Location = new System.Drawing.Point(8, 329);
+            this.ButtonRectangleObject.Name = "ButtonRectangleObject";
+            this.ButtonRectangleObject.Size = new System.Drawing.Size(150, 25);
+            this.ButtonRectangleObject.TabIndex = 18;
+            this.ButtonRectangleObject.Text = "Object";
+            this.ButtonRectangleObject.UseVisualStyleBackColor = true;
+            this.ButtonRectangleObject.Click += new System.EventHandler(this.ButtonRectangleObject_Click);
+            // 
+            // ButtonRectangleEnum
+            // 
+            this.ButtonRectangleEnum.Location = new System.Drawing.Point(8, 360);
+            this.ButtonRectangleEnum.Name = "ButtonRectangleEnum";
+            this.ButtonRectangleEnum.Size = new System.Drawing.Size(150, 25);
+            this.ButtonRectangleEnum.TabIndex = 19;
+            this.ButtonRectangleEnum.Text = "Enum";
+            this.ButtonRectangleEnum.UseVisualStyleBackColor = true;
+            this.ButtonRectangleEnum.Click += new System.EventHandler(this.ButtonRectangleEnum_Click);
+            // 
+            // ButtonRectangleInterface
+            // 
+            this.ButtonRectangleInterface.Location = new System.Drawing.Point(8, 391);
+            this.ButtonRectangleInterface.Name = "ButtonRectangleInterface";
+            this.ButtonRectangleInterface.Size = new System.Drawing.Size(150, 25);
+            this.ButtonRectangleInterface.TabIndex = 20;
+            this.ButtonRectangleInterface.Text = "Interface";
+            this.ButtonRectangleInterface.UseVisualStyleBackColor = true;
+            this.ButtonRectangleInterface.Click += new System.EventHandler(this.ButtonRectangleInterface_Click);
+            // 
+            // ButtonRectangleClass
+            // 
+            this.ButtonRectangleClass.Location = new System.Drawing.Point(8, 422);
+            this.ButtonRectangleClass.Name = "ButtonRectangleClass";
+            this.ButtonRectangleClass.Size = new System.Drawing.Size(150, 25);
+            this.ButtonRectangleClass.TabIndex = 21;
+            this.ButtonRectangleClass.Text = "Class";
+            this.ButtonRectangleClass.UseVisualStyleBackColor = true;
+            this.ButtonRectangleClass.Click += new System.EventHandler(this.ButtonRectangleClass_Click);
             // 
             // NewProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1158, 586);
+            this.Controls.Add(this.ButtonRectangleClass);
+            this.Controls.Add(this.ButtonRectangleInterface);
+            this.Controls.Add(this.ButtonRectangleEnum);
             this.Controls.Add(this.ButtonImplementation);
-            this.Controls.Add(this.ButtonRectangle);
+            this.Controls.Add(this.ButtonRectangleObject);
             this.Controls.Add(this.SaveData);
             this.Controls.Add(this.ButtonColor);
             this.Controls.Add(this.ButtonClear);
@@ -312,7 +348,10 @@ namespace Project_UML.Core.Forms
         private System.Windows.Forms.ColorDialog colorDialog;
         private System.Windows.Forms.Button SaveData;
         private System.Windows.Forms.Button ButtonImplementation;
-        private System.Windows.Forms.Button ButtonRectangle;
+        private System.Windows.Forms.Button ButtonRectangleObject;
+        private System.Windows.Forms.Button ButtonRectangleEnum;
+        private System.Windows.Forms.Button ButtonRectangleInterface;
+        private System.Windows.Forms.Button ButtonRectangleClass;
     }
 }
 

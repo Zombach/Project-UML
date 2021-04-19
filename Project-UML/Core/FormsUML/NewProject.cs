@@ -198,12 +198,24 @@ namespace Project_UML.Core.Forms
             _crntMH = new MouseHandlerOnDrawArrows(new AssociationArrowFactory());
         }
 
-        private void ButtonRectangle_Click(object sender, EventArgs e)
+        private void ButtonRectangleObject_Click(object sender, EventArgs e)
         {
             _crntMH = new MouseHandlerOnDrawRectangle(new RectangleObjectFactory());
         }
-        
-        
 
+        private void ButtonRectangleEnum_Click(object sender, EventArgs e)
+        {
+            _crntMH = new MouseHandlerOnDrawRectangle(new RectangleEnumFactory());
+        }
+
+        private void ButtonRectangleInterface_Click(object sender, EventArgs e)
+        {
+            _crntMH = new MouseHandlerOnDrawRectangle(new RectangleInterfaceFactory());
+        }
+
+        private void ButtonRectangleClass_Click(object sender, EventArgs e)
+        {
+            _crntMH = new MouseHandlerOnDrawRectangle(new RectangleClassFactory());
+        }
     }
 }
