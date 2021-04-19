@@ -41,7 +41,7 @@ namespace Project_UML.Core.MousHandlers
                 _newArrow.DataCommon[0].FirstPoint = e;
                 foreach (IFigure figure in _coreUML.Figures)
                 {
-                    if (figure.GetType() == typeof(AbstractBox))
+                    if (figure is AbstractBox)
                     {
                         if (figure.CheckSelection(e, e, 0))
                         {

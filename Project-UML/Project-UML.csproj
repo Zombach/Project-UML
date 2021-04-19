@@ -90,6 +90,7 @@
     <Compile Include="Core\FigureFactory\ImplementationArrowFactory.cs" />
     <Compile Include="Core\FigureFactory\InheritanceArrowFactory.cs" />
     <Compile Include="Core\MousHandlers\MouseHandlerOnDrawRectangle.cs" />
+    <Compile Include="Core\MousHandlers\MouseHandlerOnMove.cs" />
     <Compile Include="Core\Serialize\ReadData.cs" />
     <Compile Include="Core\Serialize\Structure\StructArrow.cs" />
     <Compile Include="Core\Serialize\Structure\StructBox.cs" />

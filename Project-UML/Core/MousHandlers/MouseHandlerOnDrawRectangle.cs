@@ -25,8 +25,13 @@ namespace Project_UML.Core.MousHandlers
             _newBox = (AbstractBox)FigureFactory.GetFigure(_coreUML.DefaultColor, (int)_coreUML.DefaultWidth);
             _newBox.AddPoints(e);
             _coreUML.Figures.Add(_newBox);
+            _coreUML.SwitchToDrawInTmp();
             _newBox.Draw(_coreUML.Graphics);
-            _coreUML.PictureBox.Invalidate();
+            _coreUML.BitmapMain = (Bitmap)_coreUML.BitmapTmp.Clone();
+            _coreUML.SelectedFigures.Clear();
+            _coreUML.SelectedFigures.Add(_newBox);
+            _coreUML.DrawSelectionOfFigures();
+            _coreUML.PictureBox.Image = _coreUML.BitmapTmp;
 
         }
 

@@ -20,6 +20,7 @@ namespace Project_UML.Core.MousHandlers
             _pointTmp = new Point(e.X, e.Y);
             _isTapped = true;
             CoreUML.SelectedFigures.Clear();
+            //CoreUML.SelectedFigures.f
             foreach (IFigure figure in CoreUML.Figures)
             {
                 if (figure.CheckSelection(_pointTmp, _pointTmp, 2))
