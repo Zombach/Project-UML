@@ -29,6 +29,7 @@ namespace Project_UML.Core.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewProject));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -63,7 +64,7 @@ namespace Project_UML.Core.Forms
             // 
             this.pictureBox1.Location = new System.Drawing.Point(180, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(966, 562);
+            this.pictureBox1.Size = new System.Drawing.Size(1730, 1000);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseDown);
@@ -295,7 +296,7 @@ namespace Project_UML.Core.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1158, 586);
+            this.ClientSize = new System.Drawing.Size(1804, 1034);
             this.Controls.Add(this.ButtonRectangleClass);
             this.Controls.Add(this.ButtonRectangleInterface);
             this.Controls.Add(this.ButtonRectangleEnum);
@@ -313,8 +314,11 @@ namespace Project_UML.Core.Forms
             this.Controls.Add(this.groupBoxEndAxis);
             this.Controls.Add(this.groupBoxStartAxis);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "NewProject";
             this.Text = "Project";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.NewProject_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBoxStartAxis.ResumeLayout(false);
