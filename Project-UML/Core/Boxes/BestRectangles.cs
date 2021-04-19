@@ -11,6 +11,7 @@ namespace Project_UML.Core.Boxes
     /// <summary>
     /// 
     /// </summary>
+    [Serializable]
     public class BestRectangles : AbstractBox
     {
         public BestRectangles(Color color, int width)

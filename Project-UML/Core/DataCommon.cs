@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace Project_UML.Core
 {
+    [Serializable]
     public class DataCommon
     {
         public IFigure Arrow { get; set; }

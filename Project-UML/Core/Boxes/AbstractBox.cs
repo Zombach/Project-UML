@@ -14,6 +14,7 @@ namespace Project_UML.Core.Boxes
     /// <summary>
     /// 
     /// </summary>
+    [Serializable]
     public abstract class AbstractBox : IFigure, IGetFont
     {
         /// <summary>
@@ -22,9 +23,9 @@ namespace Project_UML.Core.Boxes
         public List<Point> Points { get; set; } = new List<Point>();
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
         public List<DataText> DataText { get; set; } = new List<DataText>();
+        protected Font Font { get; set; } = CoreUML.GetCoreUML().DefaultFont;
         protected int RectangleWidth { get; set; } = 100;
         protected int RectangleHeight { get; set; } = 150;
-        //public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
@@ -124,7 +125,7 @@ namespace Project_UML.Core.Boxes
 
         public Font GetFont()
         {
-            throw new NotImplementedException();
+            return Font;
         }
 
         public int GetHeight()

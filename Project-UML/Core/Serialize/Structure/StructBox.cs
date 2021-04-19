@@ -1,4 +1,5 @@
 ﻿using Project_UML.Core.Boxes;
+using Project_UML.Core.Interfaces;
 using Project_UML.Core.Serialize.InterfacesSerialize;
 using System;
 using System.Collections.Generic;
@@ -12,21 +13,30 @@ namespace Project_UML.Core.Serialize.Structure
     [Serializable]
     public struct StructBox : IBox, IBase
     {
+        public List<IDataCommon> Data { get; set; }
         public List<DataText> DataText { get; set; }
-        public List<DataCommon> Data { get; set; }
         public Font Font { get; set; }
         public Color Color { get; set; }
         public float Width { get; set; }
         public float Size { get; set; }
 
-        public StructBox(AbstractBox box)
+
+        public StructBox(IFigure figure)
         {
+            AbstractBox box = (AbstractBox)figure;
             DataText = box.DataText;
-            Data = box.DataCommon;
             Font = box.GetFont();
             Color = box.GetColor();
             Width = box.GetWidth();
             Size = 1f;//box.GetSize();
+
+            Data = null;
+            for (int i = 0; i < box.DataCommon.Count; i++)
+            {
+                Data = new List<IDataCommon>();
+                StructDataCommon structData = new StructDataCommon(box.DataCommon[i]);
+                Data.Add(structData);
+            }
         }
     }
 }

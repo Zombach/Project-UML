@@ -24,7 +24,7 @@ namespace Project_UML.Core.Serialize
         /// <summary>
         /// Сериализация Ядра
         /// </summary>
-        public List<IFigure> Figures { get; set; }
+        public List<IBase> Base { get; set; }
         public List<LogActs> Logs { get; set; }
         public int DefaultWidth { get; set; }
         public Color DefaultColor { get; set; }
@@ -34,8 +34,9 @@ namespace Project_UML.Core.Serialize
         public WriteData()
         {
             CoreUML coreUML = CoreUML.GetCoreUML();
-            Figures = new List<IFigure>();
-            Figures = CreateObjectsFigure(coreUML);
+            List<IFigure> Figures = coreUML.Figures;
+            Base = new List<IBase>();
+            Base = CreateObjectsFigure(Figures);
 
             Logs = new List<LogActs>();
             Logs = CreateObjectsLogs();
@@ -46,20 +47,21 @@ namespace Project_UML.Core.Serialize
             DefaultSize = coreUML.DefaultSize;
         }
 
-        private List<IFigure> CreateObjectsFigure(CoreUML coreUML)
+        private List<IBase> CreateObjectsFigure(List<IFigure> Figures)
         {
-            List<IFigure> figure = new List<IFigure>();
-            for (int i = 0; i < coreUML.Figures.Count; i++)
+            List<IBase> figure = new List<IBase>();
+            for (int i = 0; i < Figures.Count; i++)
             {
-                if (coreUML.Figures[i] is AbstractArrow)
+                if (Figures[i] is AbstractArrow)
                 {
-                    _arrow = new StructArrow((AbstractArrow)coreUML.Figures[i]);
+                    _arrow = new StructArrow(Figures[i]);
+                    figure.Add(_arrow);
                 }
-                if (coreUML.Figures[i] is AbstractBox)
+                if (Figures[i] is AbstractBox)
                 {
-                    _box = new StructBox((AbstractBox)coreUML.Figures[i]);
+                    _box = new StructBox(Figures[i]);
+                    figure.Add(_box);
                 }
-                figure.Add(coreUML.Figures[i]);
             }
             return figure;
         }
