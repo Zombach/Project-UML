@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Project_UML.Core.Serialize.InterfacesSerialize
+﻿namespace Project_UML.Core.DataProject.Serialize.Interfaces
 {
     public interface IDataCommon
     {

@@ -1,13 +1,6 @@
-﻿using Project_UML.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Project_UML.Core.DataProject.Serialize;
 
-namespace Project_UML.Core.Serialize
+namespace Project_UML.Core.DataProject.Deserialize
 {
     public class ReadData
     {
@@ -28,7 +21,5 @@ namespace Project_UML.Core.Serialize
             _coreUML.DefaultFont = _writeData.DefaultFont;
             _coreUML.DefaultSize = _writeData.DefaultSize;
         }
-
-        //public 
     }
 }

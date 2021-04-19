@@ -1,6 +1,6 @@
 ﻿using Project_UML.Core.Boxes;
+using Project_UML.Core.DataProject.Serialize.Interfaces;
 using Project_UML.Core.Interfaces;
-using Project_UML.Core.Serialize.InterfacesSerialize;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_UML.Core.Serialize.Structure
+namespace Project_UML.Core.DataProject.Serialize.Structure
 {
     [Serializable]
     public struct StructBox : IBox, IBase
