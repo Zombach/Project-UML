@@ -48,7 +48,10 @@
   <ItemGroup>
     <Compile Include="Core\Act.cs" />
     <Compile Include="Core\Boxes\AbstractBox.cs" />
-    <Compile Include="Core\Boxes\BestRectangles.cs" />
+    <Compile Include="Core\Boxes\RectangleObject.cs" />
+    <Compile Include="Core\Boxes\RectangleClass.cs" />
+    <Compile Include="Core\Boxes\RectangleEnum.cs" />
+    <Compile Include="Core\Boxes\RectangleInterface.cs" />
     <Compile Include="Core\ConnectionPoint.cs" />
     <Compile Include="Core\CoreUML.cs" />
     <Compile Include="Core\DataText.cs" />
@@ -56,6 +59,9 @@
     <Compile Include="Core\Encrypting\Encrypt.cs" />
     <Compile Include="Core\DataCommon.cs" />
     <Compile Include="Core\Encrypting\EncryptSaving.cs" />
+    <Compile Include="Core\FigureFactory\RectangleClassFactory.cs" />
+    <Compile Include="Core\FigureFactory\RectangleEnumFactory.cs" />
+    <Compile Include="Core\FigureFactory\RectangleInterfaceFactory.cs" />
     <Compile Include="Core\Interfaces\Draws\IChangeColor.cs" />
     <Compile Include="Core\Interfaces\Draws\IChangeWidth.cs" />
     <Compile Include="Core\Interfaces\Draws\IDraw.cs" />
@@ -84,7 +90,7 @@
     <Compile Include="Core\MousHandlers\MouseHandlerOnDrawArrows.cs" />
     <Compile Include="Core\FigureFactory\AggregationArrowFactory.cs" />
     <Compile Include="Core\FigureFactory\AssociationArrowFactory.cs" />
-    <Compile Include="Core\FigureFactory\BestRectangleFactory.cs" />
+    <Compile Include="Core\FigureFactory\RectangleObjectFactory.cs" />
     <Compile Include="Core\FigureFactory\CompositionArrowFactory.cs" />
     <Compile Include="Core\FigureFactory\IFigureFactory.cs" />
     <Compile Include="Core\FigureFactory\ImplementationArrowFactory.cs" />
