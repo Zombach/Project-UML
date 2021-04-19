@@ -29,14 +29,14 @@ namespace Project_UML.Core.MousHandlers
 
         }
 
-        public void MouseDown(Point e, object sender)
+        public void MouseDown(Point e)
         {
             if (!_isTapped)
             {
                 startPoint = new Point(e.X, e.Y);
                 _isTapped = true;
                 _newArrow = (AbstractArrow)FigureFactory.GetFigure(CoreUML.DefaultColor, (int)CoreUML.DefaultWidth);
-                _dataCommon.Write(e, true, sender);
+                //_dataCommon.Write(e, true, sender);
             }
 
         }
@@ -54,7 +54,7 @@ namespace Project_UML.Core.MousHandlers
             }
         }
 
-        public void MouseUp(Point e, object sender = null)
+        public void MouseUp(Point e)
         {
             if (_isTapped)
                 if (startPoint.X != e.X || startPoint.Y != e.Y)
@@ -64,7 +64,7 @@ namespace Project_UML.Core.MousHandlers
                     CoreUML.SelectedFigures.Clear();
                     CoreUML.SelectedFigures.Add(_newArrow);
                     CoreUML.DrawSelectionOfFigures();
-                    _dataCommon.Write(e, false, sender);
+                    //_dataCommon.Write(e, false, sender);
                     AddArrowToListCommonPoints();
                     _isTapped = false;
                     CoreUML.PictureBox.Invalidate();
@@ -90,7 +90,7 @@ namespace Project_UML.Core.MousHandlers
             }
 
             AbstractArrow arrow = (AbstractArrow)_dataCommon.Arrow;
-            arrow.DataCommon.Add(_dataCommon);
+            //arrow.DataCommon.Add(_dataCommon);
         }
 
         public void MouseHover(Point e)

@@ -10,8 +10,8 @@ namespace Project_UML.Core.MousHandlers
 {
     public interface IMouseHandler
     {
-        void MouseDown(Point e, object sender = null);
-        void MouseUp(Point e, object sender = null);
+        void MouseDown(Point e);
+        void MouseUp(Point e);
         void MouseMove(Point e);
         void MouseHover(Point e);
     }

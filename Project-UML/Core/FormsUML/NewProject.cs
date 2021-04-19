@@ -20,10 +20,7 @@ namespace Project_UML.Core.Forms
     /// </summary>
     public partial class NewProject : Form
     {
-        CoreUML _core = CoreUML.GetCoreUML();
-        AbstractArrow _currentArrow;
-        Axises _startAxis = Axises.X;
-        Axises _endAxis = Axises.X;
+        CoreUML _coreUML = CoreUML.GetCoreUML();
         List<AbstractArrow> _arrows = new List<AbstractArrow>();
         //AbstractBox _currentBox;
         IMouseHandler _crntMH = new MouseHandlerOnSelection();
@@ -35,7 +32,7 @@ namespace Project_UML.Core.Forms
             InitializeComponent();
             if (_coreUML.isLoading)
             {
-                TrackBar.Value = (int)_coreUML.DefaultWidth;
+                trackBarOfWidth.Value = (int)_coreUML.DefaultWidth;
                 ButtonColor.BackColor = _coreUML.DefaultColor;
                 _coreUML.isLoading = false;
             }
@@ -45,12 +42,12 @@ namespace Project_UML.Core.Forms
 
         private void NewProject_Load(object sender, EventArgs e)
         {
-            _core.BitmapMain = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            _core.BitmapTmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            _core.Graphics = Graphics.FromImage(_core.BitmapMain);
-            _core.Graphics.Clear(Color.White);
-            _core.PictureBox = pictureBox1;
-            pictureBox1.Image = _core.BitmapMain;
+            _coreUML.BitmapMain = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _coreUML.BitmapTmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _coreUML.Graphics = Graphics.FromImage(_coreUML.BitmapMain);
+            _coreUML.Graphics.Clear(Color.White);
+            _coreUML.PictureBox = pictureBox1;
+            pictureBox1.Image = _coreUML.BitmapMain;
         }
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -126,12 +123,12 @@ namespace Project_UML.Core.Forms
         private void ButtonColor_Click(object sender, EventArgs e)
         {
             colorDialog.ShowDialog();
-            _core.Color = colorDialog.Color;
+            _coreUML.DefaultColor = colorDialog.Color;
             ButtonColor.BackColor = colorDialog.Color;
-            if (_core.SelectedFigures.Count > 0)
+            if (_coreUML.SelectedFigures.Count > 0)
             {
-                _core.ChangeColorInSelectedFigures(colorDialog.Color);
-                _core.UpdPicture();
+                _coreUML.ChangeColorInSelectedFigures(colorDialog.Color);
+                _coreUML.UpdPicture();
             }
         }
 
@@ -164,12 +161,12 @@ namespace Project_UML.Core.Forms
             //    _currentArrow = null;
                 //UpdPicture();
             //}
-            foreach(IFigure figure in _core.SelectedFigures)
+            foreach(IFigure figure in _coreUML.SelectedFigures)
             {
-                _core.Figures.Remove(figure);
+                _coreUML.Figures.Remove(figure);
             }
-            _core.SelectedFigures.Clear();
-            _core.UpdPicture();
+            _coreUML.SelectedFigures.Clear();
+            _coreUML.UpdPicture();
         }
 
         private void SaveData_Click(object sender, EventArgs e)
@@ -181,13 +178,13 @@ namespace Project_UML.Core.Forms
 
         private void TrackBarOfWidth_Scroll(object sender, EventArgs e)
         {
-            _core.Width = trackBarOfWidth.Value;
-            if (_core.SelectedFigures.Count > 0)
+            _coreUML.DefaultWidth = trackBarOfWidth.Value;
+            if (_coreUML.SelectedFigures.Count > 0)
             {
-                _core.ChangeWidthInSelectedFigures(trackBarOfWidth.Value);
-                _core.UpdPicture();
+                _coreUML.ChangeWidthInSelectedFigures(trackBarOfWidth.Value);
+                _coreUML.UpdPicture();
             }
-            _coreUML.DefaultWidth = TrackBar.Value;
+            _coreUML.DefaultWidth = trackBarOfWidth.Value;
         }
 
         private void ButtonImplementation_Click(object sender, EventArgs e)

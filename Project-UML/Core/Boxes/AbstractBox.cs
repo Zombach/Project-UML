@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Project_UML.Core.Interfaces.Get;
-
+using Project_UML.Core.Interfaces.Logics;
 
 namespace Project_UML.Core.Boxes
 {
@@ -20,6 +20,8 @@ namespace Project_UML.Core.Boxes
         public List<DataText> DataText { get; set; } = new List<DataText>();
         protected int RectangleWidth { get; set; } = 100;
         protected int RectangleHeight { get; set; } = 150;
+        public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         protected Pen _pen;
 
         public abstract void Draw(Graphics graphics);
@@ -54,7 +56,6 @@ namespace Project_UML.Core.Boxes
             throw new NotImplementedException();
         }
 
-        public bool IsHovered(Point point)
         public void Select(Graphics graphics)
         {
             throw new NotImplementedException();
@@ -86,6 +87,16 @@ namespace Project_UML.Core.Boxes
         }
 
         public Font GetFont()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetHeight()
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IIsHovered.IsHovered(Point point)
         {
             throw new NotImplementedException();
         }

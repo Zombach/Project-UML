@@ -21,6 +21,7 @@ namespace Project_UML.Core.Arrows
         public Axises EndDirectionAxis { get; set; }
         public List<Point> Points { get; set; }
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
+        public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public virtual void Draw(Graphics graphics)
         {
@@ -191,11 +192,7 @@ namespace Project_UML.Core.Arrows
         {
             throw new NotImplementedException();
         }
-        public void IsHovered(Point point)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public Color GetColor()
         {
             return _pen.Color;
@@ -212,6 +209,11 @@ namespace Project_UML.Core.Arrows
         }
 
         public ArrowType GetArrowType()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetHeight()
         {
             throw new NotImplementedException();
         }
