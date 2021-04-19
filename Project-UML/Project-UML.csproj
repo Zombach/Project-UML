@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Act.cs" />
-    <Compile Include="Core\Arrows\TypesArrow.cs" />
     <Compile Include="Core\Boxes\AbstractBox.cs" />
     <Compile Include="Core\Boxes\BestRectangles.cs" />
     <Compile Include="Core\ConnectionPoint.cs" />
@@ -74,7 +73,6 @@
     <Compile Include="Core\Interfaces\Logics\ISelect.cs" />
     <Compile Include="Core\Arrows\AbstractArrow.cs" />
     <Compile Include="Core\Arrows\AggregationArrow.cs" />
-    <Compile Include="Core\Arrows\Arrow.cs" />
     <Compile Include="Core\Arrows\Axises.cs" />
     <Compile Include="Core\Arrows\CompositionArrow.cs" />
     <Compile Include="Core\Arrows\AssociationArrow.cs" />

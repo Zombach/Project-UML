@@ -19,17 +19,9 @@ namespace Project_UML.Core.Serialize.Structure
         public float Width { get; set; }
         public float Size { get; set; }
 
-        private Type[] _types { get; set; }
-
         public StructArrow(AbstractArrow arrow)
         {
-            _types = new Type[5] { typeof(AggregationArrow), typeof(AssociationArrow), typeof(CompositionArrow), typeof(ImplementationArrow), typeof(InheritanceArrow) };
-            switch(_types)
-            {
-                //s
-            }
-            ArrowType = _types[0];
-
+            ArrowType = arrow.GetType();
             Data = arrow.DataCommon;
             Color = arrow.GetColor();
             Width = arrow.GetWidth();

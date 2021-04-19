@@ -26,7 +26,7 @@ namespace Project_UML.Core.Serialize.Structure
             Font = box.GetFont();
             Color = box.GetColor();
             Width = box.GetWidth();
-            Size = box.GetSize();
+            Size = 1f;//box.GetSize();
         }
     }
 }
