@@ -12,7 +12,6 @@ namespace Project_UML.Core.Interfaces
     /// </summary>
     public interface IFigure : IFigureLogics, IFigureDraws, IGetParametr
     {
-        Point Location { get; set; }
         int GetHeight();
         void Select(Graphics graphics);
         bool CheckSelection(Point startPoint, Point endPoint, int inaccuracy = 0);
