@@ -39,7 +39,7 @@ namespace Project_UML.Core.DataProject
         /// <summary>
         /// Размер фигур по умолчанию для скролла
         /// </summary>
-        public float DefaultSize { get; set; }
+        public int DefaultSize { get; set; }
         /// <summary>
         /// Структура Стрелы
         /// </summary>

@@ -51,7 +51,7 @@ namespace Project_UML.Core.DataProject
         /// <summary>
         /// Множитель для изменения объектов через скролл
         /// </summary>
-        private float _defaultSize;
+        private int _defaultSize;
         /// <summary>
         /// Фигура
         /// </summary>

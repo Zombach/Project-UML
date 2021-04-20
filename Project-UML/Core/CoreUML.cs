@@ -49,7 +49,7 @@ namespace Project_UML.Core
         /// <summary>
         /// Размер объектов для zoom.
         /// </summary>
-        public float DefaultSize { get; set; }
+        public int DefaultSize { get; set; }
         public string MyPath { get; set; }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Project_UML.Core
             DefaultWidth = 1;
             DefaultColor = Color.Black;
             DefaultFont = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-            DefaultSize = 1F;
+            DefaultSize = 0;
             MyPath = "";
         }
 
@@ -131,22 +131,31 @@ namespace Project_UML.Core
             }
         }
 
-        public void ScrollSize()
+        public void ScrollSize(bool isIncrease)
         {
+            float X = 0;
+            float Y = 0;
             foreach (IFigure  figure in Figures)
             {
                 if (figure is AbstractArrow arrow)
                 {
                     for(int i = 0; i < arrow.Points.Count; i++)
                     {
-                        float X = arrow.Points[i].X * DefaultSize;
-                        float Y = arrow.Points[i].Y * DefaultSize;
+                        if (isIncrease)
+                        {
+                            X = arrow.Points[i].X * 1.02f;
+                            Y = arrow.Points[i].Y * 1.02f;
+                        }
+                        else
+                        {
+                            X = arrow.Points[i].X * 0.98f;
+                            Y = arrow.Points[i].Y * 0.98f;
+                        }
                         arrow.Points[i] = new Point((int)X, (int)Y);
                     }
                 }
             }
         }
-
 
 
 

@@ -8,7 +8,8 @@ using Project_UML.Core.FigureFactory;
 using Project_UML.Core.Interfaces;
 using Project_UML.Core.DataProject;
 using System.Diagnostics;
-
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Project_UML.Core.Forms
 {
@@ -37,33 +38,33 @@ namespace Project_UML.Core.Forms
         public NewProject()
         {
             InitializeComponent();
-            //this.MouseWheel += new MouseEventHandler(OnMouseWheel);
+            this.MouseWheel += new MouseEventHandler(OnMouseWheel);
 
         }
 
-        protected override void OnMouseWheel( MouseEventArgs e)
+        private void OnMouseWheel(object sender, MouseEventArgs e)
+        { 
+            if (e.Delta > 0)
+            {
+                if (_coreUML.DefaultSize < 20)
+                {
+                    _coreUML.DefaultSize++;
+                    ScrollSize(true);
+                }
+            }
+            else
+            {
+                if (_coreUML.DefaultSize > -20)
+                {
+                    _coreUML.DefaultSize--;
+                    ScrollSize(false);
+                }
+            }
+        }
+        private void ScrollSize(bool isIncrease)
         {
-            int numberOfTextLinesToMove = e.Delta * SystemInformation.MouseWheelScrollLines / 120;
-            if (numberOfTextLinesToMove > 0)
-            {
-                if (_coreUML.DefaultSize < 1.5f)
-                {
-                    _coreUML.DefaultSize += 0.1f;
-                    _coreUML.ScrollSize();
-                    _coreUML.UpdPicture();
-                    base.OnMouseWheel(e);
-                }
-            }
-            if (numberOfTextLinesToMove < 0)
-            {
-                if (_coreUML.DefaultSize > 0.5f)
-                {
-                    _coreUML.DefaultSize -= 0.1f;
-                    _coreUML.ScrollSize();
-                    _coreUML.UpdPicture();
-                    base.OnMouseWheel(e);
-                }
-            }
+            _coreUML.ScrollSize(isIncrease);
+            _coreUML.UpdPicture();
         }
 
         private void NewProject_Load(object sender, EventArgs e)
