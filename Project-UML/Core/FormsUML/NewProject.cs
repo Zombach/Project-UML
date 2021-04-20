@@ -6,7 +6,11 @@ using Project_UML.Core.Arrows;
 using Project_UML.Core.MousHandlers;
 using Project_UML.Core.FigureFactory;
 using Project_UML.Core.Interfaces;
+<<<<<<< Updated upstream
 using Project_UML.Core.DataProject;
+=======
+using System.Diagnostics;
+>>>>>>> Stashed changes
 
 namespace Project_UML.Core.Forms
 {
@@ -96,6 +100,10 @@ namespace Project_UML.Core.Forms
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             _crntMH.MouseMove(e.Location);
+            if (GC.GetTotalMemory(true) > 1024 * 1024)
+            {
+                GC.Collect();
+            }
         }
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
