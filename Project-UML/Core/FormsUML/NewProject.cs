@@ -6,11 +6,9 @@ using Project_UML.Core.Arrows;
 using Project_UML.Core.MousHandlers;
 using Project_UML.Core.FigureFactory;
 using Project_UML.Core.Interfaces;
-<<<<<<< Updated upstream
 using Project_UML.Core.DataProject;
-=======
 using System.Diagnostics;
->>>>>>> Stashed changes
+
 
 namespace Project_UML.Core.Forms
 {
