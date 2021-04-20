@@ -68,12 +68,12 @@ namespace Project_UML.Core.Forms
 
         private void NewProject_Load(object sender, EventArgs e)
         {
-            _coreUML.BitmapMain = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            _coreUML.BitmapTmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _coreUML.BitmapMain = new Bitmap(Canvas.Width, Canvas.Height);
+            _coreUML.BitmapTmp = new Bitmap(Canvas.Width, Canvas.Height);
             _coreUML.Graphics = Graphics.FromImage(_coreUML.BitmapMain);
             _coreUML.Graphics.Clear(Color.White);
-            _coreUML.PictureBox = pictureBox1;
-            pictureBox1.Image = _coreUML.BitmapMain;
+            _coreUML.PictureBox = Canvas;
+            Canvas.Image = _coreUML.BitmapMain;
         }
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
