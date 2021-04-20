@@ -97,8 +97,9 @@ namespace Project_UML.Core.Forms
 
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
+            int i = int.MaxValue;
             _crntMH.MouseMove(e.Location);
-            if (GC.GetTotalMemory(true) > 1024 * 1024)
+            if (GC.GetTotalMemory(true) >= i - 1000)
             {
                 GC.Collect();
             }
