@@ -31,6 +31,8 @@ namespace Project_UML.Core.Boxes
         protected int _rectFieldHeight { get; set; } = 20;
         protected int _rectPropertyHeight { get; set; } = 20;
         protected int _rectMethodsHeight { get; set; }
+        public float ScrollSize { get; set; } = 1f;
+
         protected Font font = new Font("Arial", 10);
 
         //public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }

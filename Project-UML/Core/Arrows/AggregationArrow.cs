@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_UML.Core.DataProject.Structure;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -14,26 +15,22 @@ namespace Project_UML.Core.Arrows
     [Serializable]
     public class AggregationArrow : AbstractArrow
     {
-        public AggregationArrow()
+        public AggregationArrow() : base()
         {
-            _pen = new Pen(Color.Black, 1);
-            SetEndCap();
         }
-        public AggregationArrow(Color color, int width)
+        public AggregationArrow(Color color, int width) : base(color, width)
         {
-            _pen = new Pen(color, width);
-            SetEndCap();
         }
-        public AggregationArrow(Point startPoint, Point endPoint, Axises startDirectionAxis, Axises endDirectionAxis)
+        public AggregationArrow(Point startPoint, Point endPoint, Axises startDirectionAxis
+            , Axises endDirectionAxis) : base(startPoint, endPoint, startDirectionAxis, endDirectionAxis)
         {
-            _pen = new Pen(Color.Black, 1);
-            Points = GetPoints(startPoint, endPoint);
-            StartDirectionAxis = startDirectionAxis;
-            EndDirectionAxis = endDirectionAxis;
-            SetEndCap();
+        }
+        public AggregationArrow(StructArrow arrow) : base(arrow)
+        {
+
         }
 
-        private void SetEndCap()
+        public override void SetEndCap()
         {
             GraphicsPath _graphicsPath = new GraphicsPath();
             _graphicsPath.AddLine(new Point(0, 0), new Point(8, -12));

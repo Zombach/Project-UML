@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_UML.Core.DataProject.Structure;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -14,27 +15,25 @@ namespace Project_UML.Core.Arrows
     [Serializable]
     public class CompositionArrow : AbstractArrow
     {
-        public CompositionArrow()
+        public CompositionArrow() : base()
         {
-            _pen = new Pen(Color.Black, 1);
-            SetEndCap();
         }
 
-        public CompositionArrow(Color color, int width)
+        public CompositionArrow(Color color, int width) : base(color, width)
         {
-            _pen = new Pen(color, width);
-            SetEndCap();
-        }
-        public CompositionArrow(Point startPoint, Point endPoint, Axises startDirectionAxis, Axises endDirectionAxis)
-        {
-            _pen = new Pen(Color.Black, 1);
-            Points = GetPoints(startPoint, endPoint);
-            StartDirectionAxis = startDirectionAxis;
-            EndDirectionAxis = endDirectionAxis;
-            SetEndCap();
         }
 
-        private void SetEndCap()
+        public CompositionArrow(Point startPoint, Point endPoint, Axises startDirectionAxis
+            , Axises endDirectionAxis) : base(startPoint, endPoint, startDirectionAxis, endDirectionAxis)
+        {
+        }
+
+        public CompositionArrow(StructArrow arrow) : base(arrow)
+        {
+
+        }
+
+        public override void SetEndCap()
         {
             int tmp;
             if (_pen.Width == 1)

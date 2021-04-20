@@ -4,6 +4,6 @@ namespace Project_UML.Core.DataProject.Interfaces
 {
     public interface IArrow
     {
-        string ArrowType { get; set; }
+        string Type { get; set; }
     }
 }

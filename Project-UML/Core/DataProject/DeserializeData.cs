@@ -10,88 +10,191 @@ using System.Reflection;
 
 namespace Project_UML.Core.DataProject
 {
+    /// <summary>
+    /// Десериализация
+    /// </summary>
     public class DeserializeData
     {
+        #region Переменные
+        /// <summary>
+        /// Получение ядра
+        /// </summary>
         private CoreUML _coreUML = CoreUML.GetCoreUML();
+        /// <summary>
+        /// Список Структурированых объектов
+        /// </summary>
         private List<IBase> _iBase;
-        private List<IFigure> _figure;
+        /// <summary>
+        /// Список Фигур
+        /// </summary>
+        private List<IFigure> _iFigure;
+        /// <summary>
+        /// Список структурированых действий
+        /// </summary>
         private List<ILogs> _iLogs;
+        /// <summary>
+        /// Список действий с объектами
+        /// </summary>
         private List<LogActs> _logs;
-        private float _defaultWidth;
+        /// <summary>
+        /// Цвет
+        /// </summary>
         private Color _defaultColor;
+        /// <summary>
+        /// Шрифт
+        /// </summary>
         private Font _defaultFont;
+        /// <summary>
+        /// Ширина линий
+        /// </summary>
+        private float _defaultWidth;
+        /// <summary>
+        /// Множитель для изменения объектов через скролл
+        /// </summary>
         private float _defaultSize;
-        private StructArrow _arrow;
-        private StructBox _box;
-        private string[] _typeNameArrow = new string[5] { "Project_UML.Core.Arrows.AggregationArrow", "Project_UML.Core.Arrows.AssociationArrow",
-            "Project_UML.Core.Arrows.CompositionArrow", "Project_UML.Core.Arrows.ImplementationArrow", "Project_UML.Core.Arrows.InheritanceArrow" };
-        private string[] _typeNameBox = new string[4] { "Project_UML.Core.Boxes.BaseBox", "Project_UML.Core.Boxes.ClassBox",
-            "Project_UML.Core.Boxes.MethodBox", "Project_UML.Core.Boxes.PropertyBox" };
-        IFigureFactory _figureFactory { get; set; }
+        /// <summary>
+        /// Фигура
+        /// </summary>
+        private IFigure _figure;
+        /// <summary>
+        /// Массив полных названий классов стрел
+        /// </summary>
+        private string[] _typeArrow = new string[5]
+        { 
+            "Project_UML.Core.Arrows.AggregationArrow",
+            "Project_UML.Core.Arrows.AssociationArrow",
+            "Project_UML.Core.Arrows.CompositionArrow",
+            "Project_UML.Core.Arrows.ImplementationArrow",
+            "Project_UML.Core.Arrows.InheritanceArrow"
+        };
 
+        /// <summary>
+        /// Массив полных названий классов боксов
+        /// </summary>
+        private string[] _typeBox = new string[4] 
+        { 
+            "Project_UML.Core.Boxes.BaseBox",
+            "Project_UML.Core.Boxes.ClassBox",
+            "Project_UML.Core.Boxes.MethodBox",
+            "Project_UML.Core.Boxes.PropertyBox"
+        };
+        #endregion
+
+        #region Методы
+
+        /// <summary>
+        /// Чтение записаной даты
+        /// </summary>
+        /// <param name="writeData"></param>
         public DeserializeData(SerializeData writeData)
         {
             _iBase = writeData.Base;
             _iLogs = writeData.Logs;
-            _figure = CreateListFigure();
+            _iFigure = CreateListFigure();
             _logs = CreateListLogs();
-            _defaultWidth = writeData.DefaultWidth;
             _defaultColor = writeData.DefaultColor;
             _defaultFont = writeData.DefaultFont;
+            _defaultWidth = writeData.DefaultWidth;
             _defaultSize = writeData.DefaultSize;
         }
 
+        /// <summary>
+        /// Загрузка глобальных параметров фаормы.
+        /// </summary>
+        /// <param name="readData"></param>
         public void LoadingData(DeserializeData readData)
         {
-            _coreUML.Figures = readData._figure;
+            _coreUML.Figures = readData._iFigure;
             _coreUML.Logs = readData._logs;
-            _coreUML.DefaultWidth = readData._defaultWidth;
             _coreUML.DefaultColor = readData._defaultColor;
             _coreUML.DefaultFont = readData._defaultFont;
+            _coreUML.DefaultWidth = readData._defaultWidth;
             _coreUML.DefaultSize = readData._defaultSize;
         }
             
+        /// <summary>
+        /// Создания листа фигур
+        /// </summary>
+        /// <returns></returns>
         private List<IFigure> CreateListFigure() 
         {
-            _figure = new List<IFigure>();
+            _iFigure = new List<IFigure>();
             for (int i = 0; i < _iBase.Count; i++)
             {
-                if (_iBase[i] is StructArrow)
-                {
-                    _arrow = (StructArrow)_iBase[i];
-                    foreach (string typeName in _typeNameArrow)
-                    {
-                        if (_arrow.ArrowType == typeName)
-                        {
-                            var myClassType = Activator.CreateInstance(Type.GetType(_arrow.ArrowType));
-                            if (myClassType is AggregationArrow)
-                            {
-                                AggregationArrow test = (AggregationArrow)myClassType;
-                            }
-                        }
-                           
-                    }
-                }
-                if (_iBase[i] is StructBox)
-                {
-                    _box = (StructBox)_iBase[i];
-                    foreach (string typeName in _typeNameBox)
-                    {
-                        if (_box.BoxType == typeName)
-                        {
-                            //на этом этапе, я знаю, что нужно создать бокс + знаю его тип. 
-                        }
-                    }
+                IFigure figure = GetFigure(_iBase[i]);
+                _iFigure.Add(figure);
+            }
+            return _iFigure;
+        }
 
+        /// <summary>
+        /// Определение типа хранимых данных
+        /// </summary>
+        /// <param name="iBase">Список структурированых объектов</param>        
+        /// <returns></returns>
+        private IFigure GetFigure(IBase iBase)
+        {
+            if (iBase is StructArrow)
+            {
+                StructArrow arrow = (StructArrow)iBase;
+                _figure = CreateFigureArrow(arrow);
+            }
+            if (iBase is StructBox)
+            {
+                StructBox box = (StructBox)iBase;
+                _figure = CreateFigureBox(box);
+            }
+            return _figure;
+        }
+
+        /// <summary>
+        /// Создание фигуры стрелы на базе структуры
+        /// </summary>
+        /// <param name="arrow">Структура стрелы</param>
+        /// <returns></returns>
+        private IFigure CreateFigureArrow(StructArrow arrow)
+        {
+            foreach (string typeName in _typeArrow)
+            {
+                if (arrow.Type == typeName)
+                {
+                    var myClassType = Activator.CreateInstance(Type.GetType(arrow.Type), arrow);
+                    _figure = (IFigure)myClassType;
+                    break;
                 }
             }
             return _figure;
         }
+        /// <summary>
+        /// Создание фигуры бокса на базе структуры
+        /// </summary>
+        /// <param name="box">Структура бокса</param>
+        /// <returns></returns>
+        private IFigure CreateFigureBox(StructBox box)
+        {
+            foreach (string typeName in _typeBox)
+            {
+                if (box.Type == typeName)
+                {
+                    var myClassType = Activator.CreateInstance(Type.GetType(box.Type), box);
+                    _figure = (IFigure)myClassType;
+                    break;
+                }
+            }
+            return _figure;
+        }
+
+        /// <summary>
+        /// Заготовка для сохранения логирования действий с объектами
+        /// </summary>
+        /// <returns></returns>
         private List<LogActs> CreateListLogs()
         {
             List<LogActs> logs = new List<LogActs>();
 
             return logs;
         }
+
+        #endregion
     }
 }

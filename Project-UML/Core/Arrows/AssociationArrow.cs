@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_UML.Core.DataProject.Structure;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -14,28 +15,24 @@ namespace Project_UML.Core.Arrows
     [Serializable]
     public class AssociationArrow : AbstractArrow
     {
-        public AssociationArrow()
+        public AssociationArrow() : base()
         {
-            _pen = new Pen(Color.Black, 1);
-            SetEndCap();
         }
 
-        public AssociationArrow(Color color, int width)
+        public AssociationArrow(Color color, int width) : base(color, width)
         {
-            _pen = new Pen(color, width);
-            SetEndCap();
-
-        }
-        public AssociationArrow(Point startPoint, Point endPoint, Axises startDirectionAxis, Axises endDirectionAxis)
-        {
-            _pen = new Pen(Color.Black, 1);
-            Points = GetPoints(startPoint, endPoint);
-            StartDirectionAxis = startDirectionAxis;
-            EndDirectionAxis = endDirectionAxis;
-            SetEndCap();
         }
 
-        private void SetEndCap()
+        public AssociationArrow(Point startPoint, Point endPoint, Axises startDirectionAxis
+            , Axises endDirectionAxis) : base(startPoint, endPoint, startDirectionAxis, endDirectionAxis)
+        {           
+        }
+        public AssociationArrow(StructArrow arrow) : base(arrow)
+        {
+
+        }
+
+        public override void SetEndCap()
         {
             int tmp;
             if (_pen.Width == 1)

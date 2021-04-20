@@ -10,7 +10,7 @@ namespace Project_UML.Core.DataProject.Structure
     [Serializable]
     public struct StructArrow : IArrow, IBase
     {
-        public string ArrowType { get; set; }
+        public string Type { get; set; }
         public Color Color { get; set; }
         public float Width { get; set; }
         public float Size { get; set; }
@@ -20,7 +20,7 @@ namespace Project_UML.Core.DataProject.Structure
         public StructArrow(IFigure figure)
         {
             AbstractArrow arrow = (AbstractArrow)figure;
-            ArrowType = arrow.GetType().FullName;
+            Type = arrow.GetType().FullName;
             Color = arrow.GetColor();
             Width = arrow.GetWidth();
             Size = arrow.GetSize();

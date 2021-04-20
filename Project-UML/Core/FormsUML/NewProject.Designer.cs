@@ -64,7 +64,7 @@ namespace Project_UML.Core.Forms
             // 
             this.pictureBox1.Location = new System.Drawing.Point(180, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1730, 1000);
+            this.pictureBox1.Size = new System.Drawing.Size(1000, 800);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseDown);
