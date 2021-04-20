@@ -2,7 +2,7 @@
 using System.Drawing;
 
 
-namespace Project_UML.Core.DataProject.Serialize.Interfaces
+namespace Project_UML.Core.DataProject.Interfaces
 {
     public interface IBase
     {

@@ -54,6 +54,7 @@
     <Compile Include="Core\Boxes\RectangleInterface.cs" />
     <Compile Include="Core\ConnectionPoint.cs" />
     <Compile Include="Core\CoreUML.cs" />
+    <Compile Include="Core\DataProject\Interfaces\ILogs.cs" />
     <Compile Include="Core\DataText.cs" />
     <Compile Include="Core\Encrypting\DecryptSaving.cs" />
     <Compile Include="Core\Encrypting\Encrypt.cs" />
@@ -97,18 +98,18 @@
     <Compile Include="Core\FigureFactory\InheritanceArrowFactory.cs" />
     <Compile Include="Core\MousHandlers\MouseHandlerOnDrawRectangle.cs" />
     <Compile Include="Core\MousHandlers\MouseHandlerOnMove.cs" />
-    <Compile Include="Core\DataProject\Serialize\Interfaces\IDataCommon.cs" />
-    <Compile Include="Core\DataProject\Deserialize\ReadData.cs" />
-    <Compile Include="Core\DataProject\Serialize\Structure\StructArrow.cs" />
-    <Compile Include="Core\DataProject\Serialize\Structure\StructBox.cs" />
-    <Compile Include="Core\DataProject\Serialize\Structure\StructDataCommon.cs" />
-    <Compile Include="Core\DataProject\Serialize\WriteData.cs" />
+    <Compile Include="Core\DataProject\Interfaces\IDataCommon.cs" />
+    <Compile Include="Core\DataProject\DeserializeData.cs" />
+    <Compile Include="Core\DataProject\Structure\StructArrow.cs" />
+    <Compile Include="Core\DataProject\Structure\StructBox.cs" />
+    <Compile Include="Core\DataProject\Structure\StructDataCommon.cs" />
+    <Compile Include="Core\DataProject\SerializeData.cs" />
     <Compile Include="Core\MousHandlers\MouseHandlerOnSelection.cs" />
     <Compile Include="Core\DataProject\BinaryConversion.cs" />
-    <Compile Include="Core\DataProject\Serialize\Interfaces\IArrow.cs" />
-    <Compile Include="Core\DataProject\Serialize\Interfaces\IBox.cs" />
-    <Compile Include="Core\DataProject\Serialize\Interfaces\ICoreUML.cs" />
-    <Compile Include="Core\DataProject\Serialize\Interfaces\IBase.cs" />
+    <Compile Include="Core\DataProject\Interfaces\IArrow.cs" />
+    <Compile Include="Core\DataProject\Interfaces\IBox.cs" />
+    <Compile Include="Core\DataProject\Interfaces\ICoreUML.cs" />
+    <Compile Include="Core\DataProject\Interfaces\IBase.cs" />
     <Compile Include="Core\FormsUML\License.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,8 +180,6 @@
     <Content Include="Resources\icons\winArrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\DataProject\Deserialize\interfaces\" />
-    <Folder Include="Core\DataProject\Deserialize\Structure\" />
     <Folder Include="Resources\txt\" />
     <Folder Include="Save\" />
   </ItemGroup>

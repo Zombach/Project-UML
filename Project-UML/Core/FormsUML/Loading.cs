@@ -24,6 +24,7 @@ namespace Project_UML.Core.Forms
 
         private void Explorer_Click(object sender, EventArgs e)
         {
+            SerializeData data = null;
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "../../Save";
@@ -32,7 +33,7 @@ namespace Project_UML.Core.Forms
                     CoreUML coreUML = CoreUML.GetCoreUML();
                     BinaryConversion binary = new BinaryConversion();
                     coreUML.MyPath = openFileDialog.FileName;
-                    binary.DeserializationDictionary();
+                    data = binary.DeserializationDictionary();
                     MessageBox.Show("Загрузка успешно завершена");
                     coreUML.isLoading = true;
                 }
@@ -42,7 +43,7 @@ namespace Project_UML.Core.Forms
             //int s2 = CoreUML.Figures[2];
             //int s3 = CoreUML.Figures[3];
             //MessageBox.Show($"s = {s} s1 = {s1} s2 = {s2} s3 = {s3}");
-            NewProject newProject = new NewProject();
+            NewProject newProject = new NewProject(data);
             Hide();
             newProject.Show();
         }

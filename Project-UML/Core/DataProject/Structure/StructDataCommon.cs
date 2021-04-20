@@ -1,7 +1,7 @@
-﻿using Project_UML.Core.DataProject.Serialize.Interfaces;
+﻿using Project_UML.Core.DataProject.Interfaces;
 using System;
 
-namespace Project_UML.Core.DataProject.Serialize.Structure
+namespace Project_UML.Core.DataProject.Structure
 {
     [Serializable]
     public struct StructDataCommon :IDataCommon

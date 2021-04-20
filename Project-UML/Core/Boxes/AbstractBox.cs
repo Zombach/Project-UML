@@ -103,7 +103,7 @@ namespace Project_UML.Core.Boxes
 
         public float GetSize()
         {
-            throw new NotImplementedException();
+            return 1f;
         }
 
         public bool CheckSelection(Point startPoint, Point endPoint, int inaccuracy)

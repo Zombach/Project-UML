@@ -1,6 +1,4 @@
 ﻿using System.Runtime.Serialization.Formatters.Binary;
-using Project_UML.Core.DataProject.Deserialize;
-using Project_UML.Core.DataProject.Serialize;
 using System.Text.RegularExpressions;
 using System.IO;
 using System;
@@ -19,20 +17,18 @@ namespace Project_UML.Core.DataProject
             SetMyPath();
             FileStream fileStream = new FileStream(_coreUML.MyPath, FileMode.Create, FileAccess.Write, FileShare.None);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            WriteData writeData = new WriteData();
+            SerializeData writeData = new SerializeData();
             binaryFormatter.Serialize(fileStream, writeData);
             fileStream.Close();
             return true;
         }
-        public bool DeserializationDictionary()
+        public SerializeData DeserializationDictionary()
         {
             FileStream fileStream = new FileStream(_coreUML.MyPath, FileMode.Open, FileAccess.Read, FileShare.None);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            WriteData writeData = (WriteData)binaryFormatter.Deserialize(fileStream);
+            SerializeData writeData = (SerializeData)binaryFormatter.Deserialize(fileStream);
             fileStream.Close();
-            ReadData readData = new ReadData(writeData);
-            readData.ReadAll();
-            return true;
+            return writeData;
         }
 
         private void SetMyPath()
