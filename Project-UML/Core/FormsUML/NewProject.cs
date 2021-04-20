@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using System.Windows.Forms;
 using Project_UML.Core.Arrows;
-using Project_UML.Core;
-using Project_UML.Core.Boxes;
 using Project_UML.Core.MousHandlers;
 using Project_UML.Core.FigureFactory;
 using Project_UML.Core.Interfaces;
-using Project_UML.Core.DataProject.Deserialize;
+using Project_UML.Core.DataProject;
 
 namespace Project_UML.Core.Forms
 {
@@ -25,22 +19,23 @@ namespace Project_UML.Core.Forms
         List<AbstractArrow> _arrows = new List<AbstractArrow>();
         //AbstractBox _currentBox;
         IMouseHandler _crntMH = new MouseHandlerOnSelection();
-
-
-
-        public NewProject()
+        public NewProject(SerializeData data)
         {
             InitializeComponent();
             if (_coreUML.isLoading)
             {
-                //ReadData readData = new ReadData(writeData);
-                //readData.LoadingData(readData);
+                DeserializeData deserializeData = new DeserializeData(data);
+                deserializeData.LoadingData(deserializeData);
                 trackBarOfWidth.Value = (int)_coreUML.DefaultWidth;
                 ButtonColor.BackColor = _coreUML.DefaultColor;
                 _coreUML.isLoading = false;
             }
+        }
 
-            //FixUpdate();            
+        public NewProject()
+        {
+            InitializeComponent();
+                        
         }
 
         private void NewProject_Load(object sender, EventArgs e)
