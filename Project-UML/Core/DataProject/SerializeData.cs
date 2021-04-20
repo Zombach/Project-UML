@@ -1,23 +1,19 @@
-﻿using System;
+﻿using Project_UML.Core.DataProject.Interfaces;
+using Project_UML.Core.DataProject.Structure;
+using Project_UML.Core.Interfaces;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Project_UML.Core.Arrows;
 using Project_UML.Core.Boxes;
-using System.Reflection;
-using Project_UML.Core.Interfaces;
-using Project_UML.Core.Serialize.InterfacesSerialize;
-using Project_UML.Core.Serialize.Structure;
+using System.Drawing;
+using System;
 
-namespace Project_UML.Core.Serialize
+namespace Project_UML.Core.DataProject
 {
     /// <summary>
     /// 
     /// </summary>
     [Serializable]
-    public class WriteData : ICoreUML
+    public class SerializeData : ICoreUML
     {
         private StructArrow _arrow;
         private StructBox _box;
@@ -25,20 +21,20 @@ namespace Project_UML.Core.Serialize
         /// Сериализация Ядра
         /// </summary>
         public List<IBase> Base { get; set; }
-        public List<LogActs> Logs { get; set; }
+        public List<ILogs> Logs { get; set; }
         public int DefaultWidth { get; set; }
         public Color DefaultColor { get; set; }
         public Font DefaultFont { get; set; }
         public float DefaultSize { get; set; }
 
-        public WriteData()
+        public SerializeData()
         {
             CoreUML coreUML = CoreUML.GetCoreUML();
             List<IFigure> Figures = coreUML.Figures;
             Base = new List<IBase>();
             Base = CreateObjectsFigure(Figures);
 
-            Logs = new List<LogActs>();
+            Logs = new List<ILogs>();
             Logs = CreateObjectsLogs();
 
             DefaultWidth = (int)coreUML.DefaultWidth;
@@ -49,26 +45,26 @@ namespace Project_UML.Core.Serialize
 
         private List<IBase> CreateObjectsFigure(List<IFigure> Figures)
         {
-            List<IBase> figure = new List<IBase>();
+            List<IBase> iBase = new List<IBase>();
             for (int i = 0; i < Figures.Count; i++)
             {
                 if (Figures[i] is AbstractArrow)
                 {
                     _arrow = new StructArrow(Figures[i]);
-                    figure.Add(_arrow);
+                    iBase.Add(_arrow);
                 }
                 if (Figures[i] is AbstractBox)
                 {
                     _box = new StructBox(Figures[i]);
-                    figure.Add(_box);
+                    iBase.Add(_box);
                 }
             }
-            return figure;
+            return iBase;
         }
 
-        private List<LogActs> CreateObjectsLogs()
+        private List<ILogs> CreateObjectsLogs()
         {
-            List<LogActs> logs = new List<LogActs>();
+            List<ILogs> logs = new List<ILogs>();
             return logs;
         }
 

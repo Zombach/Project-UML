@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Project_UML.Core.DataProject.Structure;
 using Project_UML.Core.Interfaces;
 using Project_UML.Core.Interfaces.Get;
 
@@ -21,7 +22,35 @@ namespace Project_UML.Core.Arrows
         public Axises EndDirectionAxis { get; set; } = Axises.X;
         public List<Point> Points { get; set; }
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
-        public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public float ScrollSize { get; set; } = 1f;
+
+        public AbstractArrow()
+        {
+            _pen = new Pen(Color.Black, 1);
+            SetEndCap();
+        }
+        public AbstractArrow(Color color, int width)
+        {
+            _pen = new Pen(color, width);
+            SetEndCap();
+        }
+        public AbstractArrow(Point startPoint, Point endPoint, Axises startDirectionAxis, Axises endDirectionAxis)
+        {
+            _pen = new Pen(Color.Black, 1);
+            Points = GetPoints(startPoint, endPoint);
+            StartDirectionAxis = startDirectionAxis;
+            EndDirectionAxis = endDirectionAxis;
+            SetEndCap();
+        }
+        public AbstractArrow(StructArrow arrow)
+        {
+            _pen = new Pen(arrow.Color, arrow.Width);
+            ScrollSize = 999 + arrow.Size;
+        }
+        public virtual void SetEndCap()
+        {
+
+        }
 
         public virtual void Draw(Graphics graphics)
         {
@@ -200,7 +229,7 @@ namespace Project_UML.Core.Arrows
 
         public float GetSize()
         {
-            throw new NotImplementedException();
+            return 1f;
         }
 
         public float GetWidth()
