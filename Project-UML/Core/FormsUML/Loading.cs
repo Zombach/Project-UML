@@ -38,11 +38,6 @@ namespace Project_UML.Core.Forms
                     coreUML.isLoading = true;
                 }
             }
-            //int s = CoreUML.Figures[0];
-            //int s1 = CoreUML.Figures[1];
-            //int s2 = CoreUML.Figures[2];
-            //int s3 = CoreUML.Figures[3];
-            //MessageBox.Show($"s = {s} s1 = {s1} s2 = {s2} s3 = {s3}");
             NewProject newProject = new NewProject(data);
             Hide();
             newProject.Show();

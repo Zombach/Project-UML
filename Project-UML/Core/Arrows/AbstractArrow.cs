@@ -42,14 +42,20 @@ namespace Project_UML.Core.Arrows
             EndDirectionAxis = endDirectionAxis;
             SetEndCap();
         }
+        
+        /// <summary>
+        /// Создание стрелы по предоставленным данным структуры
+        /// </summary>
+        /// <param name="arrow">Структура данных стрелы</param>
         public AbstractArrow(StructArrow arrow)
         {
             _pen = new Pen(arrow.Color, arrow.Width);
-            ScrollSize = 999 + arrow.Size;
+            ScrollSize = arrow.Size;
+            //Необходимо дописать конструктор стрелы
         }
+
         public virtual void SetEndCap()
         {
-
         }
 
         public virtual void Draw(Graphics graphics)

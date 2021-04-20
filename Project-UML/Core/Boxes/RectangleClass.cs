@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_UML.Core.DataProject.Structure;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -9,9 +10,11 @@ namespace Project_UML.Core.Boxes
 {
     class RectangleClass : AbstractBox
     {
-        public RectangleClass(Color color, int width)
+        public RectangleClass(Color color, int width) : base(color, width)
+        {            
+        }
+        public RectangleClass(StructBox box) : base(box)
         {
-            _pen = new Pen(color, width);
         }
 
 
@@ -21,11 +24,11 @@ namespace Project_UML.Core.Boxes
 
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectangleHeight);
             graphics.DrawString("Class", font, brush, Points[0].X + 5, Points[0].Y + 5);
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, _rectNameHeight);
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + _rectNameHeight, RectangleWidth, _rectFieldHeight);
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + _rectNameHeight + _rectFieldHeight, RectangleWidth, _rectPropertyHeight);
-            _rectMethodsHeight = RectangleHeight - (_rectNameHeight + _rectFieldHeight + _rectPropertyHeight);
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + _rectNameHeight + _rectFieldHeight + _rectPropertyHeight, RectangleWidth, _rectMethodsHeight);
+            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
+            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight, RectangleWidth, RectFieldHeight);
+            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight + RectFieldHeight, RectangleWidth, RectPropertyHeight);
+            RectMethodsHeight = RectangleHeight - (RectNameHeight + RectFieldHeight + RectPropertyHeight);
+            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight + RectFieldHeight + RectPropertyHeight, RectangleWidth, RectMethodsHeight);
         }
     }
 }

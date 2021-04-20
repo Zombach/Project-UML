@@ -134,14 +134,12 @@ namespace Project_UML.Core.DataProject
         /// <returns></returns>
         private IFigure GetFigure(IBase iBase)
         {
-            if (iBase is StructArrow)
+            if (iBase is StructArrow arrow)
             {
-                StructArrow arrow = (StructArrow)iBase;
                 _figure = CreateFigureArrow(arrow);
             }
-            if (iBase is StructBox)
+            if (iBase is StructBox box)
             {
-                StructBox box = (StructBox)iBase;
                 _figure = CreateFigureBox(box);
             }
             return _figure;
@@ -162,6 +160,28 @@ namespace Project_UML.Core.DataProject
                     _figure = (IFigure)myClassType;
                     break;
                 }
+                #region Альтернатива, но для неё нужно переделать Type c FullName на Name
+                //if (arrow.Type == "AggregationArrow")
+                //{
+                //    AggregationArrow _figure = new AggregationArrow(arrow);
+                //}
+                //if (arrow.Type == "AssociationArrow")
+                //{
+                //    AssociationArrow _figure = new AssociationArrow(arrow);
+                //}
+                //if (arrow.Type == "CompositionArrow")
+                //{
+                //    CompositionArrow _figure = new CompositionArrow(arrow);
+                //}
+                //if (arrow.Type == "ImplementationArrow")
+                //{
+                //    ImplementationArrow _figure = new ImplementationArrow(arrow);
+                //}
+                //if (arrow.Type == "InheritanceArrow")
+                //{
+                //    InheritanceArrow _figure = new InheritanceArrow(arrow);
+                //}
+                #endregion
             }
             return _figure;
         }

@@ -35,7 +35,7 @@ namespace Project_UML.Core.DataProject
         /// <summary>
         /// Ширина по умолчанию
         /// </summary>
-        public int DefaultWidth { get; set; }
+        public float DefaultWidth { get; set; }
         /// <summary>
         /// Размер фигур по умолчанию для скролла
         /// </summary>
@@ -64,7 +64,7 @@ namespace Project_UML.Core.DataProject
             Logs = new List<ILogs>();
             Logs = CreateObjectsLogs();
 
-            DefaultWidth = (int)coreUML.DefaultWidth;
+            DefaultWidth = coreUML.DefaultWidth;
             DefaultColor = coreUML.DefaultColor;
             DefaultFont = coreUML.DefaultFont;
             DefaultSize = coreUML.DefaultSize;

@@ -80,7 +80,7 @@
     <Compile Include="Core\Interfaces\Logics\ISelect.cs" />
     <Compile Include="Core\Arrows\AbstractArrow.cs" />
     <Compile Include="Core\Arrows\AggregationArrow.cs" />
-    <Compile Include="Core\Arrows\Axises.cs" />
+    <Compile Include="Core\Axises.cs" />
     <Compile Include="Core\Arrows\CompositionArrow.cs" />
     <Compile Include="Core\Arrows\AssociationArrow.cs" />
     <Compile Include="Core\Arrows\ImplementationArrow.cs" />

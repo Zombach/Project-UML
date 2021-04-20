@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Project_UML.Core.Interfaces.Get;
 using Project_UML.Core.Interfaces.Logics;
 using Project_UML.Core.Arrows;
+using Project_UML.Core.DataProject.Structure;
 
 namespace Project_UML.Core.Boxes
 {
@@ -27,18 +28,27 @@ namespace Project_UML.Core.Boxes
         protected int RectangleWidth { get; set; } = 100;
         protected int RectangleHeight { get; set; } = 150;
 
-        protected int _rectNameHeight { get; set; } = 20;
-        protected int _rectFieldHeight { get; set; } = 20;
-        protected int _rectPropertyHeight { get; set; } = 20;
-        protected int _rectMethodsHeight { get; set; }
+        protected int RectNameHeight { get; set; } = 20;
+        protected int RectFieldHeight { get; set; } = 20;
+        protected int RectPropertyHeight { get; set; } = 20;
+        protected int RectMethodsHeight { get; set; }
         public float ScrollSize { get; set; } = 1f;
 
         protected Font font = new Font("Arial", 10);
 
-        //public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
+
+
+        public AbstractBox(Color color, int width)
+        {
+            _pen = new Pen(color, width);
+        }
+
+        public AbstractBox(StructBox box)
+        {
+
+        }
 
 
         public virtual void AddPoints(Point point)

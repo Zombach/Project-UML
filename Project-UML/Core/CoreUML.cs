@@ -17,6 +17,7 @@ namespace Project_UML.Core
     /// </summary>
     public class CoreUML
     {
+        //God класс
         /// <summary>
         /// Объект класса
         /// </summary>
