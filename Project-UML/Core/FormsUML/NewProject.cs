@@ -17,7 +17,7 @@ namespace Project_UML.Core.Forms
     /// </summary>
     public partial class NewProject : Form
     {
-        CoreUML _coreUML = CoreUML.GetCoreUML();
+        private CoreUML _coreUML = CoreUML.GetCoreUML();
         List<AbstractArrow> _arrows = new List<AbstractArrow>();
         //AbstractBox _currentBox;
         IMouseHandler _crntMH = new MouseHandlerOnSelection();
@@ -37,7 +37,33 @@ namespace Project_UML.Core.Forms
         public NewProject()
         {
             InitializeComponent();
-                        
+            //this.MouseWheel += new MouseEventHandler(OnMouseWheel);
+
+        }
+
+        protected override void OnMouseWheel( MouseEventArgs e)
+        {
+            int numberOfTextLinesToMove = e.Delta * SystemInformation.MouseWheelScrollLines / 120;
+            if (numberOfTextLinesToMove > 0)
+            {
+                if (_coreUML.DefaultSize < 1.5f)
+                {
+                    _coreUML.DefaultSize += 0.1f;
+                    _coreUML.ScrollSize();
+                    _coreUML.UpdPicture();
+                    base.OnMouseWheel(e);
+                }
+            }
+            if (numberOfTextLinesToMove < 0)
+            {
+                if (_coreUML.DefaultSize > 0.5f)
+                {
+                    _coreUML.DefaultSize -= 0.1f;
+                    _coreUML.ScrollSize();
+                    _coreUML.UpdPicture();
+                    base.OnMouseWheel(e);
+                }
+            }
         }
 
         private void NewProject_Load(object sender, EventArgs e)

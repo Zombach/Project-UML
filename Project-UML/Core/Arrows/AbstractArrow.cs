@@ -22,7 +22,6 @@ namespace Project_UML.Core.Arrows
         public Axises EndDirectionAxis { get; set; } = Axises.X;
         public List<Point> Points { get; set; }
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
-        public float ScrollSize { get; set; } = 1f;
 
         public AbstractArrow()
         {
@@ -50,7 +49,6 @@ namespace Project_UML.Core.Arrows
         public AbstractArrow(StructArrow arrow)
         {
             _pen = new Pen(arrow.Color, arrow.Width);
-            ScrollSize = arrow.Size;
             //Необходимо дописать конструктор стрелы
         }
 
@@ -252,6 +250,7 @@ namespace Project_UML.Core.Arrows
         {
             throw new NotImplementedException();
         }
+
 
 
 

@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Project_UML.Core.FigureFactory;
 using Project_UML.Core.DataProject;
+using Project_UML.Core.Boxes;
 
 namespace Project_UML.Core
 {
@@ -130,7 +131,21 @@ namespace Project_UML.Core
             }
         }
 
-
+        public void ScrollSize()
+        {
+            foreach (IFigure  figure in Figures)
+            {
+                if (figure is AbstractArrow arrow)
+                {
+                    for(int i = 0; i < arrow.Points.Count; i++)
+                    {
+                        float X = arrow.Points[i].X * DefaultSize;
+                        float Y = arrow.Points[i].Y * DefaultSize;
+                        arrow.Points[i] = new Point((int)X, (int)Y);
+                    }
+                }
+            }
+        }
 
 
 

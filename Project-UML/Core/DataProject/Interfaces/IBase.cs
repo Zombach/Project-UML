@@ -21,9 +21,5 @@ namespace Project_UML.Core.DataProject.Interfaces
         /// Толщина линий фигуры
         /// </summary>
         float Width { get; set; }
-        /// <summary>
-        /// Размер фигуры для зумирования
-        /// </summary>
-        float Size { get; set; }
     }
 }

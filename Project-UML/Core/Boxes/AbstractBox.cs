@@ -32,7 +32,6 @@ namespace Project_UML.Core.Boxes
         protected int RectFieldHeight { get; set; } = 20;
         protected int RectPropertyHeight { get; set; } = 20;
         protected int RectMethodsHeight { get; set; }
-        public float ScrollSize { get; set; } = 1f;
 
         protected Font font = new Font("Arial", 10);
 
@@ -192,9 +191,6 @@ namespace Project_UML.Core.Boxes
             }
             return connectionPoint;
         }
-
-
-
 
 
 
