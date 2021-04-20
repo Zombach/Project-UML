@@ -13,7 +13,6 @@ namespace Project_UML.Core.DataProject.Structure
         public string Type { get; set; }
         public Color Color { get; set; }
         public float Width { get; set; }
-        public float Size { get; set; }
 
         public List<IDataCommon> Data { get; set; }
         
@@ -23,7 +22,6 @@ namespace Project_UML.Core.DataProject.Structure
             Type = arrow.GetType().FullName;
             Color = arrow.GetColor();
             Width = arrow.GetWidth();
-            Size = arrow.GetSize();
 
             Data = null;
             for (int i = 0; i < arrow.DataCommon.Count; i++)

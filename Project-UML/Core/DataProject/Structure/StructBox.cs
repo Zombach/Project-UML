@@ -19,7 +19,6 @@ namespace Project_UML.Core.DataProject.Structure
         public Font Font { get; set; }
         public Color Color { get; set; }
         public float Width { get; set; }
-        public float Size { get; set; }
 
         public StructBox(IFigure figure)
         {
@@ -28,8 +27,7 @@ namespace Project_UML.Core.DataProject.Structure
             DataText = box.DataText;
             Font = box.GetFont();
             Color = box.GetColor();
-            Width = box.GetWidth() ;
-            Size = box.GetSize();
+            Width = box.GetWidth();
 
             Data = null;
             for (int i = 0; i < box.DataCommon.Count; i++)
