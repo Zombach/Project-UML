@@ -133,28 +133,42 @@ namespace Project_UML.Core
 
         public void ScrollSize(bool isIncrease)
         {
-            float X = 0;
-            float Y = 0;
             foreach (IFigure  figure in Figures)
             {
                 if (figure is AbstractArrow arrow)
                 {
                     for(int i = 0; i < arrow.Points.Count; i++)
                     {
-                        if (isIncrease)
-                        {
-                            X = arrow.Points[i].X * 1.02f;
-                            Y = arrow.Points[i].Y * 1.02f;
-                        }
-                        else
-                        {
-                            X = arrow.Points[i].X * 0.98f;
-                            Y = arrow.Points[i].Y * 0.98f;
-                        }
-                        arrow.Points[i] = new Point((int)X, (int)Y);
+                        Point point = Scroll(arrow.Points[i], isIncrease);
+                        arrow.Points[i] = point;
+                    }
+                }
+                if (figure is AbstractBox box)
+                {
+                    for (int i = 0; i < box.Points.Count; i++)
+                    {
+                        Point point = Scroll(box.Points[i], isIncrease);
+                        box.Points[i] = point;
                     }
                 }
             }
+        }
+
+        public Point Scroll(Point point, bool isIncrease)
+        {
+            float X , Y;
+            if (isIncrease)
+            {
+                X = point.X * 1.02f;
+                Y = point.Y * 1.02f;
+            }
+            else
+            {
+                X = point.X * 0.98f;
+                Y = point.Y * 0.98f;
+            }
+            Point newPoint = new Point((int)X, (int)Y);
+            return newPoint;
         }
 
 
