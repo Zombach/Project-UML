@@ -32,12 +32,20 @@ namespace Project_UML.Core.Arrows
 
         public override void SetEndCap()
         {
+            
+            int tmp = (int)_pen.Width;
+
             GraphicsPath _graphicsPath = new GraphicsPath();
-            _graphicsPath.AddLine(new Point(0, 0), new Point(8, -12));
-            _graphicsPath.AddLine(new Point(8, -12), new Point(0, -24));
-            _graphicsPath.AddLine(new Point(0, -24), new Point(-8, -12));
-            _graphicsPath.AddLine(new Point(-8, -12), new Point(0, 0));            
-            _pen.CustomEndCap = new CustomLineCap(null, _graphicsPath, LineCap.Custom, 24);
+            _graphicsPath.AddLine(new Point(0, 0), new Point(8 / tmp, -12 / tmp));
+            _graphicsPath.AddLine(new Point(8 / tmp, -12 / tmp), new Point(0, -24 / tmp));
+            _graphicsPath.AddLine(new Point(0, -24 / tmp), new Point(-8 / tmp, -12 / tmp));
+            _graphicsPath.AddLine(new Point(-8 / tmp, -12 / tmp), new Point(0, 0));
+            _pen.CustomEndCap = new CustomLineCap(null, _graphicsPath, LineCap.Custom, 24 / tmp);
+        }
+        public override void ChangeWidth(int width)
+        {
+            _pen.Width = width;
+            SetEndCap();
         }
     }
 }

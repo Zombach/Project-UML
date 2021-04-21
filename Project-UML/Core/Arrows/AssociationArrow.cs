@@ -41,13 +41,14 @@ namespace Project_UML.Core.Arrows
             }
             else
             {
+
                 tmp = 1;
             }
             GraphicsPath _graphicsPath = new GraphicsPath();
-            _graphicsPath.AddLine(new Point(0, 0), new Point(8 / tmp, -12 / tmp));
-            _graphicsPath.AddLine(new Point(8 / tmp, -12 / tmp), new Point(0, 0));
-            _graphicsPath.AddLine(new Point(0, 0), new Point(-8 / tmp, -12 / tmp));
-            _graphicsPath.AddLine(new Point(-8 / tmp, -12 / tmp), new Point(0, 0));
+            _graphicsPath.AddLine(new Point(0, 0), new Point(10 / tmp, -24 / tmp));
+            _graphicsPath.AddLine(new Point(10 / tmp, -24 / tmp), new Point(0, 0));
+            _graphicsPath.AddLine(new Point(0, 0), new Point(-10 / tmp, -24 / tmp));
+            _graphicsPath.AddLine(new Point(-10 / tmp, -24 / tmp), new Point(0, 0));
             _pen.CustomEndCap = new CustomLineCap(null, _graphicsPath, LineCap.Custom);
         }
 
