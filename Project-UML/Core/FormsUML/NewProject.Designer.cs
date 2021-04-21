@@ -249,7 +249,6 @@ namespace Project_UML.Core.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.buttonMove);
             this.Controls.Add(this.buttonTransform);
-            this.Controls.Add(this.Test);
             this.Controls.Add(this.ButtonRectangleClass);
             this.Controls.Add(this.ButtonRectangleInterface);
             this.Controls.Add(this.ButtonRectangleEnum);

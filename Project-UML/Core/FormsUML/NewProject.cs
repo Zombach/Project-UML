@@ -127,8 +127,7 @@ namespace Project_UML.Core.Forms
 
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            _crntMH.MouseMove(e.Location);
-            
+            _crntMH.MouseMove(e.Location);            
         }
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
