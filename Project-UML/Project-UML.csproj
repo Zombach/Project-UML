@@ -153,6 +153,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Core\FormsUML\AboutUs.resx">
       <DependentUpon>AboutUs.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\FormsUML\License.resx">
       <DependentUpon>License.cs</DependentUpon>
@@ -193,6 +194,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Test2.png" />
+    <None Include="Resources\Test.png" />
+    <None Include="Resources\Tes34.png" />
+    <None Include="Resources\Tes3.png" />
+    <None Include="Resources\11.png" />
+    <None Include="Resources\5.png" />
+    <None Include="Resources\7.png" />
+    <None Include="Resources\8.png" />
+    <None Include="Resources\9.png" />
+    <None Include="Resources\10.png" />
+    <None Include="Resources\333.png" />
+    <None Include="Resources\6.png" />
     <Content Include="Resources\Logo.png" />
     <Content Include="Resources\icons\c-sharp.ico" />
     <Content Include="Resources\icons\aggregation.png" />
