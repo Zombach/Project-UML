@@ -156,16 +156,16 @@ namespace Project_UML.Core
 
         public Point Scroll(Point point, bool isIncrease)
         {
-            float X , Y;
+            double X , Y;
             if (isIncrease)
             {
-                X = point.X * 1.02f;
-                Y = point.Y * 1.02f;
+                X = Math.Round(point.X + point.X * 0.01);
+                Y = Math.Round(point.Y + point.Y * 0.01);
             }
             else
             {
-                X = point.X * 0.98f;
-                Y = point.Y * 0.98f;
+                X = Math.Round(point.X - point.X * 0.00990099);
+                Y = Math.Round(point.Y - point.Y * 0.00990099);
             }
             Point newPoint = new Point((int)X, (int)Y);
             return newPoint;

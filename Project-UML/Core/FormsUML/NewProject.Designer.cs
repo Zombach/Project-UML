@@ -53,7 +53,6 @@ namespace Project_UML.Core.Forms
             this.ButtonRectangleEnum = new System.Windows.Forms.Button();
             this.ButtonRectangleInterface = new System.Windows.Forms.Button();
             this.ButtonRectangleClass = new System.Windows.Forms.Button();
-            this.Test = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.groupBoxStartAxis.SuspendLayout();
             this.groupBoxEndAxis.SuspendLayout();
@@ -228,18 +227,10 @@ namespace Project_UML.Core.Forms
             this.ButtonRectangleClass.UseVisualStyleBackColor = true;
             this.ButtonRectangleClass.Click += new System.EventHandler(this.ButtonRectangleClass_Click);
             // 
-            // Test
-            // 
-            resources.ApplyResources(this.Test, "Test");
-            this.Test.Name = "Test";
-            this.Test.UseVisualStyleBackColor = true;
-            this.Test.Click += new System.EventHandler(this.Test_Click);
-            // 
             // NewProject
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.Test);
             this.Controls.Add(this.ButtonRectangleClass);
             this.Controls.Add(this.ButtonRectangleInterface);
             this.Controls.Add(this.ButtonRectangleEnum);
@@ -257,9 +248,13 @@ namespace Project_UML.Core.Forms
             this.Controls.Add(this.groupBoxEndAxis);
             this.Controls.Add(this.groupBoxStartAxis);
             this.Controls.Add(this.Canvas);
+            this.KeyPreview = true;
             this.Name = "NewProject";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.NewProject_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDownControl);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressControl);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUpControl);
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).EndInit();
             this.groupBoxStartAxis.ResumeLayout(false);
             this.groupBoxStartAxis.PerformLayout();
@@ -296,7 +291,6 @@ namespace Project_UML.Core.Forms
         private System.Windows.Forms.Button ButtonRectangleEnum;
         private System.Windows.Forms.Button ButtonRectangleInterface;
         private System.Windows.Forms.Button ButtonRectangleClass;
-        private System.Windows.Forms.Button Test;
     }
 }
 
