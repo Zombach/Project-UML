@@ -57,6 +57,7 @@
     <Compile Include="Core\ConnectionPoint.cs" />
     <Compile Include="Core\CoreUML.cs" />
     <Compile Include="Core\DataProject\Interfaces\ILogs.cs" />
+    <Compile Include="Core\DataProject\Load.cs" />
     <Compile Include="Core\DataText.cs" />
     <Compile Include="Core\Encrypting\DecryptSaving.cs" />
     <Compile Include="Core\Encrypting\Encrypt.cs" />
@@ -172,18 +173,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -194,14 +195,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Test2.png" />
-    <None Include="Resources\Test.png" />
     <None Include="Resources\Tes34.png" />
     <None Include="Resources\Tes3.png" />
     <None Include="Resources\11.png" />
     <None Include="Resources\5.png" />
     <None Include="Resources\7.png" />
-    <None Include="Resources\8.png" />
     <None Include="Resources\9.png" />
     <None Include="Resources\10.png" />
     <None Include="Resources\333.png" />

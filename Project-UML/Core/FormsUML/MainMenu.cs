@@ -18,7 +18,7 @@ namespace Project_UML.Core.FormsUML
     {
         public MainMenu()
         {
-            Encrypt en = new Encrypt();
+            //Шифрование данных, необходимо вставить в моменте сохранения. Encrypt en = new Encrypt();
             InitializeComponent();
         }
 

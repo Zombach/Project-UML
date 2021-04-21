@@ -18,6 +18,8 @@ namespace Project_UML.Core.FormsUML
     public partial class Loading : Form
     {
         private Form _menu;
+        private SerializeData _data;
+        private Load _load;
         public Loading(Form menu)
         {
             InitializeComponent();
@@ -26,23 +28,11 @@ namespace Project_UML.Core.FormsUML
 
         private void Explorer_Click(object sender, EventArgs e)
         {
-            SerializeData data = null;
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "../../Save";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    CoreUML coreUML = CoreUML.GetCoreUML();
-                    BinaryConversion binary = new BinaryConversion();
-                    coreUML.MyPath = openFileDialog.FileName;
-                    data = binary.DeserializationDictionary();
-                    MessageBox.Show("Загрузка успешно завершена");
-                    coreUML.IsLoading = true;
-                }
-            }
-            NewProject newProject = new NewProject(_menu, data);
-            Hide();
+            _load = new Load();
+            _data = _load.LoadingData();
+            NewProject newProject = new NewProject(_menu, _data);
             newProject.Show();
+            Close();
         }
     }
 }

@@ -133,16 +133,6 @@ namespace Project_UML.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _8 {
-            get {
-                object obj = ResourceManager.GetObject("8", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap _9 {
             get {
                 object obj = ResourceManager.GetObject("9", resourceCulture);
@@ -176,26 +166,6 @@ namespace Project_UML.Properties {
         internal static System.Drawing.Bitmap Tes34 {
             get {
                 object obj = ResourceManager.GetObject("Tes34", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Test {
-            get {
-                object obj = ResourceManager.GetObject("Test", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Test2 {
-            get {
-                object obj = ResourceManager.GetObject("Test2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

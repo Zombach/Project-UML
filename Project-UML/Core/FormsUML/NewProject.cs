@@ -257,7 +257,9 @@ namespace Project_UML.Core.FormsUML
         {
             if (e.KeyCode == Keys.Escape)
             {
-                _menu.Show();
+                Menu menu = new Menu(_menu, this);
+                Enabled = false;
+                menu.Show();
             }
             if (e.KeyCode == Keys.Delete && e.Control)
             {
