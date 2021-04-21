@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Project_UML.Core.Boxes;
 using Project_UML.Core.DataProject.Structure;
 using Project_UML.Core.Interfaces;
 using Project_UML.Core.Interfaces.Get;
@@ -18,11 +19,12 @@ namespace Project_UML.Core.Arrows
     {
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
-        public Axises StartDirectionAxis { get; set; } = Axises.X;
-        public Axises EndDirectionAxis { get; set; } = Axises.X;
+        public Axis StartDirectionAxis { get; set; } = Axis.X;
+        public Axis EndDirectionAxis { get; set; } = Axis.X;
         public List<Point> Points { get; set; }
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
-        public float ScrollSize { get; set; } = 1f;
+
+        public Link SelectedLink { get; set; }
 
         public AbstractArrow()
         {
@@ -34,7 +36,7 @@ namespace Project_UML.Core.Arrows
             _pen = new Pen(color, width);
             SetEndCap();
         }
-        public AbstractArrow(Point startPoint, Point endPoint, Axises startDirectionAxis, Axises endDirectionAxis)
+        public AbstractArrow(Point startPoint, Point endPoint, Axis startDirectionAxis, Axis endDirectionAxis)
         {
             _pen = new Pen(Color.Black, 1);
             Points = GetPoints(startPoint, endPoint);
@@ -42,14 +44,19 @@ namespace Project_UML.Core.Arrows
             EndDirectionAxis = endDirectionAxis;
             SetEndCap();
         }
+
+        /// <summary>
+        /// Создание стрелы по предоставленным данным структуры
+        /// </summary>
+        /// <param name="arrow">Структура данных стрелы</param>
         public AbstractArrow(StructArrow arrow)
         {
             _pen = new Pen(arrow.Color, arrow.Width);
-            ScrollSize = 999 + arrow.Size;
+            //Необходимо дописать конструктор стрелы
         }
+
         public virtual void SetEndCap()
         {
-
         }
 
         public virtual void Draw(Graphics graphics)
@@ -62,7 +69,7 @@ namespace Project_UML.Core.Arrows
             Points = new List<Point>() { currentPoint };
             if (StartDirectionAxis == EndDirectionAxis)
             {
-                if (StartDirectionAxis == Axises.X)
+                if (StartDirectionAxis == Axis.X)
                 {
                     int middleX = (startPoint.X + endPoint.X) / 2;
                     Points.Add(new Point(middleX, startPoint.Y));
@@ -79,7 +86,7 @@ namespace Project_UML.Core.Arrows
             }
             else
             {
-                if (StartDirectionAxis == Axises.X)
+                if (StartDirectionAxis == Axis.X)
                 {
                     Points.Add(new Point(endPoint.X, startPoint.Y));
                     Points.Add(endPoint);
@@ -188,19 +195,170 @@ namespace Project_UML.Core.Arrows
                     ))
                 {
                     selected = true;
+                    Axis axis;
+                    if (Points[i - 1].X == Points[i].X)
+                    {
+                        axis = Axis.X;
+                    }
+                    else
+                    {
+                        axis = Axis.Y;
+                    }
+                    LinkType linkType;
+                    if (i - 1 == 0)
+                    {
+                        linkType = LinkType.First;
+                    }
+                    else if (i == Points.Count - 1)
+                    {
+                        linkType = LinkType.Last;
+                    }
+                    else
+                    {
+                        linkType = LinkType.Middle;
+                    }
+                    SelectedLink = new Link(i - 1, i, axis, linkType);
                     return selected;
                 }
             }
             return selected;
         }
 
-
+        public void Transform(Point e)
+        {
+            if (SelectedLink.IndexOfEndPoint != Points.Count - 1 && SelectedLink.IndexOfStartPoint != 0 && SelectedLink.LinkType == LinkType.Middle)
+            {
+                if (SelectedLink.Axis == Axis.X)
+                {
+                    Points[SelectedLink.IndexOfStartPoint] = new Point(e.X, Points[SelectedLink.IndexOfStartPoint].Y);
+                    Points[SelectedLink.IndexOfEndPoint] = new Point(e.X, Points[SelectedLink.IndexOfEndPoint].Y);
+                }
+                else
+                {
+                    Points[SelectedLink.IndexOfStartPoint] = new Point(Points[SelectedLink.IndexOfStartPoint].X, e.Y);
+                    Points[SelectedLink.IndexOfEndPoint] = new Point(Points[SelectedLink.IndexOfEndPoint].X, e.Y);
+                }
+            }
+            else if (SelectedLink.LinkType == LinkType.Last)
+            {
+                HookEndPointToFigure(e);
+                //GetPoints(Points[0], e);
+            }
+            else if (SelectedLink.LinkType == LinkType.First)
+            {
+                //GetPoints(e, Points[Points.Count - 1]);
+                HookStartPointToFigure(e);
+            }
+        }
 
         public void Select(Graphics graphics)
         {
             foreach (Point point in Points)
             {
                 graphics.DrawEllipse(_selectionPen, point.X - (_pen.Width * 3) / 2, point.Y - (_pen.Width * 3) / 2, _pen.Width * 3, _pen.Width * 3);
+            }
+        }
+
+        public void UpdArrow()
+        {
+            if (DataCommon.Count != 0)
+            {
+                Point startPoint = Points[0];
+
+                if (!(DataCommon[0].LastBox is null))
+                {
+                    UpdStartPoint(DataCommon[0].LastBox.GetMiddlePoint());
+                }
+                else
+                {
+                    UpdStartPoint(DataCommon[0].LastPoint);
+                }
+                UpdEndPoint(DataCommon[0].FirstPoint);
+            }
+            GetPoints(DataCommon[0].FirstPoint, DataCommon[0].LastPoint);
+        }
+
+        public void HookStartPointToFigure(Point e)
+        {
+            if (DataCommon.Count == 0)
+            {
+                DataCommon.Add(new DataCommon(this));
+            }
+            DataCommon[0].FirstPoint = e;
+            foreach (IFigure figure in CoreUML.GetCoreUML().Figures)
+            {
+                if (figure is AbstractBox && figure != DataCommon[0].LastBox)
+                {
+                    if (figure.CheckSelection(e, e, 0))
+                    {
+                        UpdEndPoint(figure.GetMiddlePoint());
+                        DataCommon[0].FirstBox = figure;
+                        ConnectionPoint startConnectionPoint = figure.GetConnectionPoint(Points[Points.Count - 1]);
+                        DataCommon[0].FirstPoint = startConnectionPoint.Point;
+                        GetPoints(startConnectionPoint.Point, Points[Points.Count - 1]);
+                        StartDirectionAxis = startConnectionPoint.Axis;
+                        return;
+                    }
+                }
+            }
+            if (!(DataCommon[0].FirstBox is null))
+            {
+                DataCommon[0].FirstBox.DataCommon.Remove(DataCommon[0]);
+                DataCommon[0].FirstBox = null;
+            }
+            UpdEndPoint(e);
+            GetPoints(e, Points[Points.Count - 1]);
+        }
+        public void HookEndPointToFigure(Point e)
+        {
+            if (DataCommon.Count == 0)
+            {
+                DataCommon.Add(new DataCommon(this));
+            }
+            DataCommon[0].LastPoint = e;
+            foreach (IFigure figure in CoreUML.GetCoreUML().Figures)
+            {
+                if (figure is AbstractBox && figure != DataCommon[0].FirstBox)
+                {
+                    if (figure.CheckSelection(e, e, 0))
+                    {
+                        UpdStartPoint(figure.GetMiddlePoint());
+                        DataCommon[0].LastBox = figure;
+                        ConnectionPoint endConnectionPoint = figure.GetConnectionPoint(Points[0]);
+                        DataCommon[0].LastPoint = endConnectionPoint.Point;
+                        GetPoints(Points[0], endConnectionPoint.Point);
+                        EndDirectionAxis = endConnectionPoint.Axis;
+                        return;
+                    }
+                }
+            }
+            if (!(DataCommon[0].LastBox is null))
+            {
+                DataCommon[0].LastBox.DataCommon.Remove(DataCommon[0]);
+                DataCommon[0].LastBox = null;
+            }
+            UpdStartPoint(e);
+            GetPoints(Points[0], e);
+        }
+
+        public void UpdStartPoint(Point e)
+        {
+            if (!(DataCommon[0].FirstBox is null))
+            {
+                ConnectionPoint connectionPoint = DataCommon[0].FirstBox.GetConnectionPoint(e);
+                Points[0] = connectionPoint.Point;
+                DataCommon[0].FirstPoint = connectionPoint.Point;
+                StartDirectionAxis = connectionPoint.Axis;
+            }
+        }
+        public void UpdEndPoint(Point e)
+        {
+            if (!(DataCommon[0].LastBox is null))
+            {
+                ConnectionPoint connectionPoint = DataCommon[0].LastBox.GetConnectionPoint(e);
+                Points[Points.Count - 1] = connectionPoint.Point;
+                DataCommon[0].LastPoint = connectionPoint.Point;
+                EndDirectionAxis = connectionPoint.Axis;
             }
         }
 
@@ -221,7 +379,7 @@ namespace Project_UML.Core.Arrows
         {
             throw new NotImplementedException();
         }
-        
+
         public Color GetColor()
         {
             return _pen.Color;
@@ -247,122 +405,9 @@ namespace Project_UML.Core.Arrows
             throw new NotImplementedException();
         }
 
-
-
-        //protected virtual Point GetPoint(Point currentPoint, int currentWay)
-        //{
-        //    Point newPoint = new Point();
-        //    if (currentWay == (int)Axises.Left)
-        //    {
-        //        if (currentPoint.X <= EndPoint.X)
-        //        {
-        //            newPoint.X = currentPoint.X - 15;
-        //            newPoint.Y = currentPoint.Y;
-        //        }
-        //        else
-        //        {
-        //            if (currentPoint.Y == EndPoint.Y)
-        //            {
-        //                newPoint = EndPoint;
-        //            }
-        //            else
-        //            {
-        //                newPoint.Y = currentPoint.Y;
-        //                newPoint.X = (currentPoint.X + EndPoint.X) / 2;
-        //            }
-        //        }
-        //    }
-
-        //    if (currentWay == (int)Axises.Right)
-        //    {
-        //        if (currentPoint.X >= EndPoint.X)
-        //        {
-        //            newPoint.X = currentPoint.X + 15;
-        //            newPoint.Y = currentPoint.Y;
-        //        }
-        //        else
-        //        {
-        //            if (currentPoint.Y == EndPoint.Y)
-        //            {
-        //                newPoint = EndPoint;
-        //            }
-        //            else
-        //            {
-        //                newPoint.Y = currentPoint.Y;
-        //                newPoint.X = (currentPoint.X + EndPoint.X) / 2;
-        //            }
-        //        }
-        //    }
-
-        //    if (currentWay == (int)Axises.Up)
-        //    {
-        //        if (currentPoint.Y <= EndPoint.Y)
-        //        {
-        //            newPoint.X = currentPoint.X;
-        //            newPoint.Y = currentPoint.Y - 15;
-        //        }
-        //        else
-        //        {
-        //            if (currentPoint.X == EndPoint.X)
-        //            {
-        //                newPoint = EndPoint;
-        //            }
-        //            else
-        //            {
-        //                newPoint.X = currentPoint.X;
-        //                newPoint.Y = (currentPoint.Y + EndPoint.Y) / 2;
-        //            }
-        //        }
-
-        //    }
-        //    if (currentWay == (int)Axises.Down)
-        //    {
-        //        if (currentPoint.X >= EndPoint.X)
-        //        {
-        //            newPoint.X = currentPoint.X;
-        //            newPoint.Y = currentPoint.Y + 15;
-        //        }
-        //        else
-        //        {
-        //            if (currentPoint.X == EndPoint.X)
-        //            {
-        //                newPoint = EndPoint;
-        //            }
-        //            else
-        //            {
-        //                newPoint.X = currentPoint.X;
-        //                newPoint.Y = (currentPoint.Y + EndPoint.Y) / 2;
-        //            }
-        //        }
-        //    }
-        //    return newPoint;
-        //}
-
-        //protected virtual int ChooseWay(Point currentPoint, int currentWay)
-        //{
-        //    if (currentWay == (int)Axises.Left || currentWay == (int)Axises.Right)
-        //    {
-        //        if (currentPoint.Y < EndPoint.Y)
-        //        {
-        //            return (int)Axises.Down;
-        //        }
-        //        else
-        //        {
-        //            return (int)Axises.Up;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (currentPoint.X < EndPoint.X)
-        //        {
-        //            return (int)Axises.Right;
-        //        }
-        //        else
-        //        {
-        //            return (int)Axises.Left;
-        //        }
-        //    }
-        //}
-
+        public Point GetMiddlePoint()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

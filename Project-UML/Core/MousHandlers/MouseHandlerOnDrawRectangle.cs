@@ -1,19 +1,15 @@
 ﻿using Project_UML.Core.Boxes;
 using Project_UML.Core.FigureFactory;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project_UML.Core.MousHandlers
 {
     public class MouseHandlerOnDrawRectangle : IMouseHandler
     {
-        private bool _isTapped;
-        private Point startPoint;
-        private CoreUML _coreUML = CoreUML.GetCoreUML();
+        public bool IsTapped { get; set; }
+        public CoreUML CoreUML { get; set; } = CoreUML.GetCoreUML();
+        public Point StartPoint { get; set; }
         private AbstractBox _newBox;
         IFigureFactory FigureFactory { get; set; }
         public MouseHandlerOnDrawRectangle(IFigureFactory factory)
@@ -22,22 +18,21 @@ namespace Project_UML.Core.MousHandlers
         }
         public void MouseDown(Point e)
         {
-            _newBox = (AbstractBox)FigureFactory.GetFigure(_coreUML.DefaultColor, (int)_coreUML.DefaultWidth);
+            _newBox = (AbstractBox)FigureFactory.GetFigure(CoreUML.DefaultColor, (int)CoreUML.DefaultWidth);
             _newBox.AddPoints(e);
-            _coreUML.Figures.Add(_newBox);
-            _coreUML.SwitchToDrawInTmp();
-            _newBox.Draw(_coreUML.Graphics);
-            _coreUML.BitmapMain = (Bitmap)_coreUML.BitmapTmp.Clone();
-            _coreUML.SelectedFigures.Clear();
-            _coreUML.SelectedFigures.Add(_newBox);
-            _coreUML.DrawSelectionOfFigures();
-            _coreUML.PictureBox.Image = _coreUML.BitmapTmp;
-
+            CoreUML.Figures.Add(_newBox);
+            CoreUML.SwitchToDrawInTmp();
+            _newBox.Draw(CoreUML.Graphics);
+            CoreUML.BitmapMain = (Bitmap)CoreUML.BitmapTmp.Clone();
+            CoreUML.SelectedFigures.Clear();
+            CoreUML.SelectedFigures.Add(_newBox);
+            CoreUML.DrawSelectionOfFigures();
+            CoreUML.PictureBox.Image = CoreUML.BitmapTmp;
         }
 
         public void MouseHover(Point e)
-        {
-            throw new NotImplementedException();
+        { 
+
         }
 
         public void MouseMove(Point e)

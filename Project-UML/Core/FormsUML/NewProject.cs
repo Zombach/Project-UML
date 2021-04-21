@@ -8,44 +8,76 @@ using Project_UML.Core.FigureFactory;
 using Project_UML.Core.Interfaces;
 using Project_UML.Core.DataProject;
 
-namespace Project_UML.Core.Forms
+namespace Project_UML.Core.FormsUML
 {
     /// <summary>
     /// 
     /// </summary>
     public partial class NewProject : Form
     {
-        CoreUML _coreUML = CoreUML.GetCoreUML();
-        List<AbstractArrow> _arrows = new List<AbstractArrow>();
-        //AbstractBox _currentBox;
-        IMouseHandler _crntMH = new MouseHandlerOnSelection();
-        public NewProject(SerializeData data)
+        private Form _menu;
+        private bool _isControlKeyOn = false;
+        private CoreUML _coreUML = CoreUML.GetCoreUML();
+        private List<AbstractArrow> _arrows = new List<AbstractArrow>();
+        private IMouseHandler _crntMH = new MouseHandlerOnSelection();
+        private IMouseHandler _tmpCrntMH;
+        public NewProject(Form menu, SerializeData data)
         {
             InitializeComponent();
-            if (_coreUML.isLoading)
+            _menu = menu;
+            if (_coreUML.IsLoading)
             {
                 DeserializeData deserializeData = new DeserializeData(data);
                 deserializeData.LoadingData(deserializeData);
                 trackBarOfWidth.Value = (int)_coreUML.DefaultWidth;
                 ButtonColor.BackColor = _coreUML.DefaultColor;
-                _coreUML.isLoading = false;
+                _coreUML.IsLoading = false;
             }
         }
 
-        public NewProject()
+        public NewProject(Form menu)
         {
             InitializeComponent();
-                        
+            _menu = menu;
+            this.MouseWheel += new MouseEventHandler(OnMouseWheel);
+        }
+
+        private void OnMouseWheel(object sender, MouseEventArgs e)
+        {
+            if(_isControlKeyOn)
+            {
+                if (e.Delta > 0)
+                {
+                    if (_coreUML.DefaultSize < 20)
+                    {
+                        _coreUML.DefaultSize++;
+                        ScrollSize(true);
+                    }
+                }
+                else
+                {
+                    if (_coreUML.DefaultSize > -20)
+                    {
+                        _coreUML.DefaultSize--;
+                        ScrollSize(false);
+                    }
+                }
+            }
+        }
+        private void ScrollSize(bool isIncrease)
+        {
+            _coreUML.ScrollSize(isIncrease);
+            _coreUML.UpdPicture();
         }
 
         private void NewProject_Load(object sender, EventArgs e)
         {
-            _coreUML.BitmapMain = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            _coreUML.BitmapTmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _coreUML.BitmapMain = new Bitmap(Canvas.Width, Canvas.Height);
+            _coreUML.BitmapTmp = new Bitmap(Canvas.Width, Canvas.Height);
             _coreUML.Graphics = Graphics.FromImage(_coreUML.BitmapMain);
             _coreUML.Graphics.Clear(Color.White);
-            _coreUML.PictureBox = pictureBox1;
-            pictureBox1.Image = _coreUML.BitmapMain;
+            _coreUML.PictureBox = Canvas;
+            Canvas.Image = _coreUML.BitmapMain;
         }
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -95,27 +127,27 @@ namespace Project_UML.Core.Forms
 
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            _crntMH.MouseMove(e.Location);
+            _crntMH.MouseMove(e.Location);            
         }
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            _coreUML.AxisStart = Axises.X;
+            _coreUML.AxisStart = Axis.X;
         }
 
         private void RadioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            _coreUML.AxisStart = Axises.Y;
+            _coreUML.AxisStart = Axis.Y;
         }
 
         private void RadioButton5_CheckedChanged(object sender, EventArgs e)
         {
-            _coreUML.AxisEnd = Axises.X;
+            _coreUML.AxisEnd = Axis.X;
         }
 
         private void RadioButton6_CheckedChanged(object sender, EventArgs e)
         {
-            _coreUML.AxisEnd = Axises.Y;
+            _coreUML.AxisEnd = Axis.Y;
         }
 
         private void ButtonColor_Click(object sender, EventArgs e)
@@ -215,5 +247,107 @@ namespace Project_UML.Core.Forms
         {
             _crntMH = new MouseHandlerOnDrawRectangle(new RectangleClassFactory());
         }
+
+        /// <summary>
+        /// KeyCode управления нажатий клавиши
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void KeyDownControl(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Menu menu = new Menu(_menu, this);
+                Enabled = false;
+                menu.Show();
+            }
+            if (e.KeyCode == Keys.Delete && e.Control)
+            {
+                ButtonClear_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.Z && e.Control)
+            {
+                this.Parent.Show();
+            }
+            if (e.KeyCode == Keys.A && e.Control)
+            {
+                _tmpCrntMH = _crntMH;
+                _crntMH = new MouseHandlerOnSelection();
+                _coreUML.SelectedFigures.Clear();
+                _coreUML.SelectedFigures.AddRange(_coreUML.Figures);
+                _crntMH.MouseUp(new Point(0,0));
+                _crntMH = _tmpCrntMH;
+            }
+
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                _isControlKeyOn = true;                
+            }
+
+            if (e.KeyCode == Keys.C && e.Control)
+            {
+            }
+            if (e.KeyCode == Keys.V && e.Control)
+            {
+
+            }
+
+            if (e.KeyCode == Keys.Oemplus && e.Control)
+            {
+            }
+            if (e.KeyCode == Keys.OemMinus && e.Control)
+            {
+            }
+            if (e.KeyCode == Keys.D0 && e.Control)
+            {
+            }
+
+            if ((e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down) && e.Control)
+            {
+                
+            }
+        }
+
+        private void buttonMove_Click(object sender, EventArgs e)
+        {
+            _crntMH = new MouseHandlerOnTransform();
+        }
+
+        private void buttonMove_Click_1(object sender, EventArgs e)
+        {
+            _crntMH = new MouseHandlerOnMove();
+        }
+
+        /// <summary>
+        /// KeyCode управления отпускания клавиши
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void KeyUpControl(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                _isControlKeyOn = false;
+            }
+        }
+
+        /// <summary>
+        /// KeyCode управления клавишами по их имени/символу
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void KeyPressControl(object sender, KeyPressEventArgs e)
+        {
+            //if (e.KeyChar == '=' && _isControlKeyOn)
+            //{
+            //    string sss = "";
+            //}
+            //if (e.KeyChar == '-' && _isControlKeyOn)
+            //{
+            //    string sss = "";
+            //}
+        }
+
+
     }
 }

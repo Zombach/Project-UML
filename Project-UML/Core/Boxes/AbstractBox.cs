@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Project_UML.Core.Interfaces.Get;
 using Project_UML.Core.Interfaces.Logics;
 using Project_UML.Core.Arrows;
+using Project_UML.Core.DataProject.Structure;
 
 namespace Project_UML.Core.Boxes
 {
@@ -27,18 +28,30 @@ namespace Project_UML.Core.Boxes
         protected int RectangleWidth { get; set; } = 100;
         protected int RectangleHeight { get; set; } = 150;
 
-        protected int _rectNameHeight { get; set; } = 20;
-        protected int _rectFieldHeight { get; set; } = 20;
-        protected int _rectPropertyHeight { get; set; } = 20;
-        protected int _rectMethodsHeight { get; set; }
-        public float ScrollSize { get; set; } = 1f;
+        protected int RectNameHeight { get; set; } = 20;
+        protected int RectFieldHeight { get; set; } = 20;
+        protected int RectPropertyHeight { get; set; } = 20;
+        protected int RectMethodsHeight { get; set; }
 
         protected Font font = new Font("Arial", 10);
 
-        //public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
+
+
+        public AbstractBox(Color color, int width)
+        {
+            _pen = new Pen(color, width);
+        }
+
+        /// <summary>
+        /// Конструктор для развертывания фигуры по структуре
+        /// </summary>
+        /// <param name="box"></param>
+        public AbstractBox(StructBox box)
+        {
+
+        }
 
 
         public virtual void AddPoints(Point point)
@@ -95,7 +108,20 @@ namespace Project_UML.Core.Boxes
 
         public void Move(int deltaX, int deltaY)
         {
-            throw new NotImplementedException();
+            List<Point> newPoints = new List<Point>();
+            foreach (Point point in Points)
+            {
+                Point currentPoint = point;
+                currentPoint.X += deltaX;
+                currentPoint.Y += deltaY;
+                newPoints.Add(currentPoint);
+            }
+            Points = newPoints;
+            foreach (DataCommon dataCommon in DataCommon)
+            {
+                AbstractArrow arrow = (AbstractArrow)dataCommon.Arrow;
+                arrow.UpdArrow();
+            }
         }
 
         public Color GetColor()
@@ -148,16 +174,21 @@ namespace Project_UML.Core.Boxes
             throw new NotImplementedException();
         }
 
+        public Point GetMiddlePoint()
+        {
+            return new Point((Points[0].X + Points[1].X) / 2, (Points[0].Y + Points[1].Y) / 2);
+        }
+
         public ConnectionPoint GetConnectionPoint(Point point)
         {
-            Point Middle = new Point((Points[0].X + Points[1].X) / 2, (Points[0].Y + Points[1].Y) / 2);
+            Point Middle = GetMiddlePoint();
             ConnectionPoint connectionPoint = new ConnectionPoint();
             int tmpX = Middle.X - point.X;
             int tmpY = Middle.Y - point.Y;
 
             if (Math.Abs(tmpX) < Math.Abs(tmpY))
             {
-                connectionPoint.Axis = Axises.Y;
+                connectionPoint.Axis = Axis.Y;
                 if (tmpY > 0)
                 {
                     connectionPoint.Point = new Point(Middle.X, Points[0].Y);
@@ -169,7 +200,7 @@ namespace Project_UML.Core.Boxes
             }
             else
             {
-                connectionPoint.Axis = Axises.X;
+                connectionPoint.Axis = Axis.X;
                 if (tmpX > 0)
                 {
                     connectionPoint.Point = new Point(Points[0].X, Middle.Y);
@@ -183,8 +214,10 @@ namespace Project_UML.Core.Boxes
             return connectionPoint;
         }
 
-
-
+        public void Transform(Point e)
+        {
+            throw new NotImplementedException();
+        }
 
 
 

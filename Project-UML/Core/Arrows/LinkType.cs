@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.Arrows
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public enum Axises
+    public enum LinkType
     {
-        X = 0,
-        Y = 1
+        First = 0,
+        Middle,
+        Last
     }
 }

@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Project_UML.Core.FigureFactory;
 using Project_UML.Core.DataProject;
+using Project_UML.Core.Boxes;
 
 namespace Project_UML.Core
 {
@@ -17,6 +18,7 @@ namespace Project_UML.Core
     /// </summary>
     public class CoreUML
     {
+        //God класс
         /// <summary>
         /// Объект класса
         /// </summary>
@@ -47,16 +49,16 @@ namespace Project_UML.Core
         /// <summary>
         /// Размер объектов для zoom.
         /// </summary>
-        public float DefaultSize { get; set; }
+        public int DefaultSize { get; set; }
         public string MyPath { get; set; }
 
         /// <summary>
         /// Временные поля (заглушки)
         /// </summary>
-        public Axises AxisStart = Axises.X;
-        public Axises AxisEnd = Axises.X;
+        public Axis AxisStart = Axis.X;
+        public Axis AxisEnd = Axis.X;
 
-        public bool isLoading { get; set; } = false;
+        public bool IsLoading { get; set; } = false;
 
 
         private CoreUML()
@@ -67,7 +69,7 @@ namespace Project_UML.Core
             DefaultWidth = 1;
             DefaultColor = Color.Black;
             DefaultFont = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-            DefaultSize = 1F;
+            DefaultSize = 0;
             MyPath = "";
         }
 
@@ -85,6 +87,11 @@ namespace Project_UML.Core
         {
             BitmapTmp = (Bitmap)BitmapMain.Clone();
             Graphics = Graphics.FromImage(BitmapTmp);
+            double dd = GC.GetTotalMemory(true);
+            if (GC.GetTotalMemory(true) > 9999073741824)
+            {
+                GC.Collect();
+            }
         }
 
         public void ChangeColorInSelectedFigures(Color color )
@@ -112,7 +119,6 @@ namespace Project_UML.Core
                 SwitchToDrawInTmp();
                 DrawSelectionOfFigures();
                 PictureBox.Image = BitmapTmp;
-
             }
             else
             {
@@ -123,19 +129,52 @@ namespace Project_UML.Core
 
         public void DrawSelectionOfFigures()
         {
+            SwitchToDrawInTmp();
             foreach (IFigure figure in SelectedFigures)
             {
                 figure.Select(Graphics);
             }
         }
 
+        public void ScrollSize(bool isIncrease)
+        {
+            foreach (IFigure  figure in Figures)
+            {
+                if (figure is AbstractArrow arrow)
+                {
+                    for(int i = 0; i < arrow.Points.Count; i++)
+                    {
+                        Point point = Scroll(arrow.Points[i], isIncrease);
+                        arrow.Points[i] = point;
+                    }
+                }
+                if (figure is AbstractBox box)
+                {
+                    for (int i = 0; i < box.Points.Count; i++)
+                    {
+                        Point point = Scroll(box.Points[i], isIncrease);
+                        box.Points[i] = point;
+                    }
+                }
+            }
+        }
 
-
-
-
-
-
-
+        public Point Scroll(Point point, bool isIncrease)
+        {
+            double X , Y;
+            if (isIncrease)
+            {
+                X = Math.Round(point.X + point.X * 0.01);
+                Y = Math.Round(point.Y + point.Y * 0.01);
+            }
+            else
+            {
+                X = Math.Round(point.X - point.X * 0.00990099);
+                Y = Math.Round(point.Y - point.Y * 0.00990099);
+            }
+            Point newPoint = new Point((int)X, (int)Y);
+            return newPoint;
+        }
 
 
         public static bool SaveDate()

@@ -10,40 +10,72 @@ using System;
 namespace Project_UML.Core.DataProject
 {
     /// <summary>
-    /// 
+    /// Сереализация
     /// </summary>
     [Serializable]
     public class SerializeData : ICoreUML
     {
-        private StructArrow _arrow;
-        private StructBox _box;
+        #region Переменные
         /// <summary>
-        /// Сериализация Ядра
+        /// Список структурных фигур
         /// </summary>
         public List<IBase> Base { get; set; }
+        /// <summary>
+        /// Список структурных действий с фигурами
+        /// </summary>
         public List<ILogs> Logs { get; set; }
-        public int DefaultWidth { get; set; }
+        /// <summary>
+        /// Цвет по умоолчанию
+        /// </summary>
         public Color DefaultColor { get; set; }
+        /// <summary>
+        /// Шрифт по умолчанию
+        /// </summary>
         public Font DefaultFont { get; set; }
-        public float DefaultSize { get; set; }
+        /// <summary>
+        /// Ширина по умолчанию
+        /// </summary>
+        public float DefaultWidth { get; set; }
+        /// <summary>
+        /// Размер фигур по умолчанию для скролла
+        /// </summary>
+        public int DefaultSize { get; set; }
+        /// <summary>
+        /// Структура Стрелы
+        /// </summary>
+        private StructArrow _arrow;
+        /// <summary>
+        /// Структура Бокса
+        /// </summary>
+        private StructBox _box;
+        #endregion
 
+        #region Методы
+        /// <summary>
+        /// Сереализация ядра и объектов програмы
+        /// </summary>
         public SerializeData()
         {
             CoreUML coreUML = CoreUML.GetCoreUML();
             List<IFigure> Figures = coreUML.Figures;
             Base = new List<IBase>();
-            Base = CreateObjectsFigure(Figures);
+            Base = CreateStructFigure(Figures);
 
             Logs = new List<ILogs>();
             Logs = CreateObjectsLogs();
 
-            DefaultWidth = (int)coreUML.DefaultWidth;
+            DefaultWidth = coreUML.DefaultWidth;
             DefaultColor = coreUML.DefaultColor;
             DefaultFont = coreUML.DefaultFont;
             DefaultSize = coreUML.DefaultSize;
         }
 
-        private List<IBase> CreateObjectsFigure(List<IFigure> Figures)
+        /// <summary>
+        /// Создание списка структур на базе списка фигур
+        /// </summary>
+        /// <param name="Figures">Список фигур</param>
+        /// <returns></returns>
+        private List<IBase> CreateStructFigure(List<IFigure> Figures)
         {
             List<IBase> iBase = new List<IBase>();
             for (int i = 0; i < Figures.Count; i++)
@@ -62,11 +94,15 @@ namespace Project_UML.Core.DataProject
             return iBase;
         }
 
+        /// <summary>
+        /// Создание списка структурных действий с фигурами
+        /// </summary>
+        /// <returns></returns>
         private List<ILogs> CreateObjectsLogs()
         {
             List<ILogs> logs = new List<ILogs>();
             return logs;
         }
-
+        #endregion
     }
 }

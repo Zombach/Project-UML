@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Act.cs" />
+    <Compile Include="Core\Arrows\Link.cs" />
+    <Compile Include="Core\Arrows\LinkType.cs" />
     <Compile Include="Core\Boxes\AbstractBox.cs" />
     <Compile Include="Core\Boxes\RectangleObject.cs" />
     <Compile Include="Core\Boxes\RectangleClass.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="Core\ConnectionPoint.cs" />
     <Compile Include="Core\CoreUML.cs" />
     <Compile Include="Core\DataProject\Interfaces\ILogs.cs" />
+    <Compile Include="Core\DataProject\Load.cs" />
     <Compile Include="Core\DataText.cs" />
     <Compile Include="Core\Encrypting\DecryptSaving.cs" />
     <Compile Include="Core\Encrypting\Encrypt.cs" />
@@ -63,6 +66,18 @@
     <Compile Include="Core\FigureFactory\RectangleClassFactory.cs" />
     <Compile Include="Core\FigureFactory\RectangleEnumFactory.cs" />
     <Compile Include="Core\FigureFactory\RectangleInterfaceFactory.cs" />
+    <Compile Include="Core\FormsUML\AboutUs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\FormsUML\AboutUs.Designer.cs">
+      <DependentUpon>AboutUs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\FormsUML\Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\FormsUML\Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\Interfaces\Draws\IChangeColor.cs" />
     <Compile Include="Core\Interfaces\Draws\IChangeWidth.cs" />
     <Compile Include="Core\Interfaces\Draws\IDraw.cs" />
@@ -80,7 +95,7 @@
     <Compile Include="Core\Interfaces\Logics\ISelect.cs" />
     <Compile Include="Core\Arrows\AbstractArrow.cs" />
     <Compile Include="Core\Arrows\AggregationArrow.cs" />
-    <Compile Include="Core\Arrows\Axises.cs" />
+    <Compile Include="Core\Axis.cs" />
     <Compile Include="Core\Arrows\CompositionArrow.cs" />
     <Compile Include="Core\Arrows\AssociationArrow.cs" />
     <Compile Include="Core\Arrows\ImplementationArrow.cs" />
@@ -98,6 +113,7 @@
     <Compile Include="Core\FigureFactory\InheritanceArrowFactory.cs" />
     <Compile Include="Core\MousHandlers\MouseHandlerOnDrawRectangle.cs" />
     <Compile Include="Core\MousHandlers\MouseHandlerOnMove.cs" />
+    <Compile Include="Core\MousHandlers\MouseHandlerOnTransform.cs" />
     <Compile Include="Core\DataProject\Interfaces\IDataCommon.cs" />
     <Compile Include="Core\DataProject\DeserializeData.cs" />
     <Compile Include="Core\DataProject\Structure\StructArrow.cs" />
@@ -122,11 +138,11 @@
     <Compile Include="Core\FormsUML\Loading.Designer.cs">
       <DependentUpon>Loading.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\FormsUML\Menu.cs">
+    <Compile Include="Core\FormsUML\MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Core\FormsUML\Menu.Designer.cs">
-      <DependentUpon>Menu.cs</DependentUpon>
+    <Compile Include="Core\FormsUML\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\FormsUML\NewProject.cs">
       <SubType>Form</SubType>
@@ -136,11 +152,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Core\FormsUML\AboutUs.resx">
+      <DependentUpon>AboutUs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Core\FormsUML\License.resx">
       <DependentUpon>License.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\FormsUML\Loading.resx">
       <DependentUpon>Loading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\FormsUML\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\FormsUML\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
@@ -150,17 +173,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -171,6 +195,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Tes34.png" />
+    <None Include="Resources\Tes3.png" />
+    <None Include="Resources\11.png" />
+    <None Include="Resources\5.png" />
+    <None Include="Resources\7.png" />
+    <None Include="Resources\9.png" />
+    <None Include="Resources\10.png" />
+    <None Include="Resources\333.png" />
+    <None Include="Resources\6.png" />
+    <Content Include="Resources\Logo.png" />
     <Content Include="Resources\icons\c-sharp.ico" />
     <Content Include="Resources\icons\aggregation.png" />
     <Content Include="Resources\icons\association.jpeg" />

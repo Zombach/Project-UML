@@ -32,7 +32,7 @@ namespace Project_UML.Core.Encrypting
             }
 
 
-            string okoko = "";
+            string okoko = "";//Стринг билдер
             for (int i = 0; i < tmp.Length; i++)
             {
                 if (i != tmp.Length - 1)

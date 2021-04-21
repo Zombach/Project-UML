@@ -15,20 +15,24 @@ namespace Project_UML.Core.DataProject
         public bool SerializationDictionary()
         {
             SetMyPath();
-            FileStream fileStream = new FileStream(_coreUML.MyPath, FileMode.Create, FileAccess.Write, FileShare.None);
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            SerializeData writeData = new SerializeData();
-            binaryFormatter.Serialize(fileStream, writeData);
-            fileStream.Close();
-            return true;
+            using (FileStream fileStream = new FileStream(_coreUML.MyPath, FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                SerializeData writeData = new SerializeData();
+                binaryFormatter.Serialize(fileStream, writeData);
+                fileStream.Close();
+                return true;
+            }
         }
         public SerializeData DeserializationDictionary()
         {
-            FileStream fileStream = new FileStream(_coreUML.MyPath, FileMode.Open, FileAccess.Read, FileShare.None);
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            SerializeData writeData = (SerializeData)binaryFormatter.Deserialize(fileStream);
-            fileStream.Close();
-            return writeData;
+            using (FileStream fileStream = new FileStream(_coreUML.MyPath, FileMode.Open, FileAccess.Read, FileShare.None))
+            {
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                SerializeData writeData = (SerializeData)binaryFormatter.Deserialize(fileStream);
+                fileStream.Close();
+                return writeData;
+            }
         }
 
         private void SetMyPath()
@@ -40,7 +44,6 @@ namespace Project_UML.Core.DataProject
             _coreUML.MyPath = Path.GetFullPath(_tmpName);
             //Microsoft.Win32.Registry.SetValue("HKEY_CLASSES_ROOT\\.Мы-Програмист", "", "UML Manager");
             //Microsoft.Win32.Registry.SetValue("HKEY_CLASSES_ROOT\\UML Manager\\DefaultIcon", "", "C:\\WINDOWS\\explorer.exe" + ",1");
-
         }
     }
 }

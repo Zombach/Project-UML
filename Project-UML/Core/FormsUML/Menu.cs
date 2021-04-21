@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_UML.Core.DataProject;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,39 +8,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Project_UML.Core;
-using Project_UML.Core.Encrypting;
 
-namespace Project_UML.Core.Forms
+namespace Project_UML.Core.FormsUML
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public partial class Menu : Form
     {
-        public Menu()
+        private Form _menu;
+        private Form _project;
+        private SerializeData _data;
+        private Load _load;
+        public Menu(Form menu, Form project)
         {
-            Encrypt en = new Encrypt();
             InitializeComponent();
+            _menu = menu;
+            _project = project;
         }
 
-        public void EnabledMenu()
+        private void MainMenu(object sender, EventArgs e)
         {
-            Show();
+            _menu.Show();            
+            Close();
         }
 
-        private void NewProject_Click(object sender, EventArgs e)
+        private void Cancel(object sender, EventArgs e)
         {
-            License licenseAgreement = new License();
-            Hide();
-            licenseAgreement.Show();
+            _project.Enabled = true;
+            Close();
         }
 
-        private void LoadProject_Click(object sender, EventArgs e)
+        private void LoadindAs(object sender, EventArgs e)
         {
-            Loading loading = new Loading();
-            Hide();
-            loading.Show();
+            _load = new Load();
+            _data = _load.LoadingData();
+            _project.Enabled = true;
+            _project.Close();
+            _project = new NewProject(_menu, _data);
+            _project.Show();
+            Close();
+
+
         }
     }
 }

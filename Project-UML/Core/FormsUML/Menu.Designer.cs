@@ -1,7 +1,7 @@
 ﻿
-namespace Project_UML.Core.Forms
+namespace Project_UML.Core.FormsUML
 {
-    public partial class Menu
+    partial class Menu
     {
         /// <summary>
         /// Required designer variable.
@@ -29,71 +29,122 @@ namespace Project_UML.Core.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.NewProject = new System.Windows.Forms.Button();
-            this.LoadProject = new System.Windows.Forms.Button();
-            this.AboutUs = new System.Windows.Forms.Button();
-            this.ExitProgramm = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // NewProject
+            // button1
             // 
-            this.NewProject.Location = new System.Drawing.Point(63, 34);
-            this.NewProject.Name = "NewProject";
-            this.NewProject.Size = new System.Drawing.Size(135, 48);
-            this.NewProject.TabIndex = 0;
-            this.NewProject.Text = "New project";
-            this.NewProject.UseVisualStyleBackColor = true;
-            this.NewProject.Click += new System.EventHandler(this.NewProject_Click);
+            this.button1.Location = new System.Drawing.Point(46, 28);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // LoadProject
+            // button2
             // 
-            this.LoadProject.Location = new System.Drawing.Point(63, 89);
-            this.LoadProject.Name = "LoadProject";
-            this.LoadProject.Size = new System.Drawing.Size(135, 48);
-            this.LoadProject.TabIndex = 4;
-            this.LoadProject.Text = "Load project";
-            this.LoadProject.UseVisualStyleBackColor = true;
-            this.LoadProject.Click += new System.EventHandler(this.LoadProject_Click);
+            this.button2.Location = new System.Drawing.Point(166, 28);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Save as";
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // AboutUs
+            // button3
             // 
-            this.AboutUs.Location = new System.Drawing.Point(63, 199);
-            this.AboutUs.Name = "AboutUs";
-            this.AboutUs.Size = new System.Drawing.Size(135, 48);
-            this.AboutUs.TabIndex = 1;
-            this.AboutUs.Text = "About us";
-            this.AboutUs.UseVisualStyleBackColor = true;
+            this.button3.Location = new System.Drawing.Point(299, 28);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Load last";
+            this.button3.UseVisualStyleBackColor = true;
             // 
-            // ExitProgramm
+            // button5
             // 
-            this.ExitProgramm.Location = new System.Drawing.Point(63, 254);
-            this.ExitProgramm.Name = "ExitProgramm";
-            this.ExitProgramm.Size = new System.Drawing.Size(135, 48);
-            this.ExitProgramm.TabIndex = 2;
-            this.ExitProgramm.Text = "Exit";
-            this.ExitProgramm.UseVisualStyleBackColor = true;
+            this.button5.Location = new System.Drawing.Point(299, 84);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "Load as";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.LoadindAs);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(166, 82);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 5;
+            this.button6.Text = "Encrypt as";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(299, 188);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 6;
+            this.button7.Text = "Cancel";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Cancel);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(166, 188);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 7;
+            this.button8.Text = "Main Menu";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.MainMenu);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(59, 88);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(62, 17);
+            this.checkBox1.TabIndex = 8;
+            this.checkBox1.Text = "Encrypt";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // Menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(264, 337);
-            this.Controls.Add(this.AboutUs);
-            this.Controls.Add(this.ExitProgramm);
-            this.Controls.Add(this.LoadProject);
-            this.Controls.Add(this.NewProject);
-            this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.ClientSize = new System.Drawing.Size(434, 223);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Name = "Menu";
-            this.Text = "UML Manager";
+            this.Text = "Menu";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button NewProject;
-        private System.Windows.Forms.Button LoadProject;
-        private System.Windows.Forms.Button AboutUs;
-        private System.Windows.Forms.Button ExitProgramm;
+
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
-

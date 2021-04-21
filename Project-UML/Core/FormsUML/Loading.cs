@@ -10,42 +10,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Project_UML.Core.Forms
+namespace Project_UML.Core.FormsUML
 {
     /// <summary>
     /// 
     /// </summary>
     public partial class Loading : Form
     {
-        public Loading()
+        private Form _menu;
+        private SerializeData _data;
+        private Load _load;
+        public Loading(Form menu)
         {
             InitializeComponent();
+            _menu = menu;
         }
 
         private void Explorer_Click(object sender, EventArgs e)
         {
-            SerializeData data = null;
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "../../Save";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    CoreUML coreUML = CoreUML.GetCoreUML();
-                    BinaryConversion binary = new BinaryConversion();
-                    coreUML.MyPath = openFileDialog.FileName;
-                    data = binary.DeserializationDictionary();
-                    MessageBox.Show("Загрузка успешно завершена");
-                    coreUML.isLoading = true;
-                }
-            }
-            //int s = CoreUML.Figures[0];
-            //int s1 = CoreUML.Figures[1];
-            //int s2 = CoreUML.Figures[2];
-            //int s3 = CoreUML.Figures[3];
-            //MessageBox.Show($"s = {s} s1 = {s1} s2 = {s2} s3 = {s3}");
-            NewProject newProject = new NewProject(data);
-            Hide();
+            _load = new Load();
+            _data = _load.LoadingData();
+            NewProject newProject = new NewProject(_menu, _data);
             newProject.Show();
+            Close();
         }
     }
 }

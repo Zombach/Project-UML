@@ -1,104 +1,95 @@
 ﻿using Project_UML.Core.Arrows;
 using Project_UML.Core.Boxes;
 using Project_UML.Core.FigureFactory;
-using Project_UML.Core.Forms;
 using Project_UML.Core.Interfaces;
-using Project_UML.Core.Interfaces.Get;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Project_UML.Core.MousHandlers
 {
     public class MouseHandlerOnDrawArrows : IMouseHandler
     {
-        private bool _isTapped;
-        private Point startPoint;
-        private CoreUML _coreUML = CoreUML.GetCoreUML();
+        public bool IsTapped { get; set; }
+        public CoreUML CoreUML { get; set; } = CoreUML.GetCoreUML();
+        public Point StartPoint { get; set; }
         private AbstractArrow _newArrow;
         IFigureFactory FigureFactory { get; set; }
+
         //private DataCommon _dataCommon = new DataCommon();
         public MouseHandlerOnDrawArrows(IFigureFactory figureFactory)
         {
-            _isTapped = false;
+            IsTapped = false;
             FigureFactory = figureFactory;
-
-
         }
 
         public void MouseDown(Point e)
         {
-            if (!_isTapped)
+            if (!IsTapped)
             {
-                startPoint = new Point(e.X, e.Y);
-                _isTapped = true;
-                _newArrow = (AbstractArrow)FigureFactory.GetFigure(_coreUML.DefaultColor, (int)_coreUML.DefaultWidth);
-                _newArrow.DataCommon.Add(new DataCommon(_newArrow));
-                _newArrow.DataCommon[0].FirstPoint = e;
-                foreach (IFigure figure in _coreUML.Figures)
-                {
-                    if (figure is AbstractBox)
-                    {
-                        if (figure.CheckSelection(e, e, 0))
-                        {
-                            _newArrow.DataCommon[0].FirstBox = figure;
-
-                            break;
-                        }
-                    }
-                }
-
-
-                //_dataCommon.Write(e, true, sender);
+                StartPoint = new Point(e.X, e.Y);
+                IsTapped = true;
+                _newArrow = (AbstractArrow)FigureFactory.GetFigure(CoreUML.DefaultColor, (int)CoreUML.DefaultWidth);
+                _newArrow.GetPoints(e, e);
+                _newArrow.HookStartPointToFigure(e);
+                //_newArrow.DataCommon.Add(new DataCommon(_newArrow));
+                //_newArrow.DataCommon[0].FirstPoint = e;
+                //foreach (IFigure figure in CoreUML.Figures)
+                //{
+                //    if (figure is AbstractBox)
+                //    {
+                //        if (figure.CheckSelection(e, e, 0))
+                //        {
+                //            _newArrow.DataCommon[0].FirstBox = figure;
+                //            break;
+                //        }
+                //    }
+                //}
             }
 
         }
 
         public void MouseMove(Point e)
         {
-            if (_isTapped)
+            if (IsTapped)
             {
-                if (!(_newArrow.DataCommon[0].FirstBox is null))
-                {
-                    ConnectionPoint startConnectionPoint = _newArrow.DataCommon[0].FirstBox.GetConnectionPoint(e);
-                    _newArrow.DataCommon[0].FirstPoint = startConnectionPoint.Point;
-                    _newArrow.StartDirectionAxis = startConnectionPoint.Axis;
-                }
-                _coreUML.SwitchToDrawInTmp();
-
-                foreach (IFigure figure in _coreUML.Figures)
-                {
-                    if (figure is AbstractBox && figure != _newArrow.DataCommon[0].FirstBox)
-                    {
-                        if (figure.CheckSelection(e, e, 0))
-                        {
-                            _newArrow.DataCommon[0].LastBox = figure;
-                            ConnectionPoint endConnectionPoint = figure.GetConnectionPoint(_newArrow.DataCommon[0].FirstPoint);
-                            _newArrow.DataCommon[0].LastPoint = endConnectionPoint.Point;
-                            _newArrow.EndDirectionAxis = endConnectionPoint.Axis;
-                            break;
-                        }
-                    }
-                    _newArrow.DataCommon[0].LastBox = null;
-                }
-                if (_newArrow.DataCommon[0].LastBox == null)
-                {
-                    _newArrow.DataCommon[0].LastPoint = e;
-                }
-                _newArrow.GetPoints(_newArrow.DataCommon[0].FirstPoint, _newArrow.DataCommon[0].LastPoint);
-                _newArrow.Draw(_coreUML.Graphics);
-                _coreUML.PictureBox.Image = _coreUML.BitmapTmp;
+                //if (!(_newArrow.DataCommon[0].FirstBox is null))
+                //{
+                //    ConnectionPoint startConnectionPoint = _newArrow.DataCommon[0].FirstBox.GetConnectionPoint(e);
+                //    _newArrow.DataCommon[0].FirstPoint = startConnectionPoint.Point;
+                //    _newArrow.StartDirectionAxis = startConnectionPoint.Axis;
+                //}
+                CoreUML.SwitchToDrawInTmp();
+                _newArrow.UpdStartPoint(e);
+                _newArrow.HookEndPointToFigure(e);
+                //foreach (IFigure figure in CoreUML.Figures)
+                //{
+                //    if (figure is AbstractBox && figure != _newArrow.DataCommon[0].FirstBox)
+                //    {
+                //        if (figure.CheckSelection(e, e, 0))
+                //        {
+                //            _newArrow.DataCommon[0].LastBox = figure;
+                //            ConnectionPoint endConnectionPoint = figure.GetConnectionPoint(_newArrow.DataCommon[0].FirstPoint);
+                //            _newArrow.DataCommon[0].LastPoint = endConnectionPoint.Point;
+                //            _newArrow.EndDirectionAxis = endConnectionPoint.Axis;
+                //            break;
+                //        }
+                //    }
+                //    _newArrow.DataCommon[0].LastBox = null;
+                //}
+                //if (_newArrow.DataCommon[0].LastBox == null)
+                //{
+                //    _newArrow.DataCommon[0].LastPoint = e;
+                //}
+                //_newArrow.GetPoints(_newArrow.DataCommon[0].FirstPoint, _newArrow.DataCommon[0].LastPoint);
+                _newArrow.Draw(CoreUML.Graphics);
+                CoreUML.PictureBox.Image = CoreUML.BitmapTmp;
             }
         }
 
         public void MouseUp(Point e)
         {
-            if (_isTapped)
-                if (startPoint.X != e.X || startPoint.Y != e.Y)
+            if (IsTapped)
+                if (StartPoint.X != e.X || StartPoint.Y != e.Y)
                 {
                     if (!(_newArrow.DataCommon[0].FirstBox is null))
                     {
@@ -108,15 +99,15 @@ namespace Project_UML.Core.MousHandlers
                     {
                         _newArrow.DataCommon[0].LastBox.DataCommon.Add(_newArrow.DataCommon[0]);
                     }
-                    _coreUML.BitmapMain = (Bitmap)_coreUML.BitmapTmp.Clone();
-                    _coreUML.Figures.Add(_newArrow);
-                    _coreUML.SelectedFigures.Clear();
-                    _coreUML.SelectedFigures.Add(_newArrow);
-                    _coreUML.DrawSelectionOfFigures();
+                    CoreUML.BitmapMain = CoreUML.BitmapTmp;
+                    CoreUML.Figures.Add(_newArrow);
+                    CoreUML.SelectedFigures.Clear();
+                    CoreUML.SelectedFigures.Add(_newArrow);
+                    CoreUML.DrawSelectionOfFigures();
                     //_dataCommon.Write(e, false, sender);
                     //AddArrowToListCommonPoints();
-                    _isTapped = false;
-                    _coreUML.PictureBox.Invalidate();
+                    IsTapped = false;
+                    CoreUML.PictureBox.Image = CoreUML.BitmapTmp;
                 }
         }
 
@@ -144,7 +135,6 @@ namespace Project_UML.Core.MousHandlers
 
         public void MouseHover(Point e)
         {
-            throw new NotImplementedException();
         }
     }
 }

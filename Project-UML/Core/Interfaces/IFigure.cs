@@ -12,10 +12,14 @@ namespace Project_UML.Core.Interfaces
     /// </summary>
     public interface IFigure : IFigureLogics, IFigureDraws, IGetParametr
     {
-        float ScrollSize { get; set; }
         int GetHeight();
         void Select(Graphics graphics);
         bool CheckSelection(Point startPoint, Point endPoint, int inaccuracy = 0);
+
+        void Transform(Point e);
+
+        Point GetMiddlePoint();
+
         List<Point> Points { get; set; }
         List<DataCommon> DataCommon { get; set; }
     }
