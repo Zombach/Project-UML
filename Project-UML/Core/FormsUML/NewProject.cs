@@ -264,5 +264,10 @@ namespace Project_UML.Core.Forms
         {
             _crntMH = new MouseHandlerOnTransform();
         }
+
+        private void buttonMove_Click_1(object sender, EventArgs e)
+        {
+            _crntMH = new MouseHandlerOnMove();
+        }
     }
 }

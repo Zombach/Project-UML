@@ -117,6 +117,11 @@ namespace Project_UML.Core.Boxes
                 newPoints.Add(currentPoint);
             }
             Points = newPoints;
+            foreach (DataCommon dataCommon in DataCommon)
+            {
+                AbstractArrow arrow = (AbstractArrow)dataCommon.Arrow;
+                arrow.UpdArrow();
+            }
         }
 
         public Color GetColor()
@@ -169,9 +174,14 @@ namespace Project_UML.Core.Boxes
             throw new NotImplementedException();
         }
 
+        public Point GetMiddlePoint()
+        {
+            return new Point((Points[0].X + Points[1].X) / 2, (Points[0].Y + Points[1].Y) / 2);
+        }
+
         public ConnectionPoint GetConnectionPoint(Point point)
         {
-            Point Middle = new Point((Points[0].X + Points[1].X) / 2, (Points[0].Y + Points[1].Y) / 2);
+            Point Middle = GetMiddlePoint();
             ConnectionPoint connectionPoint = new ConnectionPoint();
             int tmpX = Middle.X - point.X;
             int tmpY = Middle.Y - point.Y;

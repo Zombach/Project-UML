@@ -99,6 +99,7 @@
     <Compile Include="Core\FigureFactory\ImplementationArrowFactory.cs" />
     <Compile Include="Core\FigureFactory\InheritanceArrowFactory.cs" />
     <Compile Include="Core\MousHandlers\MouseHandlerOnDrawRectangle.cs" />
+    <Compile Include="Core\MousHandlers\MouseHandlerOnMove.cs" />
     <Compile Include="Core\MousHandlers\MouseHandlerOnTransform.cs" />
     <Compile Include="Core\DataProject\Interfaces\IDataCommon.cs" />
     <Compile Include="Core\DataProject\DeserializeData.cs" />

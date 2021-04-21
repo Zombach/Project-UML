@@ -54,6 +54,7 @@ namespace Project_UML.Core.Forms
             this.ButtonRectangleInterface = new System.Windows.Forms.Button();
             this.ButtonRectangleClass = new System.Windows.Forms.Button();
             this.Test = new System.Windows.Forms.Button();
+            this.buttonTransform = new System.Windows.Forms.Button();
             this.buttonMove = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.groupBoxStartAxis.SuspendLayout();
@@ -236,18 +237,26 @@ namespace Project_UML.Core.Forms
             this.Test.UseVisualStyleBackColor = true;
             this.Test.Click += new System.EventHandler(this.Test_Click);
             // 
+            // buttonTransform
+            // 
+            resources.ApplyResources(this.buttonTransform, "buttonTransform");
+            this.buttonTransform.Name = "buttonTransform";
+            this.buttonTransform.UseVisualStyleBackColor = true;
+            this.buttonTransform.Click += new System.EventHandler(this.buttonMove_Click);
+            // 
             // buttonMove
             // 
             resources.ApplyResources(this.buttonMove, "buttonMove");
             this.buttonMove.Name = "buttonMove";
             this.buttonMove.UseVisualStyleBackColor = true;
-            this.buttonMove.Click += new System.EventHandler(this.buttonMove_Click);
+            this.buttonMove.Click += new System.EventHandler(this.buttonMove_Click_1);
             // 
             // NewProject
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.buttonMove);
+            this.Controls.Add(this.buttonTransform);
             this.Controls.Add(this.Test);
             this.Controls.Add(this.ButtonRectangleClass);
             this.Controls.Add(this.ButtonRectangleInterface);
@@ -306,6 +315,7 @@ namespace Project_UML.Core.Forms
         private System.Windows.Forms.Button ButtonRectangleInterface;
         private System.Windows.Forms.Button ButtonRectangleClass;
         private System.Windows.Forms.Button Test;
+        private System.Windows.Forms.Button buttonTransform;
         private System.Windows.Forms.Button buttonMove;
     }
 }

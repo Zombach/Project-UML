@@ -18,6 +18,8 @@ namespace Project_UML.Core.Interfaces
 
         void Transform(Point e);
 
+        Point GetMiddlePoint();
+
         List<Point> Points { get; set; }
         List<DataCommon> DataCommon { get; set; }
     }

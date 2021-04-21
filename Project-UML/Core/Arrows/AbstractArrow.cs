@@ -209,7 +209,7 @@ namespace Project_UML.Core.Arrows
                     {
                         linkType = LinkType.First;
                     }
-                    else if (i == Points.Count-1)
+                    else if (i == Points.Count - 1)
                     {
                         linkType = LinkType.Last;
                     }
@@ -217,7 +217,7 @@ namespace Project_UML.Core.Arrows
                     {
                         linkType = LinkType.Middle;
                     }
-                        SelectedLink = new Link(i - 1, i, axis, linkType);
+                    SelectedLink = new Link(i - 1, i, axis, linkType);
                     return selected;
                 }
             }
@@ -259,6 +259,25 @@ namespace Project_UML.Core.Arrows
             }
         }
 
+        public void UpdArrow()
+        {
+            if (DataCommon.Count != 0)
+            {
+                Point startPoint = Points[0];
+
+                if (!(DataCommon[0].LastBox is null))
+                {
+                    UpdStartPoint(DataCommon[0].LastBox.GetMiddlePoint());
+                }
+                else
+                {
+                    UpdStartPoint(DataCommon[0].LastPoint);
+                }
+                UpdEndPoint(DataCommon[0].FirstPoint);
+            }
+            GetPoints(DataCommon[0].FirstPoint, DataCommon[0].LastPoint);
+        }
+
         public void HookStartPointToFigure(Point e)
         {
             if (DataCommon.Count == 0)
@@ -272,6 +291,7 @@ namespace Project_UML.Core.Arrows
                 {
                     if (figure.CheckSelection(e, e, 0))
                     {
+                        UpdEndPoint(figure.GetMiddlePoint());
                         DataCommon[0].FirstBox = figure;
                         ConnectionPoint startConnectionPoint = figure.GetConnectionPoint(Points[Points.Count - 1]);
                         DataCommon[0].FirstPoint = startConnectionPoint.Point;
@@ -286,6 +306,7 @@ namespace Project_UML.Core.Arrows
                 DataCommon[0].FirstBox.DataCommon.Remove(DataCommon[0]);
                 DataCommon[0].FirstBox = null;
             }
+            UpdEndPoint(e);
             GetPoints(e, Points[Points.Count - 1]);
         }
         public void HookEndPointToFigure(Point e)
@@ -301,6 +322,7 @@ namespace Project_UML.Core.Arrows
                 {
                     if (figure.CheckSelection(e, e, 0))
                     {
+                        UpdStartPoint(figure.GetMiddlePoint());
                         DataCommon[0].LastBox = figure;
                         ConnectionPoint endConnectionPoint = figure.GetConnectionPoint(Points[0]);
                         DataCommon[0].LastPoint = endConnectionPoint.Point;
@@ -315,6 +337,7 @@ namespace Project_UML.Core.Arrows
                 DataCommon[0].LastBox.DataCommon.Remove(DataCommon[0]);
                 DataCommon[0].LastBox = null;
             }
+            UpdStartPoint(e);
             GetPoints(Points[0], e);
         }
 
@@ -324,6 +347,7 @@ namespace Project_UML.Core.Arrows
             {
                 ConnectionPoint connectionPoint = DataCommon[0].FirstBox.GetConnectionPoint(e);
                 Points[0] = connectionPoint.Point;
+                DataCommon[0].FirstPoint = connectionPoint.Point;
                 StartDirectionAxis = connectionPoint.Axis;
             }
         }
@@ -333,6 +357,7 @@ namespace Project_UML.Core.Arrows
             {
                 ConnectionPoint connectionPoint = DataCommon[0].LastBox.GetConnectionPoint(e);
                 Points[Points.Count - 1] = connectionPoint.Point;
+                DataCommon[0].LastPoint = connectionPoint.Point;
                 EndDirectionAxis = connectionPoint.Axis;
             }
         }
@@ -380,6 +405,9 @@ namespace Project_UML.Core.Arrows
             throw new NotImplementedException();
         }
 
-
+        public Point GetMiddlePoint()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
