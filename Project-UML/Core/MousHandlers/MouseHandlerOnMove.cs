@@ -23,21 +23,23 @@ namespace Project_UML.Core.MousHandlers
             StartPoint = e;
             foreach (IFigure figure in CoreUML.SelectedFigures)
             {
-                if (figure.CheckSelection(e, e, 2))
+                CoreUML.Figures.Remove(figure);
+                if (figure is AbstractArrow)
                 {
-                    CoreUML.Figures.Remove(figure);
-                    if (figure is AbstractBox)
+                    _tmpArrows.Remove((AbstractArrow)figure);
+                }
+                if (figure is AbstractBox)
+                {
+                    foreach (DataCommon dataCommon in figure.DataCommon)
                     {
-                        foreach (DataCommon dataCommon in figure.DataCommon)
+                        if (CoreUML.Figures.Remove(dataCommon.Arrow))
                         {
-                            if (CoreUML.Figures.Remove(dataCommon.Arrow))
-                            {
-                                _tmpArrows.Add((AbstractArrow)dataCommon.Arrow);
-                            }
+                            _tmpArrows.Add((AbstractArrow)dataCommon.Arrow);
                         }
                     }
-                    IsTapped = true;
                 }
+                IsTapped = true;
+
             }
             if (IsTapped)
             {
@@ -66,10 +68,10 @@ namespace Project_UML.Core.MousHandlers
                     figure.Move(e.X - StartPoint.X, e.Y - StartPoint.Y);
                     figure.Draw(CoreUML.Graphics);
                     figure.Select(CoreUML.Graphics);
-                    foreach (AbstractArrow arrow in _tmpArrows)
-                    {
-                        arrow.Draw(CoreUML.Graphics);
-                    }
+                }
+                foreach (AbstractArrow arrow in _tmpArrows)
+                {
+                    arrow.Draw(CoreUML.Graphics);
                 }
                 StartPoint = e;
                 CoreUML.PictureBox.Image = CoreUML.BitmapTmp;
@@ -85,13 +87,11 @@ namespace Project_UML.Core.MousHandlers
                 {
                     CoreUML.Figures.Add(figure);
                     figure.Draw(CoreUML.Graphics);
-
-                    foreach (AbstractArrow arrow in _tmpArrows)
-                    {
-                        CoreUML.Figures.Add(arrow);
-                        arrow.Draw(CoreUML.Graphics);
-                    }
-
+                }
+                foreach (AbstractArrow arrow in _tmpArrows)
+                {
+                    CoreUML.Figures.Add(arrow);
+                    arrow.Draw(CoreUML.Graphics);
                 }
                 CoreUML.BitmapMain = CoreUML.BitmapTmp;
                 CoreUML.DrawSelectionOfFigures();
