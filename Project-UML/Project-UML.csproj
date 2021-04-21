@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Act.cs" />
+    <Compile Include="Core\Arrows\Link.cs" />
+    <Compile Include="Core\Arrows\LinkType.cs" />
     <Compile Include="Core\Boxes\AbstractBox.cs" />
     <Compile Include="Core\Boxes\RectangleObject.cs" />
     <Compile Include="Core\Boxes\RectangleClass.cs" />
@@ -80,7 +82,7 @@
     <Compile Include="Core\Interfaces\Logics\ISelect.cs" />
     <Compile Include="Core\Arrows\AbstractArrow.cs" />
     <Compile Include="Core\Arrows\AggregationArrow.cs" />
-    <Compile Include="Core\Axises.cs" />
+    <Compile Include="Core\Axis.cs" />
     <Compile Include="Core\Arrows\CompositionArrow.cs" />
     <Compile Include="Core\Arrows\AssociationArrow.cs" />
     <Compile Include="Core\Arrows\ImplementationArrow.cs" />
@@ -97,7 +99,7 @@
     <Compile Include="Core\FigureFactory\ImplementationArrowFactory.cs" />
     <Compile Include="Core\FigureFactory\InheritanceArrowFactory.cs" />
     <Compile Include="Core\MousHandlers\MouseHandlerOnDrawRectangle.cs" />
-    <Compile Include="Core\MousHandlers\MouseHandlerOnMove.cs" />
+    <Compile Include="Core\MousHandlers\MouseHandlerOnTransform.cs" />
     <Compile Include="Core\DataProject\Interfaces\IDataCommon.cs" />
     <Compile Include="Core\DataProject\DeserializeData.cs" />
     <Compile Include="Core\DataProject\Structure\StructArrow.cs" />

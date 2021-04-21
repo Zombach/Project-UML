@@ -23,8 +23,8 @@ namespace Project_UML.Core.Arrows
         {
         }
 
-        public ImplementationArrow(Point startPoint, Point endPoint, Axises startDirectionAxis
-            , Axises endDirectionAxis) : base(startPoint, endPoint, startDirectionAxis, endDirectionAxis)
+        public ImplementationArrow(Point startPoint, Point endPoint, Axis startDirectionAxis
+            , Axis endDirectionAxis) : base(startPoint, endPoint, startDirectionAxis, endDirectionAxis)
         {
         }
         public ImplementationArrow(StructArrow arrow) : base(arrow)

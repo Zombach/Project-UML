@@ -178,7 +178,7 @@ namespace Project_UML.Core.Boxes
 
             if (Math.Abs(tmpX) < Math.Abs(tmpY))
             {
-                connectionPoint.Axis = Axises.Y;
+                connectionPoint.Axis = Axis.Y;
                 if (tmpY > 0)
                 {
                     connectionPoint.Point = new Point(Middle.X, Points[0].Y);
@@ -190,7 +190,7 @@ namespace Project_UML.Core.Boxes
             }
             else
             {
-                connectionPoint.Axis = Axises.X;
+                connectionPoint.Axis = Axis.X;
                 if (tmpX > 0)
                 {
                     connectionPoint.Point = new Point(Points[0].X, Middle.Y);
@@ -202,6 +202,11 @@ namespace Project_UML.Core.Boxes
 
             }
             return connectionPoint;
+        }
+
+        public void Transform(Point e)
+        {
+            throw new NotImplementedException();
         }
 
 

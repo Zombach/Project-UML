@@ -55,8 +55,8 @@ namespace Project_UML.Core
         /// <summary>
         /// Временные поля (заглушки)
         /// </summary>
-        public Axises AxisStart = Axises.X;
-        public Axises AxisEnd = Axises.X;
+        public Axis AxisStart = Axis.X;
+        public Axis AxisEnd = Axis.X;
 
         public bool IsLoading { get; set; } = false;
 
@@ -125,6 +125,7 @@ namespace Project_UML.Core
 
         public void DrawSelectionOfFigures()
         {
+            SwitchToDrawInTmp();
             foreach (IFigure figure in SelectedFigures)
             {
                 figure.Select(Graphics);
@@ -164,8 +165,8 @@ namespace Project_UML.Core
             }
             else
             {
-                X = point.X * 0.98f;
-                Y = point.Y * 0.98f;
+                X = point.X / 1.02f;
+                Y = point.Y / 1.02f;
             }
             Point newPoint = new Point((int)X, (int)Y);
             return newPoint;
