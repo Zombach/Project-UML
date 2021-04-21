@@ -81,7 +81,7 @@ namespace Project_UML.Core.FormsUML
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Image = global::Project_UML.Properties.Resources._8;
+            this.pictureBox6.Image = global::Project_UML.Properties.Resources._9;
             this.pictureBox6.Location = new System.Drawing.Point(472, 293);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(270, 39);
