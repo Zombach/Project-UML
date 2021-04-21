@@ -18,7 +18,7 @@ namespace Project_UML.Core.Forms
     /// </summary>
     public partial class NewProject : Form
     {
-        private bool _isCtrlOn = false;
+        private bool _isControlKeyOn = false;
         private CoreUML _coreUML = CoreUML.GetCoreUML();
         List<AbstractArrow> _arrows = new List<AbstractArrow>();
         IMouseHandler _crntMH = new MouseHandlerOnSelection();
@@ -44,7 +44,7 @@ namespace Project_UML.Core.Forms
 
         private void OnMouseWheel(object sender, MouseEventArgs e)
         {
-            if(_isCtrlOn)
+            if(_isControlKeyOn)
             {
                 if (e.Delta > 0)
                 {
@@ -253,11 +253,82 @@ namespace Project_UML.Core.Forms
             _crntMH = new MouseHandlerOnDrawRectangle(new RectangleClassFactory());
         }
 
-        private void Test_Click(object sender, EventArgs e)
+        /// <summary>
+        /// KeyCode управления нажатий клавиши
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void KeyDownControl(object sender, KeyEventArgs e)
         {
-            _isCtrlOn = !_isCtrlOn;
-            _crntMH = new MouseHandlerOnMove();
-            _crntMH.MouseMove(new Point(100, 100));
+            if (e.KeyCode == Keys.Escape && e.Control)
+            {
+            }
+            if (e.KeyCode == Keys.Delete && e.Control)
+            {
+            }
+            if (e.KeyCode == Keys.A && e.Control)
+            {
+            }
+
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                _isControlKeyOn = true;                
+            }
+
+            if (e.KeyCode == Keys.C && e.Control)
+            {
+            }
+            if (e.KeyCode == Keys.V && e.Control)
+            {
+
+            }
+
+            if (e.KeyCode == Keys.Oemplus && e.Control)
+            {
+            }
+            if (e.KeyCode == Keys.OemMinus && e.Control)
+            {
+            }
+            if (e.KeyCode == Keys.D0 && e.Control)
+            {
+            }
+
+            if ((e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down) && e.Control)
+            {
+               
+            }
         }
+
+        /// <summary>
+        /// KeyCode управления отпускания клавиши
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void KeyUpControl(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                _isControlKeyOn = false;
+            }
+        }
+
+        /// <summary>
+        /// KeyCode управления клавишами по их имени/символу
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void KeyPressControl(object sender, KeyPressEventArgs e)
+        {
+            //if (e.KeyChar == '=' && _isControlKeyOn)
+            //{
+            //    string sss = "";
+            //}
+            //if (e.KeyChar == '-' && _isControlKeyOn)
+            //{
+            //    string sss = "";
+            //}
+        }
+
+
     }
 }
