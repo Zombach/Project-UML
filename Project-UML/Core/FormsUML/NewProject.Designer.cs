@@ -55,6 +55,7 @@ namespace Project_UML.Core.Forms
             this.ButtonRectangleClass = new System.Windows.Forms.Button();
             this.buttonTransform = new System.Windows.Forms.Button();
             this.buttonMove = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.groupBoxStartAxis.SuspendLayout();
             this.groupBoxEndAxis.SuspendLayout();
@@ -243,10 +244,16 @@ namespace Project_UML.Core.Forms
             this.buttonMove.UseVisualStyleBackColor = true;
             this.buttonMove.Click += new System.EventHandler(this.buttonMove_Click_1);
             // 
+            // textBox1
+            // 
+            resources.ApplyResources(this.textBox1, "textBox1");
+            this.textBox1.Name = "textBox1";
+            // 
             // NewProject
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.buttonMove);
             this.Controls.Add(this.buttonTransform);
             this.Controls.Add(this.ButtonRectangleClass);
@@ -282,6 +289,7 @@ namespace Project_UML.Core.Forms
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
         #endregion
@@ -311,6 +319,7 @@ namespace Project_UML.Core.Forms
         private System.Windows.Forms.Button ButtonRectangleClass;
         private System.Windows.Forms.Button buttonTransform;
         private System.Windows.Forms.Button buttonMove;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

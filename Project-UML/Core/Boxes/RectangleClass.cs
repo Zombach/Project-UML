@@ -2,14 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Project_UML.Core.Boxes
 {
     class RectangleClass : AbstractBox
     {
+        
         public RectangleClass(Color color, int width) : base(color, width)
         {            
         }
@@ -20,11 +23,25 @@ namespace Project_UML.Core.Boxes
 
         public override void Draw(Graphics graphics)
         {
+            string text1 = "Test1 test2 test3 ";
             SolidBrush brush = new SolidBrush(Color.Black);
 
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectangleHeight);
-            graphics.DrawString("Class", font, brush, Points[0].X + 5, Points[0].Y + 5);
+            SizeF stringSize = new SizeF();
+            stringSize = graphics.MeasureString(text1, font);
+            RectNameHeight = font.Height;
+
+            while (stringSize.Width > RectangleWidth)
+            {
+                RectNameHeight += font.Height;
+                stringSize.Width -= RectangleWidth;
+            }
+            RectNameHeight += font.Height;
+
+            RectangleF rectF1 = new RectangleF(Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
+
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
+            graphics.DrawString(text1, font, brush, rectF1);
+            graphics.DrawRectangle(_pen, Rectangle.Round(rectF1));
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight, RectangleWidth, RectFieldHeight);
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight + RectFieldHeight, RectangleWidth, RectPropertyHeight);
             RectMethodsHeight = RectangleHeight - (RectNameHeight + RectFieldHeight + RectPropertyHeight);
