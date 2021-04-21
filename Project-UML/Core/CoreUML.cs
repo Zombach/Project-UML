@@ -87,6 +87,11 @@ namespace Project_UML.Core
         {
             BitmapTmp = (Bitmap)BitmapMain.Clone();
             Graphics = Graphics.FromImage(BitmapTmp);
+            double dd = GC.GetTotalMemory(true);
+            if (GC.GetTotalMemory(true) > 9999073741824)
+            {
+                GC.Collect();
+            }
         }
 
         public void ChangeColorInSelectedFigures(Color color )
@@ -114,7 +119,6 @@ namespace Project_UML.Core
                 SwitchToDrawInTmp();
                 DrawSelectionOfFigures();
                 PictureBox.Image = BitmapTmp;
-
             }
             else
             {
@@ -170,11 +174,6 @@ namespace Project_UML.Core
             Point newPoint = new Point((int)X, (int)Y);
             return newPoint;
         }
-
-
-
-
-
 
 
         public static bool SaveDate()

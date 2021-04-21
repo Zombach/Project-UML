@@ -128,11 +128,7 @@ namespace Project_UML.Core.Forms
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             _crntMH.MouseMove(e.Location);
-            int i = int.MaxValue;
-            if (GC.GetTotalMemory(true) >= i - 1000)
-            {
-                GC.Collect();
-            }
+            
         }
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
