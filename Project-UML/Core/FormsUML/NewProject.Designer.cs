@@ -1,5 +1,5 @@
 ﻿
-namespace Project_UML.Core.Forms
+namespace Project_UML.Core.FormsUML
 {
     partial class NewProject
     {

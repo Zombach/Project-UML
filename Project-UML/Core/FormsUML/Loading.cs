@@ -10,16 +10,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Project_UML.Core.Forms
+namespace Project_UML.Core.FormsUML
 {
     /// <summary>
     /// 
     /// </summary>
     public partial class Loading : Form
     {
-        public Loading()
+        private Form _menu;
+        public Loading(Form menu)
         {
             InitializeComponent();
+            _menu = menu;
         }
 
         private void Explorer_Click(object sender, EventArgs e)
@@ -38,7 +40,7 @@ namespace Project_UML.Core.Forms
                     coreUML.IsLoading = true;
                 }
             }
-            NewProject newProject = new NewProject(data);
+            NewProject newProject = new NewProject(_menu, data);
             Hide();
             newProject.Show();
         }
