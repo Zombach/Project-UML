@@ -35,7 +35,7 @@ namespace Project_UML.Core.Forms
                     coreUML.MyPath = openFileDialog.FileName;
                     data = binary.DeserializationDictionary();
                     MessageBox.Show("Загрузка успешно завершена");
-                    coreUML.isLoading = true;
+                    coreUML.IsLoading = true;
                 }
             }
             NewProject newProject = new NewProject(data);

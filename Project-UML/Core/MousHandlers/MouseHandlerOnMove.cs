@@ -1,36 +1,45 @@
-﻿using System;
+﻿using Project_UML.Core.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project_UML.Core.MousHandlers
 {
     public class MouseHandlerOnMove : IMouseHandler
     {
-        private bool _isTapped;
-        private Point startPoint;
-        private CoreUML _coreUML = CoreUML.GetCoreUML();
+        public bool IsTapped { get; set; }
+        public CoreUML CoreUML { get; set; } = CoreUML.GetCoreUML();
+        public Point StartPoint { get; set; }
         public void MouseDown(Point e)
         {
-            _isTapped = true;
-            startPoint = e;
+            IsTapped = true;
+            StartPoint = e;
         }
 
         public void MouseHover(Point e)
         {
-            throw new NotImplementedException();
         }
 
         public void MouseMove(Point e)
-        {
-            throw new NotImplementedException();
+        {      
+            //if (!IsTapped)
+            //{
+                foreach (IFigure figure in CoreUML.Figures)
+                {
+                    for (int i = 0; i < figure.Points.Count; i++)
+                    {                    
+                        Point currentPoint = figure.Points[i];
+                        currentPoint.X += e.X;
+                        currentPoint.Y += e.Y;
+                        figure.Points[i] = currentPoint;
+                    }
+                }
+            //}
         }
 
         public void MouseUp(Point e)
         {
-            throw new NotImplementedException();
+            IsTapped = false;
         }
     }
 }

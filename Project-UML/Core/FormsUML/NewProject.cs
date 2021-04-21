@@ -18,20 +18,20 @@ namespace Project_UML.Core.Forms
     /// </summary>
     public partial class NewProject : Form
     {
+        private bool _isCtrlOn = false;
         private CoreUML _coreUML = CoreUML.GetCoreUML();
         List<AbstractArrow> _arrows = new List<AbstractArrow>();
-        //AbstractBox _currentBox;
         IMouseHandler _crntMH = new MouseHandlerOnSelection();
         public NewProject(SerializeData data)
         {
             InitializeComponent();
-            if (_coreUML.isLoading)
+            if (_coreUML.IsLoading)
             {
                 DeserializeData deserializeData = new DeserializeData(data);
                 deserializeData.LoadingData(deserializeData);
                 trackBarOfWidth.Value = (int)_coreUML.DefaultWidth;
                 ButtonColor.BackColor = _coreUML.DefaultColor;
-                _coreUML.isLoading = false;
+                _coreUML.IsLoading = false;
             }
         }
 
@@ -43,21 +43,24 @@ namespace Project_UML.Core.Forms
         }
 
         private void OnMouseWheel(object sender, MouseEventArgs e)
-        { 
-            if (e.Delta > 0)
+        {
+            if(_isCtrlOn)
             {
-                if (_coreUML.DefaultSize < 20)
+                if (e.Delta > 0)
                 {
-                    _coreUML.DefaultSize++;
-                    ScrollSize(true);
+                    if (_coreUML.DefaultSize < 20)
+                    {
+                        _coreUML.DefaultSize++;
+                        ScrollSize(true);
+                    }
                 }
-            }
-            else
-            {
-                if (_coreUML.DefaultSize > -20)
+                else
                 {
-                    _coreUML.DefaultSize--;
-                    ScrollSize(false);
+                    if (_coreUML.DefaultSize > -20)
+                    {
+                        _coreUML.DefaultSize--;
+                        ScrollSize(false);
+                    }
                 }
             }
         }
@@ -124,8 +127,8 @@ namespace Project_UML.Core.Forms
 
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            int i = int.MaxValue;
             _crntMH.MouseMove(e.Location);
+            int i = int.MaxValue;
             if (GC.GetTotalMemory(true) >= i - 1000)
             {
                 GC.Collect();
@@ -248,6 +251,13 @@ namespace Project_UML.Core.Forms
         private void ButtonRectangleClass_Click(object sender, EventArgs e)
         {
             _crntMH = new MouseHandlerOnDrawRectangle(new RectangleClassFactory());
+        }
+
+        private void Test_Click(object sender, EventArgs e)
+        {
+            _isCtrlOn = !_isCtrlOn;
+            _crntMH = new MouseHandlerOnMove();
+            _crntMH.MouseMove(new Point(100, 100));
         }
     }
 }

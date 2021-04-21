@@ -58,7 +58,7 @@ namespace Project_UML.Core
         public Axises AxisStart = Axises.X;
         public Axises AxisEnd = Axises.X;
 
-        public bool isLoading { get; set; } = false;
+        public bool IsLoading { get; set; } = false;
 
 
         private CoreUML()

@@ -1,29 +1,25 @@
 ﻿using Project_UML.Core.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project_UML.Core.MousHandlers
 {
     public class MouseHandlerOnSelection : IMouseHandler
     {
-        private bool _isTapped;
-        private Point _pointTmp;
-        public CoreUML CoreUML = CoreUML.GetCoreUML();
+        public bool IsTapped { get; set; }
+        public CoreUML CoreUML { get; set; } = CoreUML.GetCoreUML();
+        public Point StartPoint { get; set; }
         Pen _pen = new Pen(Color.Black, 1) { DashStyle = DashStyle.Dash };
         public void MouseDown(Point e)
         {
-            _pointTmp = new Point(e.X, e.Y);
-            _isTapped = true;
+            StartPoint = new Point(e.X, e.Y);
+            IsTapped = true;
             CoreUML.SelectedFigures.Clear();
             //CoreUML.SelectedFigures.f
             foreach (IFigure figure in CoreUML.Figures)
             {
-                if (figure.CheckSelection(_pointTmp, _pointTmp, 2))
+                if (figure.CheckSelection(StartPoint, StartPoint, 2))
                 {
                     CoreUML.SelectedFigures.Add(figure);
                     return;
@@ -38,30 +34,30 @@ namespace Project_UML.Core.MousHandlers
 
         public void MouseMove(Point e)
         {
-            if (_isTapped)
+            if (IsTapped)
             {
                 int minX;
                 int maxX;
                 int minY;
                 int maxY;
-                if (_pointTmp.X > e.X)
+                if (StartPoint.X > e.X)
                 {
-                    maxX = _pointTmp.X;
+                    maxX = StartPoint.X;
                     minX = e.X;
                 }
                 else
                 {
-                    minX = _pointTmp.X;
+                    minX = StartPoint.X;
                     maxX = e.X;
                 }
-                if (_pointTmp.Y > e.Y)
+                if (StartPoint.Y > e.Y)
                 {
-                    maxY = _pointTmp.Y;
+                    maxY = StartPoint.Y;
                     minY = e.Y;
                 }
                 else
                 {
-                    minY = _pointTmp.Y;
+                    minY = StartPoint.Y;
                     maxY = e.Y;
                 }
 
@@ -85,30 +81,30 @@ namespace Project_UML.Core.MousHandlers
             CoreUML.SwitchToDrawInTmp();
             CoreUML.DrawSelectionOfFigures();
             CoreUML.PictureBox.Image = CoreUML.BitmapTmp;
-            _isTapped = false;
+            IsTapped = false;
         }
 
         private void DrawRectangleOfSelection(Point e)
         {
             Point startPoint = new Point();
-            if (_pointTmp.X > e.X)
+            if (StartPoint.X > e.X)
             {
                 startPoint.X = e.X;
             }
             else
             {
-                startPoint.X = _pointTmp.X;
+                startPoint.X = StartPoint.X;
             }
-            if (_pointTmp.Y > e.Y)
+            if (StartPoint.Y > e.Y)
             {
                 startPoint.Y = e.Y;
             }
             else
             {
-                startPoint.Y = _pointTmp.Y;
+                startPoint.Y = StartPoint.Y;
             }
 
-            CoreUML.Graphics.DrawRectangle(_pen, startPoint.X, startPoint.Y, Math.Abs(e.X - _pointTmp.X), Math.Abs(e.Y - _pointTmp.Y));
+            CoreUML.Graphics.DrawRectangle(_pen, startPoint.X, startPoint.Y, Math.Abs(e.X - StartPoint.X), Math.Abs(e.Y - StartPoint.Y));
         }
 
     }

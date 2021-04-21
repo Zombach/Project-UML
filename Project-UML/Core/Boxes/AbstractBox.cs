@@ -44,6 +44,10 @@ namespace Project_UML.Core.Boxes
             _pen = new Pen(color, width);
         }
 
+        /// <summary>
+        /// Конструктор для развертывания фигуры по структуре
+        /// </summary>
+        /// <param name="box"></param>
         public AbstractBox(StructBox box)
         {
 
@@ -104,7 +108,15 @@ namespace Project_UML.Core.Boxes
 
         public void Move(int deltaX, int deltaY)
         {
-            throw new NotImplementedException();
+            List<Point> newPoints = new List<Point>();
+            foreach (Point point in Points)
+            {
+                Point currentPoint = point;
+                currentPoint.X += deltaX;
+                currentPoint.Y += deltaY;
+                newPoints.Add(currentPoint);
+            }
+            Points = newPoints;
         }
 
         public Color GetColor()
