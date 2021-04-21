@@ -23,8 +23,8 @@ namespace Project_UML.Core.Arrows
         {
         }
 
-        public CompositionArrow(Point startPoint, Point endPoint, Axises startDirectionAxis
-            , Axises endDirectionAxis) : base(startPoint, endPoint, startDirectionAxis, endDirectionAxis)
+        public CompositionArrow(Point startPoint, Point endPoint, Axis startDirectionAxis
+            , Axis endDirectionAxis) : base(startPoint, endPoint, startDirectionAxis, endDirectionAxis)
         {
         }
 

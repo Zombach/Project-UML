@@ -29,20 +29,21 @@ namespace Project_UML.Core.MousHandlers
                 StartPoint = new Point(e.X, e.Y);
                 IsTapped = true;
                 _newArrow = (AbstractArrow)FigureFactory.GetFigure(CoreUML.DefaultColor, (int)CoreUML.DefaultWidth);
-                _newArrow.DataCommon.Add(new DataCommon(_newArrow));
-                _newArrow.DataCommon[0].FirstPoint = e;
-                foreach (IFigure figure in CoreUML.Figures)
-                {
-                    if (figure is AbstractBox)
-                    {
-                        if (figure.CheckSelection(e, e, 0))
-                        {
-                            _newArrow.DataCommon[0].FirstBox = figure;
-                            break;
-                        }
-                    }
-                }
-                //_dataCommon.Write(e, true, sender);
+                _newArrow.GetPoints(e, e);
+                _newArrow.HookStartPointToFigure(e);
+                //_newArrow.DataCommon.Add(new DataCommon(_newArrow));
+                //_newArrow.DataCommon[0].FirstPoint = e;
+                //foreach (IFigure figure in CoreUML.Figures)
+                //{
+                //    if (figure is AbstractBox)
+                //    {
+                //        if (figure.CheckSelection(e, e, 0))
+                //        {
+                //            _newArrow.DataCommon[0].FirstBox = figure;
+                //            break;
+                //        }
+                //    }
+                //}
             }
 
         }
@@ -51,34 +52,35 @@ namespace Project_UML.Core.MousHandlers
         {
             if (IsTapped)
             {
-                if (!(_newArrow.DataCommon[0].FirstBox is null))
-                {
-                    ConnectionPoint startConnectionPoint = _newArrow.DataCommon[0].FirstBox.GetConnectionPoint(e);
-                    _newArrow.DataCommon[0].FirstPoint = startConnectionPoint.Point;
-                    _newArrow.StartDirectionAxis = startConnectionPoint.Axis;
-                }
+                //if (!(_newArrow.DataCommon[0].FirstBox is null))
+                //{
+                //    ConnectionPoint startConnectionPoint = _newArrow.DataCommon[0].FirstBox.GetConnectionPoint(e);
+                //    _newArrow.DataCommon[0].FirstPoint = startConnectionPoint.Point;
+                //    _newArrow.StartDirectionAxis = startConnectionPoint.Axis;
+                //}
                 CoreUML.SwitchToDrawInTmp();
-
-                foreach (IFigure figure in CoreUML.Figures)
-                {
-                    if (figure is AbstractBox && figure != _newArrow.DataCommon[0].FirstBox)
-                    {
-                        if (figure.CheckSelection(e, e, 0))
-                        {
-                            _newArrow.DataCommon[0].LastBox = figure;
-                            ConnectionPoint endConnectionPoint = figure.GetConnectionPoint(_newArrow.DataCommon[0].FirstPoint);
-                            _newArrow.DataCommon[0].LastPoint = endConnectionPoint.Point;
-                            _newArrow.EndDirectionAxis = endConnectionPoint.Axis;
-                            break;
-                        }
-                    }
-                    _newArrow.DataCommon[0].LastBox = null;
-                }
-                if (_newArrow.DataCommon[0].LastBox == null)
-                {
-                    _newArrow.DataCommon[0].LastPoint = e;
-                }
-                _newArrow.GetPoints(_newArrow.DataCommon[0].FirstPoint, _newArrow.DataCommon[0].LastPoint);
+                _newArrow.UpdStartPoint(e);
+                _newArrow.HookEndPointToFigure(e);
+                //foreach (IFigure figure in CoreUML.Figures)
+                //{
+                //    if (figure is AbstractBox && figure != _newArrow.DataCommon[0].FirstBox)
+                //    {
+                //        if (figure.CheckSelection(e, e, 0))
+                //        {
+                //            _newArrow.DataCommon[0].LastBox = figure;
+                //            ConnectionPoint endConnectionPoint = figure.GetConnectionPoint(_newArrow.DataCommon[0].FirstPoint);
+                //            _newArrow.DataCommon[0].LastPoint = endConnectionPoint.Point;
+                //            _newArrow.EndDirectionAxis = endConnectionPoint.Axis;
+                //            break;
+                //        }
+                //    }
+                //    _newArrow.DataCommon[0].LastBox = null;
+                //}
+                //if (_newArrow.DataCommon[0].LastBox == null)
+                //{
+                //    _newArrow.DataCommon[0].LastPoint = e;
+                //}
+                //_newArrow.GetPoints(_newArrow.DataCommon[0].FirstPoint, _newArrow.DataCommon[0].LastPoint);
                 _newArrow.Draw(CoreUML.Graphics);
                 CoreUML.PictureBox.Image = CoreUML.BitmapTmp;
             }
@@ -97,7 +99,7 @@ namespace Project_UML.Core.MousHandlers
                     {
                         _newArrow.DataCommon[0].LastBox.DataCommon.Add(_newArrow.DataCommon[0]);
                     }
-                    CoreUML.BitmapMain = (Bitmap)CoreUML.BitmapTmp.Clone();
+                    CoreUML.BitmapMain = CoreUML.BitmapTmp;
                     CoreUML.Figures.Add(_newArrow);
                     CoreUML.SelectedFigures.Clear();
                     CoreUML.SelectedFigures.Add(_newArrow);
@@ -105,7 +107,7 @@ namespace Project_UML.Core.MousHandlers
                     //_dataCommon.Write(e, false, sender);
                     //AddArrowToListCommonPoints();
                     IsTapped = false;
-                    CoreUML.PictureBox.Invalidate();
+                    CoreUML.PictureBox.Image = CoreUML.BitmapTmp;
                 }
         }
 

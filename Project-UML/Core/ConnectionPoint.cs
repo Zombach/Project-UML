@@ -12,13 +12,13 @@ namespace Project_UML.Core
     public class ConnectionPoint
     {
         public Point Point { get; set; }
-        public Axises Axis { get; set; }
+        public Axis Axis { get; set; }
 
         public ConnectionPoint()
         {
         }
 
-        public ConnectionPoint(Point point, Axises axis)
+        public ConnectionPoint(Point point, Axis axis)
         {
             Point = point;
             Axis = axis;

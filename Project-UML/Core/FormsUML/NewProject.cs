@@ -133,22 +133,22 @@ namespace Project_UML.Core.Forms
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            _coreUML.AxisStart = Axises.X;
+            _coreUML.AxisStart = Axis.X;
         }
 
         private void RadioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            _coreUML.AxisStart = Axises.Y;
+            _coreUML.AxisStart = Axis.Y;
         }
 
         private void RadioButton5_CheckedChanged(object sender, EventArgs e)
         {
-            _coreUML.AxisEnd = Axises.X;
+            _coreUML.AxisEnd = Axis.X;
         }
 
         private void RadioButton6_CheckedChanged(object sender, EventArgs e)
         {
-            _coreUML.AxisEnd = Axises.Y;
+            _coreUML.AxisEnd = Axis.Y;
         }
 
         private void ButtonColor_Click(object sender, EventArgs e)
@@ -293,6 +293,16 @@ namespace Project_UML.Core.Forms
             {
                
             }
+        }
+
+        private void buttonMove_Click(object sender, EventArgs e)
+        {
+            _crntMH = new MouseHandlerOnTransform();
+        }
+
+        private void buttonMove_Click_1(object sender, EventArgs e)
+        {
+            _crntMH = new MouseHandlerOnMove();
         }
 
         /// <summary>

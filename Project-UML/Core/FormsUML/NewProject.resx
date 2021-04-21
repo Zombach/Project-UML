@@ -142,7 +142,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Canvas.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>19</value>
   </data>
   <data name="radioButton1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -220,7 +220,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBoxStartAxis.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>18</value>
   </data>
   <data name="radioButton5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -298,7 +298,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBoxEndAxis.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>17</value>
   </data>
   <data name="trackBarOfWidth.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 16</value>
@@ -343,7 +343,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>16</value>
   </data>
   <data name="ButtonAggregation.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 12</value>
@@ -367,7 +367,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonAggregation.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>15</value>
   </data>
   <data name="ButtonComposition.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 43</value>
@@ -391,7 +391,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonComposition.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>14</value>
   </data>
   <data name="ButtonAssociation.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 74</value>
@@ -415,7 +415,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonAssociation.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="ButtonInheritance.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 105</value>
@@ -439,7 +439,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonInheritance.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="ButtonSelect.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 136</value>
@@ -463,7 +463,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonSelect.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="ButtonClear.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 167</value>
@@ -487,7 +487,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonClear.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="ButtonColor.Location" type="System.Drawing.Point, System.Drawing">
     <value>138, 198</value>
@@ -508,7 +508,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonColor.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <metadata name="colorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -535,7 +535,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SaveData.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="ButtonImplementation.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 281</value>
@@ -559,7 +559,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonImplementation.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="ButtonRectangleObject.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 329</value>
@@ -583,7 +583,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonRectangleObject.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="ButtonRectangleEnum.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 360</value>
@@ -607,7 +607,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonRectangleEnum.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="ButtonRectangleInterface.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 391</value>
@@ -631,7 +631,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonRectangleInterface.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="ButtonRectangleClass.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 422</value>
@@ -655,6 +655,87 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonRectangleClass.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="Test.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Test.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 604</value>
+  </data>
+  <data name="Test.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 19</value>
+  </data>
+  <data name="Test.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="Test.Text" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="&gt;&gt;Test.Name" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="&gt;&gt;Test.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Test.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Test.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="buttonTransform.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonTransform.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 629</value>
+  </data>
+  <data name="buttonTransform.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 25</value>
+  </data>
+  <data name="buttonTransform.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="buttonTransform.Text" xml:space="preserve">
+    <value>Transform (TmpButton)</value>
+  </data>
+  <data name="&gt;&gt;buttonTransform.Name" xml:space="preserve">
+    <value>buttonTransform</value>
+  </data>
+  <data name="&gt;&gt;buttonTransform.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonTransform.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;buttonTransform.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonMove.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonMove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 660</value>
+  </data>
+  <data name="buttonMove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 25</value>
+  </data>
+  <data name="buttonMove.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="buttonMove.Text" xml:space="preserve">
+    <value>Move (TmpButton)</value>
+  </data>
+  <data name="&gt;&gt;buttonMove.Name" xml:space="preserve">
+    <value>buttonMove</value>
+  </data>
+  <data name="&gt;&gt;buttonMove.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonMove.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;buttonMove.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
