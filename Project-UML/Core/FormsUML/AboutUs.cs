@@ -19,6 +19,10 @@ namespace Project_UML.Core.FormsUML
             _menu = menu;
         }
 
-        
+        private void MainMenu(object sender, EventArgs e)
+        {
+            _menu.Show();
+            Close();
+        }
     }
 }
