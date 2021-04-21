@@ -147,9 +147,9 @@ namespace Project_UML.Core.FormsUML
             // 
             this.button1.BackColor = System.Drawing.Color.Pink;
             this.button1.ForeColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(1, -3);
+            this.button1.Location = new System.Drawing.Point(-90, -3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(992, 520);
+            this.button1.Size = new System.Drawing.Size(1160, 520);
             this.button1.TabIndex = 10;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = false;
@@ -173,6 +173,8 @@ namespace Project_UML.Core.FormsUML
             this.Controls.Add(this.Logo);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(1009, 551);
+            this.MinimumSize = new System.Drawing.Size(1009, 551);
             this.Name = "AboutUs";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AboutUs";
