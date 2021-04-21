@@ -65,6 +65,18 @@
     <Compile Include="Core\FigureFactory\RectangleClassFactory.cs" />
     <Compile Include="Core\FigureFactory\RectangleEnumFactory.cs" />
     <Compile Include="Core\FigureFactory\RectangleInterfaceFactory.cs" />
+    <Compile Include="Core\FormsUML\AboutUs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\FormsUML\AboutUs.Designer.cs">
+      <DependentUpon>AboutUs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\FormsUML\Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\FormsUML\Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\Interfaces\Draws\IChangeColor.cs" />
     <Compile Include="Core\Interfaces\Draws\IChangeWidth.cs" />
     <Compile Include="Core\Interfaces\Draws\IDraw.cs" />
@@ -125,11 +137,11 @@
     <Compile Include="Core\FormsUML\Loading.Designer.cs">
       <DependentUpon>Loading.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\FormsUML\Menu.cs">
+    <Compile Include="Core\FormsUML\MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Core\FormsUML\Menu.Designer.cs">
-      <DependentUpon>Menu.cs</DependentUpon>
+    <Compile Include="Core\FormsUML\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\FormsUML\NewProject.cs">
       <SubType>Form</SubType>
@@ -139,11 +151,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Core\FormsUML\AboutUs.resx">
+      <DependentUpon>AboutUs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Core\FormsUML\License.resx">
       <DependentUpon>License.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\FormsUML\Loading.resx">
       <DependentUpon>Loading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\FormsUML\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\FormsUML\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
@@ -159,6 +177,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -174,6 +193,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Logo.png" />
     <Content Include="Resources\icons\c-sharp.ico" />
     <Content Include="Resources\icons\aggregation.png" />
     <Content Include="Resources\icons\association.jpeg" />

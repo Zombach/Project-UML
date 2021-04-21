@@ -16,7 +16,7 @@ namespace Project_UML
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Core.Forms.Menu());
+            Application.Run(new Core.FormsUML.MainMenu());
         }
     }
 }

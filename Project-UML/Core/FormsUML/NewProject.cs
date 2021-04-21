@@ -7,24 +7,24 @@ using Project_UML.Core.MousHandlers;
 using Project_UML.Core.FigureFactory;
 using Project_UML.Core.Interfaces;
 using Project_UML.Core.DataProject;
-using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Project_UML.Core.Forms
+namespace Project_UML.Core.FormsUML
 {
     /// <summary>
     /// 
     /// </summary>
     public partial class NewProject : Form
     {
+        private Form _menu;
         private bool _isControlKeyOn = false;
         private CoreUML _coreUML = CoreUML.GetCoreUML();
-        List<AbstractArrow> _arrows = new List<AbstractArrow>();
-        IMouseHandler _crntMH = new MouseHandlerOnSelection();
-        public NewProject(SerializeData data)
+        private List<AbstractArrow> _arrows = new List<AbstractArrow>();
+        private IMouseHandler _crntMH = new MouseHandlerOnSelection();
+        private IMouseHandler _tmpCrntMH;
+        public NewProject(Form menu, SerializeData data)
         {
             InitializeComponent();
+            _menu = menu;
             if (_coreUML.IsLoading)
             {
                 DeserializeData deserializeData = new DeserializeData(data);
@@ -35,11 +35,11 @@ namespace Project_UML.Core.Forms
             }
         }
 
-        public NewProject()
+        public NewProject(Form menu)
         {
             InitializeComponent();
+            _menu = menu;
             this.MouseWheel += new MouseEventHandler(OnMouseWheel);
-
         }
 
         private void OnMouseWheel(object sender, MouseEventArgs e)
@@ -255,14 +255,26 @@ namespace Project_UML.Core.Forms
         /// <param name="e"></param>
         private void KeyDownControl(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape && e.Control)
+            if (e.KeyCode == Keys.Escape)
             {
+                _menu.Show();
             }
             if (e.KeyCode == Keys.Delete && e.Control)
             {
+                ButtonClear_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.Z && e.Control)
+            {
+                this.Parent.Show();
             }
             if (e.KeyCode == Keys.A && e.Control)
             {
+                _tmpCrntMH = _crntMH;
+                _crntMH = new MouseHandlerOnSelection();
+                _coreUML.SelectedFigures.Clear();
+                _coreUML.SelectedFigures.AddRange(_coreUML.Figures);
+                _crntMH.MouseUp(new Point(0,0));
+                _crntMH = _tmpCrntMH;
             }
 
             if (e.KeyCode == Keys.ControlKey)
@@ -290,7 +302,7 @@ namespace Project_UML.Core.Forms
 
             if ((e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down) && e.Control)
             {
-               
+                
             }
         }
 

@@ -10,11 +10,15 @@ using System.Windows.Forms;
 
 namespace Project_UML.Core.FormsUML
 {
-    public partial class Menu : Form
+    public partial class AboutUs : Form
     {
-        public Menu()
+        private Form _menu;
+        public AboutUs(Form menu)
         {
             InitializeComponent();
+            _menu = menu;
         }
+
+        
     }
 }

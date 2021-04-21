@@ -9,18 +9,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Project_UML.Core.Forms
+namespace Project_UML.Core.FormsUML
 {
     /// <summary>
     /// 
     /// </summary>
     public partial class License : Form
     {
+        private Form _menu;
         private string _myPath = Path.GetFullPath("../../Resources/txt/License.txt");
-        
-        public License()
+
+        public License(Form menu)
         {
             InitializeComponent();
+            _menu = menu;
             StreamReader sr = new StreamReader(_myPath);
             LicenseText.Items.Add(sr.ReadLine());
         }
@@ -37,7 +39,7 @@ namespace Project_UML.Core.Forms
         }
         private void CreateNewProject_Button_Click(object sender, EventArgs e)
         {
-            NewProject newProject = new NewProject();
+            NewProject newProject = new NewProject(_menu);
             this.Close();
             newProject.Show();
             //MainMenu.Main.Visible = true; Это строка кода для отображения главноего меню
