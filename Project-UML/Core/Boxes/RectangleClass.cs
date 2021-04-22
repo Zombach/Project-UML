@@ -23,7 +23,7 @@ namespace Project_UML.Core.Boxes
 
         public override void Draw(Graphics graphics)
         {
-            string text1 = "Test1 test2 test3 ";
+            string text1 = "Class1 Class2 Class3 Class4 Class5 Class6";
             SolidBrush brush = new SolidBrush(Color.Black);
 
             SizeF stringSize = new SizeF();
