@@ -347,7 +347,5 @@ namespace Project_UML.Core.FormsUML
             //    string sss = "";
             //}
         }
-
-
     }
 }
