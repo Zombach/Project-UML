@@ -1,4 +1,5 @@
 ﻿using Project_UML.Core.DataProject.Structure;
+using Project_UML.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -29,6 +30,10 @@ namespace Project_UML.Core.Arrows
         }
 
         public InheritanceArrow(StructArrow arrow) : base(arrow)
+        {
+
+        }
+        public InheritanceArrow(IFigure figure) : base(figure)
         {
 
         }

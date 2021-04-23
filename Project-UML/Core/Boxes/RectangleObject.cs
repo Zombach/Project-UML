@@ -21,6 +21,9 @@ namespace Project_UML.Core.Boxes
         public RectangleObject(StructBox box) : base(box)
         {
         }
+        public RectangleObject(IFigure figure) : base(figure)
+        {
+        }
 
 
         public override void Draw(Graphics graphics)

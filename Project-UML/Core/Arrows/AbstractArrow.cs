@@ -44,6 +44,22 @@ namespace Project_UML.Core.Arrows
             EndDirectionAxis = endDirectionAxis;
             SetEndCap();
         }
+        public AbstractArrow(IFigure figure)
+        {
+            AbstractArrow arrow = (AbstractArrow)figure;
+            Points = new List<Point>();
+            _pen = new Pen(arrow._pen.Color, arrow._pen.Width);
+            for (int i = 0; i < arrow.Points.Count; i++)
+            {
+                Point point = new Point(arrow.Points[i].X, arrow.Points[i].Y);
+                Points.Add(point);
+            }
+            DataCommon = new List<DataCommon>();
+            StartDirectionAxis = arrow.StartDirectionAxis;
+            EndDirectionAxis = arrow.EndDirectionAxis;
+            SelectedLink = new Link();
+            SetEndCap();
+        }
 
         /// <summary>
         /// Создание стрелы по предоставленным данным структуры

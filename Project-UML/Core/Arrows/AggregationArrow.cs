@@ -1,4 +1,5 @@
 ﻿using Project_UML.Core.DataProject.Structure;
+using Project_UML.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -26,6 +27,10 @@ namespace Project_UML.Core.Arrows
         {
         }
         public AggregationArrow(StructArrow arrow) : base(arrow)
+        {
+
+        }
+        public AggregationArrow(IFigure figure) : base(figure)
         {
 
         }

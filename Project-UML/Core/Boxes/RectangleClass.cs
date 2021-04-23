@@ -1,4 +1,5 @@
 ﻿using Project_UML.Core.DataProject.Structure;
+using Project_UML.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,6 +18,10 @@ namespace Project_UML.Core.Boxes
         {            
         }
         public RectangleClass(StructBox box) : base(box)
+        {
+        }
+
+        public RectangleClass(IFigure figure) : base(figure)
         {
         }
 

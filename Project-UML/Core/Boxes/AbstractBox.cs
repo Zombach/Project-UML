@@ -25,9 +25,8 @@ namespace Project_UML.Core.Boxes
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
         public List<DataText> DataText { get; set; } = new List<DataText>();
         protected Font Font { get; set; } = CoreUML.GetCoreUML().DefaultFont;
-        protected int RectangleWidth { get; set; } = 100;
-        protected int RectangleHeight { get; set; } = 150;
-
+        public int RectangleWidth { get; set; } = 100;
+        public int RectangleHeight { get; set; } = 150;
         protected int RectNameHeight { get; set; } = 20;
         protected int RectFieldHeight { get; set; } = 20;
         protected int RectPropertyHeight { get; set; } = 20;
@@ -42,6 +41,8 @@ namespace Project_UML.Core.Boxes
         public AbstractBox(Color color, int width)
         {
             _pen = new Pen(color, width);
+            RectangleWidth = 100;
+            RectangleHeight = 150;
         }
 
         /// <summary>
@@ -51,6 +52,26 @@ namespace Project_UML.Core.Boxes
         public AbstractBox(StructBox box)
         {
 
+        }
+
+        public AbstractBox(IFigure figure )
+        {
+            AbstractBox box = (AbstractBox)figure;
+            Points = new List<Point>();
+            _pen = new Pen(box._pen.Color, box._pen.Width);
+            for (int i = 0; i < box.Points.Count; i++)
+            {
+                Point point = new Point(box.Points[i].X, box.Points[i].Y);
+                Points.Add(point);
+            }
+            DataCommon = new List<DataCommon>();
+            Font = box.Font;
+            RectangleWidth = box.RectangleWidth;
+            RectangleHeight = box.RectangleHeight;
+            RectNameHeight = box.RectNameHeight;
+            RectFieldHeight = box.RectFieldHeight;
+            RectPropertyHeight = box.RectPropertyHeight;
+            RectMethodsHeight = box.RectMethodsHeight;
         }
 
 
@@ -122,6 +143,15 @@ namespace Project_UML.Core.Boxes
                 AbstractArrow arrow = (AbstractArrow)dataCommon.Arrow;
                 arrow.UpdArrow();
             }
+        }
+
+        public int SizeHeight()
+        {
+            return Points[1].Y - Points[0].Y;
+        }
+        public int SizeWidth()
+        {
+            return Points[1].X - Points[0].X;
         }
 
         public Color GetColor()

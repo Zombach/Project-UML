@@ -159,6 +159,7 @@
     <Compile Include="Core\FormsUML\NewProject.Designer.cs">
       <DependentUpon>NewProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\Step.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Core\FormsUML\AboutUs.resx">

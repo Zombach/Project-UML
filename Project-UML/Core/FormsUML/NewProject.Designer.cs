@@ -31,14 +31,14 @@ namespace Project_UML.Core.FormsUML
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewProject));
             this.Canvas = new System.Windows.Forms.PictureBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.groupBoxStartAxis = new System.Windows.Forms.GroupBox();
-            this.groupBoxEndAxis = new System.Windows.Forms.GroupBox();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.trackBarOfWidth = new System.Windows.Forms.TrackBar();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.RadioButton1 = new System.Windows.Forms.RadioButton();
+            this.RadioButton2 = new System.Windows.Forms.RadioButton();
+            this.GroupBoxStartAxis = new System.Windows.Forms.GroupBox();
+            this.GroupBoxEndAxis = new System.Windows.Forms.GroupBox();
+            this.RadioButton5 = new System.Windows.Forms.RadioButton();
+            this.RadioButton6 = new System.Windows.Forms.RadioButton();
+            this.TrackBarOfWidth = new System.Windows.Forms.TrackBar();
+            this.GroupBox2 = new System.Windows.Forms.GroupBox();
             this.ButtonAggregation = new System.Windows.Forms.Button();
             this.ButtonComposition = new System.Windows.Forms.Button();
             this.ButtonAssociation = new System.Windows.Forms.Button();
@@ -46,21 +46,25 @@ namespace Project_UML.Core.FormsUML
             this.ButtonSelect = new System.Windows.Forms.Button();
             this.ButtonClear = new System.Windows.Forms.Button();
             this.ButtonColor = new System.Windows.Forms.Button();
-            this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.ColorDialog = new System.Windows.Forms.ColorDialog();
             this.SaveData = new System.Windows.Forms.Button();
             this.ButtonImplementation = new System.Windows.Forms.Button();
             this.ButtonRectangleObject = new System.Windows.Forms.Button();
             this.ButtonRectangleEnum = new System.Windows.Forms.Button();
             this.ButtonRectangleInterface = new System.Windows.Forms.Button();
             this.ButtonRectangleClass = new System.Windows.Forms.Button();
-            this.buttonTransform = new System.Windows.Forms.Button();
-            this.buttonMove = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ButtonTransform = new System.Windows.Forms.Button();
+            this.ButtonMove = new System.Windows.Forms.Button();
+            this.TextBox1 = new System.Windows.Forms.TextBox();
+            this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.trackBarOfStep = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
-            this.groupBoxStartAxis.SuspendLayout();
-            this.groupBoxEndAxis.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarOfWidth)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            this.GroupBoxStartAxis.SuspendLayout();
+            this.GroupBoxEndAxis.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TrackBarOfWidth)).BeginInit();
+            this.GroupBox2.SuspendLayout();
+            this.GroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarOfStep)).BeginInit();
             this.SuspendLayout();
             // 
             // Canvas
@@ -76,67 +80,67 @@ namespace Project_UML.Core.FormsUML
             // 
             // radioButton1
             // 
-            resources.ApplyResources(this.radioButton1, "radioButton1");
-            this.radioButton1.Checked = true;
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.TabStop = true;
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
+            resources.ApplyResources(this.RadioButton1, "radioButton1");
+            this.RadioButton1.Checked = true;
+            this.RadioButton1.Name = "radioButton1";
+            this.RadioButton1.TabStop = true;
+            this.RadioButton1.UseVisualStyleBackColor = true;
+            this.RadioButton1.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
             // 
             // radioButton2
             // 
-            resources.ApplyResources(this.radioButton2, "radioButton2");
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
+            resources.ApplyResources(this.RadioButton2, "radioButton2");
+            this.RadioButton2.Name = "radioButton2";
+            this.RadioButton2.UseVisualStyleBackColor = true;
+            this.RadioButton2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
             // 
             // groupBoxStartAxis
             // 
-            this.groupBoxStartAxis.Controls.Add(this.radioButton1);
-            this.groupBoxStartAxis.Controls.Add(this.radioButton2);
-            resources.ApplyResources(this.groupBoxStartAxis, "groupBoxStartAxis");
-            this.groupBoxStartAxis.Name = "groupBoxStartAxis";
-            this.groupBoxStartAxis.TabStop = false;
+            this.GroupBoxStartAxis.Controls.Add(this.RadioButton1);
+            this.GroupBoxStartAxis.Controls.Add(this.RadioButton2);
+            resources.ApplyResources(this.GroupBoxStartAxis, "groupBoxStartAxis");
+            this.GroupBoxStartAxis.Name = "groupBoxStartAxis";
+            this.GroupBoxStartAxis.TabStop = false;
             // 
             // groupBoxEndAxis
             // 
-            this.groupBoxEndAxis.Controls.Add(this.radioButton5);
-            this.groupBoxEndAxis.Controls.Add(this.radioButton6);
-            resources.ApplyResources(this.groupBoxEndAxis, "groupBoxEndAxis");
-            this.groupBoxEndAxis.Name = "groupBoxEndAxis";
-            this.groupBoxEndAxis.TabStop = false;
+            this.GroupBoxEndAxis.Controls.Add(this.RadioButton5);
+            this.GroupBoxEndAxis.Controls.Add(this.RadioButton6);
+            resources.ApplyResources(this.GroupBoxEndAxis, "groupBoxEndAxis");
+            this.GroupBoxEndAxis.Name = "groupBoxEndAxis";
+            this.GroupBoxEndAxis.TabStop = false;
             // 
             // radioButton5
             // 
-            resources.ApplyResources(this.radioButton5, "radioButton5");
-            this.radioButton5.Checked = true;
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.TabStop = true;
-            this.radioButton5.UseVisualStyleBackColor = true;
-            this.radioButton5.CheckedChanged += new System.EventHandler(this.RadioButton5_CheckedChanged);
+            resources.ApplyResources(this.RadioButton5, "radioButton5");
+            this.RadioButton5.Checked = true;
+            this.RadioButton5.Name = "radioButton5";
+            this.RadioButton5.TabStop = true;
+            this.RadioButton5.UseVisualStyleBackColor = true;
+            this.RadioButton5.CheckedChanged += new System.EventHandler(this.RadioButton5_CheckedChanged);
             // 
             // radioButton6
             // 
-            resources.ApplyResources(this.radioButton6, "radioButton6");
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.UseVisualStyleBackColor = true;
-            this.radioButton6.CheckedChanged += new System.EventHandler(this.RadioButton6_CheckedChanged);
+            resources.ApplyResources(this.RadioButton6, "radioButton6");
+            this.RadioButton6.Name = "radioButton6";
+            this.RadioButton6.UseVisualStyleBackColor = true;
+            this.RadioButton6.CheckedChanged += new System.EventHandler(this.RadioButton6_CheckedChanged);
             // 
             // trackBarOfWidth
             // 
-            resources.ApplyResources(this.trackBarOfWidth, "trackBarOfWidth");
-            this.trackBarOfWidth.Maximum = 5;
-            this.trackBarOfWidth.Minimum = 1;
-            this.trackBarOfWidth.Name = "trackBarOfWidth";
-            this.trackBarOfWidth.Value = 1;
-            this.trackBarOfWidth.Scroll += new System.EventHandler(this.TrackBarOfWidth_Scroll);
+            resources.ApplyResources(this.TrackBarOfWidth, "trackBarOfWidth");
+            this.TrackBarOfWidth.Maximum = 5;
+            this.TrackBarOfWidth.Minimum = 1;
+            this.TrackBarOfWidth.Name = "trackBarOfWidth";
+            this.TrackBarOfWidth.Value = 1;
+            this.TrackBarOfWidth.Scroll += new System.EventHandler(this.TrackBarOfWidth_Scroll);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.trackBarOfWidth);
-            resources.ApplyResources(this.groupBox2, "groupBox2");
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.TabStop = false;
+            this.GroupBox2.Controls.Add(this.TrackBarOfWidth);
+            resources.ApplyResources(this.GroupBox2, "groupBox2");
+            this.GroupBox2.Name = "groupBox2";
+            this.GroupBox2.TabStop = false;
             // 
             // ButtonAggregation
             // 
@@ -232,30 +236,49 @@ namespace Project_UML.Core.FormsUML
             // 
             // buttonTransform
             // 
-            resources.ApplyResources(this.buttonTransform, "buttonTransform");
-            this.buttonTransform.Name = "buttonTransform";
-            this.buttonTransform.UseVisualStyleBackColor = true;
-            this.buttonTransform.Click += new System.EventHandler(this.buttonMove_Click);
+            resources.ApplyResources(this.ButtonTransform, "buttonTransform");
+            this.ButtonTransform.Name = "buttonTransform";
+            this.ButtonTransform.UseVisualStyleBackColor = true;
+            this.ButtonTransform.Click += new System.EventHandler(this.buttonMove_Click);
             // 
             // buttonMove
             // 
-            resources.ApplyResources(this.buttonMove, "buttonMove");
-            this.buttonMove.Name = "buttonMove";
-            this.buttonMove.UseVisualStyleBackColor = true;
-            this.buttonMove.Click += new System.EventHandler(this.buttonMove_Click_1);
+            resources.ApplyResources(this.ButtonMove, "buttonMove");
+            this.ButtonMove.Name = "buttonMove";
+            this.ButtonMove.UseVisualStyleBackColor = true;
+            this.ButtonMove.Click += new System.EventHandler(this.buttonMove_Click_1);
             // 
             // textBox1
             // 
-            resources.ApplyResources(this.textBox1, "textBox1");
-            this.textBox1.Name = "textBox1";
+            resources.ApplyResources(this.TextBox1, "textBox1");
+            this.TextBox1.Name = "textBox1";
+            // 
+            // groupBox1
+            // 
+            this.GroupBox1.Controls.Add(this.trackBarOfStep);
+            resources.ApplyResources(this.GroupBox1, "groupBox1");
+            this.GroupBox1.Name = "groupBox1";
+            this.GroupBox1.TabStop = false;
+            // 
+            // trackBarOfStep
+            // 
+            resources.ApplyResources(this.trackBarOfStep, "trackBarOfStep");
+            this.trackBarOfStep.LargeChange = 0;
+            this.trackBarOfStep.Maximum = 5;
+            this.trackBarOfStep.Minimum = 1;
+            this.trackBarOfStep.Name = "trackBarOfStep";
+            this.trackBarOfStep.SmallChange = 0;
+            this.trackBarOfStep.Value = 1;
+            this.trackBarOfStep.Scroll += new System.EventHandler(this.TrackBarOfStep_Scroll);
             // 
             // NewProject
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.buttonMove);
-            this.Controls.Add(this.buttonTransform);
+            this.Controls.Add(this.GroupBox1);
+            this.Controls.Add(this.TextBox1);
+            this.Controls.Add(this.ButtonMove);
+            this.Controls.Add(this.ButtonTransform);
             this.Controls.Add(this.ButtonRectangleClass);
             this.Controls.Add(this.ButtonRectangleInterface);
             this.Controls.Add(this.ButtonRectangleEnum);
@@ -269,9 +292,9 @@ namespace Project_UML.Core.FormsUML
             this.Controls.Add(this.ButtonAssociation);
             this.Controls.Add(this.ButtonComposition);
             this.Controls.Add(this.ButtonAggregation);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBoxEndAxis);
-            this.Controls.Add(this.groupBoxStartAxis);
+            this.Controls.Add(this.GroupBox2);
+            this.Controls.Add(this.GroupBoxEndAxis);
+            this.Controls.Add(this.GroupBoxStartAxis);
             this.Controls.Add(this.Canvas);
             this.KeyPreview = true;
             this.Name = "NewProject";
@@ -281,13 +304,16 @@ namespace Project_UML.Core.FormsUML
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressControl);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUpControl);
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).EndInit();
-            this.groupBoxStartAxis.ResumeLayout(false);
-            this.groupBoxStartAxis.PerformLayout();
-            this.groupBoxEndAxis.ResumeLayout(false);
-            this.groupBoxEndAxis.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarOfWidth)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.GroupBoxStartAxis.ResumeLayout(false);
+            this.GroupBoxStartAxis.PerformLayout();
+            this.GroupBoxEndAxis.ResumeLayout(false);
+            this.GroupBoxEndAxis.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TrackBarOfWidth)).EndInit();
+            this.GroupBox2.ResumeLayout(false);
+            this.GroupBox2.PerformLayout();
+            this.GroupBox1.ResumeLayout(false);
+            this.GroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarOfStep)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,14 +321,14 @@ namespace Project_UML.Core.FormsUML
         #endregion
 
         private System.Windows.Forms.PictureBox Canvas;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.GroupBox groupBoxStartAxis;
-        private System.Windows.Forms.GroupBox groupBoxEndAxis;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.TrackBar trackBarOfWidth;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton RadioButton1;
+        private System.Windows.Forms.RadioButton RadioButton2;
+        private System.Windows.Forms.GroupBox GroupBoxStartAxis;
+        private System.Windows.Forms.GroupBox GroupBoxEndAxis;
+        private System.Windows.Forms.RadioButton RadioButton5;
+        private System.Windows.Forms.RadioButton RadioButton6;
+        private System.Windows.Forms.TrackBar TrackBarOfWidth;
+        private System.Windows.Forms.GroupBox GroupBox2;
         private System.Windows.Forms.Button ButtonAggregation;
         private System.Windows.Forms.Button ButtonComposition;
         private System.Windows.Forms.Button ButtonAssociation;
@@ -310,16 +336,18 @@ namespace Project_UML.Core.FormsUML
         private System.Windows.Forms.Button ButtonSelect;
         private System.Windows.Forms.Button ButtonClear;
         private System.Windows.Forms.Button ButtonColor;
-        private System.Windows.Forms.ColorDialog colorDialog;
+        private System.Windows.Forms.ColorDialog ColorDialog;
         private System.Windows.Forms.Button SaveData;
         private System.Windows.Forms.Button ButtonImplementation;
         private System.Windows.Forms.Button ButtonRectangleObject;
         private System.Windows.Forms.Button ButtonRectangleEnum;
         private System.Windows.Forms.Button ButtonRectangleInterface;
         private System.Windows.Forms.Button ButtonRectangleClass;
-        private System.Windows.Forms.Button buttonTransform;
-        private System.Windows.Forms.Button buttonMove;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button ButtonTransform;
+        private System.Windows.Forms.Button ButtonMove;
+        private System.Windows.Forms.TextBox TextBox1;
+        private System.Windows.Forms.GroupBox GroupBox1;
+        private System.Windows.Forms.TrackBar trackBarOfStep;
     }
 }
 

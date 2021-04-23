@@ -29,7 +29,7 @@ namespace Project_UML.Core.FormsUML
             {
                 DeserializeData deserializeData = new DeserializeData(data);
                 deserializeData.LoadingData(deserializeData);
-                trackBarOfWidth.Value = (int)_coreUML.DefaultWidth;
+                TrackBarOfWidth.Value = (int)_coreUML.DefaultWidth;
                 ButtonColor.BackColor = _coreUML.DefaultColor;
                 _coreUML.IsLoading = false;
             }
@@ -86,8 +86,6 @@ namespace Project_UML.Core.FormsUML
                 }
                 _coreUML.DefaultSize = 0;
             }
-
-            _coreUML.ScrollSizeBase();
         }
 
         private void NewProject_Load(object sender, EventArgs e)
@@ -172,12 +170,12 @@ namespace Project_UML.Core.FormsUML
 
         private void ButtonColor_Click(object sender, EventArgs e)
         {
-            colorDialog.ShowDialog();
-            _coreUML.DefaultColor = colorDialog.Color;
-            ButtonColor.BackColor = colorDialog.Color;
+            ColorDialog.ShowDialog();
+            _coreUML.DefaultColor = ColorDialog.Color;
+            ButtonColor.BackColor = ColorDialog.Color;
             if (_coreUML.SelectedFigures.Count > 0)
             {
-                _coreUML.ChangeColorInSelectedFigures(colorDialog.Color);
+                _coreUML.ChangeColorInSelectedFigures(ColorDialog.Color);
                 _coreUML.UpdPicture();
             }
         }
@@ -229,13 +227,17 @@ namespace Project_UML.Core.FormsUML
 
         private void TrackBarOfWidth_Scroll(object sender, EventArgs e)
         {
-            _coreUML.DefaultWidth = trackBarOfWidth.Value;
+            _coreUML.DefaultWidth = TrackBarOfWidth.Value;
             if (_coreUML.SelectedFigures.Count > 0)
             {
-                _coreUML.ChangeWidthInSelectedFigures(trackBarOfWidth.Value);
+                _coreUML.ChangeWidthInSelectedFigures(TrackBarOfWidth.Value);
                 _coreUML.UpdPicture();
             }
-            _coreUML.DefaultWidth = trackBarOfWidth.Value;
+            _coreUML.DefaultWidth = TrackBarOfWidth.Value;
+        }
+        private void TrackBarOfStep_Scroll(object sender, EventArgs e)
+        {
+            _coreUML.DefaultStep = new Step(5 * trackBarOfStep.Value);
         }
 
         private void ButtonImplementation_Click(object sender, EventArgs e)
@@ -285,10 +287,7 @@ namespace Project_UML.Core.FormsUML
             {
                 ButtonClear_Click(sender, e);
             }
-            if (e.KeyCode == Keys.Z && e.Control)
-            {
-                this.Parent.Show();
-            }
+
             if (e.KeyCode == Keys.A && e.Control)
             {
                 _tmpCrntMH = _crntMH;
@@ -304,12 +303,20 @@ namespace Project_UML.Core.FormsUML
                 _isControlKeyOn = true;                
             }
 
+            if (e.KeyCode == Keys.Z && e.Control)
+            {                
+            }
             if (e.KeyCode == Keys.C && e.Control)
             {
+                _coreUML.SaveTmpFigure();
             }
             if (e.KeyCode == Keys.V && e.Control)
             {
-
+                _coreUML.LoadTmpFigure();
+            }
+            if (e.KeyCode == Keys.R && e.Control)
+            {
+                _coreUML.ReverseArrow();
             }
 
             if (e.KeyCode == Keys.Oemplus && e.Control)
@@ -327,9 +334,9 @@ namespace Project_UML.Core.FormsUML
 
             if ((e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down) && e.Control)
             {
-                
-            }
-        }
+                _coreUML.MoveByKey(e.KeyCode);
+            }            
+        }       
 
         private void buttonMove_Click(object sender, EventArgs e)
         {
@@ -370,5 +377,7 @@ namespace Project_UML.Core.FormsUML
             //    string sss = "";
             //}
         }
+
+        
     }
 }

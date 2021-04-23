@@ -31,6 +31,7 @@ namespace Project_UML.Core
         /// Временный лист выделенных фигур, стрелок на холсте
         /// </summary>
         public List<IFigure> SelectedFigures { get; set; }
+        public List<IFigure> TmpFigures { get; set; }
         /// <summary>
         /// лист действий с фигурами, стрелками на холсте, для отмены действий.
         /// </summary>
@@ -49,8 +50,9 @@ namespace Project_UML.Core
         /// Размер объектов для zoom.
         /// </summary>
         public int DefaultSize { get; set; }
+        public Step DefaultStep { get; set; }
         public string MyPath { get; set; }
-        public string MyPathSettings { get; set; } = @"../../Core/Settings.txt";
+        public string MyPathSettings { get; set; }
 
         /// <summary>
         /// Временные поля (заглушки)
@@ -65,12 +67,15 @@ namespace Project_UML.Core
         {
             Figures = new List<IFigure>();
             SelectedFigures = new List<IFigure>();
+            TmpFigures = new List<IFigure>();
             Logs = new List<LogActs>();
             DefaultWidth = 1;
             DefaultColor = Color.Black;
             DefaultFont = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
             DefaultSize = 0;
+            DefaultStep = new Step(5, 5);
             MyPath = "";
+            MyPathSettings = @"../../Core/Settings.txt";
         }
 
 
@@ -135,10 +140,6 @@ namespace Project_UML.Core
                 figure.Select(Graphics);
             }
         }
-        public void ScrollSizeBase()
-        {
-
-        }
 
         public void ScrollSize(bool isIncrease, int multi = 1)
         {
@@ -159,6 +160,8 @@ namespace Project_UML.Core
                         Point point = Scroll(box.Points[i], isIncrease, multi);
                         box.Points[i] = point;
                     }
+                    box.RectangleHeight = box.SizeHeight();
+                    box.RectangleWidth = box.SizeWidth();
                 }
             }
             UpdPicture();
@@ -185,6 +188,87 @@ namespace Project_UML.Core
             return newPoint;
         }
 
+        public void MoveByKey(Keys key)
+        {
+            Step tmpStep = new Step(DefaultStep);
+            if (SelectedFigures.Count == 0)
+            {
+                SelectedFigures.AddRange(Figures);
+            }
+            
+            switch (key)
+            {
+                case Keys.Left:
+                    tmpStep = SetStep(tmpStep, 1, 0);
+                    break;
+                case Keys.Right:
+                    tmpStep = SetStep(tmpStep, -1, 0);
+                    break;
+                case Keys.Up:
+                    tmpStep = SetStep(tmpStep, 0, 1);
+                    break;
+                case Keys.Down:
+                    tmpStep = SetStep(tmpStep, 0, -1);
+                    break;
+            }
+
+            foreach (IFigure figure in SelectedFigures)
+            {
+                if (figure is AbstractArrow arrow)
+                {
+                    for (int i = 0; i < arrow.Points.Count; i++)
+                    {
+                        Point point = new Point(arrow.Points[i].X - tmpStep.X, arrow.Points[i].Y - tmpStep.Y);
+                        arrow.Points[i] = point;
+                    }
+                }
+                if (figure is AbstractBox box)
+                {
+                    for (int i = 0; i < box.Points.Count; i++)
+                    {
+                        Point point = new Point(box.Points[i].X - tmpStep.X, box.Points[i].Y - tmpStep.Y);
+                        box.Points[i] = point;
+                    }
+                }
+            }
+            UpdPicture();
+        }
+
+        public void SaveTmpFigure()
+        {
+            TmpFigures.Clear();
+            foreach (IFigure figure in SelectedFigures)
+            {
+                var copyFigure = Activator.CreateInstance(Type.GetType(figure.GetType().FullName), figure);
+                TmpFigures.Add((IFigure)copyFigure);
+            }
+        }
+
+        public void LoadTmpFigure()
+        {
+            SelectedFigures.Clear();
+            foreach (IFigure figure in TmpFigures)
+            {
+                var copyFigure = Activator.CreateInstance(Type.GetType(figure.GetType().FullName), figure);
+                SelectedFigures.Add((IFigure)copyFigure);
+            }
+            MoveByKey(Keys.Left);
+            MoveByKey(Keys.Up);
+            Figures.AddRange(SelectedFigures);
+            UpdPicture();
+        }
+
+        public void ReverseArrow()
+        {
+            foreach (IFigure figure in SelectedFigures)
+            {
+                if (figure is AbstractArrow arrow)
+                {
+                    arrow.Reverse();
+                }
+            }
+            UpdPicture();
+        }
 
         public static bool SaveDate()
         {
@@ -198,6 +282,12 @@ namespace Project_UML.Core
             BinaryConversion binaryConversion = new BinaryConversion();
             binaryConversion.DeserializationDictionary();
             return true;
+        }
+        private Step SetStep(Step step, int x, int y)
+        {
+            step.X *= x;
+            step.Y *= y;
+            return step;
         }
     }
 }
