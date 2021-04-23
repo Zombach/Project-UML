@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Project_UML.Core.DataProject.Json;
 using Project_UML.Core.Encrypting;
 
 namespace Project_UML.Core.FormsUML
@@ -18,6 +19,8 @@ namespace Project_UML.Core.FormsUML
     {
         public MainMenu()
         {
+            SaveSettings sss = new SaveSettings();;
+            sss.WriteSettings();
             //Шифрование данных, необходимо вставить в моменте сохранения. Encrypt en = new Encrypt();
             InitializeComponent();
         }

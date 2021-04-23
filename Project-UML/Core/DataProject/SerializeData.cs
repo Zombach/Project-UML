@@ -25,22 +25,6 @@ namespace Project_UML.Core.DataProject
         /// </summary>
         public List<ILogs> Logs { get; set; }
         /// <summary>
-        /// Цвет по умоолчанию
-        /// </summary>
-        public Color DefaultColor { get; set; }
-        /// <summary>
-        /// Шрифт по умолчанию
-        /// </summary>
-        public Font DefaultFont { get; set; }
-        /// <summary>
-        /// Ширина по умолчанию
-        /// </summary>
-        public float DefaultWidth { get; set; }
-        /// <summary>
-        /// Размер фигур по умолчанию для скролла
-        /// </summary>
-        public int DefaultSize { get; set; }
-        /// <summary>
         /// Структура Стрелы
         /// </summary>
         private StructArrow _arrow;
@@ -63,11 +47,6 @@ namespace Project_UML.Core.DataProject
 
             Logs = new List<ILogs>();
             Logs = CreateObjectsLogs();
-
-            DefaultWidth = coreUML.DefaultWidth;
-            DefaultColor = coreUML.DefaultColor;
-            DefaultFont = coreUML.DefaultFont;
-            DefaultSize = coreUML.DefaultSize;
         }
 
         /// <summary>

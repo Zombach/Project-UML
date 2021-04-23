@@ -48,26 +48,46 @@ namespace Project_UML.Core.FormsUML
             {
                 if (e.Delta > 0)
                 {
-                    if (_coreUML.DefaultSize < 20)
-                    {
-                        _coreUML.DefaultSize++;
-                        ScrollSize(true);
-                    }
+                    ScrollSizeUp();
                 }
                 else
                 {
-                    if (_coreUML.DefaultSize > -20)
-                    {
-                        _coreUML.DefaultSize--;
-                        ScrollSize(false);
-                    }
-                }
+                    ScrollSizeDown();
+                }                
             }
         }
-        private void ScrollSize(bool isIncrease)
+        private void ScrollSizeUp()
         {
-            _coreUML.ScrollSize(isIncrease);
-            _coreUML.UpdPicture();
+            if (_coreUML.DefaultSize < 20)
+            {
+                _coreUML.DefaultSize++;
+                _coreUML.ScrollSize(true);
+            }
+        }
+        private void ScrollSizeDown()
+        {
+            if (_coreUML.DefaultSize > -20)
+            {
+                _coreUML.DefaultSize--;
+                _coreUML.ScrollSize(false);
+            }
+        }
+        private void ScrollSizeBase()
+        {
+            if (_coreUML.DefaultSize != 0)
+            {
+                if (_coreUML.DefaultSize > 0)
+                {
+                    _coreUML.ScrollSize(false, _coreUML.DefaultSize);
+                }
+                else
+                {
+                    _coreUML.ScrollSize(true, -_coreUML.DefaultSize);
+                }
+                _coreUML.DefaultSize = 0;
+            }
+
+            _coreUML.ScrollSizeBase();
         }
 
         private void NewProject_Load(object sender, EventArgs e)
@@ -261,7 +281,7 @@ namespace Project_UML.Core.FormsUML
                 Enabled = false;
                 menu.Show();
             }
-            if (e.KeyCode == Keys.Delete && e.Control)
+            if (e.KeyCode == Keys.Delete)
             {
                 ButtonClear_Click(sender, e);
             }
@@ -294,12 +314,15 @@ namespace Project_UML.Core.FormsUML
 
             if (e.KeyCode == Keys.Oemplus && e.Control)
             {
+                ScrollSizeUp();
             }
             if (e.KeyCode == Keys.OemMinus && e.Control)
             {
+                ScrollSizeDown();
             }
             if (e.KeyCode == Keys.D0 && e.Control)
             {
+                ScrollSizeBase();
             }
 
             if ((e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down) && e.Control)

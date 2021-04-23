@@ -37,47 +37,17 @@ namespace Project_UML.Core.DataProject
         /// </summary>
         private List<LogActs> _logs;
         /// <summary>
-        /// Цвет
-        /// </summary>
-        private Color _defaultColor;
-        /// <summary>
-        /// Шрифт
-        /// </summary>
-        private Font _defaultFont;
-        /// <summary>
-        /// Ширина линий
-        /// </summary>
-        private float _defaultWidth;
-        /// <summary>
-        /// Множитель для изменения объектов через скролл
-        /// </summary>
-        private int _defaultSize;
-        /// <summary>
         /// Фигура
         /// </summary>
         private IFigure _figure;
         /// <summary>
         /// Массив полных названий классов стрел
         /// </summary>
-        private string[] _typeArrow = new string[5]
-        { 
-            "Project_UML.Core.Arrows.AggregationArrow",
-            "Project_UML.Core.Arrows.AssociationArrow",
-            "Project_UML.Core.Arrows.CompositionArrow",
-            "Project_UML.Core.Arrows.ImplementationArrow",
-            "Project_UML.Core.Arrows.InheritanceArrow"
-        };
-
+        private string[] _typeArrow;
         /// <summary>
         /// Массив полных названий классов боксов
         /// </summary>
-        private string[] _typeBox = new string[4] 
-        { 
-            "Project_UML.Core.Boxes.BaseBox",
-            "Project_UML.Core.Boxes.ClassBox",
-            "Project_UML.Core.Boxes.MethodBox",
-            "Project_UML.Core.Boxes.PropertyBox"
-        };
+        private string[] _typeBox;
         #endregion
 
         #region Методы
@@ -92,10 +62,21 @@ namespace Project_UML.Core.DataProject
             _iLogs = writeData.Logs;
             _iFigure = CreateListFigure();
             _logs = CreateListLogs();
-            _defaultColor = writeData.DefaultColor;
-            _defaultFont = writeData.DefaultFont;
-            _defaultWidth = writeData.DefaultWidth;
-            _defaultSize = writeData.DefaultSize;
+            _typeArrow = new string[5]
+        {
+            "Project_UML.Core.Arrows.AggregationArrow",
+            "Project_UML.Core.Arrows.AssociationArrow",
+            "Project_UML.Core.Arrows.CompositionArrow",
+            "Project_UML.Core.Arrows.ImplementationArrow",
+            "Project_UML.Core.Arrows.InheritanceArrow"
+        };
+            _typeBox = new string[4]
+        {
+            "Project_UML.Core.Boxes.BaseBox",
+            "Project_UML.Core.Boxes.ClassBox",
+            "Project_UML.Core.Boxes.MethodBox",
+            "Project_UML.Core.Boxes.PropertyBox"
+        };
         }
 
         /// <summary>
@@ -106,10 +87,6 @@ namespace Project_UML.Core.DataProject
         {
             _coreUML.Figures = readData._iFigure;
             _coreUML.Logs = readData._logs;
-            _coreUML.DefaultColor = readData._defaultColor;
-            _coreUML.DefaultFont = readData._defaultFont;
-            _coreUML.DefaultWidth = readData._defaultWidth;
-            _coreUML.DefaultSize = readData._defaultSize;
         }
             
         /// <summary>

@@ -38,7 +38,6 @@ namespace Project_UML.Core
         public Bitmap BitmapMain { get; set; }
         public Bitmap BitmapTmp { get; set; }
         public Graphics Graphics { get; set; }
-
         public PictureBox PictureBox { get; set; }
         /// <summary>
         /// Толщина линий
@@ -51,6 +50,7 @@ namespace Project_UML.Core
         /// </summary>
         public int DefaultSize { get; set; }
         public string MyPath { get; set; }
+        public string MyPathSettings { get; set; } = @"../../Core/Settings.txt";
 
         /// <summary>
         /// Временные поля (заглушки)
@@ -135,8 +135,12 @@ namespace Project_UML.Core
                 figure.Select(Graphics);
             }
         }
+        public void ScrollSizeBase()
+        {
 
-        public void ScrollSize(bool isIncrease)
+        }
+
+        public void ScrollSize(bool isIncrease, int multi = 1)
         {
             foreach (IFigure  figure in Figures)
             {
@@ -144,7 +148,7 @@ namespace Project_UML.Core
                 {
                     for(int i = 0; i < arrow.Points.Count; i++)
                     {
-                        Point point = Scroll(arrow.Points[i], isIncrease);
+                        Point point = Scroll(arrow.Points[i], isIncrease, multi);
                         arrow.Points[i] = point;
                     }
                 }
@@ -152,25 +156,30 @@ namespace Project_UML.Core
                 {
                     for (int i = 0; i < box.Points.Count; i++)
                     {
-                        Point point = Scroll(box.Points[i], isIncrease);
+                        Point point = Scroll(box.Points[i], isIncrease, multi);
                         box.Points[i] = point;
                     }
                 }
             }
+            UpdPicture();
         }
 
-        public Point Scroll(Point point, bool isIncrease)
+        public Point Scroll(Point point, bool isIncrease, int multi = 1)
         {
-            double X , Y;
-            if (isIncrease)
+            double X = point.X;
+            double Y = point.Y;
+            for (int i = 0; i < multi; i++)
             {
-                X = Math.Round(point.X + point.X * 0.01);
-                Y = Math.Round(point.Y + point.Y * 0.01);
-            }
-            else
-            {
-                X = Math.Round(point.X - point.X * 0.00990099);
-                Y = Math.Round(point.Y - point.Y * 0.00990099);
+                if (isIncrease)
+                {
+                    X = Math.Round(X + X * 0.01);
+                    Y = Math.Round(Y + Y * 0.01);
+                }
+                else
+                {
+                    X = Math.Round(X - X * 0.00990099);
+                    Y = Math.Round(Y - Y * 0.00990099);
+                }
             }
             Point newPoint = new Point((int)X, (int)Y);
             return newPoint;
