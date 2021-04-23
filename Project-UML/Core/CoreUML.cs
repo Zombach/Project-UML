@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Project_UML.Core.FigureFactory;
 using Project_UML.Core.DataProject;
 using Project_UML.Core.Boxes;
+using Project_UML.Core.DataProject.Structure;
 
 namespace Project_UML.Core
 {
@@ -45,7 +46,7 @@ namespace Project_UML.Core
         /// </summary>
         public Color DefaultColor { get; set; }
         public Font DefaultFont { get; set; }
-        public float DefaultWidth { get; set; }
+        public int DefaultWidth { get; set; }
         /// <summary>
         /// Размер объектов для zoom.
         /// </summary>
@@ -282,6 +283,15 @@ namespace Project_UML.Core
             BinaryConversion binaryConversion = new BinaryConversion();
             binaryConversion.DeserializationDictionary();
             return true;
+        }
+
+        public void LoadCoreUML(StructSettings setting)
+        {
+            _coreUML.DefaultColor = setting.DefaultColor;
+            _coreUML.DefaultFont = setting.DefaultFont;
+            _coreUML.DefaultSize = setting.DefaultSize;
+            _coreUML.DefaultStep = setting.DefaultStep;
+            _coreUML.DefaultWidth = setting.DefaultWidth;
         }
         private Step SetStep(Step step, int x, int y)
         {

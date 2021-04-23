@@ -303,6 +303,8 @@ namespace Project_UML.Core.FormsUML
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDownControl);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressControl);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUpControl);
+            this.MouseWheel += new System.Windows.Forms.MouseEventHandler(OnMouseWheel);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewProject_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).EndInit();
             this.GroupBoxStartAxis.ResumeLayout(false);
             this.GroupBoxStartAxis.PerformLayout();

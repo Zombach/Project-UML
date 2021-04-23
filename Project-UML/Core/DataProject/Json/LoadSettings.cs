@@ -6,19 +6,20 @@ namespace Project_UML.Core.DataProject.Json
 {
     public class LoadSettings
     {
-        
         private DeserializeSettings _deserializer = new DeserializeSettings();
-        public void WriteSettings()
+        public StructSettings ReadSettings()
         {
-            using (FileStream fileStream = new FileStream(CoreUML.GetCoreUML().MyPathSettings, FileMode.Create, FileAccess.Write, FileShare.None))
+            StructSettings settings;
+            using (FileStream fileStream = new FileStream(CoreUML.GetCoreUML().MyPathSettings, FileMode.Open, FileAccess.Read, FileShare.None))
             {
                 using (StreamReader streamReader = new StreamReader(fileStream))
                 {
-                    streamReader.ReadToEnd();
+                    settings = _deserializer.DeserializerSetting(streamReader.ReadToEnd());
                     streamReader.Close();
                 }
                 fileStream.Close();
             }
+            return settings;
         }
     }
 }

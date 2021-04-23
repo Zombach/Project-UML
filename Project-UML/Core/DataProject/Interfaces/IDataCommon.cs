@@ -3,7 +3,7 @@
     public interface IDataCommon
     {
         /// <summary>
-        /// cj
+        /// 
         /// </summary>
         int FirstBox { get; set; }
         int LastBox { get; set; }

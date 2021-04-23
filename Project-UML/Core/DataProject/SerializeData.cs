@@ -10,7 +10,7 @@ using System;
 namespace Project_UML.Core.DataProject
 {
     /// <summary>
-    /// Сереализация
+    /// Подготовка Даты Сериализации
     /// </summary>
     [Serializable]
     public class SerializeData : ICoreUML

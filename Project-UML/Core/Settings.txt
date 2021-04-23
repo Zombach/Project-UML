@@ -1,7 +1,12 @@
 {
   "$type": "Project_UML.Core.DataProject.Structure.StructSettings, Project-UML",
-  "DefaultColor": "Black",
+  "DefaultColor": "Yellow",
   "DefaultFont": "Arial, 8.25pt",
-  "DefaultWidth": 1.0,
-  "DefaultSize": 0
+  "DefaultWidth": 1,
+  "DefaultSize": 0,
+  "DefaultStep": {
+    "$type": "Project_UML.Core.Step, Project-UML",
+    "X": 15,
+    "Y": 15
+  }
 }

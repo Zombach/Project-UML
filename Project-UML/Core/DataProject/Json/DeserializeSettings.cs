@@ -10,9 +10,9 @@ namespace Project_UML.Core.DataProject.Json
 {
     public class DeserializeSettings
     {
-        public StructSettings DeserializerSetting()
+        public StructSettings DeserializerSetting(string data)
         {
-            return JsonConvert.DeserializeObject<StructSettings>("");
+            return JsonConvert.DeserializeObject<StructSettings>(data);
         }
     }
 }

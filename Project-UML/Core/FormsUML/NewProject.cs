@@ -7,6 +7,8 @@ using Project_UML.Core.MousHandlers;
 using Project_UML.Core.FigureFactory;
 using Project_UML.Core.Interfaces;
 using Project_UML.Core.DataProject;
+using Project_UML.Core.DataProject.Json;
+using Project_UML.Core.DataProject.Structure;
 
 namespace Project_UML.Core.FormsUML
 {
@@ -38,13 +40,22 @@ namespace Project_UML.Core.FormsUML
         public NewProject(Form menu)
         {
             InitializeComponent();
-            _menu = menu;
-            this.MouseWheel += new MouseEventHandler(OnMouseWheel);
+            LoadSettings load = new LoadSettings();
+            StructSettings settings = load.ReadSettings();
+            _coreUML.LoadCoreUML(settings);
+            UpdateSettingsForm(settings);
+            _menu = menu;            
+        }
+
+        public void UpdateSettingsForm(StructSettings settings)
+        {
+            ButtonColor.BackColor = settings.DefaultColor;
+            TrackBarOfWidth.Value = settings.DefaultWidth;
         }
 
         private void OnMouseWheel(object sender, MouseEventArgs e)
         {
-            if(_isControlKeyOn)
+            if (_isControlKeyOn)
             {
                 if (e.Delta > 0)
                 {
@@ -53,7 +64,7 @@ namespace Project_UML.Core.FormsUML
                 else
                 {
                     ScrollSizeDown();
-                }                
+                }
             }
         }
         private void ScrollSizeUp()
@@ -101,7 +112,7 @@ namespace Project_UML.Core.FormsUML
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             _crntMH.MouseDown(e.Location);
-            
+
             //    case Act.Clear:
             //        foreach (AbstractArrow arrow in _arrows)
             //        {
@@ -145,7 +156,7 @@ namespace Project_UML.Core.FormsUML
 
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            _crntMH.MouseMove(e.Location);            
+            _crntMH.MouseMove(e.Location);
         }
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
@@ -207,9 +218,9 @@ namespace Project_UML.Core.FormsUML
             //{
             //    _arrows.Remove(_currentArrow);
             //    _currentArrow = null;
-                //UpdPicture();
+            //UpdPicture();
             //}
-            foreach(IFigure figure in _coreUML.SelectedFigures)
+            foreach (IFigure figure in _coreUML.SelectedFigures)
             {
                 _coreUML.Figures.Remove(figure);
             }
@@ -294,17 +305,17 @@ namespace Project_UML.Core.FormsUML
                 _crntMH = new MouseHandlerOnSelection();
                 _coreUML.SelectedFigures.Clear();
                 _coreUML.SelectedFigures.AddRange(_coreUML.Figures);
-                _crntMH.MouseUp(new Point(0,0));
+                _crntMH.MouseUp(new Point(0, 0));
                 _crntMH = _tmpCrntMH;
             }
 
             if (e.KeyCode == Keys.ControlKey)
             {
-                _isControlKeyOn = true;                
+                _isControlKeyOn = true;
             }
 
             if (e.KeyCode == Keys.Z && e.Control)
-            {                
+            {
             }
             if (e.KeyCode == Keys.C && e.Control)
             {
@@ -335,8 +346,8 @@ namespace Project_UML.Core.FormsUML
             if ((e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down) && e.Control)
             {
                 _coreUML.MoveByKey(e.KeyCode);
-            }            
-        }       
+            }
+        }
 
         private void buttonMove_Click(object sender, EventArgs e)
         {
@@ -377,7 +388,10 @@ namespace Project_UML.Core.FormsUML
             //    string sss = "";
             //}
         }
-
-        
+        private void NewProject_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            SaveSettings sss = new SaveSettings();
+            sss.WriteSettings();
+        }
     }
 }

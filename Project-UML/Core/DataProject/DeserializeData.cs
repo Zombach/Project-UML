@@ -11,7 +11,7 @@ using System.Reflection;
 namespace Project_UML.Core.DataProject
 {
     /// <summary>
-    /// Десериализация
+    /// Развертывает дату десериализации
     /// </summary>
     public class DeserializeData
     {
@@ -51,7 +51,6 @@ namespace Project_UML.Core.DataProject
         #endregion
 
         #region Методы
-
         /// <summary>
         /// Чтение записаной даты
         /// </summary>
@@ -191,7 +190,6 @@ namespace Project_UML.Core.DataProject
 
             return logs;
         }
-
         #endregion
     }
 }

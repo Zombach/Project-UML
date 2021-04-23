@@ -12,8 +12,9 @@ namespace Project_UML.Core.DataProject.Structure
     {
         public Color DefaultColor { get; set; }
         public Font DefaultFont { get; set; }
-        public float DefaultWidth { get; set; }
+        public int DefaultWidth { get; set; }
         public int DefaultSize { get; set; }
+        public Step DefaultStep { get; set; }
 
         public StructSettings()
         {
@@ -22,6 +23,7 @@ namespace Project_UML.Core.DataProject.Structure
             DefaultFont = coreUML.DefaultFont;
             DefaultWidth = coreUML.DefaultWidth;
             DefaultSize = coreUML.DefaultSize;
+            DefaultStep = new Step(coreUML.DefaultStep);
         }
     }
 }

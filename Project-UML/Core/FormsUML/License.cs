@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Project_UML.Core.DataProject.Json;
+using Project_UML.Core.DataProject.Structure;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +18,7 @@ namespace Project_UML.Core.FormsUML
     /// </summary>
     public partial class License : Form
     {
+        private CoreUML _coreUML = CoreUML.GetCoreUML();
         private Form _menu;
         private string _myPath = Path.GetFullPath("../../Resources/txt/License.txt");
 
