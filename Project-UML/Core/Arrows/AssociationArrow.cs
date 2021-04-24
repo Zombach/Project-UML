@@ -45,6 +45,8 @@ namespace Project_UML.Core.Arrows
             _graphicsPath.AddLine(new Point(12 / tmp, -16 / tmp), new Point(0, 0));
             _graphicsPath.AddLine(new Point(0, 0), new Point(-12 / tmp, -16 / tmp));
             _graphicsPath.AddLine(new Point(-12 / tmp, -16 / tmp), new Point(0, 0));
+            _pen.CustomEndCap = new CustomLineCap(null, _graphicsPath, LineCap.Custom);
+
             //if (_pen.Width == 1)
             //{
             //    tmp = 1;
@@ -62,7 +64,8 @@ namespace Project_UML.Core.Arrows
             //    _graphicsPath.AddLine(new Point(-12 / tmp, -30 / tmp), new Point(0, 0));
 
             //}
-            _pen.CustomEndCap = new CustomLineCap(null, _graphicsPath, LineCap.Custom);
+            //_pen.CustomEndCap = new CustomLineCap(null, _graphicsPath, LineCap.Custom);
+
 
         }
 
