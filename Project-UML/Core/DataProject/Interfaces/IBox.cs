@@ -4,7 +4,7 @@ using System.Drawing;
 namespace Project_UML.Core.DataProject.Interfaces
 {
     public interface IBox
-    {
+    {        
         /// <summary>
         /// Тип бокса записаный в тексте
         /// </summary>

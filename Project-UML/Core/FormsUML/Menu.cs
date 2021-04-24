@@ -1,4 +1,4 @@
-﻿using Project_UML.Core.DataProject;
+﻿using Project_UML.Core.DataProject.Binary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +13,13 @@ namespace Project_UML.Core.FormsUML
 {
     public partial class Menu : Form
     {
+        private CoreUML _coreUML = CoreUML.GetCoreUML();
         private Form _menu;
         private Form _project;
-        private SerializeData _data;
+        private PreparationData _data;
+        private Deserialize _deserializer;
         private Load _load;
+        private bool _isEncrypt = false;
         public Menu(Form menu, Form project)
         {
             InitializeComponent();
@@ -24,19 +27,19 @@ namespace Project_UML.Core.FormsUML
             _project = project;
         }
 
-        private void MainMenu(object sender, EventArgs e)
+        private void MainMenu_Click(object sender, EventArgs e)
         {
             _menu.Show();            
             Close();
         }
 
-        private void Cancel(object sender, EventArgs e)
+        private void Cancel_Click(object sender, EventArgs e)
         {
             _project.Enabled = true;
             Close();
         }
 
-        private void LoadindAs(object sender, EventArgs e)
+        private void LoadAs_Click(object sender, EventArgs e)
         {
             _load = new Load();
             _data = _load.LoadingData();
@@ -45,7 +48,38 @@ namespace Project_UML.Core.FormsUML
             _project = new NewProject(_menu, _data);
             _project.Show();
             Close();
+        }
 
+        private void Encrypt_Click(object sender, EventArgs e)
+        {
+            _isEncrypt = !_isEncrypt;
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void SaveAs_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoadLast_Click(object sender, EventArgs e)
+        {
+            if (_coreUML.MyPath == "")
+            {
+                MessageBox.Show("Последнее сохранение не определено, повторите попытку, после создания нового сохранения");
+            }
+            else
+            {
+                _deserializer = new Deserialize();
+                _data = _deserializer.DeserializationDictionary();
+            }
+        }
+
+        private void EncryptAs_Click(object sender, EventArgs e)
+        {
 
         }
     }

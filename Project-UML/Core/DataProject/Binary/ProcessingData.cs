@@ -8,12 +8,12 @@ using Project_UML.Core.Arrows;
 using System;
 using System.Reflection;
 
-namespace Project_UML.Core.DataProject
+namespace Project_UML.Core.DataProject.Binary
 {
     /// <summary>
     /// Развертывает дату десериализации
     /// </summary>
-    public class DeserializeData
+    public class ProcessingData
     {
         #region Переменные
         /// <summary>
@@ -28,6 +28,7 @@ namespace Project_UML.Core.DataProject
         /// Список Фигур
         /// </summary>
         private List<IFigure> _iFigure;
+        private List<IPoint> _point;
         /// <summary>
         /// Список структурированых действий
         /// </summary>
@@ -43,25 +44,7 @@ namespace Project_UML.Core.DataProject
         /// <summary>
         /// Массив полных названий классов стрел
         /// </summary>
-        private string[] _typeArrow;
-        /// <summary>
-        /// Массив полных названий классов боксов
-        /// </summary>
-        private string[] _typeBox;
-        #endregion
-
-        #region Методы
-        /// <summary>
-        /// Чтение записаной даты
-        /// </summary>
-        /// <param name="writeData"></param>
-        public DeserializeData(SerializeData writeData)
-        {
-            _iBase = writeData.Base;
-            _iLogs = writeData.Logs;
-            _iFigure = CreateListFigure();
-            _logs = CreateListLogs();
-            _typeArrow = new string[5]
+        private string[] _typeArrow = new string[5]
         {
             "Project_UML.Core.Arrows.AggregationArrow",
             "Project_UML.Core.Arrows.AssociationArrow",
@@ -69,23 +52,39 @@ namespace Project_UML.Core.DataProject
             "Project_UML.Core.Arrows.ImplementationArrow",
             "Project_UML.Core.Arrows.InheritanceArrow"
         };
-            _typeBox = new string[4]
+        /// <summary>
+        /// Массив полных названий классов боксов
+        /// </summary>
+        private string[] _typeBox = new string[4]
         {
             "Project_UML.Core.Boxes.BaseBox",
             "Project_UML.Core.Boxes.ClassBox",
             "Project_UML.Core.Boxes.MethodBox",
             "Project_UML.Core.Boxes.PropertyBox"
         };
+        #endregion
+
+        #region Методы
+        /// <summary>
+        /// Чтение записаной даты
+        /// </summary>
+        /// <param name="data"></param>
+        public ProcessingData(PreparationData data)
+        {
+            _iBase = data.Base;
+            _iLogs = data.Logs;
+            _iFigure = CreateListFigure();
+            _logs = CreateListLogs();
         }
 
         /// <summary>
         /// Загрузка глобальных параметров фаормы.
         /// </summary>
-        /// <param name="readData"></param>
-        public void LoadingData(DeserializeData readData)
+        /// <param name="data"></param>
+        public void LoadingData(ProcessingData data)
         {
-            _coreUML.Figures = readData._iFigure;
-            _coreUML.Logs = readData._logs;
+            _coreUML.Figures = data._iFigure;
+            _coreUML.Logs = data._logs;
         }
             
         /// <summary>

@@ -6,7 +6,7 @@ namespace Project_UML.Core.DataProject.Json
 {
     public class SaveSettings
     {
-        private SerializeSettings _serializer = new SerializeSettings();
+        private Serialize _serializer = new Serialize();
         public void WriteSettings()
         {
             using (FileStream fileStream = new FileStream(CoreUML.GetCoreUML().MyPathSettings, FileMode.Create, FileAccess.Write, FileShare.None))

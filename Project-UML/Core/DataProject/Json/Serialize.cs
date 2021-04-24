@@ -3,7 +3,7 @@ using Project_UML.Core.DataProject.Structure;
 
 namespace Project_UML.Core.DataProject.Json
 {
-    public class SerializeSettings
+    public class Serialize
     {
         private StructSettings _setting = new StructSettings();
         public string Serializer()

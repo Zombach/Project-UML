@@ -5,30 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Project_UML.Core.DataProject
+namespace Project_UML.Core.DataProject.Binary
 {
     public class Load
     {
-        private CoreUML _coreUML;
-        private SerializeData _serializeData;
+        private CoreUML _coreUML = CoreUML.GetCoreUML();
+        private PreparationData _data;
 
-        public SerializeData LoadingData()
+        public PreparationData LoadingData()
         {
-            _coreUML = CoreUML.GetCoreUML();
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "../../Save";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     
-                    BinaryConversion binary = new BinaryConversion();
+                    Deserialize deserializer = new Deserialize();
                     _coreUML.MyPath = openFileDialog.FileName;
-                    _serializeData = binary.DeserializationDictionary();
+                    _data = deserializer.DeserializationDictionary();
                     MessageBox.Show("Загрузка успешно завершена");
                     _coreUML.IsLoading = true;
                 }
             }
-            return _serializeData;
+            return _data;
         }
     }
 }

@@ -29,91 +29,96 @@ namespace Project_UML.Core.FormsUML
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.Save = new System.Windows.Forms.Button();
+            this.SaveAs = new System.Windows.Forms.Button();
+            this.LoadLast = new System.Windows.Forms.Button();
+            this.LoadAs = new System.Windows.Forms.Button();
+            this.EncryptAs = new System.Windows.Forms.Button();
+            this.Cancel = new System.Windows.Forms.Button();
+            this.MainMenu = new System.Windows.Forms.Button();
+            this.Encrypt = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // button1
+            // Save
             // 
-            this.button1.Location = new System.Drawing.Point(46, 28);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Save.Location = new System.Drawing.Point(46, 28);
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(75, 23);
+            this.Save.TabIndex = 0;
+            this.Save.Text = "Save";
+            this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
-            // button2
+            // SaveAs
             // 
-            this.button2.Location = new System.Drawing.Point(166, 28);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Save as";
-            this.button2.UseVisualStyleBackColor = true;
+            this.SaveAs.Location = new System.Drawing.Point(166, 28);
+            this.SaveAs.Name = "SaveAs";
+            this.SaveAs.Size = new System.Drawing.Size(75, 23);
+            this.SaveAs.TabIndex = 1;
+            this.SaveAs.Text = "Save as";
+            this.SaveAs.UseVisualStyleBackColor = true;
+            this.SaveAs.Click += new System.EventHandler(this.SaveAs_Click);
             // 
-            // button3
+            // LoadLast
             // 
-            this.button3.Location = new System.Drawing.Point(299, 28);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Load last";
-            this.button3.UseVisualStyleBackColor = true;
+            this.LoadLast.Location = new System.Drawing.Point(299, 28);
+            this.LoadLast.Name = "LoadLast";
+            this.LoadLast.Size = new System.Drawing.Size(75, 23);
+            this.LoadLast.TabIndex = 2;
+            this.LoadLast.Text = "Load last";
+            this.LoadLast.UseVisualStyleBackColor = true;
+            this.LoadLast.Click += new System.EventHandler(this.LoadLast_Click);
             // 
-            // button5
+            // LoadAs
             // 
-            this.button5.Location = new System.Drawing.Point(299, 84);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Load as";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.LoadindAs);
+            this.LoadAs.Location = new System.Drawing.Point(299, 84);
+            this.LoadAs.Name = "LoadAs";
+            this.LoadAs.Size = new System.Drawing.Size(75, 23);
+            this.LoadAs.TabIndex = 4;
+            this.LoadAs.Text = "Load as";
+            this.LoadAs.UseVisualStyleBackColor = true;
+            this.LoadAs.Click += new System.EventHandler(this.LoadAs_Click);
             // 
-            // button6
+            // EncryptAs
             // 
-            this.button6.Location = new System.Drawing.Point(166, 82);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Encrypt as";
-            this.button6.UseVisualStyleBackColor = true;
+            this.EncryptAs.Location = new System.Drawing.Point(166, 82);
+            this.EncryptAs.Name = "EncryptAs";
+            this.EncryptAs.Size = new System.Drawing.Size(75, 23);
+            this.EncryptAs.TabIndex = 5;
+            this.EncryptAs.Text = "Encrypt as";
+            this.EncryptAs.UseVisualStyleBackColor = true;
+            this.EncryptAs.Click += new System.EventHandler(this.EncryptAs_Click);
             // 
-            // button7
+            // Cancel
             // 
-            this.button7.Location = new System.Drawing.Point(299, 188);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "Cancel";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.Cancel);
+            this.Cancel.Location = new System.Drawing.Point(299, 188);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(75, 23);
+            this.Cancel.TabIndex = 6;
+            this.Cancel.Text = "Cancel";
+            this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
-            // button8
+            // MainMenu
             // 
-            this.button8.Location = new System.Drawing.Point(166, 188);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 7;
-            this.button8.Text = "Main Menu";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.MainMenu);
+            this.MainMenu.Location = new System.Drawing.Point(166, 188);
+            this.MainMenu.Name = "MainMenu";
+            this.MainMenu.Size = new System.Drawing.Size(75, 23);
+            this.MainMenu.TabIndex = 7;
+            this.MainMenu.Text = "Main Menu";
+            this.MainMenu.UseVisualStyleBackColor = true;
+            this.MainMenu.Click += new System.EventHandler(this.MainMenu_Click);
             // 
-            // checkBox1
+            // Encrypt
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(59, 88);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(62, 17);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Encrypt";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.Encrypt.AutoSize = true;
+            this.Encrypt.Location = new System.Drawing.Point(59, 88);
+            this.Encrypt.Name = "Encrypt";
+            this.Encrypt.Size = new System.Drawing.Size(62, 17);
+            this.Encrypt.TabIndex = 8;
+            this.Encrypt.Text = "Encrypt";
+            this.Encrypt.UseVisualStyleBackColor = true;
+            this.Encrypt.CheckedChanged += new System.EventHandler(this.Encrypt_Click);
             // 
             // Menu
             // 
@@ -121,15 +126,16 @@ namespace Project_UML.Core.FormsUML
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.ClientSize = new System.Drawing.Size(434, 223);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Encrypt);
+            this.Controls.Add(this.MainMenu);
+            this.Controls.Add(this.Cancel);
+            this.Controls.Add(this.EncryptAs);
+            this.Controls.Add(this.LoadAs);
+            this.Controls.Add(this.LoadLast);
+            this.Controls.Add(this.SaveAs);
+            this.Controls.Add(this.Save);
             this.Name = "Menu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -138,13 +144,13 @@ namespace Project_UML.Core.FormsUML
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button Save;
+        private System.Windows.Forms.Button SaveAs;
+        private System.Windows.Forms.Button LoadLast;
+        private System.Windows.Forms.Button LoadAs;
+        private System.Windows.Forms.Button EncryptAs;
+        private System.Windows.Forms.Button Cancel;
+        private System.Windows.Forms.Button MainMenu;
+        private System.Windows.Forms.CheckBox Encrypt;
     }
 }

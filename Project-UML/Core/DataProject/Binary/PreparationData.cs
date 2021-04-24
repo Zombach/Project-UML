@@ -7,13 +7,13 @@ using Project_UML.Core.Boxes;
 using System.Drawing;
 using System;
 
-namespace Project_UML.Core.DataProject
+namespace Project_UML.Core.DataProject.Binary
 {
     /// <summary>
     /// Подготовка Даты Сериализации
     /// </summary>
     [Serializable]
-    public class SerializeData : ICoreUML
+    public class PreparationData : ICoreUML
     {
         #region Переменные
         /// <summary>
@@ -38,7 +38,7 @@ namespace Project_UML.Core.DataProject
         /// <summary>
         /// Сереализация ядра и объектов програмы
         /// </summary>
-        public SerializeData()
+        public PreparationData()
         {
             CoreUML coreUML = CoreUML.GetCoreUML();
             List<IFigure> Figures = coreUML.Figures;
