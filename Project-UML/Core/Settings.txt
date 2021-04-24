@@ -3,10 +3,10 @@
   "DefaultColor": "Black",
   "DefaultFont": "Arial, 8.25pt",
   "DefaultWidth": 1,
-  "DefaultSize": -8,
+  "DefaultSize": 20,
   "DefaultStep": {
     "$type": "Project_UML.Core.Step, Project-UML",
-    "X": 15,
-    "Y": 15
+    "X": 10,
+    "Y": 10
   }
 }
