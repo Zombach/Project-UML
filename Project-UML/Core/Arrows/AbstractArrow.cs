@@ -68,6 +68,12 @@ namespace Project_UML.Core.Arrows
         public AbstractArrow(StructArrow arrow)
         {
             _pen = new Pen(arrow.Color, arrow.Width);
+            for (int i = 0; i < arrow.Points.Count; i++)
+            {
+                Point point = new Point(arrow.Points[i].Point_X, arrow.Points[i].Point_Y);
+                Points.Add(point);
+            }
+
             //Необходимо дописать конструктор стрелы
         }
 

@@ -28,6 +28,7 @@ namespace Project_UML.Core.DataProject.Binary
         /// Список Фигур
         /// </summary>
         private List<IFigure> _iFigure;
+        private List<IPoint> _point;
         /// <summary>
         /// Список структурированых действий
         /// </summary>
