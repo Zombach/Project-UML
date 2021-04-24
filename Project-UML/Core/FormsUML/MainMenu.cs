@@ -16,6 +16,10 @@ namespace Project_UML.Core.FormsUML
     /// </summary>
     public partial class MainMenu : Form
     {
+        public void ShowMainMenu()
+        {
+            Show();
+        }
         public MainMenu()
         {
             //Шифрование данных, необходимо вставить в моменте сохранения. Encrypt en = new Encrypt();

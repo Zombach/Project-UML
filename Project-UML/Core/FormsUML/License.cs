@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Project_UML.Core.FormsUML;
 
 namespace Project_UML.Core.FormsUML
 {
@@ -22,7 +23,7 @@ namespace Project_UML.Core.FormsUML
         private Form _menu;
         private string _myPath = Path.GetFullPath("../../Resources/txt/License.txt");
 
-        public License(Form menu)
+        public License(MainMenu menu)
         {
             InitializeComponent();
             _menu = menu;
@@ -46,6 +47,12 @@ namespace Project_UML.Core.FormsUML
             this.Close();
             newProject.Show();
             //MainMenu.Main.Visible = true; Это строка кода для отображения главноего меню
+        }
+        private void License_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            _menu.Show();
+            Dispose();
         }
     }
 }

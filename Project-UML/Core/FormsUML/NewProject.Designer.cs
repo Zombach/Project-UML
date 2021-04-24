@@ -239,14 +239,14 @@ namespace Project_UML.Core.FormsUML
             resources.ApplyResources(this.ButtonTransform, "buttonTransform");
             this.ButtonTransform.Name = "buttonTransform";
             this.ButtonTransform.UseVisualStyleBackColor = true;
-            this.ButtonTransform.Click += new System.EventHandler(this.buttonMove_Click);
+            this.ButtonTransform.Click += new System.EventHandler(this.ButtonMove_Click);
             // 
             // buttonMove
             // 
             resources.ApplyResources(this.ButtonMove, "buttonMove");
             this.ButtonMove.Name = "buttonMove";
             this.ButtonMove.UseVisualStyleBackColor = true;
-            this.ButtonMove.Click += new System.EventHandler(this.buttonMove_Click_1);
+            this.ButtonMove.Click += new System.EventHandler(this.ButtonMove_Click_1);
             // 
             // textBox1
             // 

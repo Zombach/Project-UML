@@ -66,6 +66,7 @@ namespace Project_UML.Core.FormsUML
             // 
             // License
             // 
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.License_FormClosing);
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(440, 257);
