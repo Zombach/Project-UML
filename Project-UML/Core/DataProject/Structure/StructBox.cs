@@ -13,6 +13,7 @@ namespace Project_UML.Core.DataProject.Structure
     [Serializable]
     public struct StructBox : IBox, IBase
     {
+        public List<IPoint> Points { get; set; }
         public List<IDataCommon> Data { get; set; }
         public List<DataText> DataText { get; set; }
         public string Type { get; set; }
@@ -28,7 +29,12 @@ namespace Project_UML.Core.DataProject.Structure
             Font = box.GetFont();
             Color = box.GetColor();
             Width = box.GetWidth();
-
+            Points = new List<IPoint>();
+            for (int i = 0; i < box.Points.Count; i++)
+            {
+                StructPoints structPoints = new StructPoints(box.Points[i]);
+                Points.Add(structPoints);
+            }
             Data = null;
             for (int i = 0; i < box.DataCommon.Count; i++)
             {

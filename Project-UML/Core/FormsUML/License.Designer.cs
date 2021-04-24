@@ -73,6 +73,7 @@ namespace Project_UML.Core.FormsUML
             this.Controls.Add(this.License_CheckBox);
             this.Controls.Add(this.LicenseText);
             this.Name = "License";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "License Agreement";
             this.ResumeLayout(false);
             this.PerformLayout();

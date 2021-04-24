@@ -1,4 +1,4 @@
-﻿using Project_UML.Core.DataProject;
+﻿using Project_UML.Core.DataProject.Binary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +18,7 @@ namespace Project_UML.Core.FormsUML
     public partial class Loading : Form
     {
         private Form _menu;
-        private SerializeData _data;
+        private PreparationData _data;
         private Load _load;
         public Loading(Form menu)
         {

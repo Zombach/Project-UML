@@ -6,7 +6,7 @@ namespace Project_UML.Core.DataProject.Json
 {
     public class LoadSettings
     {
-        private DeserializeSettings _deserializer = new DeserializeSettings();
+        private Deserialize _deserializer = new Deserialize();
         public StructSettings ReadSettings()
         {
             StructSettings settings;

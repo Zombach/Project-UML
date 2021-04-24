@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.DataProject.Json
 {
-    public class DeserializeSettings
+    public class Deserialize
     {
         public StructSettings DeserializerSetting(string data)
         {

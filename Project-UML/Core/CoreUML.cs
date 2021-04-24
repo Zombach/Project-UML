@@ -8,7 +8,7 @@ using Project_UML.Core.Arrows;
 using System.Drawing;
 using System.Windows.Forms;
 using Project_UML.Core.FigureFactory;
-using Project_UML.Core.DataProject;
+using Project_UML.Core.DataProject.Binary;
 using Project_UML.Core.Boxes;
 using Project_UML.Core.DataProject.Structure;
 
@@ -93,7 +93,6 @@ namespace Project_UML.Core
         {
             BitmapTmp = (Bitmap)BitmapMain.Clone();
             Graphics = Graphics.FromImage(BitmapTmp);
-            double dd = GC.GetTotalMemory(true);
             if (GC.GetTotalMemory(true) > 9999073741824)
             {
                 GC.Collect();
@@ -273,15 +272,15 @@ namespace Project_UML.Core
 
         public static bool SaveDate()
         {
-            BinaryConversion binaryConversion = new BinaryConversion();
-            binaryConversion.SerializationDictionary();
+            Serialize serializer = new Serialize();
+            serializer.SerializationDictionary();
             return true;
         }
 
         public static bool LoadData()
         {
-            BinaryConversion binaryConversion = new BinaryConversion();
-            binaryConversion.DeserializationDictionary();
+            Deserialize deserializer = new Deserialize();
+            deserializer.DeserializationDictionary();
             return true;
         }
 

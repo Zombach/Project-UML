@@ -6,7 +6,7 @@ using Project_UML.Core.Arrows;
 using Project_UML.Core.MousHandlers;
 using Project_UML.Core.FigureFactory;
 using Project_UML.Core.Interfaces;
-using Project_UML.Core.DataProject;
+using Project_UML.Core.DataProject.Binary;
 using Project_UML.Core.DataProject.Json;
 using Project_UML.Core.DataProject.Structure;
 
@@ -23,13 +23,13 @@ namespace Project_UML.Core.FormsUML
         private List<AbstractArrow> _arrows = new List<AbstractArrow>();
         private IMouseHandler _crntMH = new MouseHandlerOnSelection();
         private IMouseHandler _tmpCrntMH;
-        public NewProject(Form menu, SerializeData data)
+        public NewProject(Form menu, PreparationData data)
         {
             InitializeComponent();
             _menu = menu;
             if (_coreUML.IsLoading)
             {
-                DeserializeData deserializeData = new DeserializeData(data);
+                ProcessingData deserializeData = new ProcessingData(data);
                 deserializeData.LoadingData(deserializeData);
                 TrackBarOfWidth.Value = (int)_coreUML.DefaultWidth;
                 ButtonColor.BackColor = _coreUML.DefaultColor;
@@ -40,7 +40,7 @@ namespace Project_UML.Core.FormsUML
         public NewProject(Form menu)
         {
             InitializeComponent();
-            LoadSettings load = new LoadSettings();
+            DataProject.Json.LoadSettings load = new DataProject.Json.LoadSettings();
             StructSettings settings = load.ReadSettings();
             _coreUML.LoadCoreUML(settings);
             UpdateSettingsForm(settings);
@@ -349,12 +349,12 @@ namespace Project_UML.Core.FormsUML
             }
         }
 
-        private void buttonMove_Click(object sender, EventArgs e)
+        private void ButtonMove_Click(object sender, EventArgs e)
         {
             _crntMH = new MouseHandlerOnTransform();
         }
 
-        private void buttonMove_Click_1(object sender, EventArgs e)
+        private void ButtonMove_Click_1(object sender, EventArgs e)
         {
             _crntMH = new MouseHandlerOnMove();
         }

@@ -179,6 +179,7 @@ namespace Project_UML.Core.Arrows
             int minX;
             int maxY;
             int minY;
+            CoreUML coreUML = CoreUML.GetCoreUML();
             for (int i = 1; i < Points.Count; i++)
             {
                 if (Points[i - 1].X > Points[i].X)
