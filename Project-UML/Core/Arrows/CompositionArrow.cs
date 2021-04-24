@@ -41,21 +41,28 @@ namespace Project_UML.Core.Arrows
 
         public override void SetEndCap()
         {
-            int tmp;
-            if (_pen.Width == 1)
-            {
-                tmp = 2;
-            }
-            else
-            {
-                tmp = (int)_pen.Width;
-            }
+            int tmp = (int)_pen.Width;
             GraphicsPath _graphicsPath = new GraphicsPath();
-            _graphicsPath.AddLine(new Point(0, 0), new Point(8 / tmp, -12 / tmp));
-            _graphicsPath.AddLine(new Point(8 / tmp, -12 / tmp), new Point(0, -24 / tmp));
-            _graphicsPath.AddLine(new Point(0, -24 / tmp), new Point(-8 / tmp, -12 / tmp));
-            _graphicsPath.AddLine(new Point(-8 / tmp, -12 / tmp), new Point(0, 0));
-            _pen.CustomEndCap = new CustomLineCap(_graphicsPath, null, LineCap.Custom, 24 / tmp);
+            _graphicsPath.AddLine(new Point(0, 0), new Point(12 / tmp, -16 / tmp));
+            _graphicsPath.AddLine(new Point(12 / tmp, -16 / tmp), new Point(0, -32 / tmp));
+            _graphicsPath.AddLine(new Point(0, -32 / tmp), new Point(-12 / tmp, -16 / tmp));
+            _graphicsPath.AddLine(new Point(-12 / tmp, -16 / tmp), new Point(0, 0));
+            _pen.CustomEndCap = new CustomLineCap(_graphicsPath, null, LineCap.Custom, 32 / tmp);
+            //int tmp;
+            //if (_pen.Width == 1)
+            //{
+            //    tmp = 2;
+            //}
+            //else
+            //{
+            //    tmp = (int)_pen.Width;
+            //}
+            //GraphicsPath _graphicsPath = new GraphicsPath();
+            //_graphicsPath.AddLine(new Point(0, 0), new Point(8 / tmp, -12 / tmp));
+            //_graphicsPath.AddLine(new Point(8 / tmp, -12 / tmp), new Point(0, -24 / tmp));
+            //_graphicsPath.AddLine(new Point(0, -24 / tmp), new Point(-8 / tmp, -12 / tmp));
+            //_graphicsPath.AddLine(new Point(-8 / tmp, -12 / tmp), new Point(0, 0));
+            //_pen.CustomEndCap = new CustomLineCap(_graphicsPath, null, LineCap.Custom, 24 / tmp);
         }
 
         public override void ChangeWidth(int width)
