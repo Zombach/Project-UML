@@ -298,5 +298,15 @@ namespace Project_UML.Core
             step.Y *= y;
             return step;
         }
+
+        public void ChangeName(string name)
+        {
+            foreach (IFigure figure in SelectedFigures)
+                if (figure is AbstractBox box)
+                    {
+                        box.Name[0] = name;
+                        UpdPicture();
+                    }
+        }
     }
 }

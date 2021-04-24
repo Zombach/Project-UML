@@ -9,6 +9,7 @@ using Project_UML.Core.Interfaces;
 using Project_UML.Core.DataProject.Binary;
 using Project_UML.Core.DataProject.Json;
 using Project_UML.Core.DataProject.Structure;
+using Project_UML.Core.Boxes;
 
 namespace Project_UML.Core.FormsUML
 {
@@ -34,7 +35,7 @@ namespace Project_UML.Core.FormsUML
                 TrackBarOfWidth.Value = _coreUML.DefaultWidth;
                 ButtonColor.BackColor = _coreUML.DefaultColor;
                 _coreUML.IsLoading = false;
-            }
+            }            
         }
 
         public NewProject(Form menu)
@@ -392,6 +393,35 @@ namespace Project_UML.Core.FormsUML
         {
             SaveSettings sss = new SaveSettings();
             sss.WriteSettings();
+        }
+
+        private void buttonUpdateRectText_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem != null && _crntMH.CoreUML.SelectedFigures != null)
+            {
+                string selectedArea = comboBox1.SelectedItem.ToString();
+
+                string areaText = richTextBox1.Text;
+                foreach (IFigure figure in _coreUML.SelectedFigures)
+                {
+                    switch (selectedArea)
+                    {
+                        case "Name":
+                            _coreUML.ChangeName(areaText);
+                        break;
+                        case "Field":
+
+                            break;
+                        case "Property":
+
+                            break;
+                        case "Methods":
+
+                            break;
+                    }
+                }
+                
+            }            
         }
     }
 }
