@@ -32,7 +32,14 @@ namespace Project_UML.Core.Boxes
         protected int RectFieldHeight { get; set; } = 20;
         protected int RectPropertyHeight { get; set; } = 20;
         protected int RectMethodsHeight { get; set; }
-        public List<string> Name = new List<string> {"hello"};
+        /// <summary>
+        /// List<string> RectangleText
+        /// RectangleText[0] - name
+        /// RectangleText[1] - field
+        /// RectangleText[2] - property
+        /// RectangleText[3] - methods
+        /// </summary>
+        public List<string> RectangleText = new List<string> {"hello", "", "", ""};
         protected Font font = new Font("Arial", 10);
 
         protected Pen _pen;

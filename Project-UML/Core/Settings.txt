@@ -1,7 +1,7 @@
 {
   "$type": "Project_UML.Core.DataProject.Structure.StructSettings, Project-UML",
-  "DefaultColor": "Black",
-  "DefaultFont": "Microsoft Sans Serif, 8.25pt",
+  "DefaultColor": "255, 128, 0",
+  "DefaultFont": "Microsoft Sans Serif, 14.25pt, style=Bold",
   "DefaultWidth": 1,
   "DefaultSize": -20,
   "DefaultStep": {

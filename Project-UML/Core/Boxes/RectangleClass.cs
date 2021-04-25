@@ -31,7 +31,7 @@ namespace Project_UML.Core.Boxes
             SolidBrush brush = new SolidBrush(Color.Black);
 
             SizeF stringSize = new SizeF();
-            stringSize = graphics.MeasureString(Name[0], font);
+            stringSize = graphics.MeasureString(RectangleText[0], font);
             RectNameHeight = font.Height;
 
             while (stringSize.Width > RectangleWidth)
@@ -41,15 +41,26 @@ namespace Project_UML.Core.Boxes
             }
             RectNameHeight += font.Height;
 
-            RectangleF rectF1 = new RectangleF(Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
+            RectangleF rectName = new RectangleF(Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
+            RectangleF rectField = new RectangleF(Points[0].X, Points[0].Y + RectNameHeight, RectangleWidth, RectFieldHeight);
+            RectangleF rectProperty = new RectangleF(Points[0].X, Points[0].Y + RectNameHeight + RectFieldHeight, RectangleWidth, RectPropertyHeight);
+            RectMethodsHeight = RectangleHeight - (RectNameHeight + RectFieldHeight + RectPropertyHeight);
+            RectangleF rectMethods = new RectangleF(Points[0].X, Points[0].Y + RectNameHeight + RectFieldHeight + RectPropertyHeight, RectangleWidth, RectMethodsHeight);
+
 
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
-            graphics.DrawString(Name[0], font, brush, rectF1);
-            graphics.DrawRectangle(_pen, Rectangle.Round(rectF1));
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight, RectangleWidth, RectFieldHeight);
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight + RectFieldHeight, RectangleWidth, RectPropertyHeight);
-            RectMethodsHeight = RectangleHeight - (RectNameHeight + RectFieldHeight + RectPropertyHeight);
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight + RectFieldHeight + RectPropertyHeight, RectangleWidth, RectMethodsHeight);
+
+            graphics.DrawString(RectangleText[0], font, brush, rectName);
+            graphics.DrawRectangle(_pen, Rectangle.Round(rectName));
+
+            graphics.DrawString(RectangleText[1], font, brush, rectField);
+            graphics.DrawRectangle(_pen, Rectangle.Round(rectField));
+
+            graphics.DrawString(RectangleText[2], font, brush, rectProperty);
+            graphics.DrawRectangle(_pen, Rectangle.Round(rectProperty));
+
+            graphics.DrawString(RectangleText[3], font, brush, rectMethods);
+            graphics.DrawRectangle(_pen, Rectangle.Round(rectMethods));
         }
     }
 }

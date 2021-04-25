@@ -308,12 +308,12 @@ namespace Project_UML.Core
             return step;
         }
 
-        public void ChangeName(string name)
+        public void ChangeName(string name, int index)
         {
             foreach (IFigure figure in SelectedFigures)
                 if (figure is AbstractBox box)
                     {
-                        box.Name[0] = name;
+                        box.RectangleText[index] = name;
                         UpdPicture();
                     }
         }

@@ -146,46 +146,11 @@ namespace Project_UML.Core.FormsUML
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             _crntMH.MouseDown(e.Location);
-
-            //    case Act.Clear:
-            //        foreach (AbstractArrow arrow in _arrows)
-            //        {
-            //            selected = arrow.CheckSelection(_point);
-            //            if (selected)
-            //            {
-            //                _arrows.Remove(arrow);
-            //                UpdPicture();
-            //                break;
-            //            }
-            //        }
-            //        break;
-            //    case Act.Rectangle:
-            //        _currentBox = new BestRectangles(e.X, e.Y);
-            //        _currentBox.Draw(_graphics);
-            //        break;
-            //}
         }
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             _crntMH.MouseUp(e.Location);
-            //switch (_act)
-            //{
-            //    
-            //    //case Act.Rectangle:
-            //    case Act.Rectangle:
-            //        if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
-            //        //_boxes.Add(_currentBox);
-            //        //_currentBox.Select(_graphics);
-            //        pictureBox1.Invalidate();
-            //        break;
-
-            //}
-            ////CoreUML.Figures.Add(_currentArrow.Points[0].X);
-            ////CoreUML.Figures.Add(_currentArrow.Points[0].Y);
-            ////CoreUML.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].X);
-            ////CoreUML.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].Y);
-            //_isTapped = false;
         }
 
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -502,16 +467,16 @@ namespace Project_UML.Core.FormsUML
                     switch (selectedArea)
                     {
                         case "Name":
-                            _coreUML.ChangeName(areaText);
+                            _coreUML.ChangeName(areaText, 0);
                         break;
                         case "Field":
-
+                            _coreUML.ChangeName(areaText, 1);
                             break;
                         case "Property":
-
+                            _coreUML.ChangeName(areaText, 2);
                             break;
                         case "Methods":
-
+                            _coreUML.ChangeName(areaText, 3);
                             break;
                     }
                 }

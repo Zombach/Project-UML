@@ -32,10 +32,28 @@ namespace Project_UML.Core.Boxes
         {
             SolidBrush brush = new SolidBrush(Color.Black);
 
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectangleHeight);
-            graphics.DrawString("<<Interface>>", font, brush, Points[0].X + 5, Points[0].Y + 5);
+            SizeF stringSize = new SizeF();
+            stringSize = graphics.MeasureString(RectangleText[0], font);
+            RectNameHeight = font.Height;
+
+            while (stringSize.Width > RectangleWidth)
+            {
+                RectNameHeight += font.Height;
+                stringSize.Width -= RectangleWidth;
+            }
+            RectNameHeight += font.Height;
+
+            RectangleF rectName = new RectangleF(Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
+            RectangleF rectField = new RectangleF(Points[0].X, Points[0].Y + RectNameHeight, RectangleWidth, RectangleHeight - RectNameHeight);
+
+
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
 
+            graphics.DrawString(RectangleText[0], font, brush, rectName);
+            graphics.DrawRectangle(_pen, Rectangle.Round(rectName));
+
+            graphics.DrawString(RectangleText[1], font, brush, rectField);
+            graphics.DrawRectangle(_pen, Rectangle.Round(rectField));
         }
     }
 }
