@@ -356,7 +356,7 @@ namespace Project_UML.Core
             if (figure is AbstractBox box)
             {
                 WriteLogsActs(box, false);
-                box.Name[0] = name;
+                box.RectangleText[index] = name;
                 WriteLogsActs(box, true);
             }
             UpdPicture();
