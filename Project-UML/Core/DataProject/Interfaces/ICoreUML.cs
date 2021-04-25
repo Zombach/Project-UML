@@ -12,13 +12,5 @@ namespace Project_UML.Core.DataProject.Interfaces
         /// Список структур фигур
         /// </summary>
         List<IBase> Base { get; set; }
-        /// <summary>
-        /// Список структурированых действий
-        /// </summary>
-        List<ILogs> Logs { get; set; }
-        /// <summary>
-        /// Цвет по умолчанию
-        /// </summary>
-        
     }
 }

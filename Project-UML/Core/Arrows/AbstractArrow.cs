@@ -17,6 +17,7 @@ namespace Project_UML.Core.Arrows
     [Serializable]
     public abstract class AbstractArrow : IFigure
     {
+        private CoreUML _coreUML = CoreUML.GetCoreUML();
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
         public Axis StartDirectionAxis { get; set; } = Axis.X;
@@ -51,7 +52,7 @@ namespace Project_UML.Core.Arrows
             _pen = new Pen(arrow._pen.Color, arrow._pen.Width);
             for (int i = 0; i < arrow.Points.Count; i++)
             {
-                Point point = new Point(arrow.Points[i].X, arrow.Points[i].Y);
+                Point point = new Point(arrow.Points[i].X - _coreUML.DefaultStep.X, arrow.Points[i].Y - _coreUML.DefaultStep.Y);
                 Points.Add(point);
             }
             DataCommon = new List<DataCommon>();

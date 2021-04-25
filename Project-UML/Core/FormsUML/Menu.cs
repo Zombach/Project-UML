@@ -18,7 +18,6 @@ namespace Project_UML.Core.FormsUML
         private Form _menu;
         private Form _project;
         private PreparationData _data;
-        private Deserialize _deserializer;
         private Load _load;
         private bool _isEncrypt = false;
         public Menu(Form menu, Form project)
@@ -31,7 +30,6 @@ namespace Project_UML.Core.FormsUML
         private void MainMenu_Click(object sender, EventArgs e)
         {
             _isProject = false;
-            _menu.Show();
             Close();
         }
 
@@ -91,7 +89,9 @@ namespace Project_UML.Core.FormsUML
             }
             else
             {
-                _project.Close();
+                _menu.Show();
+                _project.Dispose();
+
             }
         }
         private void KeyDown_Control(object sender, KeyEventArgs e)

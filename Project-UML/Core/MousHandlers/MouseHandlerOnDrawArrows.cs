@@ -28,7 +28,7 @@ namespace Project_UML.Core.MousHandlers
             {
                 StartPoint = new Point(e.X, e.Y);
                 IsTapped = true;
-                _newArrow = (AbstractArrow)FigureFactory.GetFigure(CoreUML.DefaultColor, (int)CoreUML.DefaultWidth);
+                _newArrow = (AbstractArrow)FigureFactory.GetFigure(CoreUML.DefaultColor, CoreUML.DefaultWidth);
                 _newArrow.GetPoints(e, e);
                 _newArrow.HookStartPointToFigure(e);
                 //_newArrow.DataCommon.Add(new DataCommon(_newArrow));
@@ -100,7 +100,9 @@ namespace Project_UML.Core.MousHandlers
                         _newArrow.DataCommon[0].LastBox.DataCommon.Add(_newArrow.DataCommon[0]);
                     }
                     CoreUML.BitmapMain = CoreUML.BitmapTmp;
+                    CoreUML.WriteLogsActs(null, false);
                     CoreUML.Figures.Add(_newArrow);
+                    CoreUML.WriteLogsActs(_newArrow, true);
                     CoreUML.SelectedFigures.Clear();
                     CoreUML.SelectedFigures.Add(_newArrow);
                     CoreUML.DrawSelectionOfFigures();

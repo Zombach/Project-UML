@@ -38,7 +38,7 @@ namespace Project_UML.Core.FormsUML
             this.HelpText.FormattingEnabled = true;
             this.HelpText.Location = new System.Drawing.Point(4, 4);
             this.HelpText.Name = "HelpText";
-            this.HelpText.Size = new System.Drawing.Size(294, 303);
+            this.HelpText.Size = new System.Drawing.Size(294, 329);
             this.HelpText.TabIndex = 0;
             // 
             // Help
@@ -46,16 +46,16 @@ namespace Project_UML.Core.FormsUML
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(302, 311);
+            this.ClientSize = new System.Drawing.Size(302, 337);
             this.ControlBox = false;
             this.Controls.Add(this.HelpText);
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(1550, 50);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(318, 350);
+            this.MaximumSize = new System.Drawing.Size(318, 376);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(318, 350);
+            this.MinimumSize = new System.Drawing.Size(318, 376);
             this.Name = "Help";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

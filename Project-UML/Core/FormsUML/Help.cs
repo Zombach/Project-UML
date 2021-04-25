@@ -13,7 +13,7 @@ namespace Project_UML.Core.FormsUML
 {
     public partial class Help : Form
     {
-        private string _myPath = Path.GetFullPath("../../Resources/txt/Help.txt");
+        private readonly string _myPath = Path.GetFullPath("../../Resources/txt/Help.txt");
         public Help()
         {
             InitializeComponent();

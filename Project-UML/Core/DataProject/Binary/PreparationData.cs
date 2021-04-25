@@ -21,10 +21,6 @@ namespace Project_UML.Core.DataProject.Binary
         /// </summary>
         public List<IBase> Base { get; set; }
         /// <summary>
-        /// Список структурных действий с фигурами
-        /// </summary>
-        public List<ILogs> Logs { get; set; }
-        /// <summary>
         /// Структура Стрелы
         /// </summary>
         private StructArrow _arrow;
@@ -44,9 +40,6 @@ namespace Project_UML.Core.DataProject.Binary
             List<IFigure> Figures = coreUML.Figures;
             Base = new List<IBase>();
             Base = CreateStructFigure(Figures);
-
-            Logs = new List<ILogs>();
-            Logs = CreateObjectsLogs();
         }
 
         /// <summary>
@@ -71,16 +64,6 @@ namespace Project_UML.Core.DataProject.Binary
                 }
             }
             return iBase;
-        }
-
-        /// <summary>
-        /// Создание списка структурных действий с фигурами
-        /// </summary>
-        /// <returns></returns>
-        private List<ILogs> CreateObjectsLogs()
-        {
-            List<ILogs> logs = new List<ILogs>();
-            return logs;
         }
         #endregion
     }
