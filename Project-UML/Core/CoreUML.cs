@@ -362,6 +362,18 @@ namespace Project_UML.Core
             UpdPicture();
         }
 
+        public string GetName(int index)
+        {
+            string name = "";
+            foreach (IFigure figure in SelectedFigures)
+                if (figure is AbstractBox box)
+                {
+                    WriteLogsActs(box, false);
+                    name = box.RectangleText[index];
+                    WriteLogsActs(box, true);
+                }
+            return name;
+        }
         public void WriteLogsActs(IFigure figure, bool isNew)
         {
             if (!isNew)

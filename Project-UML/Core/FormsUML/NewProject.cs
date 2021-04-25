@@ -544,7 +544,7 @@ namespace Project_UML.Core.FormsUML
                 string areaText = richTextBox1.Text;
                 switch (selectedArea)
                     {
-                        case "Name":
+                        case "Name":                            
                             _coreUML.ChangeName(areaText, 0);
                         break;
                         case "Field":
@@ -557,7 +557,31 @@ namespace Project_UML.Core.FormsUML
                             _coreUML.ChangeName(areaText, 3);
                             break;
                     }
-            }            
+            }
+        }
+        private void buttonGetCurrentText_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem != null && _crntMH.CoreUML.SelectedFigures != null)
+            {
+                string selectedArea = comboBox1.SelectedItem.ToString();
+
+                string areaText = richTextBox1.Text;
+                switch (selectedArea)
+                {
+                    case "Name":
+                        richTextBox1.Text = _coreUML.GetName(0);
+                        break;
+                    case "Field":
+                        richTextBox1.Text = _coreUML.GetName(1);
+                        break;
+                    case "Property":
+                        richTextBox1.Text = _coreUML.GetName(2);
+                        break;
+                    case "Methods":
+                        richTextBox1.Text = _coreUML.GetName(3);
+                        break;
+                }
+            }
         }
 
         private void Font_Click(object sender, EventArgs e)
@@ -571,5 +595,6 @@ namespace Project_UML.Core.FormsUML
                 _coreUML.UpdPicture();
             }
         }
+
     }
 }
