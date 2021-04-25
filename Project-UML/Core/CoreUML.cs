@@ -66,7 +66,7 @@ namespace Project_UML.Core
         public bool IsLoading { get; set; } = false;
         private PreparationData _data;
         private Deserialize _deserializer;
-        private LogActs _log;
+        private LogActs _log = new LogActs();
 
 
         private CoreUML()
@@ -369,9 +369,9 @@ namespace Project_UML.Core
             foreach (IFigure figure in SelectedFigures)
                 if (figure is AbstractBox box)
                 {
-                    WriteLogsActs(box, false);
+                    WriteLogs(box, false);
                     name = box.RectangleText[index];
-                    WriteLogsActs(box, true);
+                    WriteLogs(box, true);
                 }
             return name;
         }
@@ -381,26 +381,26 @@ namespace Project_UML.Core
         {
             if (!isNew)
             {
-                _log = new LogActs();
                 WriteActsPrevious(figure, true);
             }
             else
             {
                 _log.GetPrevious(_log, figure);
                 Logs.Add(_log);
+                _log = new LogActs();
             }
         }
         public void WriteLogsBack(IFigure figure, bool isNew)
         {
             if (!isNew)
             {
-                _log = new LogActs();
                 WriteActsPrevious(figure, false);
             }
             else
             {
                 _log.GetPrevious(_log, figure, false);
                 LogsBack.Add(_log);
+                _log = new LogActs();
             }
         }
         private void WriteActsPrevious(IFigure figure, bool isNew)
@@ -416,11 +416,11 @@ namespace Project_UML.Core
 
         public void CheckCountLogs()
         {
-            if (_coreUML.Logs.Count > 30)
+            if (_coreUML.Logs.Count > 100)
             {
                 List<LogActs> tmp = new List<LogActs>();
                 int tmpIndex = _coreUML.Logs.Count - 1;
-                int tmpCount = tmpIndex - 29;
+                int tmpCount = tmpIndex - 99;
                 for (int i = tmpIndex; i >= tmpCount; i--)
                 {
                     tmp.Add(_coreUML.Logs[i]);

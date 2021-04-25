@@ -334,17 +334,6 @@ namespace Project_UML.Core.FormsUML
         /// <param name="e"></param>
         private void KeyDown_Control(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.A)
-            {
-                Press_Z(_coreUML.Logs);
-                return;
-            }
-            if (e.KeyCode == Keys.Q)
-            {
-                Press_Revert_Z(_coreUML.LogsBack);
-                return;
-            }
-
             if (e.Control)
             {
                 switch(e.KeyCode)
@@ -469,18 +458,18 @@ namespace Project_UML.Core.FormsUML
             {
                 if (_isUndo)
                 {
-                    _coreUML.WriteLogsBack(log.New, false);
+                    _coreUML.WriteLogsBack(log.New, true);
                 }
                 else
                 {
-                    _coreUML.WriteLogs(log.Previous, false);
+                    _coreUML.WriteLogs(log.New, false);
                 }
                 int index = _coreUML.Figures.IndexOf(log.New);
                 if (!(log.Previous is null))
                 {
                     if (_isUndo)
                     {
-                        _coreUML.WriteLogsBack(log.Previous, true);
+                        _coreUML.WriteLogsBack(log.Previous, false);
                     }
                     else
                     {
@@ -513,9 +502,17 @@ namespace Project_UML.Core.FormsUML
                 }
                 else
                 {
-                    _coreUML.WriteLogs(null, true);
+                    _coreUML.WriteLogs(null, false);
                 }
                 _coreUML.Figures.Add(log.Previous);
+                if (_isUndo)
+                {
+                    _coreUML.WriteLogsBack(log.Previous, false);
+                }
+                else
+                {
+                    _coreUML.WriteLogs(log.Previous, true);
+                }
             }
             _coreUML.SelectedFigures.Clear();
             
