@@ -126,7 +126,7 @@ namespace Project_UML.Core.Arrows
         {
             Points.Reverse();
         }
-
+        
         public void ChangeColor(Color color)
         {
             _pen.Color = color;

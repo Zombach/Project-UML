@@ -98,6 +98,16 @@ namespace Project_UML.Core
                 GC.Collect();
             }
         }
+        public void ChangeFontInSelectedFigures(Font font)
+        {
+            foreach (IFigure figure in SelectedFigures)
+            {
+                if(figure is AbstractBox box)
+                {
+                    box.ChangeFont(font);
+                }
+            }
+        }
 
         public void ChangeColorInSelectedFigures(Color color )
         {

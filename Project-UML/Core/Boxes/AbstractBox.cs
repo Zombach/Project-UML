@@ -9,6 +9,7 @@ using Project_UML.Core.Interfaces.Get;
 using Project_UML.Core.Interfaces.Logics;
 using Project_UML.Core.Arrows;
 using Project_UML.Core.DataProject.Structure;
+using Project_UML.Core.Interfaces.Draws;
 
 namespace Project_UML.Core.Boxes
 {
@@ -16,7 +17,7 @@ namespace Project_UML.Core.Boxes
     /// 
     /// </summary>
     [Serializable]
-    public abstract class AbstractBox : IFigure, IGetFont
+    public abstract class AbstractBox : IFigure, IGetFont, IChangeFont
     {
         /// <summary>
         /// Жестко заданы точки [0] - левая верхняя точка, [1] - правая нижняя точка
@@ -87,6 +88,10 @@ namespace Project_UML.Core.Boxes
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectangleHeight);
         }
 
+        public void ChangeFont(Font font)
+        {
+            Font = font;
+        }
 
         public void ChangeColor(Color color)
         {

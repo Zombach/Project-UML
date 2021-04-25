@@ -47,7 +47,7 @@ namespace Project_UML.Core.FormsUML
             this.ButtonClear = new System.Windows.Forms.Button();
             this.ButtonColor = new System.Windows.Forms.Button();
             this.ColorDialog = new System.Windows.Forms.ColorDialog();
-            this.SaveData = new System.Windows.Forms.Button();
+            this.FontDialog = new System.Windows.Forms.FontDialog();
             this.ButtonImplementation = new System.Windows.Forms.Button();
             this.ButtonRectangleObject = new System.Windows.Forms.Button();
             this.ButtonRectangleEnum = new System.Windows.Forms.Button();
@@ -60,6 +60,11 @@ namespace Project_UML.Core.FormsUML
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.buttonUpdateRectText = new System.Windows.Forms.Button();
+            this.FontChange = new System.Windows.Forms.Button();
+            this.FontBold = new System.Windows.Forms.TextBox();
+            this.FontSize = new System.Windows.Forms.TextBox();
+            this.FontItalic = new System.Windows.Forms.TextBox();
+            this.FontUnderline = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.GroupBoxStartAxis.SuspendLayout();
             this.GroupBoxEndAxis.SuspendLayout();
@@ -192,7 +197,7 @@ namespace Project_UML.Core.FormsUML
             resources.ApplyResources(this.ButtonColor, "ButtonColor");
             this.ButtonColor.Name = "ButtonColor";
             this.ButtonColor.UseVisualStyleBackColor = false;
-            this.ButtonColor.Click += new System.EventHandler(this.ButtonColor_Click);            
+            this.ButtonColor.Click += new System.EventHandler(this.ButtonColor_Click);
             // 
             // ButtonImplementation
             // 
@@ -284,10 +289,43 @@ namespace Project_UML.Core.FormsUML
             this.buttonUpdateRectText.UseVisualStyleBackColor = true;
             this.buttonUpdateRectText.Click += new System.EventHandler(this.buttonUpdateRectText_Click);
             // 
+            // FontChange
+            // 
+            this.FontChange.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            resources.ApplyResources(this.FontChange, "FontChange");
+            this.FontChange.Name = "FontChange";
+            this.FontChange.UseVisualStyleBackColor = true;
+            this.FontChange.Click += new System.EventHandler(this.Font_Click);
+            // 
+            // FontBold
+            // 
+            resources.ApplyResources(this.FontBold, "FontBold");
+            this.FontBold.Name = "FontBold";
+            // 
+            // FontSize
+            // 
+            resources.ApplyResources(this.FontSize, "FontSize");
+            this.FontSize.Name = "FontSize";
+            // 
+            // FontItalic
+            // 
+            resources.ApplyResources(this.FontItalic, "FontItalic");
+            this.FontItalic.Name = "FontItalic";
+            // 
+            // FontUnderline
+            // 
+            resources.ApplyResources(this.FontUnderline, "FontUnderline");
+            this.FontUnderline.Name = "FontUnderline";
+            // 
             // NewProject
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.FontUnderline);
+            this.Controls.Add(this.FontItalic);
+            this.Controls.Add(this.FontSize);
+            this.Controls.Add(this.FontBold);
+            this.Controls.Add(this.FontChange);
             this.Controls.Add(this.buttonUpdateRectText);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.comboBox1);
@@ -299,7 +337,6 @@ namespace Project_UML.Core.FormsUML
             this.Controls.Add(this.ButtonRectangleEnum);
             this.Controls.Add(this.ButtonImplementation);
             this.Controls.Add(this.ButtonRectangleObject);
-            this.Controls.Add(this.SaveData);
             this.Controls.Add(this.ButtonColor);
             this.Controls.Add(this.ButtonClear);
             this.Controls.Add(this.ButtonSelect);
@@ -316,22 +353,6 @@ namespace Project_UML.Core.FormsUML
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewProject_FormClosing);
             this.Load += new System.EventHandler(this.NewProject_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Esc);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Control);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Del);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Plus);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Minus);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Zero);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Up);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Down);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Left);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Right);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_A);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_C);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_R);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_S);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_L);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_V);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Z);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressControl);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUpControl);
@@ -348,6 +369,7 @@ namespace Project_UML.Core.FormsUML
             this.GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarOfStep)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
         #endregion
@@ -369,7 +391,6 @@ namespace Project_UML.Core.FormsUML
         private System.Windows.Forms.Button ButtonClear;
         private System.Windows.Forms.Button ButtonColor;
         private System.Windows.Forms.ColorDialog ColorDialog;
-        private System.Windows.Forms.Button SaveData;
         private System.Windows.Forms.Button ButtonImplementation;
         private System.Windows.Forms.Button ButtonRectangleObject;
         private System.Windows.Forms.Button ButtonRectangleEnum;
@@ -382,6 +403,12 @@ namespace Project_UML.Core.FormsUML
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button buttonUpdateRectText;
+        private System.Windows.Forms.FontDialog FontDialog;
+        private System.Windows.Forms.Button FontChange;
+        private System.Windows.Forms.TextBox FontBold;
+        private System.Windows.Forms.TextBox FontSize;
+        private System.Windows.Forms.TextBox FontItalic;
+        private System.Windows.Forms.TextBox FontUnderline;
     }
 }
 

@@ -93,6 +93,7 @@
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Interfaces\Draws\IChangeColor.cs" />
+    <Compile Include="Core\Interfaces\Draws\IChangeFont.cs" />
     <Compile Include="Core\Interfaces\Draws\IChangeWidth.cs" />
     <Compile Include="Core\Interfaces\Draws\IDraw.cs" />
     <Compile Include="Core\Interfaces\Get\IGetArrowType.cs" />

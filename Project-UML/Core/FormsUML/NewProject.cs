@@ -18,6 +18,9 @@ namespace Project_UML.Core.FormsUML
     /// </summary>
     public partial class NewProject : Form
     {
+        private Font _fontBold;
+        private Font _fontUnderline;
+        private Font _fontItalic;
         private Form _menu;
         private bool _isControlKeyOn = false;
         private CoreUML _coreUML = CoreUML.GetCoreUML();
@@ -49,7 +52,39 @@ namespace Project_UML.Core.FormsUML
         {
             ButtonColor.BackColor = _coreUML.DefaultColor;
             TrackBarOfWidth.Value = _coreUML.DefaultWidth;
-            trackBarOfStep.Value = _coreUML.DefaultStep.X;
+            trackBarOfStep.Value = 1;
+            FontChange.Text = _coreUML.DefaultFont.Name;
+            FontChange.Font = _coreUML.DefaultFont;
+
+            PreparationFont();
+
+            if (_coreUML.DefaultFont.Bold)
+            {
+                FontBold.Font = new Font(_fontBold, FontStyle.Bold);
+            }
+
+            if (_coreUML.DefaultFont.Italic)
+            {
+                FontItalic.Font = new Font(_fontItalic, FontStyle.Italic);
+            }
+
+            if (_coreUML.DefaultFont.Underline)
+            {
+                FontUnderline.Font = new Font(_fontUnderline, FontStyle.Underline);
+            }
+
+            FontSize.Font = new Font(_coreUML.DefaultFont.FontFamily, _coreUML.DefaultFont.Size);
+
+        }
+
+        private void PreparationFont()
+        {
+            _fontBold = _coreUML.DefaultFont;
+            _fontItalic = _coreUML.DefaultFont;
+            _fontUnderline = _coreUML.DefaultFont;
+            _fontBold = new Font(_fontBold, FontStyle.Regular);
+            _fontItalic = new Font(_fontItalic, FontStyle.Regular);
+            _fontUnderline = new Font(_fontUnderline, FontStyle.Regular);
         }
 
         private void OnMouseWheel(object sender, MouseEventArgs e)
@@ -482,6 +517,18 @@ namespace Project_UML.Core.FormsUML
                 }
                 
             }            
+        }
+
+        private void Font_Click(object sender, EventArgs e)
+        {
+            FontDialog.ShowDialog();
+            _coreUML.DefaultFont = FontDialog.Font;
+            FontChange.Text = FontDialog.Font.Name;
+            if (_coreUML.SelectedFigures.Count > 0)
+            {
+                _coreUML.ChangeColorInSelectedFigures(ColorDialog.Color);
+                _coreUML.UpdPicture();
+            }
         }
     }
 }
