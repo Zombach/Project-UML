@@ -10,6 +10,7 @@ namespace Project_UML.Core.DataProject.Structure
     [Serializable]
     public struct StructArrow : IArrow, IBase
     {
+        public List<IPoint> Points { get; set; }
         public string Type { get; set; }
         public Color Color { get; set; }
         public float Width { get; set; }
@@ -22,7 +23,12 @@ namespace Project_UML.Core.DataProject.Structure
             Type = arrow.GetType().FullName;
             Color = arrow.GetColor();
             Width = arrow.GetWidth();
-
+            Points = new List<IPoint>();
+            for (int i = 0; i < arrow.Points.Count; i++)
+            {
+                StructPoints structPoints = new StructPoints(arrow.Points[i]);
+                Points.Add(structPoints);
+            }
             Data = null;
             for (int i = 0; i < arrow.DataCommon.Count; i++)
             {

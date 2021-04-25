@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -56,8 +59,19 @@
     <Compile Include="Core\Boxes\RectangleInterface.cs" />
     <Compile Include="Core\ConnectionPoint.cs" />
     <Compile Include="Core\CoreUML.cs" />
+    <Compile Include="Core\DataProject\Binary\Deserialize.cs" />
+    <Compile Include="Core\DataProject\Binary\Serialize.cs" />
+    <Compile Include="Core\DataProject\Binary\SetMyPath.cs" />
+    <Compile Include="Core\DataProject\Interfaces\ICoreUMLSettings.cs" />
     <Compile Include="Core\DataProject\Interfaces\ILogs.cs" />
-    <Compile Include="Core\DataProject\Load.cs" />
+    <Compile Include="Core\DataProject\Interfaces\IPoint.cs" />
+    <Compile Include="Core\DataProject\Json\Deserialize.cs" />
+    <Compile Include="Core\DataProject\Json\Serialize.cs" />
+    <Compile Include="Core\DataProject\Binary\Load.cs" />
+    <Compile Include="Core\DataProject\Json\LoadSettings.cs" />
+    <Compile Include="Core\DataProject\Json\SaveSettings.cs" />
+    <Compile Include="Core\DataProject\Structure\StructPoints.cs" />
+    <Compile Include="Core\DataProject\Structure\StructSettings.cs" />
     <Compile Include="Core\DataText.cs" />
     <Compile Include="Core\Encrypting\DecryptSaving.cs" />
     <Compile Include="Core\Encrypting\Encrypt.cs" />
@@ -72,6 +86,12 @@
     <Compile Include="Core\FormsUML\AboutUs.Designer.cs">
       <DependentUpon>AboutUs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\FormsUML\Help.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\FormsUML\Help.Designer.cs">
+      <DependentUpon>Help.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\FormsUML\Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +99,7 @@
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Interfaces\Draws\IChangeColor.cs" />
+    <Compile Include="Core\Interfaces\Draws\IChangeFont.cs" />
     <Compile Include="Core\Interfaces\Draws\IChangeWidth.cs" />
     <Compile Include="Core\Interfaces\Draws\IDraw.cs" />
     <Compile Include="Core\Interfaces\Get\IGetArrowType.cs" />
@@ -115,13 +136,12 @@
     <Compile Include="Core\MousHandlers\MouseHandlerOnMove.cs" />
     <Compile Include="Core\MousHandlers\MouseHandlerOnTransform.cs" />
     <Compile Include="Core\DataProject\Interfaces\IDataCommon.cs" />
-    <Compile Include="Core\DataProject\DeserializeData.cs" />
+    <Compile Include="Core\DataProject\Binary\ProcessingData.cs" />
     <Compile Include="Core\DataProject\Structure\StructArrow.cs" />
     <Compile Include="Core\DataProject\Structure\StructBox.cs" />
     <Compile Include="Core\DataProject\Structure\StructDataCommon.cs" />
-    <Compile Include="Core\DataProject\SerializeData.cs" />
+    <Compile Include="Core\DataProject\Binary\PreparationData.cs" />
     <Compile Include="Core\MousHandlers\MouseHandlerOnSelection.cs" />
-    <Compile Include="Core\DataProject\BinaryConversion.cs" />
     <Compile Include="Core\DataProject\Interfaces\IArrow.cs" />
     <Compile Include="Core\DataProject\Interfaces\IBox.cs" />
     <Compile Include="Core\DataProject\Interfaces\ICoreUML.cs" />
@@ -150,11 +170,15 @@
     <Compile Include="Core\FormsUML\NewProject.Designer.cs">
       <DependentUpon>NewProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\Step.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Core\FormsUML\AboutUs.resx">
       <DependentUpon>AboutUs.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\FormsUML\Help.resx">
+      <DependentUpon>Help.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\FormsUML\License.resx">
       <DependentUpon>License.cs</DependentUpon>
@@ -176,13 +200,14 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -197,13 +222,13 @@
   <ItemGroup>
     <None Include="Resources\Tes34.png" />
     <None Include="Resources\Tes3.png" />
-    <None Include="Resources\11.png" />
+    <None Include="Resources\Text.png" />
     <None Include="Resources\5.png" />
-    <None Include="Resources\7.png" />
-    <None Include="Resources\9.png" />
-    <None Include="Resources\10.png" />
+    <None Include="Resources\Timur.png" />
+    <None Include="Resources\Stas.png" />
+    <None Include="Resources\Vadim.png" />
     <None Include="Resources\333.png" />
-    <None Include="Resources\6.png" />
+    <None Include="Resources\Andrey.png" />
     <Content Include="Resources\Logo.png" />
     <Content Include="Resources\icons\c-sharp.ico" />
     <Content Include="Resources\icons\aggregation.png" />

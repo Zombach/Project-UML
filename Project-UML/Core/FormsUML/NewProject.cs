@@ -1,12 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using Project_UML.Core.Arrows;
-using Project_UML.Core.MousHandlers;
+using Project_UML.Core.DataProject.Structure;
+using Project_UML.Core.DataProject.Binary;
+using Project_UML.Core.DataProject.Json;
 using Project_UML.Core.FigureFactory;
+using Project_UML.Core.MousHandlers;
 using Project_UML.Core.Interfaces;
-using Project_UML.Core.DataProject;
+using System.Collections.Generic;
+using Project_UML.Core.Arrows;
+using System.Windows.Forms;
+using System.Drawing;
+using Project_UML.Core.Boxes;
 
 namespace Project_UML.Core.FormsUML
 {
@@ -15,59 +18,167 @@ namespace Project_UML.Core.FormsUML
     /// </summary>
     public partial class NewProject : Form
     {
+        private Help _help;
+        private bool isHelp = false;
+        private PreparationData _data;
+        private Font _fontBold;
+        private Font _fontUnderline;
+        private Font _fontItalic;
+        private Font _fontSize;
         private Form _menu;
         private bool _isControlKeyOn = false;
         private CoreUML _coreUML = CoreUML.GetCoreUML();
-        private List<AbstractArrow> _arrows = new List<AbstractArrow>();
         private IMouseHandler _crntMH = new MouseHandlerOnSelection();
         private IMouseHandler _tmpCrntMH;
-        public NewProject(Form menu, SerializeData data)
-        {
-            InitializeComponent();
-            _menu = menu;
-            if (_coreUML.IsLoading)
-            {
-                DeserializeData deserializeData = new DeserializeData(data);
-                deserializeData.LoadingData(deserializeData);
-                trackBarOfWidth.Value = (int)_coreUML.DefaultWidth;
-                ButtonColor.BackColor = _coreUML.DefaultColor;
-                _coreUML.IsLoading = false;
-            }
-        }
+        
 
         public NewProject(Form menu)
         {
             InitializeComponent();
+            LoadSettings load = new LoadSettings();
+            StructSettings settings = load.ReadSettings();
+            _coreUML.LoadCoreUML(settings);
+            UpdateSettingsForm();
             _menu = menu;
-            this.MouseWheel += new MouseEventHandler(OnMouseWheel);
+        }
+        public void Loading(PreparationData data)
+        {
+            ProcessingData deserializeData = new ProcessingData(data);
+            deserializeData.LoadingData(deserializeData);
+            TrackBarOfWidth.Value = _coreUML.DefaultWidth;
+            ButtonColor.BackColor = _coreUML.DefaultColor;
+            int tmp;
+            switch(_coreUML.DefaultStep.X)
+            {
+                case 5:
+                    tmp = 1;
+                    break;
+                case 10:
+                    tmp = 2;
+                    break;
+                case 15:
+                    tmp = 3;
+                    break;
+                case 20:
+                    tmp = 4;
+                    break;
+                case 25:
+                    tmp = 5;
+                    break;
+                default:
+                    tmp = 1;
+                    break;
+            }
+            trackBarOfStep.Value = tmp;
+            _coreUML.UpdPicture();
+        }
+
+        public void UpdateSettingsForm()
+        {
+            ButtonColor.BackColor = _coreUML.DefaultColor;
+            TrackBarOfWidth.Value = _coreUML.DefaultWidth;
+            int tmp;
+            switch (_coreUML.DefaultStep.X)
+            {
+                case 5:
+                    tmp = 1;
+                    break;
+                case 10:
+                    tmp = 2;
+                    break;
+                case 15:
+                    tmp = 3;
+                    break;
+                case 20:
+                    tmp = 4;
+                    break;
+                case 25:
+                    tmp = 5;
+                    break;
+                default:
+                    tmp = 1;
+                    break;
+            }
+            trackBarOfStep.Value = tmp;
+            PreparationFont();
+        }
+
+        private void PreparationFont()
+        {
+            FontChange.Font = _coreUML.DefaultFont;
+            FontChange.Text = _coreUML.DefaultFont.Name;
+            FontChange.Font = new Font(FontChange.Font.FontFamily, 8);
+
+            _fontBold = _coreUML.DefaultFont;
+            _fontBold = new Font(_fontBold, FontStyle.Regular);
+            if (_coreUML.DefaultFont.Bold)
+            {
+                FontBold.Font = new Font(_fontBold, FontStyle.Bold);
+            }
+
+            _fontItalic = _coreUML.DefaultFont;
+            _fontItalic = new Font(_fontItalic, FontStyle.Regular);
+            if (_coreUML.DefaultFont.Italic)
+            {
+                FontItalic.Font = new Font(_fontItalic, FontStyle.Italic);
+            }
+
+            _fontUnderline = _coreUML.DefaultFont;
+            _fontUnderline = new Font(_fontUnderline, FontStyle.Regular);
+            if (_coreUML.DefaultFont.Underline)
+            {
+                FontUnderline.Font = new Font(_fontUnderline, FontStyle.Underline);
+            }
+
+            _fontSize = _coreUML.DefaultFont;
+            _fontSize = new Font(_fontSize.FontFamily, 8);
+            FontSize.Text = _coreUML.DefaultFont.Size.ToString();
         }
 
         private void OnMouseWheel(object sender, MouseEventArgs e)
         {
-            if(_isControlKeyOn)
+            if (_isControlKeyOn)
             {
                 if (e.Delta > 0)
                 {
-                    if (_coreUML.DefaultSize < 20)
-                    {
-                        _coreUML.DefaultSize++;
-                        ScrollSize(true);
-                    }
+                    ScrollSizeUp();
                 }
                 else
                 {
-                    if (_coreUML.DefaultSize > -20)
-                    {
-                        _coreUML.DefaultSize--;
-                        ScrollSize(false);
-                    }
+                    ScrollSizeDown();
                 }
             }
         }
-        private void ScrollSize(bool isIncrease)
+        private void ScrollSizeUp()
         {
-            _coreUML.ScrollSize(isIncrease);
-            _coreUML.UpdPicture();
+            if (_coreUML.DefaultSize < 20)
+            {
+                _coreUML.DefaultSize++;
+                _coreUML.ScrollSize(true);
+            }
+        }
+        private void ScrollSizeDown()
+        {
+            if (_coreUML.DefaultSize > -20)
+            {
+                _coreUML.DefaultSize--;
+                _coreUML.ScrollSize(false);
+            }
+        }
+        private void ScrollSizeBase()
+        {
+            if (_coreUML.DefaultSize != 0)
+            {
+                if (_coreUML.DefaultSize > 0)
+                {
+                    _coreUML.ScrollSize(false, _coreUML.DefaultSize);
+                }
+                else
+                {
+                    _coreUML.ScrollSize(true, -_coreUML.DefaultSize);
+                }
+                _coreUML.DefaultSize = 0;
+            }
         }
 
         private void NewProject_Load(object sender, EventArgs e)
@@ -83,7 +194,7 @@ namespace Project_UML.Core.FormsUML
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             _crntMH.MouseDown(e.Location);
-            
+
             //    case Act.Clear:
             //        foreach (AbstractArrow arrow in _arrows)
             //        {
@@ -127,7 +238,7 @@ namespace Project_UML.Core.FormsUML
 
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            _crntMH.MouseMove(e.Location);            
+            _crntMH.MouseMove(e.Location);
         }
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
@@ -152,12 +263,12 @@ namespace Project_UML.Core.FormsUML
 
         private void ButtonColor_Click(object sender, EventArgs e)
         {
-            colorDialog.ShowDialog();
-            _coreUML.DefaultColor = colorDialog.Color;
-            ButtonColor.BackColor = colorDialog.Color;
+            ColorDialog.ShowDialog();
+            _coreUML.DefaultColor = ColorDialog.Color;
+            ButtonColor.BackColor = ColorDialog.Color;
             if (_coreUML.SelectedFigures.Count > 0)
             {
-                _coreUML.ChangeColorInSelectedFigures(colorDialog.Color);
+                _coreUML.ChangeColorInSelectedFigures(ColorDialog.Color);
                 _coreUML.UpdPicture();
             }
         }
@@ -189,9 +300,9 @@ namespace Project_UML.Core.FormsUML
             //{
             //    _arrows.Remove(_currentArrow);
             //    _currentArrow = null;
-                //UpdPicture();
+            //UpdPicture();
             //}
-            foreach(IFigure figure in _coreUML.SelectedFigures)
+            foreach (IFigure figure in _coreUML.SelectedFigures)
             {
                 _coreUML.Figures.Remove(figure);
             }
@@ -200,22 +311,19 @@ namespace Project_UML.Core.FormsUML
             _crntMH = new MouseHandlerOnSelection();
         }
 
-        private void SaveData_Click(object sender, EventArgs e)
-        {
-            CoreUML.SaveDate();
-            MessageBox.Show("Сохранено");
-        }
-
-
         private void TrackBarOfWidth_Scroll(object sender, EventArgs e)
         {
-            _coreUML.DefaultWidth = trackBarOfWidth.Value;
+            _coreUML.DefaultWidth = TrackBarOfWidth.Value;
             if (_coreUML.SelectedFigures.Count > 0)
             {
-                _coreUML.ChangeWidthInSelectedFigures(trackBarOfWidth.Value);
+                _coreUML.ChangeWidthInSelectedFigures(TrackBarOfWidth.Value);
                 _coreUML.UpdPicture();
             }
-            _coreUML.DefaultWidth = trackBarOfWidth.Value;
+            _coreUML.DefaultWidth = TrackBarOfWidth.Value;
+        }
+        private void TrackBarOfStep_Scroll(object sender, EventArgs e)
+        {
+            _coreUML.DefaultStep = new Step(5 * trackBarOfStep.Value);
         }
 
         private void ButtonImplementation_Click(object sender, EventArgs e)
@@ -248,74 +356,118 @@ namespace Project_UML.Core.FormsUML
             _crntMH = new MouseHandlerOnDrawRectangle(new RectangleClassFactory());
         }
 
+        #region KeyCode
         /// <summary>
         /// KeyCode управления нажатий клавиши
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void KeyDownControl(object sender, KeyEventArgs e)
+        private void KeyDown_Control(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            
+            if (e.Control)
             {
-                Menu menu = new Menu(_menu, this);
-                Enabled = false;
-                menu.Show();
-            }
-            if (e.KeyCode == Keys.Delete && e.Control)
-            {
-                ButtonClear_Click(sender, e);
-            }
-            if (e.KeyCode == Keys.Z && e.Control)
-            {
-                this.Parent.Show();
-            }
-            if (e.KeyCode == Keys.A && e.Control)
-            {
-                _tmpCrntMH = _crntMH;
-                _crntMH = new MouseHandlerOnSelection();
-                _coreUML.SelectedFigures.Clear();
-                _coreUML.SelectedFigures.AddRange(_coreUML.Figures);
-                _crntMH.MouseUp(new Point(0,0));
-                _crntMH = _tmpCrntMH;
+                switch(e.KeyCode)
+                {
+                    case Keys.Delete:
+                        ButtonClear_Click(sender, e);
+                        return;
+                    case Keys.Oemplus:
+                        ScrollSizeUp();
+                        return;
+                    case Keys.OemMinus:
+                        ScrollSizeDown();
+                        return;
+                    case Keys.D0:
+                        ScrollSizeBase();
+                        return;
+                    case Keys.Up:
+                        _coreUML.MoveByKey(e.KeyCode);
+                        return;
+                    case Keys.Down:
+                        _coreUML.MoveByKey(e.KeyCode);
+                        return;
+                    case Keys.Left:
+                        _coreUML.MoveByKey(e.KeyCode);
+                        return;
+                    case Keys.Right:
+                        _coreUML.MoveByKey(e.KeyCode);
+                        return;
+                    case Keys.A:
+                        Highlighting();                        
+                        return;
+                    case Keys.C:
+                        _coreUML.SaveTmpFigure();
+                        return;
+                    case Keys.V:
+                        _coreUML.LoadTmpFigure();
+                        return;
+                    case Keys.Z:
+                        //не реализовано
+                        return;
+                    case Keys.R:
+                        _coreUML.ReverseArrow();
+                        return;
+                    case Keys.S:
+                        CoreUML.SaveDate();
+                        MessageBox.Show("Сохранено");
+                        return;
+                    case Keys.L:
+                        Press_L();                        
+                        MessageBox.Show("Загружено");
+                        return;
+                } 
             }
 
-            if (e.KeyCode == Keys.ControlKey)
+            switch(e.KeyCode)
             {
-                _isControlKeyOn = true;                
-            }
-
-            if (e.KeyCode == Keys.C && e.Control)
-            {
-            }
-            if (e.KeyCode == Keys.V && e.Control)
-            {
-
-            }
-
-            if (e.KeyCode == Keys.Oemplus && e.Control)
-            {
-            }
-            if (e.KeyCode == Keys.OemMinus && e.Control)
-            {
-            }
-            if (e.KeyCode == Keys.D0 && e.Control)
-            {
-            }
-
-            if ((e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down) && e.Control)
-            {
-                
+                case Keys.ControlKey:
+                    _isControlKeyOn = true;
+                    return;
+                case Keys.Escape:
+                    Press_Escape();
+                    return;
+                case Keys.F1:
+                    Press_F1();
+                    return;
             }
         }
 
-        private void buttonMove_Click(object sender, EventArgs e)
+        private void Press_L()
         {
-            _crntMH = new MouseHandlerOnTransform();
+            _data = _coreUML.LoadData(_menu);
+            if (_data != null)
+            {
+                Dispose();
+            }
         }
-
-        private void buttonMove_Click_1(object sender, EventArgs e)
+        private void Press_F1()
         {
-            _crntMH = new MouseHandlerOnMove();
+            if (isHelp)
+            {
+                _help.Dispose();
+            }
+            else
+            {
+                _help = new Help();
+                _help.Show();
+            }
+            isHelp = !isHelp;
+        }
+        private void Press_Escape()
+        {
+            Enabled = false;
+            Menu menu = new Menu(_menu, this);
+            menu.Show();
+        }
+        private void Highlighting()
+        {
+            _tmpCrntMH = _crntMH;
+            _crntMH = new MouseHandlerOnSelection();
+            _coreUML.SelectedFigures.Clear();
+            _coreUML.SelectedFigures.AddRange(_coreUML.Figures);
+            _crntMH.MouseUp(new Point(0, 0));
+            _crntMH = _tmpCrntMH;
         }
 
         /// <summary>
@@ -347,7 +499,68 @@ namespace Project_UML.Core.FormsUML
             //    string sss = "";
             //}
         }
+        #endregion
 
+        private void ButtonMove_Click(object sender, EventArgs e)
+        {
+            _crntMH = new MouseHandlerOnTransform();
+        }
 
+        private void ButtonMove_Click_1(object sender, EventArgs e)
+        {
+            _crntMH = new MouseHandlerOnMove();
+        }
+        
+        private void NewProject_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            if (!(_help is null))
+            {
+                _help.Dispose();
+            }
+            SaveSettings sss = new SaveSettings();
+            sss.WriteSettings();
+            _menu.Close();
+        }
+
+        private void buttonUpdateRectText_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem != null && _crntMH.CoreUML.SelectedFigures != null)
+            {
+                string selectedArea = comboBox1.SelectedItem.ToString();
+
+                string areaText = richTextBox1.Text;
+                foreach (IFigure figure in _coreUML.SelectedFigures)
+                {
+                    switch (selectedArea)
+                    {
+                        case "Name":
+                            _coreUML.ChangeName(areaText);
+                        break;
+                        case "Field":
+
+                            break;
+                        case "Property":
+
+                            break;
+                        case "Methods":
+
+                            break;
+                    }
+                }
+                
+            }            
+        }
+
+        private void Font_Click(object sender, EventArgs e)
+        {
+            FontDialog.ShowDialog();
+            _coreUML.DefaultFont = FontDialog.Font;
+            FontChange.Text = FontDialog.Font.Name;
+            if (_coreUML.SelectedFigures.Count > 0)
+            {
+                _coreUML.ChangeColorInSelectedFigures(ColorDialog.Color);
+                _coreUML.UpdPicture();
+            }
+        }
     }
 }

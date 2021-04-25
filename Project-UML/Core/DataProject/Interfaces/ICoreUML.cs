@@ -19,18 +19,6 @@ namespace Project_UML.Core.DataProject.Interfaces
         /// <summary>
         /// Цвет по умолчанию
         /// </summary>
-        Color DefaultColor { get; set; }
-        /// <summary>
-        /// Шрифт по умолчанию
-        /// </summary>
-        Font DefaultFont { get; set; } 
-        /// <summary>
-        /// Ширина по умолчанию
-        /// </summary>
-        float DefaultWidth { get; set; }
-        /// <summary>
-        /// Размер для зумирования по умолчанию
-        /// </summary>
-        int DefaultSize { get; set; }
+        
     }
 }

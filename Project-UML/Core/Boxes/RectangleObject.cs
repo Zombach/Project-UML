@@ -21,24 +21,14 @@ namespace Project_UML.Core.Boxes
         public RectangleObject(StructBox box) : base(box)
         {
         }
+        public RectangleObject(IFigure figure) : base(figure)
+        {
+        }
 
 
         public override void Draw(Graphics graphics)
         {
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectangleHeight);            
-        }
-
-        public void DrawClass(Graphics graphics)
-        {
-            SolidBrush brush = new SolidBrush(Color.Black);
-
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectangleHeight);
-            graphics.DrawString("Object", font, brush, Points[0].X + 5, Points[0].Y + 5);
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight, RectangleWidth, RectFieldHeight);
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight + RectFieldHeight, RectangleWidth, RectPropertyHeight);
-            RectMethodsHeight = RectangleHeight - (RectNameHeight + RectFieldHeight + RectPropertyHeight);
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight + RectFieldHeight + RectPropertyHeight, RectangleWidth, RectMethodsHeight);
-        }
+        }        
     }
 }

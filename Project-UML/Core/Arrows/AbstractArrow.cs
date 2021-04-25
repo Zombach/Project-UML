@@ -21,7 +21,7 @@ namespace Project_UML.Core.Arrows
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
         public Axis StartDirectionAxis { get; set; } = Axis.X;
         public Axis EndDirectionAxis { get; set; } = Axis.X;
-        public List<Point> Points { get; set; }
+        public List<Point> Points { get; set; } = new List<Point>();
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
 
         public Link SelectedLink { get; set; }
@@ -44,6 +44,22 @@ namespace Project_UML.Core.Arrows
             EndDirectionAxis = endDirectionAxis;
             SetEndCap();
         }
+        public AbstractArrow(IFigure figure)
+        {
+            AbstractArrow arrow = (AbstractArrow)figure;
+            Points = new List<Point>();
+            _pen = new Pen(arrow._pen.Color, arrow._pen.Width);
+            for (int i = 0; i < arrow.Points.Count; i++)
+            {
+                Point point = new Point(arrow.Points[i].X, arrow.Points[i].Y);
+                Points.Add(point);
+            }
+            DataCommon = new List<DataCommon>();
+            StartDirectionAxis = arrow.StartDirectionAxis;
+            EndDirectionAxis = arrow.EndDirectionAxis;
+            SelectedLink = new Link();
+            SetEndCap();
+        }
 
         /// <summary>
         /// Создание стрелы по предоставленным данным структуры
@@ -52,6 +68,12 @@ namespace Project_UML.Core.Arrows
         public AbstractArrow(StructArrow arrow)
         {
             _pen = new Pen(arrow.Color, arrow.Width);
+            for (int i = 0; i < arrow.Points.Count; i++)
+            {
+                Point point = new Point(arrow.Points[i].Point_X, arrow.Points[i].Point_Y);
+                Points.Add(point);
+            }
+            SetEndCap();
             //Необходимо дописать конструктор стрелы
         }
 
@@ -109,6 +131,7 @@ namespace Project_UML.Core.Arrows
         {
             _pen.Color = color;
         }
+
         public virtual void ChangeWidth(int width)
         {
             _pen.Width = width;
@@ -163,6 +186,7 @@ namespace Project_UML.Core.Arrows
             int minX;
             int maxY;
             int minY;
+            CoreUML coreUML = CoreUML.GetCoreUML();
             for (int i = 1; i < Points.Count; i++)
             {
                 if (Points[i - 1].X > Points[i].X)

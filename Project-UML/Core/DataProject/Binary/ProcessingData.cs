@@ -8,12 +8,12 @@ using Project_UML.Core.Arrows;
 using System;
 using System.Reflection;
 
-namespace Project_UML.Core.DataProject
+namespace Project_UML.Core.DataProject.Binary
 {
     /// <summary>
-    /// Десериализация
+    /// Развертывает дату десериализации
     /// </summary>
-    public class DeserializeData
+    public class ProcessingData
     {
         #region Переменные
         /// <summary>
@@ -28,6 +28,7 @@ namespace Project_UML.Core.DataProject
         /// Список Фигур
         /// </summary>
         private List<IFigure> _iFigure;
+        private List<IPoint> _point;
         /// <summary>
         /// Список структурированых действий
         /// </summary>
@@ -37,22 +38,6 @@ namespace Project_UML.Core.DataProject
         /// </summary>
         private List<LogActs> _logs;
         /// <summary>
-        /// Цвет
-        /// </summary>
-        private Color _defaultColor;
-        /// <summary>
-        /// Шрифт
-        /// </summary>
-        private Font _defaultFont;
-        /// <summary>
-        /// Ширина линий
-        /// </summary>
-        private float _defaultWidth;
-        /// <summary>
-        /// Множитель для изменения объектов через скролл
-        /// </summary>
-        private int _defaultSize;
-        /// <summary>
         /// Фигура
         /// </summary>
         private IFigure _figure;
@@ -60,19 +45,18 @@ namespace Project_UML.Core.DataProject
         /// Массив полных названий классов стрел
         /// </summary>
         private string[] _typeArrow = new string[5]
-        { 
+        {
             "Project_UML.Core.Arrows.AggregationArrow",
             "Project_UML.Core.Arrows.AssociationArrow",
             "Project_UML.Core.Arrows.CompositionArrow",
             "Project_UML.Core.Arrows.ImplementationArrow",
             "Project_UML.Core.Arrows.InheritanceArrow"
         };
-
         /// <summary>
         /// Массив полных названий классов боксов
         /// </summary>
-        private string[] _typeBox = new string[4] 
-        { 
+        private string[] _typeBox = new string[4]
+        {
             "Project_UML.Core.Boxes.BaseBox",
             "Project_UML.Core.Boxes.ClassBox",
             "Project_UML.Core.Boxes.MethodBox",
@@ -81,35 +65,26 @@ namespace Project_UML.Core.DataProject
         #endregion
 
         #region Методы
-
         /// <summary>
         /// Чтение записаной даты
         /// </summary>
-        /// <param name="writeData"></param>
-        public DeserializeData(SerializeData writeData)
+        /// <param name="data"></param>
+        public ProcessingData(PreparationData data)
         {
-            _iBase = writeData.Base;
-            _iLogs = writeData.Logs;
+            _iBase = data.Base;
+            _iLogs = data.Logs;
             _iFigure = CreateListFigure();
             _logs = CreateListLogs();
-            _defaultColor = writeData.DefaultColor;
-            _defaultFont = writeData.DefaultFont;
-            _defaultWidth = writeData.DefaultWidth;
-            _defaultSize = writeData.DefaultSize;
         }
 
         /// <summary>
         /// Загрузка глобальных параметров фаормы.
         /// </summary>
-        /// <param name="readData"></param>
-        public void LoadingData(DeserializeData readData)
+        /// <param name="data"></param>
+        public void LoadingData(ProcessingData data)
         {
-            _coreUML.Figures = readData._iFigure;
-            _coreUML.Logs = readData._logs;
-            _coreUML.DefaultColor = readData._defaultColor;
-            _coreUML.DefaultFont = readData._defaultFont;
-            _coreUML.DefaultWidth = readData._defaultWidth;
-            _coreUML.DefaultSize = readData._defaultSize;
+            _coreUML.Figures = data._iFigure;
+            _coreUML.Logs = data._logs;
         }
             
         /// <summary>
@@ -214,7 +189,6 @@ namespace Project_UML.Core.DataProject
 
             return logs;
         }
-
         #endregion
     }
 }

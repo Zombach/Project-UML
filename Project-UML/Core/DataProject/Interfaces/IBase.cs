@@ -10,6 +10,10 @@ namespace Project_UML.Core.DataProject.Interfaces
     public interface IBase
     {
         /// <summary>
+        /// Лист координат объектов
+        /// </summary>
+        List<IPoint> Points { get; set; }
+        /// <summary>
         /// Список общий хранимой информации
         /// </summary>
         List<IDataCommon> Data { get; set; }

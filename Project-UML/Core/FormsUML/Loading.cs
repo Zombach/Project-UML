@@ -1,4 +1,4 @@
-﻿using Project_UML.Core.DataProject;
+﻿using Project_UML.Core.DataProject.Binary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,8 +17,9 @@ namespace Project_UML.Core.FormsUML
     /// </summary>
     public partial class Loading : Form
     {
+        private CoreUML _coreUML = CoreUML.GetCoreUML();
         private Form _menu;
-        private SerializeData _data;
+        private PreparationData _data;
         private Load _load;
         public Loading(Form menu)
         {
@@ -29,10 +30,24 @@ namespace Project_UML.Core.FormsUML
         private void Explorer_Click(object sender, EventArgs e)
         {
             _load = new Load();
-            _data = _load.LoadingData();
-            NewProject newProject = new NewProject(_menu, _data);
-            newProject.Show();
-            Close();
+            _load.GetPathData();
+            _data = _coreUML.LoadData(_menu);
+            if (_data != null)
+            {
+                Dispose();
+            }
+            else
+            {
+                MessageBox.Show("Не возможно прочитать дат файл");
+            }
+            
+        }
+
+        private void Loading_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            _menu.Show();
+            Dispose();
         }
     }
 }

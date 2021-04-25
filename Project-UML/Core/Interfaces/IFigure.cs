@@ -22,5 +22,6 @@ namespace Project_UML.Core.Interfaces
 
         List<Point> Points { get; set; }
         List<DataCommon> DataCommon { get; set; }
+
     }
 }

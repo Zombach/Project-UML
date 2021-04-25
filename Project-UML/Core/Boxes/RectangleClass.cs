@@ -1,10 +1,13 @@
 ﻿using Project_UML.Core.DataProject.Structure;
+using Project_UML.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Project_UML.Core.Boxes
 {
@@ -17,14 +20,32 @@ namespace Project_UML.Core.Boxes
         {
         }
 
+        public RectangleClass(IFigure figure) : base(figure)
+        {
+        }
+
 
         public override void Draw(Graphics graphics)
         {
+            
             SolidBrush brush = new SolidBrush(Color.Black);
 
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectangleHeight);
-            graphics.DrawString("Class", font, brush, Points[0].X + 5, Points[0].Y + 5);
+            SizeF stringSize = new SizeF();
+            stringSize = graphics.MeasureString(Name[0], font);
+            RectNameHeight = font.Height;
+
+            while (stringSize.Width > RectangleWidth)
+            {
+                RectNameHeight += font.Height;
+                stringSize.Width -= RectangleWidth;
+            }
+            RectNameHeight += font.Height;
+
+            RectangleF rectF1 = new RectangleF(Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
+
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
+            graphics.DrawString(Name[0], font, brush, rectF1);
+            graphics.DrawRectangle(_pen, Rectangle.Round(rectF1));
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight, RectangleWidth, RectFieldHeight);
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight + RectFieldHeight, RectangleWidth, RectPropertyHeight);
             RectMethodsHeight = RectangleHeight - (RectNameHeight + RectFieldHeight + RectPropertyHeight);

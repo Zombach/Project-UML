@@ -9,6 +9,7 @@ using Project_UML.Core.Interfaces.Get;
 using Project_UML.Core.Interfaces.Logics;
 using Project_UML.Core.Arrows;
 using Project_UML.Core.DataProject.Structure;
+using Project_UML.Core.Interfaces.Draws;
 
 namespace Project_UML.Core.Boxes
 {
@@ -16,7 +17,7 @@ namespace Project_UML.Core.Boxes
     /// 
     /// </summary>
     [Serializable]
-    public abstract class AbstractBox : IFigure, IGetFont
+    public abstract class AbstractBox : IFigure, IGetFont, IChangeFont
     {
         /// <summary>
         /// Жестко заданы точки [0] - левая верхняя точка, [1] - правая нижняя точка
@@ -25,23 +26,24 @@ namespace Project_UML.Core.Boxes
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
         public List<DataText> DataText { get; set; } = new List<DataText>();
         protected Font Font { get; set; } = CoreUML.GetCoreUML().DefaultFont;
-        protected int RectangleWidth { get; set; } = 100;
-        protected int RectangleHeight { get; set; } = 150;
-
+        public int RectangleWidth { get; set; } = 100;
+        public int RectangleHeight { get; set; } = 150;
         protected int RectNameHeight { get; set; } = 20;
         protected int RectFieldHeight { get; set; } = 20;
         protected int RectPropertyHeight { get; set; } = 20;
         protected int RectMethodsHeight { get; set; }
-
+        public List<string> Name = new List<string> {"hello"};
         protected Font font = new Font("Arial", 10);
 
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
-
+        
 
         public AbstractBox(Color color, int width)
         {
             _pen = new Pen(color, width);
+            RectangleWidth = 100;
+            RectangleHeight = 150;            
         }
 
         /// <summary>
@@ -50,6 +52,27 @@ namespace Project_UML.Core.Boxes
         /// <param name="box"></param>
         public AbstractBox(StructBox box)
         {
+
+        }
+
+        public AbstractBox(IFigure figure )
+        {
+            AbstractBox box = (AbstractBox)figure;
+            Points = new List<Point>();
+            _pen = new Pen(box._pen.Color, box._pen.Width);
+            for (int i = 0; i < box.Points.Count; i++)
+            {
+                Point point = new Point(box.Points[i].X, box.Points[i].Y);
+                Points.Add(point);
+            }
+            DataCommon = new List<DataCommon>();
+            Font = box.Font;
+            RectangleWidth = box.RectangleWidth;
+            RectangleHeight = box.RectangleHeight;
+            RectNameHeight = box.RectNameHeight;
+            RectFieldHeight = box.RectFieldHeight;
+            RectPropertyHeight = box.RectPropertyHeight;
+            RectMethodsHeight = box.RectMethodsHeight;
 
         }
 
@@ -65,6 +88,10 @@ namespace Project_UML.Core.Boxes
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectangleHeight);
         }
 
+        public void ChangeFont(Font font)
+        {
+            Font = font;
+        }
 
         public void ChangeColor(Color color)
         {
@@ -122,6 +149,15 @@ namespace Project_UML.Core.Boxes
                 AbstractArrow arrow = (AbstractArrow)dataCommon.Arrow;
                 arrow.UpdArrow();
             }
+        }
+
+        public int SizeHeight()
+        {
+            return Points[1].Y - Points[0].Y;
+        }
+        public int SizeWidth()
+        {
+            return Points[1].X - Points[0].X;
         }
 
         public Color GetColor()

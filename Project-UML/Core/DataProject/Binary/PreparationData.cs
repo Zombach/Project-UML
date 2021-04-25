@@ -7,13 +7,13 @@ using Project_UML.Core.Boxes;
 using System.Drawing;
 using System;
 
-namespace Project_UML.Core.DataProject
+namespace Project_UML.Core.DataProject.Binary
 {
     /// <summary>
-    /// Сереализация
+    /// Подготовка Даты Сериализации
     /// </summary>
     [Serializable]
-    public class SerializeData : ICoreUML
+    public class PreparationData : ICoreUML
     {
         #region Переменные
         /// <summary>
@@ -24,22 +24,6 @@ namespace Project_UML.Core.DataProject
         /// Список структурных действий с фигурами
         /// </summary>
         public List<ILogs> Logs { get; set; }
-        /// <summary>
-        /// Цвет по умоолчанию
-        /// </summary>
-        public Color DefaultColor { get; set; }
-        /// <summary>
-        /// Шрифт по умолчанию
-        /// </summary>
-        public Font DefaultFont { get; set; }
-        /// <summary>
-        /// Ширина по умолчанию
-        /// </summary>
-        public float DefaultWidth { get; set; }
-        /// <summary>
-        /// Размер фигур по умолчанию для скролла
-        /// </summary>
-        public int DefaultSize { get; set; }
         /// <summary>
         /// Структура Стрелы
         /// </summary>
@@ -54,7 +38,7 @@ namespace Project_UML.Core.DataProject
         /// <summary>
         /// Сереализация ядра и объектов програмы
         /// </summary>
-        public SerializeData()
+        public PreparationData()
         {
             CoreUML coreUML = CoreUML.GetCoreUML();
             List<IFigure> Figures = coreUML.Figures;
@@ -63,11 +47,6 @@ namespace Project_UML.Core.DataProject
 
             Logs = new List<ILogs>();
             Logs = CreateObjectsLogs();
-
-            DefaultWidth = coreUML.DefaultWidth;
-            DefaultColor = coreUML.DefaultColor;
-            DefaultFont = coreUML.DefaultFont;
-            DefaultSize = coreUML.DefaultSize;
         }
 
         /// <summary>

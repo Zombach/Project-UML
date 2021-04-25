@@ -1,4 +1,5 @@
 ﻿using Project_UML.Core.DataProject.Structure;
+using Project_UML.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -23,6 +24,9 @@ namespace Project_UML.Core.Boxes
         {
         }
 
+        public RectangleInterface(IFigure figure) : base(figure)
+        {
+        }
 
         public override void Draw(Graphics graphics)
         {
