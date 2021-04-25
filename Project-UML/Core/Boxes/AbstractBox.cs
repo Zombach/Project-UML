@@ -27,19 +27,19 @@ namespace Project_UML.Core.Boxes
         public List<DataText> DataText { get; set; } = new List<DataText>();
         protected Font Font { get; set; } = CoreUML.GetCoreUML().DefaultFont;
         public int RectangleWidth { get; set; } = 100;
-        public int RectangleHeight { get; set; } = 150;
+        public int RectangleHeight { get; set; }
         protected int RectNameHeight { get; set; } = 20;
         protected int RectFieldHeight { get; set; } = 20;
         protected int RectPropertyHeight { get; set; } = 20;
-        protected int RectMethodsHeight { get; set; }
-        /// <summary>
+        protected int RectMethodsHeight { get; set; } = 40;
+        ///// <summary>
         /// List<string> RectangleText
         /// RectangleText[0] - name
         /// RectangleText[1] - field
         /// RectangleText[2] - property
         /// RectangleText[3] - methods
         /// </summary>
-        public List<string> RectangleText = new List<string> {"hello", "", "", ""};
+        public List<string> RectangleText = new List<string> {"Name", "Filed", "Property", "Methods"};
         protected Font font = new Font("Arial", 10);
 
         protected Pen _pen;
@@ -50,7 +50,7 @@ namespace Project_UML.Core.Boxes
         {
             _pen = new Pen(color, width);
             RectangleWidth = 100;
-            RectangleHeight = 150;            
+            RectangleHeight = RectMethodsHeight + RectNameHeight + RectFieldHeight + RectPropertyHeight;
         }
 
         /// <summary>
@@ -256,61 +256,129 @@ namespace Project_UML.Core.Boxes
             }
             return connectionPoint;
         }
-
+        public void DrawSpecificRectangle(Graphics graphics, string rectText, Pen _pen, Font font, Brush brush, RectangleF rectF)
+        {
+            graphics.DrawString(rectText, font, brush, rectF);
+            graphics.DrawRectangle(_pen, Rectangle.Round(rectF));
+        }
+        
         public void Transform(Point e)
         {
             throw new NotImplementedException();
         }
 
+        public int CounterOfTextLinesInSpecificRectangle(string textFromSpecificRect)
+        {
+            string phrase = textFromSpecificRect;
+            string[] separateLines = phrase.Split('\n');
+            return separateLines.Length;
+        }
+        public int WidthOfRectangle(Graphics graphics, List<string> RectangleText, Font font)
+        {
+            SizeF stringNameSize = new SizeF();
 
+            string phraseName = RectangleText[0];
+            string[] separateLinesName = phraseName.Split('\n');
 
-        //protected Pen _pen = new Pen(Color.Blue, 5);
+            stringNameSize = graphics.MeasureString(separateLinesName[0], font);
+            int longestSizeName = (int)stringNameSize.Width;
 
-        //private int widthFigure { get; set; }
-        //private int heightFigure { get; set; }
-        //public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        //private List<Point> Points { set; get; }
+            if (separateLinesName.Length > 0)
+            {
+                for (int i = 0; i < separateLinesName.Length; i++)
+                {
+                    stringNameSize = graphics.MeasureString(separateLinesName[i], font);
 
-        //public void Draw(Graphics graphics)
-        //{
-        //    graphics.DrawRectangle(_pen, Location.X, Location.Y, GetWidth(widthFigure), GetHeight(heightFigure));
+                    if (stringNameSize.Width > longestSizeName)
+                    {
+                        longestSizeName = (int)stringNameSize.Width;
+                    }
+                }
+            }
 
-        //}
-        //public void ChangeColor(Color color)
-        //{
-        //    _pen.Color = color;
-        //}
+            SizeF stringFieldSize = new SizeF();
 
-        //public void ChangeWidth(int width)
-        //{
-        //    _pen.Width = width;
-        //}
+            string phraseField = RectangleText[1];
+            string[] separateLinesField = phraseField.Split('\n');
 
-        //public int GetHeight(int heightFigure)
-        //{
-        //    return heightFigure;
-        //}
+            stringFieldSize = graphics.MeasureString(separateLinesField[0], font);
+            int longestSizeField = (int)stringFieldSize.Width;
 
-        //public int GetWidth(int widthFigure)
-        //{
-        //    return widthFigure;
-        //}
+            if (separateLinesField.Length > 0)
+            {
+                for (int i = 0; i < separateLinesField.Length; i++)
+                {
+                    stringFieldSize = graphics.MeasureString(separateLinesField[i], font);
 
-        //public void IsHovered(Point point)
-        //{
-        //    throw new NotImplementedException();
-        //}
+                    if (stringFieldSize.Width > longestSizeField)
+                    {
+                        longestSizeField = (int)stringFieldSize.Width;
+                    }
+                }
+            }
 
-        //public void Move(int deltaX, int deltaY)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            SizeF stringPropertySize = new SizeF();
 
-        //public void Select()
-        //{
-        //    throw new NotImplementedException();
-        //}
+            string phraseProperty = RectangleText[2];
+            string[] separateLinesProperty = phraseProperty.Split('\n');
 
+            stringPropertySize = graphics.MeasureString(separateLinesProperty[0], font);
+            int longestSizeProperty = (int)stringPropertySize.Width;
 
+            if (separateLinesProperty.Length > 0)
+            {
+                for (int i = 0; i < separateLinesProperty.Length; i++)
+                {
+                    stringPropertySize = graphics.MeasureString(separateLinesProperty[i], font);
+
+                    if (stringPropertySize.Width > longestSizeProperty)
+                    {
+                        longestSizeProperty = (int)stringPropertySize.Width;
+                    }
+                }
+            }
+
+            SizeF stringMethodsSize = new SizeF();
+
+            string phraseMethods = RectangleText[3];
+            string[] separateLinesMethods = phraseMethods.Split('\n');
+
+            stringMethodsSize = graphics.MeasureString(separateLinesMethods[0], font);
+            int longestSizeMethods = (int)stringMethodsSize.Width;
+
+            if (separateLinesMethods.Length > 0)
+            {
+                for (int i = 0; i < separateLinesMethods.Length; i++)
+                {
+                    stringMethodsSize = graphics.MeasureString(separateLinesMethods[i], font);
+
+                    if (stringMethodsSize.Width > longestSizeMethods)
+                    {
+                        longestSizeMethods = (int)stringMethodsSize.Width;
+                    }
+                }
+            }
+
+            RectangleWidth = 100;
+
+            if (RectangleWidth < longestSizeName)
+            {
+                RectangleWidth = longestSizeName;
+            }
+            if (RectangleWidth < longestSizeField)
+            {
+                RectangleWidth = longestSizeField;
+            }
+            if (RectangleWidth < longestSizeProperty)
+            {
+                RectangleWidth = longestSizeProperty;
+            }
+            if (RectangleWidth < longestSizeMethods)
+            {
+                RectangleWidth = longestSizeMethods;
+            }
+
+            return RectangleWidth;
+        }
     }
 }

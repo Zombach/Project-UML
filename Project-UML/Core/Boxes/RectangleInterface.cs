@@ -32,28 +32,33 @@ namespace Project_UML.Core.Boxes
         {
             SolidBrush brush = new SolidBrush(Color.Black);
 
-            SizeF stringSize = new SizeF();
-            stringSize = graphics.MeasureString(RectangleText[0], font);
-            RectNameHeight = font.Height;
+            RectangleWidth = WidthOfRectangle(graphics, RectangleText, font) + 5;
 
-            while (stringSize.Width > RectangleWidth)
+            RectNameHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[0]) * font.Height;
+
+            if (RectNameHeight < 25)
             {
-                RectNameHeight += font.Height;
-                stringSize.Width -= RectangleWidth;
+                RectNameHeight = 25;
             }
-            RectNameHeight += font.Height;
+
+            RectFieldHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[1]) * font.Height;
+
+            if (RectFieldHeight < 50)
+            {
+                RectFieldHeight = 50;
+            }
+
+            
+
+            RectangleHeight = RectNameHeight + RectFieldHeight;
 
             RectangleF rectName = new RectangleF(Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
-            RectangleF rectField = new RectangleF(Points[0].X, Points[0].Y + RectNameHeight, RectangleWidth, RectangleHeight - RectNameHeight);
-
+            RectangleF rectField = new RectangleF(Points[0].X, Points[0].Y + RectNameHeight, RectangleWidth, RectFieldHeight);
 
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
 
-            graphics.DrawString(RectangleText[0], font, brush, rectName);
-            graphics.DrawRectangle(_pen, Rectangle.Round(rectName));
-
-            graphics.DrawString(RectangleText[1], font, brush, rectField);
-            graphics.DrawRectangle(_pen, Rectangle.Round(rectField));
+            DrawSpecificRectangle(graphics, RectangleText[0], _pen, font, brush, rectName);
+            DrawSpecificRectangle(graphics, RectangleText[1], _pen, font, brush, rectField);
         }
     }
 }

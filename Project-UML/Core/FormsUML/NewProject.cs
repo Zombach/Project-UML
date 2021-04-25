@@ -462,9 +462,7 @@ namespace Project_UML.Core.FormsUML
                 string selectedArea = comboBox1.SelectedItem.ToString();
 
                 string areaText = richTextBox1.Text;
-                foreach (IFigure figure in _coreUML.SelectedFigures)
-                {
-                    switch (selectedArea)
+                switch (selectedArea)
                     {
                         case "Name":
                             _coreUML.ChangeName(areaText, 0);
@@ -479,8 +477,6 @@ namespace Project_UML.Core.FormsUML
                             _coreUML.ChangeName(areaText, 3);
                             break;
                     }
-                }
-                
             }            
         }
 

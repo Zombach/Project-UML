@@ -28,7 +28,27 @@ namespace Project_UML.Core.Boxes
 
         public override void Draw(Graphics graphics)
         {
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectangleHeight);            
+            SolidBrush brush = new SolidBrush(Color.Black);
+
+            RectangleWidth = WidthOfRectangle(graphics, RectangleText, font) + 5;
+
+            RectNameHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[0]) * font.Height;
+
+            if (RectNameHeight < 50)
+            {
+                RectNameHeight = 50;
+            }
+
+
+
+            RectangleHeight = RectNameHeight;
+
+            RectangleF rectName = new RectangleF(Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
+
+            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
+
+            DrawSpecificRectangle(graphics, RectangleText[0], _pen, font, brush, rectName);
+
         }        
     }
 }
