@@ -28,15 +28,6 @@ namespace Project_UML.Core.DataProject.Binary
         /// Список Фигур
         /// </summary>
         private List<IFigure> _iFigure;
-        private List<IPoint> _point;
-        /// <summary>
-        /// Список структурированых действий
-        /// </summary>
-        private List<ILogs> _iLogs;
-        /// <summary>
-        /// Список действий с объектами
-        /// </summary>
-        private List<LogActs> _logs;
         /// <summary>
         /// Фигура
         /// </summary>
@@ -72,9 +63,7 @@ namespace Project_UML.Core.DataProject.Binary
         public ProcessingData(PreparationData data)
         {
             _iBase = data.Base;
-            _iLogs = data.Logs;
             _iFigure = CreateListFigure();
-            _logs = CreateListLogs();
         }
 
         /// <summary>
@@ -84,7 +73,6 @@ namespace Project_UML.Core.DataProject.Binary
         public void LoadingData(ProcessingData data)
         {
             _coreUML.Figures = data._iFigure;
-            _coreUML.Logs = data._logs;
         }
             
         /// <summary>
@@ -177,17 +165,6 @@ namespace Project_UML.Core.DataProject.Binary
                 }
             }
             return _figure;
-        }
-
-        /// <summary>
-        /// Заготовка для сохранения логирования действий с объектами
-        /// </summary>
-        /// <returns></returns>
-        private List<LogActs> CreateListLogs()
-        {
-            List<LogActs> logs = new List<LogActs>();
-
-            return logs;
         }
         #endregion
     }
