@@ -277,11 +277,10 @@ namespace Project_UML.Core
             return true;
         }
 
-        public static bool LoadData()
+        public void LoadData(ProcessingData data)
         {
             Deserialize deserializer = new Deserialize();
             deserializer.DeserializationDictionary();
-            return true;
         }
 
         public void LoadCoreUML(StructSettings setting)

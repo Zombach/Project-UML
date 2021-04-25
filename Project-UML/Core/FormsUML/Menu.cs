@@ -43,12 +43,8 @@ namespace Project_UML.Core.FormsUML
         {
             _load = new Load();
             _data = _load.LoadingData();
-            _coreUML.IsLoading = true;
             _project.Dispose();
-            NewProject project = new NewProject(_menu);
-            project.Show();            
-            project.Loading(_data);
-            Dispose();
+            Loading();
         }
 
         private void Encrypt_Click(object sender, EventArgs e)
@@ -58,7 +54,8 @@ namespace Project_UML.Core.FormsUML
 
         private void Save_Click(object sender, EventArgs e)
         {
-            
+            CoreUML.SaveDate();
+            MessageBox.Show("Сохранено");
         }
 
         private void SaveAs_Click(object sender, EventArgs e)
@@ -75,8 +72,19 @@ namespace Project_UML.Core.FormsUML
             else
             {
                 _deserializer = new Deserialize();
-                _data = _deserializer.DeserializationDictionary();
+                _data = _deserializer.DeserializationDictionary();                               
+                _project.Dispose();
+                Loading();
             }
+        }
+
+        private void Loading()
+        {
+            NewProject project = new NewProject(_menu);
+            _coreUML.SelectedFigures.Clear();
+            project.Show();
+            project.Loading(_data);
+            Dispose();
         }
 
         private void EncryptAs_Click(object sender, EventArgs e)

@@ -190,14 +190,7 @@ namespace Project_UML.Core.FormsUML
             resources.ApplyResources(this.ButtonColor, "ButtonColor");
             this.ButtonColor.Name = "ButtonColor";
             this.ButtonColor.UseVisualStyleBackColor = false;
-            this.ButtonColor.Click += new System.EventHandler(this.ButtonColor_Click);
-            // 
-            // SaveData
-            // 
-            resources.ApplyResources(this.SaveData, "SaveData");
-            this.SaveData.Name = "SaveData";
-            this.SaveData.UseVisualStyleBackColor = true;
-            this.SaveData.Click += new System.EventHandler(this.SaveData_Click);
+            this.ButtonColor.Click += new System.EventHandler(this.ButtonColor_Click);            
             // 
             // ButtonImplementation
             // 
@@ -301,7 +294,23 @@ namespace Project_UML.Core.FormsUML
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewProject_FormClosing);
             this.Load += new System.EventHandler(this.NewProject_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDownControl);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Esc);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Control);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Del);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Plus);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Minus);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Zero);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Up);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Down);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Left);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Right);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_A);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_C);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_R);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_S);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_L);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_V);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Z);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressControl);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUpControl);
             this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.OnMouseWheel);

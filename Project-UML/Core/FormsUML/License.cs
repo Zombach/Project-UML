@@ -20,6 +20,7 @@ namespace Project_UML.Core.FormsUML
     public partial class License : Form
     {
         private CoreUML _coreUML = CoreUML.GetCoreUML();
+        private bool isMenu = true;
         private Form _menu;
         private string _myPath = Path.GetFullPath("../../Resources/txt/License.txt");
 
@@ -43,14 +44,22 @@ namespace Project_UML.Core.FormsUML
         }
         private void CreateNewProject_Button_Click(object sender, EventArgs e)
         {
+            isMenu = false;
             NewProject newProject = new NewProject(_menu);
-            this.Close();
+            Dispose();
             newProject.Show();
         }
         private void License_FormClosing(Object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
-            _menu.Show();
+            if (isMenu)
+            {
+                _menu.Show();
+            }
+            else
+            {
+                isMenu = true;
+            }
             Dispose();
         }
     }

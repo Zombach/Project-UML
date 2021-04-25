@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using Project_UML.Core.Arrows;
-using Project_UML.Core.MousHandlers;
-using Project_UML.Core.FigureFactory;
-using Project_UML.Core.Interfaces;
+using Project_UML.Core.DataProject.Structure;
 using Project_UML.Core.DataProject.Binary;
 using Project_UML.Core.DataProject.Json;
-using Project_UML.Core.DataProject.Structure;
-using System.Threading.Tasks;
+using Project_UML.Core.FigureFactory;
+using Project_UML.Core.MousHandlers;
+using Project_UML.Core.Interfaces;
+using System.Collections.Generic;
+using Project_UML.Core.Arrows;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace Project_UML.Core.FormsUML
 {
@@ -34,8 +33,6 @@ namespace Project_UML.Core.FormsUML
             _coreUML.LoadCoreUML(settings);
             UpdateSettingsForm();
             _menu = menu;
-            _menu.Dispose();
-
         }
         public void Loading(PreparationData data)
         {
@@ -43,6 +40,7 @@ namespace Project_UML.Core.FormsUML
             deserializeData.LoadingData(deserializeData);
             TrackBarOfWidth.Value = _coreUML.DefaultWidth;
             ButtonColor.BackColor = _coreUML.DefaultColor;
+            trackBarOfStep.Value = _coreUML.DefaultStep.X;
             _coreUML.UpdPicture();
         }
 
@@ -50,6 +48,7 @@ namespace Project_UML.Core.FormsUML
         {
             ButtonColor.BackColor = _coreUML.DefaultColor;
             TrackBarOfWidth.Value = _coreUML.DefaultWidth;
+            trackBarOfStep.Value = _coreUML.DefaultStep.X;
         }
 
         private void OnMouseWheel(object sender, MouseEventArgs e)
@@ -228,13 +227,6 @@ namespace Project_UML.Core.FormsUML
             _crntMH = new MouseHandlerOnSelection();
         }
 
-        private void SaveData_Click(object sender, EventArgs e)
-        {
-            CoreUML.SaveDate();
-            MessageBox.Show("Сохранено");
-        }
-
-
         private void TrackBarOfWidth_Scroll(object sender, EventArgs e)
         {
             _coreUML.DefaultWidth = TrackBarOfWidth.Value;
@@ -280,12 +272,21 @@ namespace Project_UML.Core.FormsUML
             _crntMH = new MouseHandlerOnDrawRectangle(new RectangleClassFactory());
         }
 
+        #region KeyCode
         /// <summary>
         /// KeyCode управления нажатий клавиши
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void KeyDownControl(object sender, KeyEventArgs e)
+        private void KeyDown_Control(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                _isControlKeyOn = true;
+            }            
+        }
+
+        private void KeyDown_Esc(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
@@ -293,11 +294,65 @@ namespace Project_UML.Core.FormsUML
                 Enabled = false;
                 menu.Show();
             }
+        }
+        private void KeyDown_Del(object sender, KeyEventArgs e)
+        {
             if (e.KeyCode == Keys.Delete && e.Control)
             {
                 ButtonClear_Click(sender, e);
             }
-
+        }
+        private void KeyDown_Plus(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Oemplus && e.Control)
+            {
+                ScrollSizeUp();
+            }
+        }
+        private void KeyDown_Minus(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.OemMinus && e.Control)
+            {
+                ScrollSizeDown();
+            }
+        }
+        private void KeyDown_Zero(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.D0 && e.Control)
+            {
+                ScrollSizeBase();
+            }
+        }
+        private void KeyDown_Up(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up && e.Control)
+            {
+                _coreUML.MoveByKey(e.KeyCode);
+            }
+        }
+        private void KeyDown_Down(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down && e.Control)
+            {
+                _coreUML.MoveByKey(e.KeyCode);
+            }
+        }
+        private void KeyDown_Left(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Left && e.Control)
+            {
+                _coreUML.MoveByKey(e.KeyCode);
+            }
+        }
+        private void KeyDown_Right(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right && e.Control)
+            {
+                _coreUML.MoveByKey(e.KeyCode);
+            }
+        }
+        private void KeyDown_A(object sender, KeyEventArgs e)
+        {
             if (e.KeyCode == Keys.A && e.Control)
             {
                 _tmpCrntMH = _crntMH;
@@ -307,57 +362,51 @@ namespace Project_UML.Core.FormsUML
                 _crntMH.MouseUp(new Point(0, 0));
                 _crntMH = _tmpCrntMH;
             }
-
-            if (e.KeyCode == Keys.ControlKey)
-            {
-                _isControlKeyOn = true;
-            }
-
-            if (e.KeyCode == Keys.Z && e.Control)
-            {
-            }
+        }
+        private void KeyDown_C(object sender, KeyEventArgs e)
+        {
             if (e.KeyCode == Keys.C && e.Control)
             {
                 _coreUML.SaveTmpFigure();
             }
+            
+        }
+        private void KeyDown_V(object sender, KeyEventArgs e)
+        {
             if (e.KeyCode == Keys.V && e.Control)
             {
                 _coreUML.LoadTmpFigure();
             }
+        }
+        private void KeyDown_Z(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Z && e.Control)
+            {
+            }
+        }
+        private void KeyDown_R(object sender, KeyEventArgs e)
+        {
             if (e.KeyCode == Keys.R && e.Control)
             {
                 _coreUML.ReverseArrow();
             }
-
-            if (e.KeyCode == Keys.Oemplus && e.Control)
-            {
-                ScrollSizeUp();
-            }
-            if (e.KeyCode == Keys.OemMinus && e.Control)
-            {
-                ScrollSizeDown();
-            }
-            if (e.KeyCode == Keys.D0 && e.Control)
-            {
-                ScrollSizeBase();
-            }
-
-            if ((e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down) && e.Control)
-            {
-                _coreUML.MoveByKey(e.KeyCode);
-            }
         }
-
-        private void ButtonMove_Click(object sender, EventArgs e)
+        private void KeyDown_S(object sender, KeyEventArgs e)
         {
-            _crntMH = new MouseHandlerOnTransform();
+            if(e.KeyCode == Keys.S && e.Control)
+            {
+                CoreUML.SaveDate();
+                MessageBox.Show("Сохранено");
+            }
         }
-
-        private void ButtonMove_Click_1(object sender, EventArgs e)
+        private void KeyDown_L(object sender, KeyEventArgs e)
         {
-            _crntMH = new MouseHandlerOnMove();
-        }
+            if (e.KeyCode == Keys.L && e.Control)
+            {
 
+                MessageBox.Show("Загружено");
+            }
+        }
         /// <summary>
         /// KeyCode управления отпускания клавиши
         /// </summary>
@@ -387,6 +436,18 @@ namespace Project_UML.Core.FormsUML
             //    string sss = "";
             //}
         }
+        #endregion
+
+        private void ButtonMove_Click(object sender, EventArgs e)
+        {
+            _crntMH = new MouseHandlerOnTransform();
+        }
+
+        private void ButtonMove_Click_1(object sender, EventArgs e)
+        {
+            _crntMH = new MouseHandlerOnMove();
+        }
+        
         private void NewProject_FormClosing(Object sender, FormClosingEventArgs e)
         {
             SaveSettings sss = new SaveSettings();
