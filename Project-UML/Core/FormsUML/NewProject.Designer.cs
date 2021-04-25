@@ -78,68 +78,68 @@ namespace Project_UML.Core.FormsUML
             this.Canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseMove);
             this.Canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseUp);
             // 
-            // radioButton1
+            // RadioButton1
             // 
-            resources.ApplyResources(this.RadioButton1, "radioButton1");
+            resources.ApplyResources(this.RadioButton1, "RadioButton1");
             this.RadioButton1.Checked = true;
-            this.RadioButton1.Name = "radioButton1";
+            this.RadioButton1.Name = "RadioButton1";
             this.RadioButton1.TabStop = true;
             this.RadioButton1.UseVisualStyleBackColor = true;
             this.RadioButton1.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
             // 
-            // radioButton2
+            // RadioButton2
             // 
-            resources.ApplyResources(this.RadioButton2, "radioButton2");
-            this.RadioButton2.Name = "radioButton2";
+            resources.ApplyResources(this.RadioButton2, "RadioButton2");
+            this.RadioButton2.Name = "RadioButton2";
             this.RadioButton2.UseVisualStyleBackColor = true;
             this.RadioButton2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
             // 
-            // groupBoxStartAxis
+            // GroupBoxStartAxis
             // 
             this.GroupBoxStartAxis.Controls.Add(this.RadioButton1);
             this.GroupBoxStartAxis.Controls.Add(this.RadioButton2);
-            resources.ApplyResources(this.GroupBoxStartAxis, "groupBoxStartAxis");
-            this.GroupBoxStartAxis.Name = "groupBoxStartAxis";
+            resources.ApplyResources(this.GroupBoxStartAxis, "GroupBoxStartAxis");
+            this.GroupBoxStartAxis.Name = "GroupBoxStartAxis";
             this.GroupBoxStartAxis.TabStop = false;
             // 
-            // groupBoxEndAxis
+            // GroupBoxEndAxis
             // 
             this.GroupBoxEndAxis.Controls.Add(this.RadioButton5);
             this.GroupBoxEndAxis.Controls.Add(this.RadioButton6);
-            resources.ApplyResources(this.GroupBoxEndAxis, "groupBoxEndAxis");
-            this.GroupBoxEndAxis.Name = "groupBoxEndAxis";
+            resources.ApplyResources(this.GroupBoxEndAxis, "GroupBoxEndAxis");
+            this.GroupBoxEndAxis.Name = "GroupBoxEndAxis";
             this.GroupBoxEndAxis.TabStop = false;
             // 
-            // radioButton5
+            // RadioButton5
             // 
-            resources.ApplyResources(this.RadioButton5, "radioButton5");
+            resources.ApplyResources(this.RadioButton5, "RadioButton5");
             this.RadioButton5.Checked = true;
-            this.RadioButton5.Name = "radioButton5";
+            this.RadioButton5.Name = "RadioButton5";
             this.RadioButton5.TabStop = true;
             this.RadioButton5.UseVisualStyleBackColor = true;
             this.RadioButton5.CheckedChanged += new System.EventHandler(this.RadioButton5_CheckedChanged);
             // 
-            // radioButton6
+            // RadioButton6
             // 
-            resources.ApplyResources(this.RadioButton6, "radioButton6");
-            this.RadioButton6.Name = "radioButton6";
+            resources.ApplyResources(this.RadioButton6, "RadioButton6");
+            this.RadioButton6.Name = "RadioButton6";
             this.RadioButton6.UseVisualStyleBackColor = true;
             this.RadioButton6.CheckedChanged += new System.EventHandler(this.RadioButton6_CheckedChanged);
             // 
-            // trackBarOfWidth
+            // TrackBarOfWidth
             // 
-            resources.ApplyResources(this.TrackBarOfWidth, "trackBarOfWidth");
+            resources.ApplyResources(this.TrackBarOfWidth, "TrackBarOfWidth");
             this.TrackBarOfWidth.Maximum = 5;
             this.TrackBarOfWidth.Minimum = 1;
-            this.TrackBarOfWidth.Name = "trackBarOfWidth";
+            this.TrackBarOfWidth.Name = "TrackBarOfWidth";
             this.TrackBarOfWidth.Value = 1;
             this.TrackBarOfWidth.Scroll += new System.EventHandler(this.TrackBarOfWidth_Scroll);
             // 
-            // groupBox2
+            // GroupBox2
             // 
             this.GroupBox2.Controls.Add(this.TrackBarOfWidth);
-            resources.ApplyResources(this.GroupBox2, "groupBox2");
-            this.GroupBox2.Name = "groupBox2";
+            resources.ApplyResources(this.GroupBox2, "GroupBox2");
+            this.GroupBox2.Name = "GroupBox2";
             this.GroupBox2.TabStop = false;
             // 
             // ButtonAggregation
@@ -234,30 +234,30 @@ namespace Project_UML.Core.FormsUML
             this.ButtonRectangleClass.UseVisualStyleBackColor = true;
             this.ButtonRectangleClass.Click += new System.EventHandler(this.ButtonRectangleClass_Click);
             // 
-            // buttonTransform
+            // ButtonTransform
             // 
-            resources.ApplyResources(this.ButtonTransform, "buttonTransform");
-            this.ButtonTransform.Name = "buttonTransform";
+            resources.ApplyResources(this.ButtonTransform, "ButtonTransform");
+            this.ButtonTransform.Name = "ButtonTransform";
             this.ButtonTransform.UseVisualStyleBackColor = true;
             this.ButtonTransform.Click += new System.EventHandler(this.ButtonMove_Click);
             // 
-            // buttonMove
+            // ButtonMove
             // 
-            resources.ApplyResources(this.ButtonMove, "buttonMove");
-            this.ButtonMove.Name = "buttonMove";
+            resources.ApplyResources(this.ButtonMove, "ButtonMove");
+            this.ButtonMove.Name = "ButtonMove";
             this.ButtonMove.UseVisualStyleBackColor = true;
             this.ButtonMove.Click += new System.EventHandler(this.ButtonMove_Click_1);
             // 
-            // textBox1
+            // TextBox1
             // 
-            resources.ApplyResources(this.TextBox1, "textBox1");
-            this.TextBox1.Name = "textBox1";
+            resources.ApplyResources(this.TextBox1, "TextBox1");
+            this.TextBox1.Name = "TextBox1";
             // 
-            // groupBox1
+            // GroupBox1
             // 
             this.GroupBox1.Controls.Add(this.trackBarOfStep);
-            resources.ApplyResources(this.GroupBox1, "groupBox1");
-            this.GroupBox1.Name = "groupBox1";
+            resources.ApplyResources(this.GroupBox1, "GroupBox1");
+            this.GroupBox1.Name = "GroupBox1";
             this.GroupBox1.TabStop = false;
             // 
             // trackBarOfStep
@@ -299,12 +299,12 @@ namespace Project_UML.Core.FormsUML
             this.KeyPreview = true;
             this.Name = "NewProject";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewProject_FormClosing);
             this.Load += new System.EventHandler(this.NewProject_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDownControl);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressControl);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUpControl);
-            this.MouseWheel += new System.Windows.Forms.MouseEventHandler(OnMouseWheel);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewProject_FormClosing);
+            this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.OnMouseWheel);
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).EndInit();
             this.GroupBoxStartAxis.ResumeLayout(false);
             this.GroupBoxStartAxis.PerformLayout();

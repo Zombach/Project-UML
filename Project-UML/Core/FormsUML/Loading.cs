@@ -30,9 +30,17 @@ namespace Project_UML.Core.FormsUML
         {
             _load = new Load();
             _data = _load.LoadingData();
-            NewProject newProject = new NewProject(_menu, _data);
-            newProject.Show();
-            Close();
+            NewProject project = new NewProject(_menu);
+            project.Show();
+            project.Loading(_data);
+            Dispose();
+        }
+
+        private void Loading_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            _menu.Show();
+            Dispose();
         }
     }
 }

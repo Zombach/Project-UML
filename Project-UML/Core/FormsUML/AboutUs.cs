@@ -22,7 +22,14 @@ namespace Project_UML.Core.FormsUML
         private void MainMenu(object sender, EventArgs e)
         {
             _menu.Show();
+            Dispose();
             Close();
+        }
+        private void AboutUs_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            _menu.Show();
+            Dispose();
         }
     }
 }

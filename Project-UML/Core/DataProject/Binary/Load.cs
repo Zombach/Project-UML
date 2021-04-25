@@ -23,7 +23,6 @@ namespace Project_UML.Core.DataProject.Binary
                     Deserialize deserializer = new Deserialize();
                     _coreUML.MyPath = openFileDialog.FileName;
                     _data = deserializer.DeserializationDictionary();
-                    MessageBox.Show("Загрузка успешно завершена");
                     _coreUML.IsLoading = true;
                 }
             }

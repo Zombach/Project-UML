@@ -21,7 +21,7 @@ namespace Project_UML.Core.Arrows
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
         public Axis StartDirectionAxis { get; set; } = Axis.X;
         public Axis EndDirectionAxis { get; set; } = Axis.X;
-        public List<Point> Points { get; set; }
+        public List<Point> Points { get; set; } = new List<Point>();
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
 
         public Link SelectedLink { get; set; }
@@ -73,7 +73,7 @@ namespace Project_UML.Core.Arrows
                 Point point = new Point(arrow.Points[i].Point_X, arrow.Points[i].Point_Y);
                 Points.Add(point);
             }
-
+            SetEndCap();
             //Необходимо дописать конструктор стрелы
         }
 

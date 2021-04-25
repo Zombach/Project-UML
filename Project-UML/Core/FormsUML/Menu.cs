@@ -43,11 +43,12 @@ namespace Project_UML.Core.FormsUML
         {
             _load = new Load();
             _data = _load.LoadingData();
-            _project.Enabled = true;
-            _project.Close();
-            _project = new NewProject(_menu, _data);
-            _project.Show();
-            Close();
+            _coreUML.IsLoading = true;
+            _project.Dispose();
+            NewProject project = new NewProject(_menu);
+            project.Show();            
+            project.Loading(_data);
+            Dispose();
         }
 
         private void Encrypt_Click(object sender, EventArgs e)

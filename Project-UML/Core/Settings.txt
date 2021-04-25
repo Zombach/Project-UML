@@ -6,7 +6,7 @@
   "DefaultSize": 20,
   "DefaultStep": {
     "$type": "Project_UML.Core.Step, Project-UML",
-    "X": 10,
-    "Y": 10
+    "X": 15,
+    "Y": 15
   }
 }

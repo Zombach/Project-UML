@@ -9,6 +9,7 @@ using Project_UML.Core.Interfaces;
 using Project_UML.Core.DataProject.Binary;
 using Project_UML.Core.DataProject.Json;
 using Project_UML.Core.DataProject.Structure;
+using System.Threading.Tasks;
 
 namespace Project_UML.Core.FormsUML
 {
@@ -23,28 +24,26 @@ namespace Project_UML.Core.FormsUML
         private List<AbstractArrow>  _arrows = new List<AbstractArrow>();
         private IMouseHandler _crntMH = new MouseHandlerOnSelection();
         private IMouseHandler _tmpCrntMH;
-        public NewProject(Form menu, PreparationData data)
-        {
-            InitializeComponent();
-            _menu = menu;
-            if (_coreUML.IsLoading)
-            {
-                ProcessingData deserializeData = new ProcessingData(data);
-                deserializeData.LoadingData(deserializeData);
-                TrackBarOfWidth.Value = _coreUML.DefaultWidth;
-                ButtonColor.BackColor = _coreUML.DefaultColor;
-                _coreUML.IsLoading = false;
-            }
-        }
+        
 
         public NewProject(Form menu)
         {
             InitializeComponent();
-            DataProject.Json.LoadSettings load = new DataProject.Json.LoadSettings();
+            LoadSettings load = new LoadSettings();
             StructSettings settings = load.ReadSettings();
             _coreUML.LoadCoreUML(settings);
             UpdateSettingsForm();
-            _menu = menu;            
+            _menu = menu;
+            _menu.Dispose();
+
+        }
+        public void Loading(PreparationData data)
+        {
+            ProcessingData deserializeData = new ProcessingData(data);
+            deserializeData.LoadingData(deserializeData);
+            TrackBarOfWidth.Value = _coreUML.DefaultWidth;
+            ButtonColor.BackColor = _coreUML.DefaultColor;
+            _coreUML.UpdPicture();
         }
 
         public void UpdateSettingsForm()
@@ -294,7 +293,7 @@ namespace Project_UML.Core.FormsUML
                 Enabled = false;
                 menu.Show();
             }
-            if (e.KeyCode == Keys.Delete)
+            if (e.KeyCode == Keys.Delete && e.Control)
             {
                 ButtonClear_Click(sender, e);
             }

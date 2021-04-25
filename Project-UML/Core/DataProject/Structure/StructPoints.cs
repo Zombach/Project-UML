@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.DataProject.Structure
 {
+    [Serializable]
     public struct StructPoints : IPoint
     {
         public int Point_X { get; set; }

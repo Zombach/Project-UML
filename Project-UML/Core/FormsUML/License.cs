@@ -46,7 +46,6 @@ namespace Project_UML.Core.FormsUML
             NewProject newProject = new NewProject(_menu);
             this.Close();
             newProject.Show();
-            //MainMenu.Main.Visible = true; Это строка кода для отображения главноего меню
         }
         private void License_FormClosing(Object sender, FormClosingEventArgs e)
         {
