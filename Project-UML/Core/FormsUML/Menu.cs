@@ -13,6 +13,7 @@ namespace Project_UML.Core.FormsUML
 {
     public partial class Menu : Form
     {
+        private bool _isProject = true;
         private CoreUML _coreUML = CoreUML.GetCoreUML();
         private Form _menu;
         private Form _project;
@@ -29,7 +30,8 @@ namespace Project_UML.Core.FormsUML
 
         private void MainMenu_Click(object sender, EventArgs e)
         {
-            _menu.Show();            
+            _isProject = false;
+            _menu.Show();
             Close();
         }
 
@@ -42,9 +44,13 @@ namespace Project_UML.Core.FormsUML
         private void LoadAs_Click(object sender, EventArgs e)
         {
             _load = new Load();
-            _data = _load.LoadingData();
-            _project.Dispose();
-            Loading();
+            _load.GetPathData();
+            _data = _coreUML.LoadData(_menu);
+            if (_data != null)
+            {
+                _project.Dispose();
+                Dispose();
+            }
         }
 
         private void Encrypt_Click(object sender, EventArgs e)
@@ -65,31 +71,42 @@ namespace Project_UML.Core.FormsUML
 
         private void LoadLast_Click(object sender, EventArgs e)
         {
-            if (_coreUML.MyPath == "")
+            _data = _coreUML.LoadData(_menu);
+            if (_data != null)
             {
-                MessageBox.Show("Последнее сохранение не определено, повторите попытку, после создания нового сохранения");
-            }
-            else
-            {
-                _deserializer = new Deserialize();
-                _data = _deserializer.DeserializationDictionary();                               
                 _project.Dispose();
-                Loading();
+                Dispose();
             }
-        }
-
-        private void Loading()
-        {
-            NewProject project = new NewProject(_menu);
-            _coreUML.SelectedFigures.Clear();
-            project.Show();
-            project.Loading(_data);
-            Dispose();
         }
 
         private void EncryptAs_Click(object sender, EventArgs e)
         {
 
+        }
+        private void Menu_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            if (_isProject)
+            {
+                _project.Enabled = true;
+            }
+            else
+            {
+                _project.Close();
+            }
+        }
+        private void KeyDown_Control(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    PressEscape();
+                    return;
+            }
+        }
+        private void PressEscape()
+        {
+            _project.Enabled = true;
+            Close();
         }
     }
 }

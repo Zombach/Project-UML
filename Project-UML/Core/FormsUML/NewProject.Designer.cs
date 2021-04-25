@@ -348,12 +348,12 @@ namespace Project_UML.Core.FormsUML
             this.Controls.Add(this.GroupBoxEndAxis);
             this.Controls.Add(this.GroupBoxStartAxis);
             this.Controls.Add(this.Canvas);
-            this.KeyPreview = true;
             this.Name = "NewProject";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewProject_FormClosing);
             this.Load += new System.EventHandler(this.NewProject_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Z);
+            this.KeyPreview = true;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Control);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressControl);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUpControl);
             this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.OnMouseWheel);

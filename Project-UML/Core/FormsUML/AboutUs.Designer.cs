@@ -176,6 +176,8 @@
             this.MaximumSize = new System.Drawing.Size(1009, 551);
             this.MinimumSize = new System.Drawing.Size(1009, 551);
             this.Name = "AboutUs";
+            this.KeyPreview = true;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Control);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AboutUs";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();

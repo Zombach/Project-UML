@@ -18,13 +18,16 @@ namespace Project_UML.Core.FormsUML
     /// </summary>
     public partial class NewProject : Form
     {
+        private Help _help;
+        private bool isHelp = false;
+        private PreparationData _data;
         private Font _fontBold;
         private Font _fontUnderline;
         private Font _fontItalic;
+        private Font _fontSize;
         private Form _menu;
         private bool _isControlKeyOn = false;
         private CoreUML _coreUML = CoreUML.GetCoreUML();
-        private List<AbstractArrow>  _arrows = new List<AbstractArrow>();
         private IMouseHandler _crntMH = new MouseHandlerOnSelection();
         private IMouseHandler _tmpCrntMH;
         
@@ -44,7 +47,29 @@ namespace Project_UML.Core.FormsUML
             deserializeData.LoadingData(deserializeData);
             TrackBarOfWidth.Value = _coreUML.DefaultWidth;
             ButtonColor.BackColor = _coreUML.DefaultColor;
-            trackBarOfStep.Value = _coreUML.DefaultStep.X;
+            int tmp;
+            switch(_coreUML.DefaultStep.X)
+            {
+                case 5:
+                    tmp = 1;
+                    break;
+                case 10:
+                    tmp = 2;
+                    break;
+                case 15:
+                    tmp = 3;
+                    break;
+                case 20:
+                    tmp = 4;
+                    break;
+                case 25:
+                    tmp = 5;
+                    break;
+                default:
+                    tmp = 1;
+                    break;
+            }
+            trackBarOfStep.Value = tmp;
             _coreUML.UpdPicture();
         }
 
@@ -52,39 +77,62 @@ namespace Project_UML.Core.FormsUML
         {
             ButtonColor.BackColor = _coreUML.DefaultColor;
             TrackBarOfWidth.Value = _coreUML.DefaultWidth;
-            trackBarOfStep.Value = 1;
-            FontChange.Text = _coreUML.DefaultFont.Name;
-            FontChange.Font = _coreUML.DefaultFont;
-
+            int tmp;
+            switch (_coreUML.DefaultStep.X)
+            {
+                case 5:
+                    tmp = 1;
+                    break;
+                case 10:
+                    tmp = 2;
+                    break;
+                case 15:
+                    tmp = 3;
+                    break;
+                case 20:
+                    tmp = 4;
+                    break;
+                case 25:
+                    tmp = 5;
+                    break;
+                default:
+                    tmp = 1;
+                    break;
+            }
+            trackBarOfStep.Value = tmp;
             PreparationFont();
+        }
 
+        private void PreparationFont()
+        {
+            FontChange.Font = _coreUML.DefaultFont;
+            FontChange.Text = _coreUML.DefaultFont.Name;
+            FontChange.Font = new Font(FontChange.Font.FontFamily, 8);
+
+            _fontBold = _coreUML.DefaultFont;
+            _fontBold = new Font(_fontBold, FontStyle.Regular);
             if (_coreUML.DefaultFont.Bold)
             {
                 FontBold.Font = new Font(_fontBold, FontStyle.Bold);
             }
 
+            _fontItalic = _coreUML.DefaultFont;
+            _fontItalic = new Font(_fontItalic, FontStyle.Regular);
             if (_coreUML.DefaultFont.Italic)
             {
                 FontItalic.Font = new Font(_fontItalic, FontStyle.Italic);
             }
 
+            _fontUnderline = _coreUML.DefaultFont;
+            _fontUnderline = new Font(_fontUnderline, FontStyle.Regular);
             if (_coreUML.DefaultFont.Underline)
             {
                 FontUnderline.Font = new Font(_fontUnderline, FontStyle.Underline);
             }
 
-            FontSize.Font = new Font(_coreUML.DefaultFont.FontFamily, _coreUML.DefaultFont.Size);
-
-        }
-
-        private void PreparationFont()
-        {
-            _fontBold = _coreUML.DefaultFont;
-            _fontItalic = _coreUML.DefaultFont;
-            _fontUnderline = _coreUML.DefaultFont;
-            _fontBold = new Font(_fontBold, FontStyle.Regular);
-            _fontItalic = new Font(_fontItalic, FontStyle.Regular);
-            _fontUnderline = new Font(_fontUnderline, FontStyle.Regular);
+            _fontSize = _coreUML.DefaultFont;
+            _fontSize = new Font(_fontSize.FontFamily, 8);
+            FontSize.Text = _coreUML.DefaultFont.Size.ToString();
         }
 
         private void OnMouseWheel(object sender, MouseEventArgs e)
@@ -316,133 +364,112 @@ namespace Project_UML.Core.FormsUML
         /// <param name="e"></param>
         private void KeyDown_Control(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.ControlKey)
-            {
-                _isControlKeyOn = true;
-            }            
-        }
-
-        private void KeyDown_Esc(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                Menu menu = new Menu(_menu, this);
-                Enabled = false;
-                menu.Show();
-            }
-        }
-        private void KeyDown_Del(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete && e.Control)
-            {
-                ButtonClear_Click(sender, e);
-            }
-        }
-        private void KeyDown_Plus(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Oemplus && e.Control)
-            {
-                ScrollSizeUp();
-            }
-        }
-        private void KeyDown_Minus(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.OemMinus && e.Control)
-            {
-                ScrollSizeDown();
-            }
-        }
-        private void KeyDown_Zero(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.D0 && e.Control)
-            {
-                ScrollSizeBase();
-            }
-        }
-        private void KeyDown_Up(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Up && e.Control)
-            {
-                _coreUML.MoveByKey(e.KeyCode);
-            }
-        }
-        private void KeyDown_Down(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Down && e.Control)
-            {
-                _coreUML.MoveByKey(e.KeyCode);
-            }
-        }
-        private void KeyDown_Left(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Left && e.Control)
-            {
-                _coreUML.MoveByKey(e.KeyCode);
-            }
-        }
-        private void KeyDown_Right(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Right && e.Control)
-            {
-                _coreUML.MoveByKey(e.KeyCode);
-            }
-        }
-        private void KeyDown_A(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.A && e.Control)
-            {
-                _tmpCrntMH = _crntMH;
-                _crntMH = new MouseHandlerOnSelection();
-                _coreUML.SelectedFigures.Clear();
-                _coreUML.SelectedFigures.AddRange(_coreUML.Figures);
-                _crntMH.MouseUp(new Point(0, 0));
-                _crntMH = _tmpCrntMH;
-            }
-        }
-        private void KeyDown_C(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.C && e.Control)
-            {
-                _coreUML.SaveTmpFigure();
-            }
             
-        }
-        private void KeyDown_V(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.V && e.Control)
+            if (e.Control)
             {
-                _coreUML.LoadTmpFigure();
+                switch(e.KeyCode)
+                {
+                    case Keys.Delete:
+                        ButtonClear_Click(sender, e);
+                        return;
+                    case Keys.Oemplus:
+                        ScrollSizeUp();
+                        return;
+                    case Keys.OemMinus:
+                        ScrollSizeDown();
+                        return;
+                    case Keys.D0:
+                        ScrollSizeBase();
+                        return;
+                    case Keys.Up:
+                        _coreUML.MoveByKey(e.KeyCode);
+                        return;
+                    case Keys.Down:
+                        _coreUML.MoveByKey(e.KeyCode);
+                        return;
+                    case Keys.Left:
+                        _coreUML.MoveByKey(e.KeyCode);
+                        return;
+                    case Keys.Right:
+                        _coreUML.MoveByKey(e.KeyCode);
+                        return;
+                    case Keys.A:
+                        Highlighting();                        
+                        return;
+                    case Keys.C:
+                        _coreUML.SaveTmpFigure();
+                        return;
+                    case Keys.V:
+                        _coreUML.LoadTmpFigure();
+                        return;
+                    case Keys.Z:
+                        //не реализовано
+                        return;
+                    case Keys.R:
+                        _coreUML.ReverseArrow();
+                        return;
+                    case Keys.S:
+                        CoreUML.SaveDate();
+                        MessageBox.Show("Сохранено");
+                        return;
+                    case Keys.L:
+                        Press_L();                        
+                        MessageBox.Show("Загружено");
+                        return;
+                } 
             }
-        }
-        private void KeyDown_Z(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Z && e.Control)
-            {
-            }
-        }
-        private void KeyDown_R(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.R && e.Control)
-            {
-                _coreUML.ReverseArrow();
-            }
-        }
-        private void KeyDown_S(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.S && e.Control)
-            {
-                CoreUML.SaveDate();
-                MessageBox.Show("Сохранено");
-            }
-        }
-        private void KeyDown_L(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.L && e.Control)
-            {
 
-                MessageBox.Show("Загружено");
+            switch(e.KeyCode)
+            {
+                case Keys.ControlKey:
+                    _isControlKeyOn = true;
+                    return;
+                case Keys.Escape:
+                    Press_Escape();
+                    return;
+                case Keys.F1:
+                    Press_F1();
+                    return;
             }
         }
+
+        private void Press_L()
+        {
+            _data = _coreUML.LoadData(_menu);
+            if (_data != null)
+            {
+                Dispose();
+            }
+        }
+        private void Press_F1()
+        {
+            if (isHelp)
+            {
+                _help.Dispose();
+            }
+            else
+            {
+                _help = new Help();
+                _help.Show();
+            }
+            isHelp = !isHelp;
+        }
+        private void Press_Escape()
+        {
+            Enabled = false;
+            Menu menu = new Menu(_menu, this);
+            menu.Show();
+        }
+        private void Highlighting()
+        {
+            _tmpCrntMH = _crntMH;
+            _crntMH = new MouseHandlerOnSelection();
+            _coreUML.SelectedFigures.Clear();
+            _coreUML.SelectedFigures.AddRange(_coreUML.Figures);
+            _crntMH.MouseUp(new Point(0, 0));
+            _crntMH = _tmpCrntMH;
+        }
+
         /// <summary>
         /// KeyCode управления отпускания клавиши
         /// </summary>
@@ -486,8 +513,13 @@ namespace Project_UML.Core.FormsUML
         
         private void NewProject_FormClosing(Object sender, FormClosingEventArgs e)
         {
+            if (!(_help is null))
+            {
+                _help.Dispose();
+            }
             SaveSettings sss = new SaveSettings();
             sss.WriteSettings();
+            _menu.Close();
         }
 
         private void buttonUpdateRectText_Click(object sender, EventArgs e)

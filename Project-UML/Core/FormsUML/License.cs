@@ -28,8 +28,15 @@ namespace Project_UML.Core.FormsUML
         {
             InitializeComponent();
             _menu = menu;
-            StreamReader sr = new StreamReader(_myPath);
-            LicenseText.Items.Add(sr.ReadLine());
+            using (StreamReader sReader = new StreamReader(_myPath))
+            {
+                string line;
+                while ((line = sReader.ReadLine()) != null)
+                {
+                    LicenseText.Items.Add(line);
+                }
+                sReader.Close();
+            }
         }
         private void CheckBox_License_CheckedChanged(object sender, EventArgs e)
         {
@@ -60,6 +67,20 @@ namespace Project_UML.Core.FormsUML
             {
                 isMenu = true;
             }
+            Dispose();
+        }
+        private void KeyDown_Control(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    PressEscape();
+                    return;
+            }
+        }
+        private void PressEscape()
+        {
+            _menu.Show();
             Dispose();
         }
     }

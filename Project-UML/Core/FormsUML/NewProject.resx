@@ -640,7 +640,7 @@
     <value>NoControl</value>
   </data>
   <data name="ButtonTransform.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 658</value>
+    <value>8, 609</value>
   </data>
   <data name="ButtonTransform.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 25</value>

@@ -1,0 +1,23 @@
+                      СПИСОК ГОРЯЧИХ КЛАВИШ
+
+                               F1      : Справка
+                            Escape : Запуск меню
+
+         СПИСОК КОМБИНАЦИЙ ГОРЯЧИХ КЛАВИШ
+
+         Control +   "WheelUp"     : ZoomUp
+         Control +  "WheelDown" : ZoomDown
+         Control +         "+"            : ZoomUp
+         Control +         "-"             : ZoomDown
+         Control +         "0"            : Востановить Zoom	 
+         Control +        "Del"          : Удалить фигуру (ы)
+         Control +         "S"            : Быстрое сохранение
+         Control +         "L"            : Быстрая загрузка
+         Control +         "A"            : Выделить все фигуры
+         Control +         "C"            : Скопировать фигуру(ы)
+         Control +         "V"            : Вставка скопированного
+         Control +         "R"            : Отобразить стрелку(и)
+         Control +         "Up"          : Сдвиг вверх фигур(ы)
+         Control +       "Down"       : Сдвиг вверх фигур(ы)
+         Control +       "Left"          : Сдвиг вверх фигур(ы)
+         Control +       "Right"        : Сдвиг вверх фигур(ы)

@@ -134,6 +134,9 @@ namespace Project_UML.Core.FormsUML
             this.Controls.Add(this.LoadLast);
             this.Controls.Add(this.SaveAs);
             this.Controls.Add(this.Save);
+            this.KeyPreview = true;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Control);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Menu_FormClosing);
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";

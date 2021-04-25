@@ -10,23 +10,17 @@ namespace Project_UML.Core.DataProject.Binary
     public class Load
     {
         private CoreUML _coreUML = CoreUML.GetCoreUML();
-        private PreparationData _data;
 
-        public PreparationData LoadingData()
+        public void GetPathData()
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "../../Save";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    
-                    Deserialize deserializer = new Deserialize();
                     _coreUML.MyPath = openFileDialog.FileName;
-                    _data = deserializer.DeserializationDictionary();
-                    _coreUML.IsLoading = true;
                 }
             }
-            return _data;
         }
     }
 }

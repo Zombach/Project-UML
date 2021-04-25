@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_UML.Core.Interfaces.Logics;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,6 +29,21 @@ namespace Project_UML.Core.FormsUML
         private void AboutUs_FormClosing(Object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
+            _menu.Show();
+            Dispose();
+        }
+
+        private void KeyDown_Control(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    PressEscape();
+                    return;
+            }
+        }
+        private void PressEscape()
+        {
             _menu.Show();
             Dispose();
         }

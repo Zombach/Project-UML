@@ -11,6 +11,7 @@ using Project_UML.Core.FigureFactory;
 using Project_UML.Core.DataProject.Binary;
 using Project_UML.Core.Boxes;
 using Project_UML.Core.DataProject.Structure;
+using Project_UML.Core.FormsUML;
 
 namespace Project_UML.Core
 {
@@ -62,6 +63,8 @@ namespace Project_UML.Core
         public Axis AxisEnd = Axis.X;
 
         public bool IsLoading { get; set; } = false;
+        private PreparationData _data;
+        private Deserialize _deserializer;
 
 
         private CoreUML()
@@ -287,10 +290,27 @@ namespace Project_UML.Core
             return true;
         }
 
-        public void LoadData(ProcessingData data)
+        public PreparationData LoadData(Form menu)
         {
-            Deserialize deserializer = new Deserialize();
-            deserializer.DeserializationDictionary();
+            if (_coreUML.MyPath == "")
+            {
+                MessageBox.Show("Последнее сохранение не определено, повторите попытку, после создания нового сохранения");
+                _data = null;
+            }
+            else
+            {
+                _deserializer = new Deserialize();
+                _data = _deserializer.DeserializationDictionary();
+                Loading(menu);
+            }
+            return _data;
+        }
+        private void Loading(Form menu)
+        {
+            NewProject project = new NewProject(menu);
+            _coreUML.SelectedFigures.Clear();
+            project.Show();
+            project.Loading(_data);            
         }
 
         public void LoadCoreUML(StructSettings setting)

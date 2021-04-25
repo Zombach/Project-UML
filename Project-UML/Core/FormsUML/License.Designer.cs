@@ -74,6 +74,8 @@ namespace Project_UML.Core.FormsUML
             this.Controls.Add(this.License_CheckBox);
             this.Controls.Add(this.LicenseText);
             this.Name = "License";
+            this.KeyPreview = true;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Control);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "License Agreement";
             this.ResumeLayout(false);
