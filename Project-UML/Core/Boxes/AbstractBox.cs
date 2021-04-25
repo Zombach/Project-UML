@@ -19,7 +19,6 @@ namespace Project_UML.Core.Boxes
     [Serializable]
     public abstract class AbstractBox : IFigure, IGetFont, IChangeFont
     {
-        private CoreUML _coreUML = CoreUML.GetCoreUML();
         /// <summary>
         /// Жестко заданы точки [0] - левая верхняя точка, [1] - правая нижняя точка
         /// </summary>
@@ -70,7 +69,7 @@ namespace Project_UML.Core.Boxes
             _pen = new Pen(box._pen.Color, box._pen.Width);
             for (int i = 0; i < box.Points.Count; i++)
             {
-                Point point = new Point(box.Points[i].X - _coreUML.DefaultStep.X, box.Points[i].Y - _coreUML.DefaultStep.Y);
+                Point point = new Point(box.Points[i].X, box.Points[i].Y);
                 Points.Add(point);
             }
             DataCommon = new List<DataCommon>();

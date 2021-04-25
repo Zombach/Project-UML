@@ -30,7 +30,10 @@ namespace Project_UML.Core.FormsUML
         private CoreUML _coreUML = CoreUML.GetCoreUML();
         private IMouseHandler _crntMH = new MouseHandlerOnSelection();
         private IMouseHandler _tmpCrntMH;
-        
+        private bool _isUndo;
+        private bool _isClearLog;
+        private bool _isClearLogBack;
+
 
         public NewProject(Form menu)
         {
@@ -269,9 +272,9 @@ namespace Project_UML.Core.FormsUML
             //}
             foreach (IFigure figure in _coreUML.SelectedFigures)
             {
-                _coreUML.WriteLogsActs(figure, false);
+                _coreUML.WriteLogs(figure, false);
                 _coreUML.Figures.Remove(figure);
-                _coreUML.WriteLogsActs(null, true);
+                _coreUML.WriteLogs(null, true);
             }
             _coreUML.SelectedFigures.Clear();
             _coreUML.UpdPicture();
@@ -331,7 +334,17 @@ namespace Project_UML.Core.FormsUML
         /// <param name="e"></param>
         private void KeyDown_Control(object sender, KeyEventArgs e)
         {
-            
+            if(e.KeyCode == Keys.A)
+            {
+                Press_Z(_coreUML.Logs);
+                return;
+            }
+            if (e.KeyCode == Keys.Q)
+            {
+                Press_Revert_Z(_coreUML.LogsBack);
+                return;
+            }
+
             if (e.Control)
             {
                 switch(e.KeyCode)
@@ -370,7 +383,7 @@ namespace Project_UML.Core.FormsUML
                         _coreUML.LoadTmpFigure();
                         return;
                     case Keys.Z:
-                        Press_Z();
+                        Press_Z(_coreUML.Logs);
                         return;
                     case Keys.R:
                         _coreUML.ReverseArrow();
@@ -384,6 +397,16 @@ namespace Project_UML.Core.FormsUML
                         MessageBox.Show("Загружено");
                         return;
                 } 
+            }
+
+            if(e.Alt)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Z:
+                        Press_Revert_Z(_coreUML.LogsBack);
+                        return;
+                }
             }
 
             switch(e.KeyCode)
@@ -400,33 +423,39 @@ namespace Project_UML.Core.FormsUML
             }
         }
 
-        private void Press_Z()
+        private void Press_Revert_Z(List<LogActs> logs)
         {
-            _coreUML.CheckCountLogs();
-            if (_coreUML.Logs.Count > 0)
+            if (_isClearLog)
             {
-                if (!(_coreUML.Logs[_coreUML.Logs.Count - 1].New is null))
-                {
-                    int index = _coreUML.Figures.IndexOf(_coreUML.Logs[_coreUML.Logs.Count - 1].New);
-                    if (!(_coreUML.Logs[_coreUML.Logs.Count - 1].Previous is null))
-                    {
-                        LogNewFigureIsNull(index);
-                    }
-                    else
-                    {
-                        if (index != -1)
-                        {
-                            _coreUML.Figures.RemoveAt(index);
-                        }
-                    } 
-                }
-                else
-                {
-                    _coreUML.Figures.Add(_coreUML.Logs[_coreUML.Logs.Count - 1].Previous);
-                }
-                _coreUML.SelectedFigures.Clear();
-                _coreUML.Logs.RemoveAt(_coreUML.Logs.Count - 1);
-                _coreUML.UpdPicture();                
+                _coreUML.Logs.Clear();
+            }
+            _isClearLog = false;
+            _isClearLogBack = true;
+            _isUndo = false;
+            if (logs.Count > 0)
+            {
+                
+                UndoAct(logs[logs.Count - 1], logs);
+            }
+            else
+            {
+                MessageBox.Show("Нет действий для отмены");
+            }
+            
+        }
+        private void Press_Z(List<LogActs> logs)
+        {
+            if (_isClearLogBack)
+            {
+                _coreUML.LogsBack.Clear();
+                _isClearLogBack = false;
+            }
+            _isClearLog = true;
+            _isUndo = true;
+            _coreUML.CheckCountLogs();
+            if (logs.Count > 0)
+            {                
+                UndoAct(logs[logs.Count - 1], logs);
             }
             else
             {
@@ -434,16 +463,75 @@ namespace Project_UML.Core.FormsUML
             }
         }
 
-        private void LogNewFigureIsNull(int index)
+        private void UndoAct(LogActs log, List<LogActs> list)
         {
-            foreach (LogActs log in _coreUML.Logs)
+            if (!(log.New is null))
             {
-                if (log.New == _coreUML.Figures[index])
+                if (_isUndo)
                 {
-                    log.New = _coreUML.Logs[_coreUML.Logs.Count - 1].Previous;
+                    _coreUML.WriteLogsBack(log.New, false);
+                }
+                else
+                {
+                    _coreUML.WriteLogs(log.Previous, false);
+                }
+                int index = _coreUML.Figures.IndexOf(log.New);
+                if (!(log.Previous is null))
+                {
+                    if (_isUndo)
+                    {
+                        _coreUML.WriteLogsBack(log.Previous, true);
+                    }
+                    else
+                    {
+                        _coreUML.WriteLogs(log.Previous, true);
+                    }
+                    LogNewFigureIsNull(index, log, list);
+                }
+                else
+                {
+                    if (_isUndo)
+                    {
+                        _coreUML.WriteLogsBack(null, false);
+                    }
+                    else
+                    {
+                        _coreUML.WriteLogs(null, true);
+                    }
+                    if (index != -1)
+                    {
+                        _coreUML.Figures.RemoveAt(index);
+                    }
+
                 }
             }
-            _coreUML.Figures[index] = _coreUML.Logs[_coreUML.Logs.Count - 1].Previous;
+            else
+            {
+                if (_isUndo)
+                {
+                    _coreUML.WriteLogsBack(null, true);
+                }
+                else
+                {
+                    _coreUML.WriteLogs(null, true);
+                }
+                _coreUML.Figures.Add(log.Previous);
+            }
+            _coreUML.SelectedFigures.Clear();
+            
+            list.RemoveAt(list.Count - 1);
+            _coreUML.UpdPicture();
+        }
+        private void LogNewFigureIsNull(int index, LogActs log, List<LogActs> list)
+        {
+            foreach (LogActs act in list)
+            {
+                if (act.New == _coreUML.Figures[index])
+                {
+                    act.New = log.Previous;
+                }
+            }
+            _coreUML.Figures[index] = log.Previous;
         }
         
         private void Press_L()

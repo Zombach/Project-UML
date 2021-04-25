@@ -100,9 +100,9 @@ namespace Project_UML.Core.MousHandlers
                         _newArrow.DataCommon[0].LastBox.DataCommon.Add(_newArrow.DataCommon[0]);
                     }
                     CoreUML.BitmapMain = CoreUML.BitmapTmp;
-                    CoreUML.WriteLogsActs(null, false);
+                    CoreUML.WriteLogs(null, false);
                     CoreUML.Figures.Add(_newArrow);
-                    CoreUML.WriteLogsActs(_newArrow, true);
+                    CoreUML.WriteLogs(_newArrow, true);
                     CoreUML.SelectedFigures.Clear();
                     CoreUML.SelectedFigures.Add(_newArrow);
                     CoreUML.DrawSelectionOfFigures();
