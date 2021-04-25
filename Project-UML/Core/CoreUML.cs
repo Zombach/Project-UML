@@ -154,6 +154,7 @@ namespace Project_UML.Core
                 PictureBox.Image = BitmapMain;
             }
             Graphics = Graphics.FromImage(BitmapMain);
+            CheckCountLogs();
         }
 
         public void DrawSelectionOfFigures()
@@ -377,6 +378,27 @@ namespace Project_UML.Core
             {                
                 _log.GetPrevious(_log, figure);
                 Logs.Add(_log);
+            }
+        }
+
+        public void CheckCountLogs()
+        {
+            if (_coreUML.Logs.Count > 30)
+            {
+                List<LogActs> tmp = new List<LogActs>();
+                int tmpIndex = _coreUML.Logs.Count - 1;
+                int tmpCount = tmpIndex - 29;
+                for (int i = tmpIndex; i >= tmpCount; i--)
+                {
+                    tmp.Add(_coreUML.Logs[i]);
+
+                }
+                _coreUML.Logs.Clear();
+                for (int i = tmp.Count - 1; i >= 0; i--)
+                {
+                    _coreUML.Logs.Add(tmp[i]);
+                }
+                CheckCountLogs();
             }
         }
     }

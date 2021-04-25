@@ -437,21 +437,15 @@ namespace Project_UML.Core.FormsUML
 
         private void Press_Z()
         {
+            _coreUML.CheckCountLogs();
             if (_coreUML.Logs.Count > 0)
             {
                 if (!(_coreUML.Logs[_coreUML.Logs.Count - 1].New is null))
                 {
                     int index = _coreUML.Figures.IndexOf(_coreUML.Logs[_coreUML.Logs.Count - 1].New);
                     if (!(_coreUML.Logs[_coreUML.Logs.Count - 1].Previous is null))
-                    {                        
-                        foreach (LogActs log in _coreUML.Logs)
-                        {
-                            if (log.New == _coreUML.Figures[index])
-                            {
-                                log.New = _coreUML.Logs[_coreUML.Logs.Count - 1].Previous;
-                            }
-                        }
-                        _coreUML.Figures[index] = _coreUML.Logs[_coreUML.Logs.Count - 1].Previous;
+                    {
+                        LogNewFigureIsNull(index);
                     }
                     else
                     {
@@ -474,6 +468,19 @@ namespace Project_UML.Core.FormsUML
                 MessageBox.Show("Сохраненых предыдущих дейстий нет");
             }
         }
+
+        private void LogNewFigureIsNull(int index)
+        {
+            foreach (LogActs log in _coreUML.Logs)
+            {
+                if (log.New == _coreUML.Figures[index])
+                {
+                    log.New = _coreUML.Logs[_coreUML.Logs.Count - 1].Previous;
+                }
+            }
+            _coreUML.Figures[index] = _coreUML.Logs[_coreUML.Logs.Count - 1].Previous;
+        }
+        
         private void Press_L()
         {
             _data = _coreUML.LoadData(_menu);
@@ -558,8 +565,8 @@ namespace Project_UML.Core.FormsUML
             {
                 _help.Dispose();
             }
-            SaveSettings sss = new SaveSettings();
-            sss.WriteSettings();
+            SaveSettings save = new SaveSettings();
+            save.WriteSettings();
             _menu.Close();
         }
 
