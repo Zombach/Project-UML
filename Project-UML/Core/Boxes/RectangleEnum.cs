@@ -27,9 +27,33 @@ namespace Project_UML.Core.Boxes
         {
             SolidBrush brush = new SolidBrush(Color.Black);
 
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectangleHeight);
-            graphics.DrawString("enum", font, brush, Points[0].X + 5, Points[0].Y + 5);
+            RectangleWidth = WidthOfRectangle(graphics, RectangleText, font) + 5;
+
+            RectNameHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[0]) * font.Height;
+
+            if (RectNameHeight < 25)
+            {
+                RectNameHeight = 25;
+            }
+
+            RectFieldHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[1]) * font.Height;
+
+            if (RectFieldHeight < 50)
+            {
+                RectFieldHeight = 50;
+            }
+
+
+
+            RectangleHeight = RectNameHeight + RectFieldHeight;
+
+            RectangleF rectName = new RectangleF(Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
+            RectangleF rectField = new RectangleF(Points[0].X, Points[0].Y + RectNameHeight, RectangleWidth, RectFieldHeight);
+
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
+
+            DrawSpecificRectangle(graphics, RectangleText[0], _pen, font, brush, rectName);
+            DrawSpecificRectangle(graphics, RectangleText[1], _pen, font, brush, rectField);
         }
     }
 }

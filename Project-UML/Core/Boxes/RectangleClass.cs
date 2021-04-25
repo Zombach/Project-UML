@@ -27,29 +27,54 @@ namespace Project_UML.Core.Boxes
 
         public override void Draw(Graphics graphics)
         {
-            
             SolidBrush brush = new SolidBrush(Color.Black);
 
-            SizeF stringSize = new SizeF();
-            stringSize = graphics.MeasureString(Name[0], font);
-            RectNameHeight = font.Height;
+            RectangleWidth = WidthOfRectangle(graphics, RectangleText, font) + 5;
+            
+            RectNameHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[0]) * font.Height;
 
-            while (stringSize.Width > RectangleWidth)
+            if (RectNameHeight < 25)
             {
-                RectNameHeight += font.Height;
-                stringSize.Width -= RectangleWidth;
+                RectNameHeight = 25;
             }
-            RectNameHeight += font.Height;
 
-            RectangleF rectF1 = new RectangleF(Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
+            RectFieldHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[1]) * font.Height;
+
+            if (RectFieldHeight < 25)
+            {
+                RectFieldHeight = 25;
+            }
+
+            RectPropertyHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[2]) * font.Height;
+
+            if (RectPropertyHeight < 25)
+            {
+                RectPropertyHeight = 25;
+            }
+
+            RectMethodsHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[3]) * font.Height;
+
+            if (RectMethodsHeight < 50)
+            {
+                RectMethodsHeight = 50;
+            }
+
+            RectangleHeight = RectNameHeight + RectFieldHeight + RectPropertyHeight + RectMethodsHeight;
+
+            RectangleF rectName = new RectangleF(Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
+            RectangleF rectField = new RectangleF(Points[0].X, Points[0].Y + RectNameHeight, RectangleWidth, RectFieldHeight);
+            RectangleF rectProperty = new RectangleF(Points[0].X, Points[0].Y + RectNameHeight + RectFieldHeight, RectangleWidth, RectPropertyHeight);            
+            RectangleF rectMethods = new RectangleF(Points[0].X, Points[0].Y + RectNameHeight + RectFieldHeight + RectPropertyHeight, RectangleWidth, RectMethodsHeight);
+
 
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
-            graphics.DrawString(Name[0], font, brush, rectF1);
-            graphics.DrawRectangle(_pen, Rectangle.Round(rectF1));
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight, RectangleWidth, RectFieldHeight);
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight + RectFieldHeight, RectangleWidth, RectPropertyHeight);
-            RectMethodsHeight = RectangleHeight - (RectNameHeight + RectFieldHeight + RectPropertyHeight);
-            graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight + RectFieldHeight + RectPropertyHeight, RectangleWidth, RectMethodsHeight);
+            
+            DrawSpecificRectangle(graphics, RectangleText[0], _pen, font, brush, rectName);
+            DrawSpecificRectangle(graphics, RectangleText[1], _pen, font, brush, rectField);
+            DrawSpecificRectangle(graphics, RectangleText[2], _pen, font, brush, rectProperty);
+            DrawSpecificRectangle(graphics, RectangleText[3], _pen, font, brush, rectMethods);
         }
+
+        
     }
 }
