@@ -31,18 +31,18 @@ namespace Project_UML.Core.Boxes
         protected int RectFieldHeight { get; set; } = 20;
         protected int RectPropertyHeight { get; set; } = 20;
         protected int RectMethodsHeight { get; set; }
-
+        public List<string> Name = new List<string> {"hello"};
         protected Font font = new Font("Arial", 10);
 
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
-
+        
 
         public AbstractBox(Color color, int width)
         {
             _pen = new Pen(color, width);
             RectangleWidth = 100;
-            RectangleHeight = 150;
+            RectangleHeight = 150;            
         }
 
         /// <summary>
@@ -72,6 +72,7 @@ namespace Project_UML.Core.Boxes
             RectFieldHeight = box.RectFieldHeight;
             RectPropertyHeight = box.RectPropertyHeight;
             RectMethodsHeight = box.RectMethodsHeight;
+
         }
 
 

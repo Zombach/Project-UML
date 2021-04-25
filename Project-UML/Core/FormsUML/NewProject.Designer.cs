@@ -55,9 +55,11 @@ namespace Project_UML.Core.FormsUML
             this.ButtonRectangleClass = new System.Windows.Forms.Button();
             this.ButtonTransform = new System.Windows.Forms.Button();
             this.ButtonMove = new System.Windows.Forms.Button();
-            this.TextBox1 = new System.Windows.Forms.TextBox();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
             this.trackBarOfStep = new System.Windows.Forms.TrackBar();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.buttonUpdateRectText = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.GroupBoxStartAxis.SuspendLayout();
             this.GroupBoxEndAxis.SuspendLayout();
@@ -241,11 +243,6 @@ namespace Project_UML.Core.FormsUML
             this.ButtonMove.UseVisualStyleBackColor = true;
             this.ButtonMove.Click += new System.EventHandler(this.ButtonMove_Click_1);
             // 
-            // TextBox1
-            // 
-            resources.ApplyResources(this.TextBox1, "TextBox1");
-            this.TextBox1.Name = "TextBox1";
-            // 
             // GroupBox1
             // 
             this.GroupBox1.Controls.Add(this.trackBarOfStep);
@@ -264,12 +261,37 @@ namespace Project_UML.Core.FormsUML
             this.trackBarOfStep.Value = 1;
             this.trackBarOfStep.Scroll += new System.EventHandler(this.TrackBarOfStep_Scroll);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            resources.GetString("comboBox1.Items"),
+            resources.GetString("comboBox1.Items1"),
+            resources.GetString("comboBox1.Items2"),
+            resources.GetString("comboBox1.Items3")});
+            resources.ApplyResources(this.comboBox1, "comboBox1");
+            this.comboBox1.Name = "comboBox1";
+            // 
+            // richTextBox1
+            // 
+            resources.ApplyResources(this.richTextBox1, "richTextBox1");
+            this.richTextBox1.Name = "richTextBox1";
+            // 
+            // buttonUpdateRectText
+            // 
+            resources.ApplyResources(this.buttonUpdateRectText, "buttonUpdateRectText");
+            this.buttonUpdateRectText.Name = "buttonUpdateRectText";
+            this.buttonUpdateRectText.UseVisualStyleBackColor = true;
+            this.buttonUpdateRectText.Click += new System.EventHandler(this.buttonUpdateRectText_Click);
+            // 
             // NewProject
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonUpdateRectText);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.GroupBox1);
-            this.Controls.Add(this.TextBox1);
             this.Controls.Add(this.ButtonMove);
             this.Controls.Add(this.ButtonTransform);
             this.Controls.Add(this.ButtonRectangleClass);
@@ -326,7 +348,6 @@ namespace Project_UML.Core.FormsUML
             this.GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarOfStep)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
         #endregion
@@ -356,9 +377,11 @@ namespace Project_UML.Core.FormsUML
         private System.Windows.Forms.Button ButtonRectangleClass;
         private System.Windows.Forms.Button ButtonTransform;
         private System.Windows.Forms.Button ButtonMove;
-        private System.Windows.Forms.TextBox TextBox1;
         private System.Windows.Forms.GroupBox GroupBox1;
         private System.Windows.Forms.TrackBar trackBarOfStep;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button buttonUpdateRectText;
     }
 }
 

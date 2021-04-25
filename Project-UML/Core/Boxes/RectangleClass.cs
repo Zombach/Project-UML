@@ -13,7 +13,6 @@ namespace Project_UML.Core.Boxes
 {
     class RectangleClass : AbstractBox
     {
-        
         public RectangleClass(Color color, int width) : base(color, width)
         {            
         }
@@ -28,11 +27,11 @@ namespace Project_UML.Core.Boxes
 
         public override void Draw(Graphics graphics)
         {
-            string text1 = "Class1 Class2 Class3 Class4 Class5 Class6";
+            
             SolidBrush brush = new SolidBrush(Color.Black);
 
             SizeF stringSize = new SizeF();
-            stringSize = graphics.MeasureString(text1, font);
+            stringSize = graphics.MeasureString(Name[0], font);
             RectNameHeight = font.Height;
 
             while (stringSize.Width > RectangleWidth)
@@ -45,7 +44,7 @@ namespace Project_UML.Core.Boxes
             RectangleF rectF1 = new RectangleF(Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
 
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
-            graphics.DrawString(text1, font, brush, rectF1);
+            graphics.DrawString(Name[0], font, brush, rectF1);
             graphics.DrawRectangle(_pen, Rectangle.Round(rectF1));
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight, RectangleWidth, RectFieldHeight);
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y + RectNameHeight + RectFieldHeight, RectangleWidth, RectPropertyHeight);

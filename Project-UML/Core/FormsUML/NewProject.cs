@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Project_UML.Core.Arrows;
 using System.Windows.Forms;
 using System.Drawing;
+using Project_UML.Core.Boxes;
 
 namespace Project_UML.Core.FormsUML
 {
@@ -452,6 +453,35 @@ namespace Project_UML.Core.FormsUML
         {
             SaveSettings sss = new SaveSettings();
             sss.WriteSettings();
+        }
+
+        private void buttonUpdateRectText_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem != null && _crntMH.CoreUML.SelectedFigures != null)
+            {
+                string selectedArea = comboBox1.SelectedItem.ToString();
+
+                string areaText = richTextBox1.Text;
+                foreach (IFigure figure in _coreUML.SelectedFigures)
+                {
+                    switch (selectedArea)
+                    {
+                        case "Name":
+                            _coreUML.ChangeName(areaText);
+                        break;
+                        case "Field":
+
+                            break;
+                        case "Property":
+
+                            break;
+                        case "Methods":
+
+                            break;
+                    }
+                }
+                
+            }            
         }
     }
 }
