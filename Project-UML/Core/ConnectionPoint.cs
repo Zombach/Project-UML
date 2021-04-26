@@ -1,4 +1,5 @@
 ﻿using Project_UML.Core.Arrows;
+using Project_UML.Core.Boxes;
 using Project_UML.Core.Interfaces.Get;
 using System;
 using System.Collections.Generic;
@@ -11,17 +12,19 @@ namespace Project_UML.Core
 {
     public class ConnectionPoint
     {
-        public Point Point { get; set; }
         public Axis Axis { get; set; }
+        public BoxZones Zone { get; set; }
+        public int DistanceInPercents { get; set; }
 
         public ConnectionPoint()
         {
         }
 
-        public ConnectionPoint(Point point, Axis axis)
+        public ConnectionPoint(Axis axis, BoxZones zone, int distanceInPercents)
         {
-            Point = point;
             Axis = axis;
+            Zone = zone;
+            DistanceInPercents = distanceInPercents;
         }
     }
 }
