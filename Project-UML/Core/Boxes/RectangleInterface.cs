@@ -17,6 +17,7 @@ namespace Project_UML.Core.Boxes
     {
         public RectangleInterface(Color color, int width) : base(color, width)
         {
+            RectangleHeight = 75;
         }
 
         public RectangleInterface(StructBox box) : base(box)
@@ -49,6 +50,8 @@ namespace Project_UML.Core.Boxes
 
 
             RectangleHeight = RectNameHeight + RectFieldHeight;
+
+            UpdatePoints();
 
             RectangleF rectName = new RectangleF(Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
             RectangleF rectField = new RectangleF(Points[0].X, Points[0].Y + RectNameHeight, RectangleWidth, RectFieldHeight);

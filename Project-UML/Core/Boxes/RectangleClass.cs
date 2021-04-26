@@ -14,7 +14,8 @@ namespace Project_UML.Core.Boxes
     public class RectangleClass : AbstractBox
     {
         public RectangleClass(Color color, int width) : base(color, width)
-        {            
+        {
+            RectangleHeight = 125;
         }
         public RectangleClass(StructBox box) : base(box)
         {
@@ -30,7 +31,7 @@ namespace Project_UML.Core.Boxes
             SolidBrush brush = new SolidBrush(Color.Black);
 
             RectangleWidth = WidthOfRectangle(graphics, RectangleText, Font) + 5;
-            
+
             RectNameHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[0]) * Font.Height;
 
             if (RectNameHeight < 25)
@@ -60,6 +61,8 @@ namespace Project_UML.Core.Boxes
             }
 
             RectangleHeight = RectNameHeight + RectFieldHeight + RectPropertyHeight + RectMethodsHeight;
+
+            UpdatePoints();
 
             RectangleF rectName = new RectangleF(Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
             RectangleF rectField = new RectangleF(Points[0].X, Points[0].Y + RectNameHeight, RectangleWidth, RectFieldHeight);
