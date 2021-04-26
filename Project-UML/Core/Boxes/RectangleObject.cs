@@ -51,7 +51,6 @@ namespace Project_UML.Core.Boxes
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
 
             DrawSpecificRectangle(graphics, RectangleText[0], _pen, Font, brush, rectName);
-
         }        
     }
 }

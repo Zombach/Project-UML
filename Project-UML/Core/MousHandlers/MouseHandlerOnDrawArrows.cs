@@ -9,11 +9,11 @@ namespace Project_UML.Core.MousHandlers
 {
     public class MouseHandlerOnDrawArrows : IMouseHandler
     {
+        private AbstractArrow _newArrow;
         public bool IsTapped { get; set; }
         public CoreUML CoreUML { get; set; } = CoreUML.GetCoreUML();
         public Point StartPoint { get; set; }
-        private AbstractArrow _newArrow;
-        IFigureFactory FigureFactory { get; set; }
+        public IFigureFactory FigureFactory { get; set; }
 
         public MouseHandlerOnDrawArrows(IFigureFactory figureFactory)
         {

@@ -26,7 +26,6 @@ namespace Project_UML.Core.DataProject.Binary
                 {
                     MessageBox.Show("Не корректная дата, выберите другое сохранение");
                 }
-                
                 fileStream.Close();
                 return data;
             }

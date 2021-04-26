@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.FigureFactory
 {
-    class RectangleInterfaceFactory : IFigureFactory
+    public class RectangleInterfaceFactory : IFigureFactory
     {
         public IFigure GetFigure(Color color, int width)
         {

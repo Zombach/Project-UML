@@ -15,22 +15,18 @@ namespace Project_UML.Core.DataProject.Binary
     [Serializable]
     public class PreparationData : ICoreUML
     {
-        #region Переменные
         /// <summary>
-        /// Список структурных фигур
+        /// Структура Бокса
         /// </summary>
-        public List<IBase> Base { get; set; }
+        private StructBox _box;
         /// <summary>
         /// Структура Стрелы
         /// </summary>
         private StructArrow _arrow;
         /// <summary>
-        /// Структура Бокса
+        /// Список структурных фигур
         /// </summary>
-        private StructBox _box;
-        #endregion
-
-        #region Методы
+        public List<IBase> Base { get; set; }        
         /// <summary>
         /// Сереализация ядра и объектов програмы
         /// </summary>
@@ -65,6 +61,5 @@ namespace Project_UML.Core.DataProject.Binary
             }
             return iBase;
         }
-        #endregion
     }
 }
