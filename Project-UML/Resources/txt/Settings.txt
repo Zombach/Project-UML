@@ -1,6 +1,6 @@
 {
   "$type": "Project_UML.Core.DataProject.Structure.StructSettings, Project-UML",
-  "DefaultColor": "Black",
+  "DefaultColor": "0, 255, 64",
   "DefaultFont": "Arial, 8.25pt",
   "DefaultWidth": 1,
   "DefaultSize": 0,

@@ -14,20 +14,26 @@ namespace Project_UML.Core.MousHandlers
         public Point StartPoint { get; set; }
         public void MouseDown(Point e)
         {
-            IsTapped = true;
             StartPoint = e;
-            foreach (IFigure figure in CoreUML.SelectedFigures)
+            CoreUML.SelectedFigures.Clear();
+            for (int i = 0; i < CoreUML.Figures.Count; i++)
             {
-                if (figure.CheckSelection(e, e, 2))
+                if (CoreUML.Figures[i].CheckSelection(e, e, 2))
                 {
-                    CoreUML.Figures.Remove(figure);
+                    IsTapped = true;
+                    CoreUML.SelectedFigures.Add(CoreUML.Figures[i]);
+                    CoreUML.Figures.Remove(CoreUML.Figures[i]);
+                    break;
                 }
             }
-            CoreUML.UpdPicture();
-            CoreUML.SwitchToDrawInTmp();
-            foreach (IFigure figure in CoreUML.SelectedFigures)
+            if (IsTapped)
             {
-                figure.Draw(CoreUML.Graphics);
+                CoreUML.UpdPicture();
+                CoreUML.SwitchToDrawInTmp();
+                foreach (IFigure figure in CoreUML.SelectedFigures)
+                {
+                    figure.Draw(CoreUML.Graphics);
+                }
             }
         }
 
