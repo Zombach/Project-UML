@@ -27,6 +27,21 @@ namespace Project_UML.Core
         /// Объект класса
         /// </summary>
         private static CoreUML _coreUML;
+        private PreparationData _data;
+        private Deserialize _deserializer;
+        private LogActs _log = new LogActs();
+        public bool IsLoading { get; set; } = false;
+        public bool IsLicense { get; set; }
+        public int DefaultWidth { get; set; }
+        /// <summary>
+        /// Размер объектов для zoom.
+        /// </summary>
+        public int DefaultSize { get; set; }
+        public string MyPath { get; set; }
+        public string MyPathEncrypt { get; set; }
+        public string MyPathSettings { get; set; }
+        public string MyPathImage { get; set; }
+
         /// <summary>
         /// Общий лист всех фигур, стрелок на холсте
         /// </summary>
@@ -50,30 +65,7 @@ namespace Project_UML.Core
         /// </summary>
         public Color DefaultColor { get; set; }
         public Font DefaultFont { get; set; }
-        public int DefaultWidth { get; set; }
-        /// <summary>
-        /// Размер объектов для zoom.
-        /// </summary>
-        public int DefaultSize { get; set; }
         public Step DefaultStep { get; set; }
-        public string MyPathEncrypt { get; set; }
-        public string MyPath { get; set; }
-        public string MyPathSettings { get; set; }
-        public bool IsLicense { get; set; }
-
-        public string MyPathImage { get; set; } = "../../Save/Image/";
-
-        /// <summary>
-        /// Временные поля (заглушки)
-        /// </summary>
-        public Axis AxisStart = Axis.X;
-        public Axis AxisEnd = Axis.X;
-
-        public bool IsLoading { get; set; } = false;
-        private PreparationData _data;
-        private Deserialize _deserializer;
-        private LogActs _log = new LogActs();
-        
 
 
         private CoreUML()
@@ -91,9 +83,9 @@ namespace Project_UML.Core
             MyPath = "";            
             MyPathSettings = @"../../Resources/txt/Settings.txt";
             MyPathEncrypt = @"../../Resources/txt/";
+            MyPathImage = @"../../Save/Image/";
             IsLicense = false;
         }
-
 
         public static CoreUML GetCoreUML()
         {
@@ -113,6 +105,7 @@ namespace Project_UML.Core
                 GC.Collect();
             }
         }
+
         public void ChangeFontInSelectedFigures(Font font)
         {
             foreach (IFigure figure in SelectedFigures)
@@ -135,6 +128,7 @@ namespace Project_UML.Core
                 WriteLogs(figure, true);
             }
         }
+
         public void ChangeWidthInSelectedFigures(int width )
         {
             foreach (IFigure figure in SelectedFigures)
@@ -314,10 +308,9 @@ namespace Project_UML.Core
             }
             UpdPicture();
         }
+
         public void SaveImage()
         {
-            SetMyPath imagePath = new SetMyPath();
-            imagePath.MyPathImage();
             _coreUML.BitmapMain.Save(MyPathImage, ImageFormat.Jpeg);
         }
 
@@ -351,14 +344,7 @@ namespace Project_UML.Core
             }
             return _data;
         }
-        private void Loading(Form menu)
-        {
-            NewProject project = new NewProject(menu);
-            _coreUML.SelectedFigures.Clear();
-            project.Show();
-            project.Loading(_data);            
-        }
-
+        
         public void LoadCoreUML(StructSettings setting)
         {
             if (setting != null)
@@ -371,36 +357,7 @@ namespace Project_UML.Core
                 DefaultWidth = EqSetting.DefaultWidth;
                 MyPath = EqSetting.Path;
             }
-        }
-
-        private StructSettings SettingEquals(StructSettings setting)
-        {            
-            if (setting.DefaultColor == null)
-            {
-                setting.DefaultColor = Color.Black;
-            }
-            if (setting.DefaultFont is null)
-            {
-                setting.DefaultFont = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-            }
-            if (setting.DefaultSize < -20 || setting.DefaultSize > 20)
-            {
-                setting.DefaultSize = 0;
-            }
-            if (setting.DefaultStep == null)
-            {
-                setting.DefaultStep = new Step(5);
-            }
-            if (setting.DefaultWidth <= 0 || setting.DefaultWidth > 5)
-            {
-                setting.DefaultWidth = 1;
-            }
-            if (setting.Path is null)
-            {
-                setting.Path = "";
-            }
-            return setting;
-        }
+        }                
 
         private Step SetStep(Step step, int x, int y)
         {
@@ -434,7 +391,6 @@ namespace Project_UML.Core
             return name;
         }
         
-
         public void WriteLogs(IFigure figure, bool isNew)
         {
             if (!isNew)
@@ -461,16 +417,6 @@ namespace Project_UML.Core
                 _log = new LogActs();
             }
         }
-        private void WriteActsPrevious(IFigure figure, bool isNew)
-        {
-            IFigure previous = null;
-            if (!(figure is null))
-            {
-                var newFigure = Activator.CreateInstance(Type.GetType(figure.GetType().FullName), figure);
-                previous = (IFigure)newFigure;
-            }            
-            _log.GetNew(previous, isNew);
-        }
 
         public void CheckCountLogs()
         {
@@ -492,5 +438,53 @@ namespace Project_UML.Core
                 CheckCountLogs();
             }
         }
+
+        private void WriteActsPrevious(IFigure figure, bool isNew)
+        {
+            IFigure previous = null;
+            if (!(figure is null))
+            {
+                var newFigure = Activator.CreateInstance(Type.GetType(figure.GetType().FullName), figure);
+                previous = (IFigure)newFigure;
+            }            
+            _log.GetNew(previous, isNew);
+        }
+
+        private void Loading(Form menu)
+        {
+            NewProject project = new NewProject(menu);
+            _coreUML.SelectedFigures.Clear();
+            project.Show();
+            project.Loading(_data);
+        }
+
+        private StructSettings SettingEquals(StructSettings setting)
+        {
+            if (setting.DefaultColor == null)
+            {
+                setting.DefaultColor = Color.Black;
+            }
+            if (setting.DefaultFont is null)
+            {
+                setting.DefaultFont = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+            }
+            if (setting.DefaultSize < -20 || setting.DefaultSize > 20)
+            {
+                setting.DefaultSize = 0;
+            }
+            if (setting.DefaultStep == null)
+            {
+                setting.DefaultStep = new Step(5);
+            }
+            if (setting.DefaultWidth <= 0 || setting.DefaultWidth > 5)
+            {
+                setting.DefaultWidth = 1;
+            }
+            if (setting.Path is null)
+            {
+                setting.Path = "";
+            }
+            return setting;
+        }        
     }
 }

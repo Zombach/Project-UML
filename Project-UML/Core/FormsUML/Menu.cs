@@ -116,7 +116,18 @@ namespace Project_UML.Core.FormsUML
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _coreUML.BitmapMain.Save(@"C:\Users\Andrew\source\repos\Zombach\Project-UML\Project-UML\Save\100.jpg", ImageFormat.Jpeg);
+            _setPathAs = new SetPathAs();
+            _setPathAs.SetPathImage();
+            if(_coreUML.MyPathImage != "")
+            {
+                _coreUML.SaveImage();
+                MessageBox.Show("Изображение сохранено");
+            }
+            else
+            {
+                MessageBox.Show("Не удалось сохранить изображение");
+            }
+            //_coreUML.BitmapMain.Save(@"C:\Users\Andrew\source\repos\Zombach\Project-UML\Project-UML\Save\100.jpg", ImageFormat.Jpeg);
         }
     }
 }
