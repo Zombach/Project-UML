@@ -22,6 +22,8 @@ namespace Project_UML.Core.Boxes
         /// <summary>
         /// Жестко заданы точки [0] - левая верхняя точка, [1] - правая нижняя точка
         /// </summary>
+        protected Pen _pen;
+        protected static Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
         public List<Point> Points { get; set; } = new List<Point>();
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
         public List<DataText> DataText { get; set; } = new List<DataText>();
