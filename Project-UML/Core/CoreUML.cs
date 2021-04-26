@@ -82,7 +82,7 @@ namespace Project_UML.Core
             DefaultSize = 0;
             DefaultStep = new Step(5, 5);
             MyPath = "";
-            MyPathSettings = @"../../Core/Settings.txt";
+            MyPathSettings = @"../../Resources/txt/Settings.txt";
         }
 
 
@@ -338,11 +338,12 @@ namespace Project_UML.Core
 
         public void LoadCoreUML(StructSettings setting)
         {
-            _coreUML.DefaultColor = setting.DefaultColor;
-            _coreUML.DefaultFont = setting.DefaultFont;
-            _coreUML.DefaultSize = setting.DefaultSize;
-            _coreUML.DefaultStep = setting.DefaultStep;
-            _coreUML.DefaultWidth = setting.DefaultWidth;
+            DefaultColor = setting.DefaultColor;
+            DefaultFont = setting.DefaultFont;
+            DefaultSize = setting.DefaultSize;
+            DefaultStep = setting.DefaultStep;
+            DefaultWidth = setting.DefaultWidth;
+            MyPath = setting.Path;
         }
         private Step SetStep(Step step, int x, int y)
         {

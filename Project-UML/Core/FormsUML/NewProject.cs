@@ -76,7 +76,7 @@ namespace Project_UML.Core.FormsUML
             _coreUML.UpdPicture();
         }
 
-        public void UpdateSettingsForm()
+        private void UpdateSettingsForm()
         {
             ButtonColor.BackColor = _coreUML.DefaultColor;
             TrackBarOfWidth.Value = _coreUML.DefaultWidth;
@@ -112,28 +112,29 @@ namespace Project_UML.Core.FormsUML
             FontChange.Text = _coreUML.DefaultFont.Name;
             FontChange.Font = new Font(FontChange.Font.FontFamily, 8);
 
-            _fontBold = _coreUML.DefaultFont;
-            _fontBold = new Font(_fontBold, FontStyle.Regular);
+            _fontBold = FontChange.Font;
+            _fontItalic = FontChange.Font;
+            _fontUnderline = FontChange.Font;
+            _fontSize = FontChange.Font;
+
+            FontBold.Font = new Font(_fontBold, FontStyle.Regular);
             if (_coreUML.DefaultFont.Bold)
             {
                 FontBold.Font = new Font(_fontBold, FontStyle.Bold);
             }
 
-            _fontItalic = _coreUML.DefaultFont;
-            _fontItalic = new Font(_fontItalic, FontStyle.Regular);
+            FontItalic.Font = new Font(_fontItalic, FontStyle.Regular);
             if (_coreUML.DefaultFont.Italic)
             {
                 FontItalic.Font = new Font(_fontItalic, FontStyle.Italic);
             }
 
-            _fontUnderline = _coreUML.DefaultFont;
-            _fontUnderline = new Font(_fontUnderline, FontStyle.Regular);
+            FontUnderline.Font = new Font(_fontUnderline, FontStyle.Regular);
             if (_coreUML.DefaultFont.Underline)
             {
                 FontUnderline.Font = new Font(_fontUnderline, FontStyle.Underline);
             }
 
-            _fontSize = _coreUML.DefaultFont;
             _fontSize = new Font(_fontSize.FontFamily, 8);
             FontSize.Text = _coreUML.DefaultFont.Size.ToString();
         }
@@ -383,7 +384,6 @@ namespace Project_UML.Core.FormsUML
                         return;
                     case Keys.L:
                         Press_L();                        
-                        MessageBox.Show("Загружено");
                         return;
                 } 
             }
@@ -491,7 +491,6 @@ namespace Project_UML.Core.FormsUML
                     {
                         _coreUML.Figures.RemoveAt(index);
                     }
-
                 }
             }
             else
@@ -537,6 +536,14 @@ namespace Project_UML.Core.FormsUML
             if (_data != null)
             {
                 Dispose();
+            }
+            if (_coreUML.MyPath == "")
+            {
+                MessageBox.Show("Последнее сохранение не определено, повторите попытку, после создания нового сохранения");
+            }
+            else
+            {
+                MessageBox.Show("Загружено");
             }
         }
         private void Press_F1()
@@ -679,6 +686,7 @@ namespace Project_UML.Core.FormsUML
                 _coreUML.ChangeColorInSelectedFigures(ColorDialog.Color);
                 _coreUML.UpdPicture();
             }
+            PreparationFont();
         }
 
     }

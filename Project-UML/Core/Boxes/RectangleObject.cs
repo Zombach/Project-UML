@@ -30,9 +30,9 @@ namespace Project_UML.Core.Boxes
         {
             SolidBrush brush = new SolidBrush(Color.Black);
 
-            RectangleWidth = WidthOfRectangle(graphics, RectangleText, font) + 5;
+            RectangleWidth = WidthOfRectangle(graphics, RectangleText, Font) + 5;
 
-            RectNameHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[0]) * font.Height;
+            RectNameHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[0]) * Font.Height;
 
             if (RectNameHeight < 50)
             {
@@ -47,7 +47,7 @@ namespace Project_UML.Core.Boxes
 
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
 
-            DrawSpecificRectangle(graphics, RectangleText[0], _pen, font, brush, rectName);
+            DrawSpecificRectangle(graphics, RectangleText[0], _pen, Font, brush, rectName);
 
         }        
     }

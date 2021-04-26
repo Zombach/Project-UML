@@ -48,10 +48,10 @@ namespace Project_UML.Core.DataProject.Binary
         /// </summary>
         private string[] _typeBox = new string[4]
         {
-            "Project_UML.Core.Boxes.BaseBox",
-            "Project_UML.Core.Boxes.ClassBox",
-            "Project_UML.Core.Boxes.MethodBox",
-            "Project_UML.Core.Boxes.PropertyBox"
+            "Project_UML.Core.Boxes.RectangleClass",
+            "Project_UML.Core.Boxes.RectangleEnum",
+            "Project_UML.Core.Boxes.RectangleInterface",
+            "Project_UML.Core.Boxes.RectangleObject"
         };
         #endregion
 
@@ -67,7 +67,7 @@ namespace Project_UML.Core.DataProject.Binary
         }
 
         /// <summary>
-        /// Загрузка глобальных параметров фаормы.
+        /// Загрузка списка фигур
         /// </summary>
         /// <param name="data"></param>
         public void LoadingData(ProcessingData data)

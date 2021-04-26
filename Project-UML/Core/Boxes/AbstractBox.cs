@@ -40,8 +40,6 @@ namespace Project_UML.Core.Boxes
         /// RectangleText[3] - methods
         /// </summary>
         public List<string> RectangleText = new List<string> {"Name", "Filed", "Property", "Methods"};
-        protected Font font = new Font("Arial", 10);
-
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
         
@@ -59,20 +57,30 @@ namespace Project_UML.Core.Boxes
         /// <param name="box"></param>
         public AbstractBox(StructBox box)
         {
-
+            _pen = new Pen(box.Color, box.Width);
+            for (int i = 0; i < box.Points.Count; i++)
+            {
+                Point point = new Point(box.Points[i].Point_X, box.Points[i].Point_Y);
+                Points.Add(point);
+            }
+            Font = box.Font;
+            RectangleWidth = SizeWidth();
+            RectangleHeight = SizeHeight();
+            RectNameHeight = 20;
+            RectFieldHeight = 20;
+            RectPropertyHeight = 20;
+            RectMethodsHeight = 40;
         }
 
         public AbstractBox(IFigure figure )
         {
             AbstractBox box = (AbstractBox)figure;
-            Points = new List<Point>();
             _pen = new Pen(box._pen.Color, box._pen.Width);
             for (int i = 0; i < box.Points.Count; i++)
             {
                 Point point = new Point(box.Points[i].X, box.Points[i].Y);
                 Points.Add(point);
             }
-            DataCommon = new List<DataCommon>();
             Font = box.Font;
             RectangleWidth = box.RectangleWidth;
             RectangleHeight = box.RectangleHeight;
@@ -80,7 +88,6 @@ namespace Project_UML.Core.Boxes
             RectFieldHeight = box.RectFieldHeight;
             RectPropertyHeight = box.RectPropertyHeight;
             RectMethodsHeight = box.RectMethodsHeight;
-
         }
 
 

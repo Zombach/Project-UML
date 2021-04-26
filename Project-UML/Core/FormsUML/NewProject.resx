@@ -940,7 +940,7 @@
     <value>False</value>
   </data>
   <data name="FontUnderline.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt, style=Underline</value>
+    <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
   <data name="FontUnderline.Location" type="System.Drawing.Point, System.Drawing">
     <value>136, 229</value>

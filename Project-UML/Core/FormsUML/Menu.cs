@@ -18,7 +18,8 @@ namespace Project_UML.Core.FormsUML
         private Form _menu;
         private Form _project;
         private PreparationData _data;
-        private Load _load;
+        private GetPathAs _getPathAs;
+        private SetPathAs _setPathAs;
         private bool _isEncrypt = false;
         public Menu(Form menu, Form project)
         {
@@ -41,8 +42,8 @@ namespace Project_UML.Core.FormsUML
 
         private void LoadAs_Click(object sender, EventArgs e)
         {
-            _load = new Load();
-            _load.GetPathData();
+            _getPathAs = new GetPathAs();
+            _getPathAs.GetPathData();
             _data = _coreUML.LoadData(_menu);
             if (_data != null)
             {
@@ -64,7 +65,8 @@ namespace Project_UML.Core.FormsUML
 
         private void SaveAs_Click(object sender, EventArgs e)
         {
-
+            _setPathAs = new SetPathAs();
+            _setPathAs.SetPathData();
         }
 
         private void LoadLast_Click(object sender, EventArgs e)

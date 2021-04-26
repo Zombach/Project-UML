@@ -29,7 +29,7 @@ namespace Project_UML.Core.DataProject.Structure
                 StructPoints structPoints = new StructPoints(arrow.Points[i]);
                 Points.Add(structPoints);
             }
-            Data = null;
+            Data = new List<IDataCommon>();
             for (int i = 0; i < arrow.DataCommon.Count; i++)
             {
                 Data = new List<IDataCommon>();

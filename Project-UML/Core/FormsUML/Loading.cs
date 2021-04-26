@@ -20,7 +20,7 @@ namespace Project_UML.Core.FormsUML
         private CoreUML _coreUML = CoreUML.GetCoreUML();
         private Form _menu;
         private PreparationData _data;
-        private Load _load;
+        private GetPathAs _load;
         public Loading(Form menu)
         {
             InitializeComponent();
@@ -29,7 +29,7 @@ namespace Project_UML.Core.FormsUML
 
         private void Explorer_Click(object sender, EventArgs e)
         {
-            _load = new Load();
+            _load = new GetPathAs();
             _load.GetPathData();
             _data = _coreUML.LoadData(_menu);
             if (_data != null)

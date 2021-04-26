@@ -32,11 +32,14 @@ namespace Project_UML.Core.FormsUML
             switch(e.KeyCode)
             {
                 case Keys.Escape:
-                    Press_Escape();
+                    CloseHelp();
+                    return;
+                case Keys.F1:
+                    CloseHelp();
                     return;
             }
         }
-        private void Press_Escape()
+        private void CloseHelp()
         {
             Dispose();
         }

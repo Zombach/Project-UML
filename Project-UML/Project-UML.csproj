@@ -62,12 +62,13 @@
     <Compile Include="Core\DataProject\Binary\Deserialize.cs" />
     <Compile Include="Core\DataProject\Binary\Serialize.cs" />
     <Compile Include="Core\DataProject\Binary\SetMyPath.cs" />
+    <Compile Include="Core\DataProject\Binary\SetPathAs.cs" />
     <Compile Include="Core\DataProject\Interfaces\ICoreUMLSettings.cs" />
     <Compile Include="Core\DataProject\Interfaces\ILogs.cs" />
     <Compile Include="Core\DataProject\Interfaces\IPoint.cs" />
     <Compile Include="Core\DataProject\Json\Deserialize.cs" />
     <Compile Include="Core\DataProject\Json\Serialize.cs" />
-    <Compile Include="Core\DataProject\Binary\Load.cs" />
+    <Compile Include="Core\DataProject\Binary\GetPathAs.cs" />
     <Compile Include="Core\DataProject\Json\LoadSettings.cs" />
     <Compile Include="Core\DataProject\Json\SaveSettings.cs" />
     <Compile Include="Core\DataProject\Structure\StructPoints.cs" />
