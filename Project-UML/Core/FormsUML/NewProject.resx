@@ -142,7 +142,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Canvas.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>28</value>
   </data>
   <data name="RadioButton1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -220,6 +220,54 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GroupBoxStartAxis.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="&gt;&gt;RadioButton5.Name" xml:space="preserve">
+    <value>RadioButton5</value>
+  </data>
+  <data name="&gt;&gt;RadioButton5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RadioButton5.Parent" xml:space="preserve">
+    <value>GroupBoxEndAxis</value>
+  </data>
+  <data name="&gt;&gt;RadioButton5.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;RadioButton6.Name" xml:space="preserve">
+    <value>RadioButton6</value>
+  </data>
+  <data name="&gt;&gt;RadioButton6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RadioButton6.Parent" xml:space="preserve">
+    <value>GroupBoxEndAxis</value>
+  </data>
+  <data name="&gt;&gt;RadioButton6.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="GroupBoxEndAxis.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 526</value>
+  </data>
+  <data name="GroupBoxEndAxis.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 77</value>
+  </data>
+  <data name="GroupBoxEndAxis.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="GroupBoxEndAxis.Text" xml:space="preserve">
+    <value>EndAxis</value>
+  </data>
+  <data name="&gt;&gt;GroupBoxEndAxis.Name" xml:space="preserve">
+    <value>GroupBoxEndAxis</value>
+  </data>
+  <data name="&gt;&gt;GroupBoxEndAxis.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GroupBoxEndAxis.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;GroupBoxEndAxis.ZOrder" xml:space="preserve">
     <value>26</value>
   </data>
   <data name="RadioButton5.AutoSize" type="System.Boolean, mscorlib">
@@ -276,30 +324,6 @@
   <data name="&gt;&gt;RadioButton6.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="GroupBoxEndAxis.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 526</value>
-  </data>
-  <data name="GroupBoxEndAxis.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 77</value>
-  </data>
-  <data name="GroupBoxEndAxis.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="GroupBoxEndAxis.Text" xml:space="preserve">
-    <value>EndAxis</value>
-  </data>
-  <data name="&gt;&gt;GroupBoxEndAxis.Name" xml:space="preserve">
-    <value>GroupBoxEndAxis</value>
-  </data>
-  <data name="&gt;&gt;GroupBoxEndAxis.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GroupBoxEndAxis.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;GroupBoxEndAxis.ZOrder" xml:space="preserve">
-    <value>25</value>
-  </data>
   <data name="TrackBarOfWidth.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 16</value>
   </data>
@@ -343,7 +367,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GroupBox2.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>25</value>
   </data>
   <data name="ButtonAggregation.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 12</value>
@@ -367,7 +391,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonAggregation.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="ButtonComposition.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 43</value>
@@ -391,7 +415,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonComposition.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="ButtonAssociation.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 74</value>
@@ -415,7 +439,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonAssociation.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="ButtonInheritance.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 105</value>
@@ -439,7 +463,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonInheritance.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="ButtonSelect.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 136</value>
@@ -463,7 +487,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonSelect.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="ButtonClear.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 167</value>
@@ -487,7 +511,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonClear.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="ButtonColor.Location" type="System.Drawing.Point, System.Drawing">
     <value>133, 198</value>
@@ -508,7 +532,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonColor.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <metadata name="ColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -538,7 +562,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonImplementation.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="ButtonRectangleObject.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 395</value>
@@ -562,7 +586,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonRectangleObject.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="ButtonRectangleEnum.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 426</value>
@@ -586,7 +610,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonRectangleEnum.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="ButtonRectangleInterface.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 457</value>
@@ -610,7 +634,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonRectangleInterface.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="ButtonRectangleClass.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 488</value>
@@ -634,7 +658,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonRectangleClass.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="ButtonTransform.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -661,7 +685,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonTransform.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="ButtonMove.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -688,19 +712,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ButtonMove.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="trackBarOfStep.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="trackBarOfStep.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
-  </data>
-  <data name="trackBarOfStep.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 45</value>
-  </data>
-  <data name="trackBarOfStep.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="&gt;&gt;trackBarOfStep.Name" xml:space="preserve">
     <value>trackBarOfStep</value>
@@ -736,7 +748,31 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GroupBox1.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
+  </data>
+  <data name="trackBarOfStep.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="trackBarOfStep.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="trackBarOfStep.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 45</value>
+  </data>
+  <data name="trackBarOfStep.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;trackBarOfStep.Name" xml:space="preserve">
+    <value>trackBarOfStep</value>
+  </data>
+  <data name="&gt;&gt;trackBarOfStep.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;trackBarOfStep.Parent" xml:space="preserve">
+    <value>GroupBox1</value>
+  </data>
+  <data name="&gt;&gt;trackBarOfStep.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="comboBox1.Items" xml:space="preserve">
     <value>Name</value>
@@ -769,7 +805,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;comboBox1.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="richTextBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 757</value>
@@ -793,7 +829,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;richTextBox1.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="buttonUpdateRectText.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 859</value>
@@ -817,7 +853,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonUpdateRectText.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="FontChange.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 334</value>
@@ -841,7 +877,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;FontChange.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="FontBold.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -874,7 +910,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;FontBold.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="FontSize.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -901,7 +937,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;FontSize.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="FontItalic.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -934,7 +970,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;FontItalic.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="FontUnderline.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -967,7 +1003,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;FontUnderline.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="buttonGetCurrentText.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 888</value>
@@ -991,6 +1027,30 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonGetCurrentText.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonSaveImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 958</value>
+  </data>
+  <data name="buttonSaveImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 23</value>
+  </data>
+  <data name="buttonSaveImage.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="buttonSaveImage.Text" xml:space="preserve">
+    <value>Save Image</value>
+  </data>
+  <data name="&gt;&gt;buttonSaveImage.Name" xml:space="preserve">
+    <value>buttonSaveImage</value>
+  </data>
+  <data name="&gt;&gt;buttonSaveImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonSaveImage.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;buttonSaveImage.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

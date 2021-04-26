@@ -66,6 +66,7 @@ namespace Project_UML.Core.FormsUML
             this.FontItalic = new System.Windows.Forms.TextBox();
             this.FontUnderline = new System.Windows.Forms.TextBox();
             this.buttonGetCurrentText = new System.Windows.Forms.Button();
+            this.buttonSaveImage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.GroupBoxStartAxis.SuspendLayout();
             this.GroupBoxEndAxis.SuspendLayout();
@@ -325,10 +326,18 @@ namespace Project_UML.Core.FormsUML
             this.buttonGetCurrentText.UseVisualStyleBackColor = true;
             this.buttonGetCurrentText.Click += new System.EventHandler(this.buttonGetCurrentText_Click);
             // 
+            // buttonSaveImage
+            // 
+            resources.ApplyResources(this.buttonSaveImage, "buttonSaveImage");
+            this.buttonSaveImage.Name = "buttonSaveImage";
+            this.buttonSaveImage.UseVisualStyleBackColor = true;
+            this.buttonSaveImage.Click += new System.EventHandler(this.buttonSaveImage_Click);
+            // 
             // NewProject
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonSaveImage);
             this.Controls.Add(this.buttonGetCurrentText);
             this.Controls.Add(this.FontUnderline);
             this.Controls.Add(this.FontItalic);
@@ -419,6 +428,7 @@ namespace Project_UML.Core.FormsUML
         private System.Windows.Forms.TextBox FontItalic;
         private System.Windows.Forms.TextBox FontUnderline;
         private System.Windows.Forms.Button buttonGetCurrentText;
+        private System.Windows.Forms.Button buttonSaveImage;
     }
 }
 
