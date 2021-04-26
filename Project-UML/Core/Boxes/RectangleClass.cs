@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Project_UML.Core.Boxes
 {
-    class RectangleClass : AbstractBox
+    public class RectangleClass : AbstractBox
     {
         public RectangleClass(Color color, int width) : base(color, width)
         {            

@@ -9,10 +9,10 @@ namespace ChangeWidth.Tests
     public class ChangeWidthTests
     {
         [TestCaseSource(typeof(ChangeWidthTestSource))]
-        public void ChangeWidth_WhenAlways_ShouldChangeWidth(AggregationArrow Arrow, int newWidth, float expected)
+        public void ChangeWidth_WhenAlways_ShouldChangeWidth(AggregationArrow arrow, int newWidth, float expected)
         {
-            Arrow.ChangeWidth(newWidth);
-            float actual = Arrow.GetWidth();
+            arrow.ChangeWidth(newWidth);
+            float actual = arrow.GetWidth();
             Assert.AreEqual(expected, actual);
         }
     }

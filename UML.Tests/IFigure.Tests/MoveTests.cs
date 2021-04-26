@@ -9,10 +9,10 @@ namespace Move.Tests
     public class MoveTests
     {
         [TestCaseSource(typeof(MoveTestSource))]
-        public void Move_WhenAlways_ShouldMove(AggregationArrow Arrow, int x, int y, AggregationArrow expected)
+        public void Move_WhenAlways_ShouldMove(AggregationArrow arrow, int x, int y, AggregationArrow expected)
         {
-            Arrow.Move(x,y);
-            AggregationArrow actual = Arrow;
+            arrow.Move(x,y);
+            AggregationArrow actual = arrow;
             Assert.AreEqual(expected, actual);
 
         }
