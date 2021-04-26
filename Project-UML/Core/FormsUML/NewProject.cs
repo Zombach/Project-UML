@@ -216,25 +216,6 @@ namespace Project_UML.Core.FormsUML
             _crntMH.MouseMove(e.Location);
         }
 
-        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            _coreUML.AxisStart = Axis.X;
-        }
-
-        private void RadioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            _coreUML.AxisStart = Axis.Y;
-        }
-
-        private void RadioButton5_CheckedChanged(object sender, EventArgs e)
-        {
-            _coreUML.AxisEnd = Axis.X;
-        }
-
-        private void RadioButton6_CheckedChanged(object sender, EventArgs e)
-        {
-            _coreUML.AxisEnd = Axis.Y;
-        }
 
         private void ButtonColor_Click(object sender, EventArgs e)
         {
@@ -270,6 +251,7 @@ namespace Project_UML.Core.FormsUML
 
         private void ButtonClear_Click(object sender, EventArgs e)
         {
+            #region OLD CODE
             //_act = Act.Clear;
             //if (!(_currentArrow is null))
             //{
@@ -277,6 +259,7 @@ namespace Project_UML.Core.FormsUML
             //    _currentArrow = null;
             //UpdPicture();
             //}
+            #endregion
             foreach (IFigure figure in _coreUML.SelectedFigures)
             {
                 _coreUML.WriteLogs(figure, false);
@@ -392,8 +375,10 @@ namespace Project_UML.Core.FormsUML
                         Press_L();                        
                         return;
                     case Keys.P:
-                        _coreUML.SaveImage();
-                        MessageBox.Show("Изображение сохранено");
+                        _coreUML.SaveImagePrepaire();
+                        return;
+                    case Keys.T:
+                        Press_T();
                         return;
                 } 
             }
@@ -460,6 +445,11 @@ namespace Project_UML.Core.FormsUML
             {
                 MessageBox.Show("Сохраненых предыдущих дейстий нет");
             }
+        }
+
+        private void Press_T()
+        {
+            _coreUML.SwapTypeArrow();
         }
 
         private void UndoAct(LogActs log, List<LogActs> list)
@@ -627,7 +617,7 @@ namespace Project_UML.Core.FormsUML
         }
                
 
-        private void buttonUpdateRectText_Click(object sender, EventArgs e)
+        private void UpdateRectText_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedItem != null && _crntMH.CoreUML.SelectedFigures != null)
             {
@@ -651,7 +641,7 @@ namespace Project_UML.Core.FormsUML
                     }
             }
         }
-        private void buttonGetCurrentText_Click(object sender, EventArgs e)
+        private void GetCurrentText_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedItem != null && _crntMH.CoreUML.SelectedFigures != null)
             {
@@ -688,10 +678,9 @@ namespace Project_UML.Core.FormsUML
             PreparationFont();
         }
 
-        private void buttonSaveImage_Click(object sender, EventArgs e)
+        private void SaveImage_Click(object sender, EventArgs e)
         {
-            _coreUML.SaveImage();
-            MessageBox.Show("Изображение сохранено");
+            _coreUML.SaveImagePrepaire();
         }
         private void NewProject_FormClosing(Object sender, FormClosingEventArgs e)
         {

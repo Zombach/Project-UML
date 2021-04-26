@@ -107,7 +107,6 @@
     <Compile Include="Core\Interfaces\Get\IGetColor.cs" />
     <Compile Include="Core\Interfaces\Get\IGetFont.cs" />
     <Compile Include="Core\Interfaces\Get\IGetPointOfConnection.cs" />
-    <Compile Include="Core\Interfaces\Get\IGetSize.cs" />
     <Compile Include="Core\Interfaces\Get\IGetWidth.cs" />
     <Compile Include="Core\Interfaces\IFigureDraws.cs" />
     <Compile Include="Core\Interfaces\IFigureLogics.cs" />

@@ -7,11 +7,11 @@ namespace Project_UML.Core.MousHandlers
 {
     public class MouseHandlerOnDrawRectangle : IMouseHandler
     {
+        private AbstractBox _newBox;
         public bool IsTapped { get; set; }
         public CoreUML CoreUML { get; set; } = CoreUML.GetCoreUML();
         public Point StartPoint { get; set; }
-        private AbstractBox _newBox;
-        IFigureFactory FigureFactory { get; set; }
+        public IFigureFactory FigureFactory { get; set; }
         public MouseHandlerOnDrawRectangle(IFigureFactory factory)
         {
             FigureFactory = factory;

@@ -12,11 +12,11 @@ namespace Project_UML.Core.MousHandlers
 {
     class MouseHandlerOnMove : IMouseHandler
     {
+        private List<AbstractArrow> _tmpArrows = new List<AbstractArrow>();
         public bool IsTapped { get; set; }
         public CoreUML CoreUML { get; set; } = CoreUML.GetCoreUML();
         public Point StartPoint { get; set; }
 
-        private List<AbstractArrow> _tmpArrows = new List<AbstractArrow>();
 
         public void MouseDown(Point e)
         {

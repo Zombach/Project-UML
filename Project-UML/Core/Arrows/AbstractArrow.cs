@@ -16,7 +16,9 @@ namespace Project_UML.Core.Arrows
     /// 
     /// </summary>
     [Serializable]
+#pragma warning disable CS0659 // Тип переопределяет Object.Equals(object o), но не переопределяет Object.GetHashCode()
     public abstract class AbstractArrow : IFigure
+#pragma warning restore CS0659 // Тип переопределяет Object.Equals(object o), но не переопределяет Object.GetHashCode()
     {
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
@@ -285,29 +287,32 @@ namespace Project_UML.Core.Arrows
 
 
             }
-            if (SelectedZone.IndexOfEndPoint != Points.Count - 1 && SelectedZone.IndexOfStartPoint != 0 && SelectedZone.ZoneType == ZoneType.MiddleLink)
-            {
-                if (SelectedZone.Axis == Axis.X)
-                {
-                    Points[SelectedZone.IndexOfStartPoint] = new Point(e.X, Points[SelectedZone.IndexOfStartPoint].Y);
-                    Points[SelectedZone.IndexOfEndPoint] = new Point(e.X, Points[SelectedZone.IndexOfEndPoint].Y);
-                }
-                else
-                {
-                    Points[SelectedZone.IndexOfStartPoint] = new Point(Points[SelectedZone.IndexOfStartPoint].X, e.Y);
-                    Points[SelectedZone.IndexOfEndPoint] = new Point(Points[SelectedZone.IndexOfEndPoint].X, e.Y);
-                }
-            }
-            else if (SelectedZone.ZoneType == ZoneType.LastPoint)
-            {
-                HookEndPointToFigure(e);
-                //GetPoints(Points[0], e);
-            }
-            else if (SelectedZone.ZoneType == ZoneType.FirstPoint)
-            {
-                //GetPoints(e, Points[Points.Count - 1]);
-                HookStartPointToFigure(e);
-            }
+
+            #region OLD CODE
+            //if (SelectedZone.IndexOfEndPoint != Points.Count - 1 && SelectedZone.IndexOfStartPoint != 0 && SelectedZone.ZoneType == ZoneType.MiddleLink)
+            //{
+            //    if (SelectedZone.Axis == Axis.X)
+            //    {
+            //        Points[SelectedZone.IndexOfStartPoint] = new Point(e.X, Points[SelectedZone.IndexOfStartPoint].Y);
+            //        Points[SelectedZone.IndexOfEndPoint] = new Point(e.X, Points[SelectedZone.IndexOfEndPoint].Y);
+            //    }
+            //    else
+            //    {
+            //        Points[SelectedZone.IndexOfStartPoint] = new Point(Points[SelectedZone.IndexOfStartPoint].X, e.Y);
+            //        Points[SelectedZone.IndexOfEndPoint] = new Point(Points[SelectedZone.IndexOfEndPoint].X, e.Y);
+            //    }
+            //}
+            //else if (SelectedZone.ZoneType == ZoneType.LastPoint)
+            //{
+            //    HookEndPointToFigure(e);
+            //    //GetPoints(Points[0], e);
+            //}
+            //else if (SelectedZone.ZoneType == ZoneType.FirstPoint)
+            //{
+            //    //GetPoints(e, Points[Points.Count - 1]);
+            //    HookStartPointToFigure(e);
+            //}
+            #endregion
         }
 
         public void Select(Graphics graphics)
@@ -431,11 +436,7 @@ namespace Project_UML.Core.Arrows
                 newPoints.Add(currentPoint);
             }
             Points = newPoints;
-        }
-
-        public void Select()
-        {
-            throw new NotImplementedException();
+            UpdArrow();
         }
 
         public Color GetColor()
@@ -443,30 +444,13 @@ namespace Project_UML.Core.Arrows
             return _pen.Color;
         }
 
-        public float GetSize()
-        {
-            return 1f;
-        }
-
         public float GetWidth()
         {
             return _pen.Width;
         }
 
-        public int GetHeight()
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        public ConnectionPoint GetConnectionPoint(Point point)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Point GetMiddlePoint()
-        {
-            throw new NotImplementedException();
-        }
         public override bool Equals(object obj)
         {
             AbstractArrow arrow = (AbstractArrow)obj;
@@ -479,6 +463,20 @@ namespace Project_UML.Core.Arrows
                 }
             }
             return true;
+        }
+
+        public Point GetMiddlePoint()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Select()
+        {
+            throw new NotImplementedException();
+        }
+        public ConnectionPoint GetConnectionPoint(Point point)
+        {
+            throw new NotImplementedException();
         }
     }
 }

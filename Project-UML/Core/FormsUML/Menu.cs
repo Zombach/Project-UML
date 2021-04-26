@@ -116,7 +116,7 @@ namespace Project_UML.Core.FormsUML
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _coreUML.BitmapMain.Save(@"C:\Users\Andrew\source\repos\Zombach\Project-UML\Project-UML\Save\100.jpg", ImageFormat.Jpeg);
+            _coreUML.SaveImagePrepaire(true);
         }
     }
 }

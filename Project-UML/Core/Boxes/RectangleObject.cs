@@ -16,6 +16,7 @@ namespace Project_UML.Core.Boxes
     {
         public RectangleObject(Color color, int width) : base(color, width)
         {
+            RectangleHeight = 50;
         }
 
         public RectangleObject(StructBox box) : base(box)
@@ -43,12 +44,13 @@ namespace Project_UML.Core.Boxes
 
             RectangleHeight = RectNameHeight;
 
+            UpdatePoints();
+
             RectangleF rectName = new RectangleF(Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
 
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
 
             DrawSpecificRectangle(graphics, RectangleText[0], _pen, Font, brush, rectName);
-
         }        
     }
 }

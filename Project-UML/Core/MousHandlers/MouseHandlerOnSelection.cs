@@ -7,10 +7,10 @@ namespace Project_UML.Core.MousHandlers
 {
     public class MouseHandlerOnSelection : IMouseHandler
     {
+        private Pen _pen = new Pen(Color.Black, 1) { DashStyle = DashStyle.Dash };
         public bool IsTapped { get; set; }
         public CoreUML CoreUML { get; set; } = CoreUML.GetCoreUML();
         public Point StartPoint { get; set; }
-        Pen _pen = new Pen(Color.Black, 1) { DashStyle = DashStyle.Dash };
         public void MouseDown(Point e)
         {
             StartPoint = new Point(e.X, e.Y);

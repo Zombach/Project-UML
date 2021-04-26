@@ -15,7 +15,7 @@ namespace Project_UML.Core.Boxes
     /// 
     /// </summary>
     [Serializable]
-    public abstract class AbstractBox : IFigure, IGetFont, IChangeFont
+    public abstract class AbstractBox : IFigure, IGetFont, IChangeFont, IGetWidth
     {
         /// <summary>
         /// Жестко заданы точки [0] - левая верхняя точка, [1] - правая нижняя точка
@@ -26,12 +26,13 @@ namespace Project_UML.Core.Boxes
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
         public List<DataText> DataText { get; set; } = new List<DataText>();
         protected Font Font { get; set; } = CoreUML.GetCoreUML().DefaultFont;
-        public int RectangleWidth { get; set; } = 100;
+        public int RectangleWidth { get; set; }
         public int RectangleHeight { get; set; }
-        protected int RectNameHeight { get; set; } = 20;
-        protected int RectFieldHeight { get; set; } = 20;
-        protected int RectPropertyHeight { get; set; } = 20;
-        protected int RectMethodsHeight { get; set; } = 40;
+        protected int RectNameHeight { get; set; }
+        protected int RectFieldHeight { get; set; }
+        protected int RectPropertyHeight { get; set; }
+        protected int RectMethodsHeight { get; set; }
+        
         ///// <summary>
         /// List<string> RectangleText
         /// RectangleText[0] - name
@@ -43,14 +44,10 @@ namespace Project_UML.Core.Boxes
         
         public BoxZones crntZone;
 
-
-
-
         public AbstractBox(Color color, int width)
         {
-            _pen = new Pen(color, width);
-            RectangleWidth = 100;
-            RectangleHeight = RectMethodsHeight + RectNameHeight + RectFieldHeight + RectPropertyHeight;
+            _pen = new Pen(color, width); 
+            RectangleWidth = 105;            
         }
 
         /// <summary>
@@ -99,6 +96,12 @@ namespace Project_UML.Core.Boxes
             Point pointTmp = new Point(point.X + RectangleWidth, point.Y + RectangleHeight);
             Points.Add(pointTmp);
         }
+
+        public virtual void UpdatePoints()
+        {
+            Points[1] = new Point(Points[0].X + RectangleWidth, Points[0].Y + RectangleHeight);
+        }
+
         public virtual void Draw(Graphics graphics)
         {
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectangleHeight);
@@ -126,16 +129,6 @@ namespace Project_UML.Core.Boxes
         public void RemoveCommonPoints(DataCommon dataPoints)
         {
             DataCommon.Remove(dataPoints);
-        }
-
-        public void IsHovered(Point point)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Select()
-        {
-            throw new NotImplementedException();
         }
 
         public void Select(Graphics graphics)
@@ -184,11 +177,6 @@ namespace Project_UML.Core.Boxes
         public Color GetColor()
         {
             return _pen.Color;
-        }
-
-        public float GetSize()
-        {
-            return 1f;
         }
 
         public bool CheckSelection(Point startPoint, Point endPoint, int inaccuracy)
@@ -269,11 +257,6 @@ namespace Project_UML.Core.Boxes
         }
 
         public int GetHeight()
-        {
-            throw new NotImplementedException();
-        }
-
-        bool IIsHovered.IsHovered(Point point)
         {
             throw new NotImplementedException();
         }
@@ -425,11 +408,6 @@ namespace Project_UML.Core.Boxes
             graphics.DrawRectangle(_pen, Rectangle.Round(rectF));
         }
 
-        public void Transform(Point e)
-        {
-            throw new NotImplementedException();
-        }
-
         public int CounterOfTextLinesInSpecificRectangle(string textFromSpecificRect)
         {
             string phrase = textFromSpecificRect;
@@ -535,6 +513,21 @@ namespace Project_UML.Core.Boxes
             }
 
             return RectangleWidth;
+        }
+
+        public void Transform(Point e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsHovered(Point point)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Select()
+        {
+            throw new NotImplementedException();
         }
     }
 }

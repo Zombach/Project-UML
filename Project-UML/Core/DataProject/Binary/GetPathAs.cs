@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Project_UML.Core.DataProject.Binary
 {
@@ -24,7 +19,7 @@ namespace Project_UML.Core.DataProject.Binary
             _tmpPath = null;
             GetPath();
             _coreUML.MyPathEncrypt = _tmpPath;
-        }
+        }     
 
         private void GetPath()
         {
