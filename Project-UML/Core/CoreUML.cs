@@ -54,8 +54,10 @@ namespace Project_UML.Core
         /// </summary>
         public int DefaultSize { get; set; }
         public Step DefaultStep { get; set; }
+        public string MyPathEncrypt { get; set; }
         public string MyPath { get; set; }
         public string MyPathSettings { get; set; }
+        public bool IsLicense { get; set; }
 
         /// <summary>
         /// Временные поля (заглушки)
@@ -66,7 +68,8 @@ namespace Project_UML.Core
         public bool IsLoading { get; set; } = false;
         private PreparationData _data;
         private Deserialize _deserializer;
-        private LogActs _log;
+        private LogActs _log = new LogActs();
+        
 
 
         private CoreUML()
@@ -75,13 +78,16 @@ namespace Project_UML.Core
             SelectedFigures = new List<IFigure>();
             TmpFigures = new List<IFigure>();
             Logs = new List<LogActs>();
+            LogsBack = new List<LogActs>();
             DefaultWidth = 1;
             DefaultColor = Color.Black;
             DefaultFont = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
             DefaultSize = 0;
             DefaultStep = new Step(5, 5);
             MyPath = "";
-            MyPathSettings = @"../../Core/Settings.txt";
+            MyPathSettings = @"../../Resources/txt/Settings.txt";
+            MyPathEncrypt = @"../../Resources/txt/";
+            IsLicense = false;
         }
 
 
@@ -109,9 +115,9 @@ namespace Project_UML.Core
             {
                 if(figure is AbstractBox box)
                 {
-                    WriteLogsActs(box, false);
+                    WriteLogs(box, false);
                     box.ChangeFont(font);
-                    WriteLogsActs(box, true);
+                    WriteLogs(box, true);
                 }
             }
         }
@@ -120,18 +126,18 @@ namespace Project_UML.Core
         {
             foreach (IFigure figure in SelectedFigures)
             {
-                WriteLogsActs(figure, false);
+                WriteLogs(figure, false);
                 figure.ChangeColor(color);
-                WriteLogsActs(figure, true);
+                WriteLogs(figure, true);
             }
         }
         public void ChangeWidthInSelectedFigures(int width )
         {
             foreach (IFigure figure in SelectedFigures)
             {
-                WriteLogsActs(figure, false);
+                WriteLogs(figure, false);
                 figure.ChangeWidth(width);
-                WriteLogsActs(figure, true);
+                WriteLogs(figure, true);
             }
         }
 
@@ -172,17 +178,17 @@ namespace Project_UML.Core
             {
                 if (figure is AbstractArrow arrow)
                 {
-                    WriteLogsActs(arrow, false);
+                    WriteLogs(arrow, false);
                     for (int i = 0; i < arrow.Points.Count; i++)
                     {
                         Point point = Scroll(arrow.Points[i], isIncrease, multi);
                         arrow.Points[i] = point;
                     }
-                    WriteLogsActs(arrow, true);
+                    WriteLogs(arrow, true);
                 }
                 if (figure is AbstractBox box)
                 {
-                    WriteLogsActs(box, false);
+                    WriteLogs(box, false);
                     for (int i = 0; i < box.Points.Count; i++)
                     {
                         Point point = Scroll(box.Points[i], isIncrease, multi);
@@ -190,7 +196,7 @@ namespace Project_UML.Core
                     }
                     box.RectangleHeight = box.SizeHeight();
                     box.RectangleWidth = box.SizeWidth();
-                    WriteLogsActs(box, true);
+                    WriteLogs(box, true);
                 }
             }
             UpdPicture();
@@ -245,23 +251,23 @@ namespace Project_UML.Core
             {
                 if (figure is AbstractArrow arrow)
                 {
-                    WriteLogsActs(arrow, false);
+                    WriteLogs(arrow, false);
                     for (int i = 0; i < arrow.Points.Count; i++)
                     {
                         Point point = new Point(arrow.Points[i].X - tmpStep.X, arrow.Points[i].Y - tmpStep.Y);
                         arrow.Points[i] = point;
                     }
-                    WriteLogsActs(arrow, true);
+                    WriteLogs(arrow, true);
                 }
                 if (figure is AbstractBox box)
                 {
-                    WriteLogsActs(box, false);
+                    WriteLogs(box, false);
                     for (int i = 0; i < box.Points.Count; i++)
                     {
                         Point point = new Point(box.Points[i].X - tmpStep.X, box.Points[i].Y - tmpStep.Y);
                         box.Points[i] = point;
                     }
-                    WriteLogsActs(box, true);
+                    WriteLogs(box, true);
                 }
             }
             UpdPicture();
@@ -282,9 +288,9 @@ namespace Project_UML.Core
             SelectedFigures.Clear();
             foreach (IFigure figure in TmpFigures)
             {
-                WriteLogsActs(null, false);
+                WriteLogs(null, false);
                 var copyFigure = Activator.CreateInstance(Type.GetType(figure.GetType().FullName), figure);
-                WriteLogsActs((IFigure)copyFigure, true);
+                WriteLogs((IFigure)copyFigure, true);
                 SelectedFigures.Add((IFigure)copyFigure);
             }
             Figures.AddRange(SelectedFigures);
@@ -297,9 +303,9 @@ namespace Project_UML.Core
             {
                 if (figure is AbstractArrow arrow)
                 {
-                    WriteLogsActs(arrow, false);
+                    WriteLogs(arrow, false);
                     arrow.Reverse();
-                    WriteLogsActs(arrow, true);
+                    WriteLogs(arrow, true);
                 }
             }
             UpdPicture();
@@ -307,6 +313,8 @@ namespace Project_UML.Core
 
         public static bool SaveDate()
         {
+            SetMyPath path = new SetMyPath();
+            path.MyPath();
             Serialize serializer = new Serialize();
             serializer.SerializationDictionary();
             return true;
@@ -321,9 +329,15 @@ namespace Project_UML.Core
             }
             else
             {
+                SelectedFigures.Clear();
+                Figures.Clear();
                 _deserializer = new Deserialize();
                 _data = _deserializer.DeserializationDictionary();
-                Loading(menu);
+                if (_data != null)
+                {
+                    Loading(menu);
+                }
+                
             }
             return _data;
         }
@@ -337,12 +351,47 @@ namespace Project_UML.Core
 
         public void LoadCoreUML(StructSettings setting)
         {
-            _coreUML.DefaultColor = setting.DefaultColor;
-            _coreUML.DefaultFont = setting.DefaultFont;
-            _coreUML.DefaultSize = setting.DefaultSize;
-            _coreUML.DefaultStep = setting.DefaultStep;
-            _coreUML.DefaultWidth = setting.DefaultWidth;
+            if (setting != null)
+            {
+                StructSettings EqSetting = SettingEquals(setting);
+                DefaultColor = EqSetting.DefaultColor;
+                DefaultFont = EqSetting.DefaultFont;
+                DefaultSize = EqSetting.DefaultSize;
+                DefaultStep = EqSetting.DefaultStep;
+                DefaultWidth = EqSetting.DefaultWidth;
+                MyPath = EqSetting.Path;
+            }
         }
+
+        private StructSettings SettingEquals(StructSettings setting)
+        {            
+            if (setting.DefaultColor == null)
+            {
+                setting.DefaultColor = Color.Black;
+            }
+            if (setting.DefaultFont is null)
+            {
+                setting.DefaultFont = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+            }
+            if (setting.DefaultSize < -20 || setting.DefaultSize > 20)
+            {
+                setting.DefaultSize = 0;
+            }
+            if (setting.DefaultStep == null)
+            {
+                setting.DefaultStep = new Step(5);
+            }
+            if (setting.DefaultWidth <= 0 || setting.DefaultWidth > 5)
+            {
+                setting.DefaultWidth = 1;
+            }
+            if (setting.Path is null)
+            {
+                setting.Path = "";
+            }
+            return setting;
+        }
+
         private Step SetStep(Step step, int x, int y)
         {
             step.X *= x;
@@ -350,44 +399,76 @@ namespace Project_UML.Core
             return step;
         }
 
-        public void ChangeName(string name)
+        public void ChangeName(string name, int index)
         {
             foreach (IFigure figure in SelectedFigures)
             if (figure is AbstractBox box)
             {
-                WriteLogsActs(box, false);
-                box.Name[0] = name;
-                WriteLogsActs(box, true);
+                WriteLogs(box, false);
+                box.RectangleText[index] = name;
+                WriteLogs(box, true);
             }
             UpdPicture();
         }
 
-        public void WriteLogsActs(IFigure figure, bool isNew)
+        public string GetName(int index)
+        {
+            string name = "";
+            foreach (IFigure figure in SelectedFigures)
+                if (figure is AbstractBox box)
+                {
+                    WriteLogs(box, false);
+                    name = box.RectangleText[index];
+                    WriteLogs(box, true);
+                }
+            return name;
+        }
+        
+
+        public void WriteLogs(IFigure figure, bool isNew)
         {
             if (!isNew)
             {
-                IFigure previous = null;
-                if (!(figure is null))
-                {
-                    var newFigure = Activator.CreateInstance(Type.GetType(figure.GetType().FullName), figure);
-                    previous = (IFigure)newFigure;
-                }
-                _log = new LogActs(previous);
+                WriteActsPrevious(figure, true);
             }
             else
-            {                
+            {
                 _log.GetPrevious(_log, figure);
                 Logs.Add(_log);
+                _log = new LogActs();
             }
+        }
+        public void WriteLogsBack(IFigure figure, bool isNew)
+        {
+            if (!isNew)
+            {
+                WriteActsPrevious(figure, false);
+            }
+            else
+            {
+                _log.GetPrevious(_log, figure, false);
+                LogsBack.Add(_log);
+                _log = new LogActs();
+            }
+        }
+        private void WriteActsPrevious(IFigure figure, bool isNew)
+        {
+            IFigure previous = null;
+            if (!(figure is null))
+            {
+                var newFigure = Activator.CreateInstance(Type.GetType(figure.GetType().FullName), figure);
+                previous = (IFigure)newFigure;
+            }            
+            _log.GetNew(previous, isNew);
         }
 
         public void CheckCountLogs()
         {
-            if (_coreUML.Logs.Count > 30)
+            if (_coreUML.Logs.Count > 100)
             {
                 List<LogActs> tmp = new List<LogActs>();
                 int tmpIndex = _coreUML.Logs.Count - 1;
-                int tmpCount = tmpIndex - 29;
+                int tmpCount = tmpIndex - 99;
                 for (int i = tmpIndex; i >= tmpCount; i--)
                 {
                     tmp.Add(_coreUML.Logs[i]);

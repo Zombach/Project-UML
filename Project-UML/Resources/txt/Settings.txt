@@ -1,12 +1,13 @@
 {
   "$type": "Project_UML.Core.DataProject.Structure.StructSettings, Project-UML",
   "DefaultColor": "Black",
-  "DefaultFont": "Microsoft Sans Serif, 26.25pt",
-  "DefaultWidth": 5,
-  "DefaultSize": -20,
+  "DefaultFont": "Microsoft Sans Serif, 8.25pt",
+  "DefaultWidth": 1,
+  "DefaultSize": 0,
   "DefaultStep": {
     "$type": "Project_UML.Core.Step, Project-UML",
     "X": 5,
     "Y": 5
-  }
+  },
+  "Path": "C:\\Users\\ZLoo\\source\\Repos\\Project-UML\\Project-UML\\Save\\Save3.Мы-Програмист"
 }

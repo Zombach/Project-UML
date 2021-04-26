@@ -17,7 +17,6 @@ namespace Project_UML.Core.Arrows
     [Serializable]
     public abstract class AbstractArrow : IFigure
     {
-        private CoreUML _coreUML = CoreUML.GetCoreUML();
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
         public Axis StartDirectionAxis { get; set; } = Axis.X;
@@ -25,7 +24,7 @@ namespace Project_UML.Core.Arrows
         public List<Point> Points { get; set; } = new List<Point>();
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
 
-        public Link SelectedLink { get; set; }
+        public ZoneOfArrow SelectedZone { get; set; }
 
         public AbstractArrow()
         {
@@ -52,13 +51,13 @@ namespace Project_UML.Core.Arrows
             _pen = new Pen(arrow._pen.Color, arrow._pen.Width);
             for (int i = 0; i < arrow.Points.Count; i++)
             {
-                Point point = new Point(arrow.Points[i].X - _coreUML.DefaultStep.X, arrow.Points[i].Y - _coreUML.DefaultStep.Y);
+                Point point = new Point(arrow.Points[i].X, arrow.Points[i].Y);
                 Points.Add(point);
             }
             DataCommon = new List<DataCommon>();
             StartDirectionAxis = arrow.StartDirectionAxis;
             EndDirectionAxis = arrow.EndDirectionAxis;
-            SelectedLink = new Link();
+            SelectedZone = new ZoneOfArrow();
             SetEndCap();
         }
 
@@ -136,6 +135,7 @@ namespace Project_UML.Core.Arrows
         public virtual void ChangeWidth(int width)
         {
             _pen.Width = width;
+            _selectionPen.Width = width;
         }
 
         public bool IsHovered(Point point)
@@ -229,20 +229,20 @@ namespace Project_UML.Core.Arrows
                     {
                         axis = Axis.Y;
                     }
-                    LinkType linkType;
+                    ZoneType linkType;
                     if (i - 1 == 0)
                     {
-                        linkType = LinkType.First;
+                        linkType = ZoneType.FirstPoint;
                     }
                     else if (i == Points.Count - 1)
                     {
-                        linkType = LinkType.Last;
+                        linkType = ZoneType.LastPoint;
                     }
                     else
                     {
-                        linkType = LinkType.Middle;
+                        linkType = ZoneType.MiddleLink;
                     }
-                    SelectedLink = new Link(i - 1, i, axis, linkType);
+                    SelectedZone = new ZoneOfArrow(i - 1, i, axis, linkType);
                     return selected;
                 }
             }
@@ -251,25 +251,55 @@ namespace Project_UML.Core.Arrows
 
         public void Transform(Point e)
         {
-            if (SelectedLink.IndexOfEndPoint != Points.Count - 1 && SelectedLink.IndexOfStartPoint != 0 && SelectedLink.LinkType == LinkType.Middle)
+            switch (SelectedZone.ZoneType)
             {
-                if (SelectedLink.Axis == Axis.X)
+                case ZoneType.LastPoint:
+                    HookEndPointToFigure(e);
+                    break;
+                case ZoneType.FirstPoint:
+                    HookStartPointToFigure(e);
+                    break;
+                case ZoneType.MiddleLink:
+                    if (SelectedZone.Axis == Axis.X)
+                    {
+                        Points[SelectedZone.IndexOfStartPoint] = new Point(e.X, Points[SelectedZone.IndexOfStartPoint].Y);
+                        Points[SelectedZone.IndexOfEndPoint] = new Point(e.X, Points[SelectedZone.IndexOfEndPoint].Y);
+                    }
+                    else
+                    {
+                        Points[SelectedZone.IndexOfStartPoint] = new Point(Points[SelectedZone.IndexOfStartPoint].X, e.Y);
+                        Points[SelectedZone.IndexOfEndPoint] = new Point(Points[SelectedZone.IndexOfEndPoint].X, e.Y);
+                    }
+                    break;
+                    //case ZoneType.FirstLink:
+                    //    if (StartDirectionAxis == Axis.X)
+                    //    {
+                    //        Points.Insert(1, new Point(e.X, Points[0].Y));
+                    //        Points.Insert(2, new Point(e.X))
+                    //    }
+                    //    break;
+
+
+            }
+            if (SelectedZone.IndexOfEndPoint != Points.Count - 1 && SelectedZone.IndexOfStartPoint != 0 && SelectedZone.ZoneType == ZoneType.MiddleLink)
+            {
+                if (SelectedZone.Axis == Axis.X)
                 {
-                    Points[SelectedLink.IndexOfStartPoint] = new Point(e.X, Points[SelectedLink.IndexOfStartPoint].Y);
-                    Points[SelectedLink.IndexOfEndPoint] = new Point(e.X, Points[SelectedLink.IndexOfEndPoint].Y);
+                    Points[SelectedZone.IndexOfStartPoint] = new Point(e.X, Points[SelectedZone.IndexOfStartPoint].Y);
+                    Points[SelectedZone.IndexOfEndPoint] = new Point(e.X, Points[SelectedZone.IndexOfEndPoint].Y);
                 }
                 else
                 {
-                    Points[SelectedLink.IndexOfStartPoint] = new Point(Points[SelectedLink.IndexOfStartPoint].X, e.Y);
-                    Points[SelectedLink.IndexOfEndPoint] = new Point(Points[SelectedLink.IndexOfEndPoint].X, e.Y);
+                    Points[SelectedZone.IndexOfStartPoint] = new Point(Points[SelectedZone.IndexOfStartPoint].X, e.Y);
+                    Points[SelectedZone.IndexOfEndPoint] = new Point(Points[SelectedZone.IndexOfEndPoint].X, e.Y);
                 }
             }
-            else if (SelectedLink.LinkType == LinkType.Last)
+            else if (SelectedZone.ZoneType == ZoneType.LastPoint)
             {
                 HookEndPointToFigure(e);
                 //GetPoints(Points[0], e);
             }
-            else if (SelectedLink.LinkType == LinkType.First)
+            else if (SelectedZone.ZoneType == ZoneType.FirstPoint)
             {
                 //GetPoints(e, Points[Points.Count - 1]);
                 HookStartPointToFigure(e);
@@ -289,18 +319,19 @@ namespace Project_UML.Core.Arrows
             if (DataCommon.Count != 0)
             {
                 Point startPoint = Points[0];
-
+                Point endPoint = Points[Points.Count - 1];
                 if (!(DataCommon[0].LastBox is null))
                 {
-                    UpdStartPoint(DataCommon[0].LastBox.GetMiddlePoint());
+                    AbstractBox box = (AbstractBox)DataCommon[0].LastBox;
+                    endPoint = box.GetCordinatsOfConnectionPoint(DataCommon[0].LastPoint);
                 }
-                else
+                if (!(DataCommon[0].FirstBox is null))
                 {
-                    UpdStartPoint(DataCommon[0].LastPoint);
+                    AbstractBox box = (AbstractBox)DataCommon[0].FirstBox;
+                    startPoint = box.GetCordinatsOfConnectionPoint(DataCommon[0].FirstPoint);
                 }
-                UpdEndPoint(DataCommon[0].FirstPoint);
+                GetPoints(startPoint, endPoint);
             }
-            GetPoints(DataCommon[0].FirstPoint, DataCommon[0].LastPoint);
         }
 
         public void HookStartPointToFigure(Point e)
@@ -309,29 +340,27 @@ namespace Project_UML.Core.Arrows
             {
                 DataCommon.Add(new DataCommon(this));
             }
-            DataCommon[0].FirstPoint = e;
-            foreach (IFigure figure in CoreUML.GetCoreUML().Figures)
-            {
-                if (figure is AbstractBox && figure != DataCommon[0].LastBox)
-                {
-                    if (figure.CheckSelection(e, e, 0))
-                    {
-                        UpdEndPoint(figure.GetMiddlePoint());
-                        DataCommon[0].FirstBox = figure;
-                        ConnectionPoint startConnectionPoint = figure.GetConnectionPoint(Points[Points.Count - 1]);
-                        DataCommon[0].FirstPoint = startConnectionPoint.Point;
-                        GetPoints(startConnectionPoint.Point, Points[Points.Count - 1]);
-                        StartDirectionAxis = startConnectionPoint.Axis;
-                        return;
-                    }
-                }
-            }
             if (!(DataCommon[0].FirstBox is null))
             {
                 DataCommon[0].FirstBox.DataCommon.Remove(DataCommon[0]);
                 DataCommon[0].FirstBox = null;
+                DataCommon[0].FirstPoint = null;
             }
-            UpdEndPoint(e);
+            foreach (IFigure figure in CoreUML.GetCoreUML().Figures)
+            {
+                if (figure is AbstractBox abstractBox && figure != DataCommon[0].LastBox)
+                {
+                    if (abstractBox.CheckSelection(e, e, 7))
+                    {
+                        DataCommon[0].FirstBox = abstractBox;
+                        DataCommon[0].FirstPoint = abstractBox.GetConnectionPoint(e, Points[Points.Count - 1]);
+                        StartDirectionAxis = DataCommon[0].FirstPoint.Axis;
+                        GetPoints(abstractBox.GetCordinatsOfConnectionPoint(DataCommon[0].FirstPoint), Points[Points.Count - 1]);
+                        abstractBox.DataCommon.Add(DataCommon[0]);
+                        return;
+                    }
+                }
+            }
             GetPoints(e, Points[Points.Count - 1]);
         }
         public void HookEndPointToFigure(Point e)
@@ -340,52 +369,50 @@ namespace Project_UML.Core.Arrows
             {
                 DataCommon.Add(new DataCommon(this));
             }
-            DataCommon[0].LastPoint = e;
-            foreach (IFigure figure in CoreUML.GetCoreUML().Figures)
-            {
-                if (figure is AbstractBox && figure != DataCommon[0].FirstBox)
-                {
-                    if (figure.CheckSelection(e, e, 0))
-                    {
-                        UpdStartPoint(figure.GetMiddlePoint());
-                        DataCommon[0].LastBox = figure;
-                        ConnectionPoint endConnectionPoint = figure.GetConnectionPoint(Points[0]);
-                        DataCommon[0].LastPoint = endConnectionPoint.Point;
-                        GetPoints(Points[0], endConnectionPoint.Point);
-                        EndDirectionAxis = endConnectionPoint.Axis;
-                        return;
-                    }
-                }
-            }
             if (!(DataCommon[0].LastBox is null))
             {
                 DataCommon[0].LastBox.DataCommon.Remove(DataCommon[0]);
                 DataCommon[0].LastBox = null;
+                DataCommon[0].LastPoint = null;
             }
-            UpdStartPoint(e);
+            foreach (IFigure figure in CoreUML.GetCoreUML().Figures)
+            {
+                if (figure is AbstractBox abstractBox && figure != DataCommon[0].FirstBox)
+                {
+                    if (figure.CheckSelection(e, e, 7))
+                    {
+                        DataCommon[0].LastBox = abstractBox;
+                        DataCommon[0].LastPoint = abstractBox.GetConnectionPoint(e, Points[0]);
+                        EndDirectionAxis = DataCommon[0].LastPoint.Axis;
+                        GetPoints(Points[0], abstractBox.GetCordinatsOfConnectionPoint(DataCommon[0].LastPoint));
+                        abstractBox.DataCommon.Add(DataCommon[0]);
+                        return;
+                    }
+                }
+            }
             GetPoints(Points[0], e);
         }
 
-        public void UpdStartPoint(Point e)
-        {
-            if (!(DataCommon[0].FirstBox is null))
-            {
-                ConnectionPoint connectionPoint = DataCommon[0].FirstBox.GetConnectionPoint(e);
-                Points[0] = connectionPoint.Point;
-                DataCommon[0].FirstPoint = connectionPoint.Point;
-                StartDirectionAxis = connectionPoint.Axis;
-            }
-        }
-        public void UpdEndPoint(Point e)
-        {
-            if (!(DataCommon[0].LastBox is null))
-            {
-                ConnectionPoint connectionPoint = DataCommon[0].LastBox.GetConnectionPoint(e);
-                Points[Points.Count - 1] = connectionPoint.Point;
-                DataCommon[0].LastPoint = connectionPoint.Point;
-                EndDirectionAxis = connectionPoint.Axis;
-            }
-        }
+        //public void UpdStartPoint(Point e)
+        //{
+        //    if (!(DataCommon[0].FirstBox is null))
+        //    {
+        //        ConnectionPoint connectionPoint = DataCommon[0].FirstBox.GetConnectionPoint(e);
+        //        Points[0] = connectionPoint.Point;
+        //        DataCommon[0].FirstPoint = connectionPoint.Point;
+        //        StartDirectionAxis = connectionPoint.Axis;
+        //    }
+        //}
+        //public void UpdEndPoint(Point e)
+        //{
+        //    if (!(DataCommon[0].LastBox is null))
+        //    {
+        //        ConnectionPoint connectionPoint = DataCommon[0].LastBox.GetConnectionPoint(e);
+        //        Points[Points.Count - 1] = connectionPoint.Point;
+        //        DataCommon[0].LastPoint = connectionPoint.Point;
+        //        EndDirectionAxis = connectionPoint.Axis;
+        //    }
+        //}
 
         public void Move(int deltaX, int deltaY)
         {

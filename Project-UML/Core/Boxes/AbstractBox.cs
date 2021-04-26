@@ -19,32 +19,40 @@ namespace Project_UML.Core.Boxes
     [Serializable]
     public abstract class AbstractBox : IFigure, IGetFont, IChangeFont
     {
-        private CoreUML _coreUML = CoreUML.GetCoreUML();
         /// <summary>
         /// Жестко заданы точки [0] - левая верхняя точка, [1] - правая нижняя точка
         /// </summary>
+        protected Pen _pen;
+        protected static Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
         public List<Point> Points { get; set; } = new List<Point>();
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
         public List<DataText> DataText { get; set; } = new List<DataText>();
         protected Font Font { get; set; } = CoreUML.GetCoreUML().DefaultFont;
         public int RectangleWidth { get; set; } = 100;
-        public int RectangleHeight { get; set; } = 150;
+        public int RectangleHeight { get; set; }
         protected int RectNameHeight { get; set; } = 20;
         protected int RectFieldHeight { get; set; } = 20;
         protected int RectPropertyHeight { get; set; } = 20;
-        protected int RectMethodsHeight { get; set; }
-        public List<string> Name = new List<string> {"hello"};
-        protected Font font = new Font("Arial", 10);
-
-        protected Pen _pen;
-        protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
+        protected int RectMethodsHeight { get; set; } = 40;
+        ///// <summary>
+        /// List<string> RectangleText
+        /// RectangleText[0] - name
+        /// RectangleText[1] - field
+        /// RectangleText[2] - property
+        /// RectangleText[3] - methods
+        /// </summary>
+        public List<string> RectangleText = new List<string> {"Name", "Filed", "Property", "Methods"};
         
+        public BoxZones crntZone;
+
+
+
 
         public AbstractBox(Color color, int width)
         {
             _pen = new Pen(color, width);
             RectangleWidth = 100;
-            RectangleHeight = 150;            
+            RectangleHeight = RectMethodsHeight + RectNameHeight + RectFieldHeight + RectPropertyHeight;
         }
 
         /// <summary>
@@ -53,20 +61,30 @@ namespace Project_UML.Core.Boxes
         /// <param name="box"></param>
         public AbstractBox(StructBox box)
         {
-
+            _pen = new Pen(box.Color, box.Width);
+            for (int i = 0; i < box.Points.Count; i++)
+            {
+                Point point = new Point(box.Points[i].Point_X, box.Points[i].Point_Y);
+                Points.Add(point);
+            }
+            Font = box.Font;
+            RectangleWidth = SizeWidth();
+            RectangleHeight = SizeHeight();
+            RectNameHeight = 20;
+            RectFieldHeight = 20;
+            RectPropertyHeight = 20;
+            RectMethodsHeight = 40;
         }
 
-        public AbstractBox(IFigure figure )
+        public AbstractBox(IFigure figure)
         {
             AbstractBox box = (AbstractBox)figure;
-            Points = new List<Point>();
             _pen = new Pen(box._pen.Color, box._pen.Width);
             for (int i = 0; i < box.Points.Count; i++)
             {
-                Point point = new Point(box.Points[i].X - _coreUML.DefaultStep.X, box.Points[i].Y - _coreUML.DefaultStep.Y);
+                Point point = new Point(box.Points[i].X, box.Points[i].Y);
                 Points.Add(point);
             }
-            DataCommon = new List<DataCommon>();
             Font = box.Font;
             RectangleWidth = box.RectangleWidth;
             RectangleHeight = box.RectangleHeight;
@@ -74,7 +92,6 @@ namespace Project_UML.Core.Boxes
             RectFieldHeight = box.RectFieldHeight;
             RectPropertyHeight = box.RectPropertyHeight;
             RectMethodsHeight = box.RectMethodsHeight;
-
         }
 
 
@@ -134,6 +151,11 @@ namespace Project_UML.Core.Boxes
             }
         }
 
+        public static void DrawConnectionPoint(Graphics graphics, Point point)
+        {
+            graphics.DrawEllipse(_selectionPen, point.X - 3 / 2, point.Y - 5 / 2, 3, 3);
+        }
+
         public void Move(int deltaX, int deltaY)
         {
             List<Point> newPoints = new List<Point>();
@@ -175,17 +197,64 @@ namespace Project_UML.Core.Boxes
         {
             bool selected = false;
 
-            if (!(startPoint.X > Points[Points.Count - 1].X
+            if (!(startPoint.X > Points[1].X + inaccuracy
                 ||
-                startPoint.Y > Points[Points.Count - 1].Y
+                startPoint.Y > Points[1].Y + inaccuracy
                 ||
-                endPoint.X < Points[0].X
+                endPoint.X < Points[0].X - inaccuracy
                 ||
-                endPoint.Y < Points[0].Y
+                endPoint.Y < Points[0].Y - inaccuracy
                 ))
             {
                 selected = true;
-                return selected;
+                if (!(startPoint.X > Points[1].X + inaccuracy
+                ||
+                startPoint.Y > Points[0].Y + inaccuracy
+                ||
+                endPoint.X < Points[0].X - inaccuracy
+                ||
+                endPoint.Y < Points[0].Y - inaccuracy
+                ))
+                {
+                    crntZone = BoxZones.Top;
+                }
+                else if (!(startPoint.X > Points[1].X + inaccuracy
+                ||
+                startPoint.Y > Points[1].Y + inaccuracy
+                ||
+                endPoint.X < Points[1].X - inaccuracy
+                ||
+                endPoint.Y < Points[0].Y - inaccuracy
+                ))
+                {
+                    crntZone = BoxZones.Right;
+                }
+                else if (!(startPoint.X > Points[1].X + inaccuracy
+                ||
+                startPoint.Y > Points[1].Y + inaccuracy
+                ||
+                endPoint.X < Points[0].X - inaccuracy
+                ||
+                endPoint.Y < Points[1].Y - inaccuracy
+                ))
+                {
+                    crntZone = BoxZones.Bottom;
+                }
+                else if (!(startPoint.X > Points[0].X + inaccuracy
+                ||
+                startPoint.Y > Points[1].Y + inaccuracy
+                ||
+                endPoint.X < Points[0].X - inaccuracy
+                ||
+                endPoint.Y < Points[0].Y - inaccuracy
+                ))
+                {
+                    crntZone = BoxZones.Left;
+                }
+                else
+                {
+                    crntZone = BoxZones.Center;
+                }
             }
 
             return selected;
@@ -216,39 +285,143 @@ namespace Project_UML.Core.Boxes
             return new Point((Points[0].X + Points[1].X) / 2, (Points[0].Y + Points[1].Y) / 2);
         }
 
-        public ConnectionPoint GetConnectionPoint(Point point)
+        public ConnectionPoint GetConnectionPoint(Point crntPoint, Point oppositePoint)
         {
-            Point Middle = GetMiddlePoint();
             ConnectionPoint connectionPoint = new ConnectionPoint();
-            int tmpX = Middle.X - point.X;
-            int tmpY = Middle.Y - point.Y;
-
-            if (Math.Abs(tmpX) < Math.Abs(tmpY))
+            connectionPoint.Zone = crntZone;
+            int distance;
+            if (crntZone == BoxZones.Bottom || crntZone == BoxZones.Top)
             {
                 connectionPoint.Axis = Axis.Y;
-                if (tmpY > 0)
+                if (crntPoint.X < Points[0].X + 5)
                 {
-                    connectionPoint.Point = new Point(Middle.X, Points[0].Y);
+                    distance = 5;
+                }
+                else if (crntPoint.X > Points[1].X - 5)
+                {
+                    distance = RectangleWidth - 5;
                 }
                 else
                 {
-                    connectionPoint.Point = new Point(Middle.X, Points[1].Y);
+                    distance = crntPoint.X - Points[0].X;
                 }
+                connectionPoint.DistanceInPercents = distance * 100 / RectangleWidth;
+            }
+            else if (crntZone == BoxZones.Right || crntZone == BoxZones.Left)
+            {
+                connectionPoint.Axis = Axis.X;
+                if (crntPoint.Y < Points[0].Y + 5)
+                {
+                    distance = 5;
+                }
+                else if (crntPoint.Y > Points[1].Y - 5)
+                {
+                    distance = RectangleHeight - 5;
+                }
+                else
+                {
+                    distance = crntPoint.Y - Points[0].Y;
+                }
+                connectionPoint.DistanceInPercents = distance * 100 / RectangleHeight;
             }
             else
             {
-                connectionPoint.Axis = Axis.X;
-                if (tmpX > 0)
+                Point Middle = GetMiddlePoint();
+                int tmpX = Middle.X - oppositePoint.X;
+                int tmpY = Middle.Y - oppositePoint.Y;
+                connectionPoint.DistanceInPercents = 50;
+                if (Math.Abs(tmpX) < Math.Abs(tmpY))
                 {
-                    connectionPoint.Point = new Point(Points[0].X, Middle.Y);
+                    connectionPoint.Axis = Axis.Y;
+                    if (tmpY > 0)
+                    {
+                        connectionPoint.Zone = BoxZones.Top;
+                    }
+                    else
+                    {
+                        connectionPoint.Zone = BoxZones.Bottom;
+                    }
                 }
                 else
                 {
-                    connectionPoint.Point = new Point(Points[1].X, Middle.Y);
+                    connectionPoint.Axis = Axis.X;
+                    if (tmpX > 0)
+                    {
+                        connectionPoint.Zone = BoxZones.Left;
+                    }
+                    else
+                    {
+                        connectionPoint.Zone = BoxZones.Right;
+                    }
                 }
-
             }
+
             return connectionPoint;
+        }
+
+        public Point GetCordinatsOfConnectionPoint(ConnectionPoint connectionPoint)
+        {
+            Point point = new Point();
+            switch (connectionPoint.Zone)
+            {
+                case BoxZones.Bottom:
+                    point.X = Points[0].X + RectangleWidth * connectionPoint.DistanceInPercents / 100;
+                    point.Y = Points[1].Y;
+                    break;
+                case BoxZones.Top:
+                    point.X = Points[0].X + RectangleWidth * connectionPoint.DistanceInPercents / 100;
+                    point.Y = Points[0].Y;
+                    break;
+                case BoxZones.Right:
+                    point.X = Points[1].X;
+                    point.Y = Points[0].Y + RectangleHeight * connectionPoint.DistanceInPercents / 100;
+                    break;
+                case BoxZones.Left:
+                    point.X = Points[0].X;
+                    point.Y = Points[0].Y + RectangleHeight * connectionPoint.DistanceInPercents / 100;
+                    break;
+            }
+            return point;
+        }
+
+        //public ConnectionPoint GetConnectionPoint(Point point)
+        //{
+        //    Point Middle = GetMiddlePoint();
+        //    ConnectionPoint connectionPoint = new ConnectionPoint();
+        //    int tmpX = Middle.X - point.X;
+        //    int tmpY = Middle.Y - point.Y;
+
+        //    if (Math.Abs(tmpX) < Math.Abs(tmpY))
+        //    {
+        //        connectionPoint.Axis = Axis.Y;
+        //        if (tmpY > 0)
+        //        {
+        //            connectionPoint.Point = new Point(Middle.X, Points[0].Y);
+        //        }
+        //        else
+        //        {
+        //            connectionPoint.Point = new Point(Middle.X, Points[1].Y);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        connectionPoint.Axis = Axis.X;
+        //        if (tmpX > 0)
+        //        {
+        //            connectionPoint.Point = new Point(Points[0].X, Middle.Y);
+        //        }
+        //        else
+        //        {
+        //            connectionPoint.Point = new Point(Points[1].X, Middle.Y);
+        //        }
+
+        //    }
+        //    return connectionPoint;
+        //}
+        public void DrawSpecificRectangle(Graphics graphics, string rectText, Pen _pen, Font font, Brush brush, RectangleF rectF)
+        {
+            graphics.DrawString(rectText, font, brush, rectF);
+            graphics.DrawRectangle(_pen, Rectangle.Round(rectF));
         }
 
         public void Transform(Point e)
@@ -256,55 +429,118 @@ namespace Project_UML.Core.Boxes
             throw new NotImplementedException();
         }
 
+        public int CounterOfTextLinesInSpecificRectangle(string textFromSpecificRect)
+        {
+            string phrase = textFromSpecificRect;
+            string[] separateLines = phrase.Split('\n');
+            return separateLines.Length;
+        }
+        public int WidthOfRectangle(Graphics graphics, List<string> RectangleText, Font font)
+        {
+            SizeF stringNameSize = new SizeF();
 
+            string phraseName = RectangleText[0];
+            string[] separateLinesName = phraseName.Split('\n');
 
-        //protected Pen _pen = new Pen(Color.Blue, 5);
+            stringNameSize = graphics.MeasureString(separateLinesName[0], font);
+            int longestSizeName = (int)stringNameSize.Width;
 
-        //private int widthFigure { get; set; }
-        //private int heightFigure { get; set; }
-        //public Point Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        //private List<Point> Points { set; get; }
+            if (separateLinesName.Length > 0)
+            {
+                for (int i = 0; i < separateLinesName.Length; i++)
+                {
+                    stringNameSize = graphics.MeasureString(separateLinesName[i], font);
 
-        //public void Draw(Graphics graphics)
-        //{
-        //    graphics.DrawRectangle(_pen, Location.X, Location.Y, GetWidth(widthFigure), GetHeight(heightFigure));
+                    if (stringNameSize.Width > longestSizeName)
+                    {
+                        longestSizeName = (int)stringNameSize.Width;
+                    }
+                }
+            }
 
-        //}
-        //public void ChangeColor(Color color)
-        //{
-        //    _pen.Color = color;
-        //}
+            SizeF stringFieldSize = new SizeF();
 
-        //public void ChangeWidth(int width)
-        //{
-        //    _pen.Width = width;
-        //}
+            string phraseField = RectangleText[1];
+            string[] separateLinesField = phraseField.Split('\n');
 
-        //public int GetHeight(int heightFigure)
-        //{
-        //    return heightFigure;
-        //}
+            stringFieldSize = graphics.MeasureString(separateLinesField[0], font);
+            int longestSizeField = (int)stringFieldSize.Width;
 
-        //public int GetWidth(int widthFigure)
-        //{
-        //    return widthFigure;
-        //}
+            if (separateLinesField.Length > 0)
+            {
+                for (int i = 0; i < separateLinesField.Length; i++)
+                {
+                    stringFieldSize = graphics.MeasureString(separateLinesField[i], font);
 
-        //public void IsHovered(Point point)
-        //{
-        //    throw new NotImplementedException();
-        //}
+                    if (stringFieldSize.Width > longestSizeField)
+                    {
+                        longestSizeField = (int)stringFieldSize.Width;
+                    }
+                }
+            }
 
-        //public void Move(int deltaX, int deltaY)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            SizeF stringPropertySize = new SizeF();
 
-        //public void Select()
-        //{
-        //    throw new NotImplementedException();
-        //}
+            string phraseProperty = RectangleText[2];
+            string[] separateLinesProperty = phraseProperty.Split('\n');
 
+            stringPropertySize = graphics.MeasureString(separateLinesProperty[0], font);
+            int longestSizeProperty = (int)stringPropertySize.Width;
 
+            if (separateLinesProperty.Length > 0)
+            {
+                for (int i = 0; i < separateLinesProperty.Length; i++)
+                {
+                    stringPropertySize = graphics.MeasureString(separateLinesProperty[i], font);
+
+                    if (stringPropertySize.Width > longestSizeProperty)
+                    {
+                        longestSizeProperty = (int)stringPropertySize.Width;
+                    }
+                }
+            }
+
+            SizeF stringMethodsSize = new SizeF();
+
+            string phraseMethods = RectangleText[3];
+            string[] separateLinesMethods = phraseMethods.Split('\n');
+
+            stringMethodsSize = graphics.MeasureString(separateLinesMethods[0], font);
+            int longestSizeMethods = (int)stringMethodsSize.Width;
+
+            if (separateLinesMethods.Length > 0)
+            {
+                for (int i = 0; i < separateLinesMethods.Length; i++)
+                {
+                    stringMethodsSize = graphics.MeasureString(separateLinesMethods[i], font);
+
+                    if (stringMethodsSize.Width > longestSizeMethods)
+                    {
+                        longestSizeMethods = (int)stringMethodsSize.Width;
+                    }
+                }
+            }
+
+            RectangleWidth = 100;
+
+            if (RectangleWidth < longestSizeName)
+            {
+                RectangleWidth = longestSizeName;
+            }
+            if (RectangleWidth < longestSizeField)
+            {
+                RectangleWidth = longestSizeField;
+            }
+            if (RectangleWidth < longestSizeProperty)
+            {
+                RectangleWidth = longestSizeProperty;
+            }
+            if (RectangleWidth < longestSizeMethods)
+            {
+                RectangleWidth = longestSizeMethods;
+            }
+
+            return RectangleWidth;
+        }
     }
 }

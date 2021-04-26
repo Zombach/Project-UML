@@ -65,6 +65,7 @@ namespace Project_UML.Core.FormsUML
             this.FontSize = new System.Windows.Forms.TextBox();
             this.FontItalic = new System.Windows.Forms.TextBox();
             this.FontUnderline = new System.Windows.Forms.TextBox();
+            this.buttonGetCurrentText = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.GroupBoxStartAxis.SuspendLayout();
             this.GroupBoxEndAxis.SuspendLayout();
@@ -317,10 +318,18 @@ namespace Project_UML.Core.FormsUML
             resources.ApplyResources(this.FontUnderline, "FontUnderline");
             this.FontUnderline.Name = "FontUnderline";
             // 
+            // buttonGetCurrentText
+            // 
+            resources.ApplyResources(this.buttonGetCurrentText, "buttonGetCurrentText");
+            this.buttonGetCurrentText.Name = "buttonGetCurrentText";
+            this.buttonGetCurrentText.UseVisualStyleBackColor = true;
+            this.buttonGetCurrentText.Click += new System.EventHandler(this.buttonGetCurrentText_Click);
+            // 
             // NewProject
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonGetCurrentText);
             this.Controls.Add(this.FontUnderline);
             this.Controls.Add(this.FontItalic);
             this.Controls.Add(this.FontSize);
@@ -348,11 +357,11 @@ namespace Project_UML.Core.FormsUML
             this.Controls.Add(this.GroupBoxEndAxis);
             this.Controls.Add(this.GroupBoxStartAxis);
             this.Controls.Add(this.Canvas);
+            this.KeyPreview = true;
             this.Name = "NewProject";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewProject_FormClosing);
             this.Load += new System.EventHandler(this.NewProject_Load);
-            this.KeyPreview = true;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Control);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressControl);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUpControl);
@@ -409,6 +418,7 @@ namespace Project_UML.Core.FormsUML
         private System.Windows.Forms.TextBox FontSize;
         private System.Windows.Forms.TextBox FontItalic;
         private System.Windows.Forms.TextBox FontUnderline;
+        private System.Windows.Forms.Button buttonGetCurrentText;
     }
 }
 

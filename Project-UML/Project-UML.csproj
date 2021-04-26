@@ -50,9 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Act.cs" />
-    <Compile Include="Core\Arrows\Link.cs" />
-    <Compile Include="Core\Arrows\LinkType.cs" />
+    <Compile Include="Core\Arrows\ZoneOfArrow.cs" />
+    <Compile Include="Core\Arrows\ZoneType.cs" />
     <Compile Include="Core\Boxes\AbstractBox.cs" />
+    <Compile Include="Core\Boxes\BoxZones.cs" />
     <Compile Include="Core\Boxes\RectangleObject.cs" />
     <Compile Include="Core\Boxes\RectangleClass.cs" />
     <Compile Include="Core\Boxes\RectangleEnum.cs" />
@@ -62,12 +63,13 @@
     <Compile Include="Core\DataProject\Binary\Deserialize.cs" />
     <Compile Include="Core\DataProject\Binary\Serialize.cs" />
     <Compile Include="Core\DataProject\Binary\SetMyPath.cs" />
+    <Compile Include="Core\DataProject\Binary\SetPathAs.cs" />
     <Compile Include="Core\DataProject\Interfaces\ICoreUMLSettings.cs" />
     <Compile Include="Core\DataProject\Interfaces\ILogs.cs" />
     <Compile Include="Core\DataProject\Interfaces\IPoint.cs" />
     <Compile Include="Core\DataProject\Json\Deserialize.cs" />
     <Compile Include="Core\DataProject\Json\Serialize.cs" />
-    <Compile Include="Core\DataProject\Binary\Load.cs" />
+    <Compile Include="Core\DataProject\Binary\GetPathAs.cs" />
     <Compile Include="Core\DataProject\Json\LoadSettings.cs" />
     <Compile Include="Core\DataProject\Json\SaveSettings.cs" />
     <Compile Include="Core\DataProject\Structure\StructPoints.cs" />
@@ -152,12 +154,6 @@
     <Compile Include="Core\FormsUML\License.Designer.cs">
       <DependentUpon>License.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\FormsUML\Loading.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Core\FormsUML\Loading.Designer.cs">
-      <DependentUpon>Loading.cs</DependentUpon>
-    </Compile>
     <Compile Include="Core\FormsUML\MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,9 +178,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Core\FormsUML\License.resx">
       <DependentUpon>License.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Core\FormsUML\Loading.resx">
-      <DependentUpon>Loading.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\FormsUML\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>

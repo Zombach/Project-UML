@@ -11,16 +11,34 @@ namespace Project_UML.Core
     {
         public IFigure Previous { get; set; }
         public IFigure New { get; set;}
-        
-        public LogActs(IFigure figure)
+
+        public LogActs()
         {
+            Previous = null;
+            New = null;
+        }
+        public void GetNew(IFigure figure, bool isNew = true)
+        {
+            if(isNew)
+            {
                 Previous = figure;
-                New = null;            
+            }
+            else
+            {
+                Previous = null;
+            }
         }
 
-        public void GetPrevious(LogActs log, IFigure figure)
+        public void GetPrevious(LogActs log, IFigure figure, bool isNew = true)
         {
-            log.New = figure;
+            if (isNew)
+            {
+                log.New = figure;
+            }
+            else
+            {
+                log.Previous = figure;
+            }
         }
     }
 }

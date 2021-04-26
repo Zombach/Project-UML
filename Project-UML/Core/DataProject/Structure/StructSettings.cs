@@ -15,6 +15,7 @@ namespace Project_UML.Core.DataProject.Structure
         public int DefaultWidth { get; set; }
         public int DefaultSize { get; set; }
         public Step DefaultStep { get; set; }
+        public string Path { get; set; }
 
         public StructSettings()
         {
@@ -24,6 +25,7 @@ namespace Project_UML.Core.DataProject.Structure
             DefaultWidth = coreUML.DefaultWidth;
             DefaultSize = coreUML.DefaultSize;
             DefaultStep = new Step(coreUML.DefaultStep);
+            Path = coreUML.MyPath;
         }
     }
 }

@@ -30,14 +30,21 @@ namespace Project_UML.Core.FormsUML
         private CoreUML _coreUML = CoreUML.GetCoreUML();
         private IMouseHandler _crntMH = new MouseHandlerOnSelection();
         private IMouseHandler _tmpCrntMH;
-        
+        private bool _isUndo;
+        private bool _isClearLog;
+        private bool _isClearLogBack;
+
 
         public NewProject(Form menu)
         {
             InitializeComponent();
             LoadSettings load = new LoadSettings();
             StructSettings settings = load.ReadSettings();
-            _coreUML.LoadCoreUML(settings);
+            if (settings != null)
+            {
+                _coreUML.LoadCoreUML(settings);
+            }
+            _coreUML.IsLoading = true;
             UpdateSettingsForm();
             _menu = menu;
         }
@@ -73,7 +80,7 @@ namespace Project_UML.Core.FormsUML
             _coreUML.UpdPicture();
         }
 
-        public void UpdateSettingsForm()
+        private void UpdateSettingsForm()
         {
             ButtonColor.BackColor = _coreUML.DefaultColor;
             TrackBarOfWidth.Value = _coreUML.DefaultWidth;
@@ -109,28 +116,29 @@ namespace Project_UML.Core.FormsUML
             FontChange.Text = _coreUML.DefaultFont.Name;
             FontChange.Font = new Font(FontChange.Font.FontFamily, 8);
 
-            _fontBold = _coreUML.DefaultFont;
-            _fontBold = new Font(_fontBold, FontStyle.Regular);
+            _fontBold = FontChange.Font;
+            _fontItalic = FontChange.Font;
+            _fontUnderline = FontChange.Font;
+            _fontSize = FontChange.Font;
+
+            FontBold.Font = new Font(_fontBold, FontStyle.Regular);
             if (_coreUML.DefaultFont.Bold)
             {
                 FontBold.Font = new Font(_fontBold, FontStyle.Bold);
             }
 
-            _fontItalic = _coreUML.DefaultFont;
-            _fontItalic = new Font(_fontItalic, FontStyle.Regular);
+            FontItalic.Font = new Font(_fontItalic, FontStyle.Regular);
             if (_coreUML.DefaultFont.Italic)
             {
                 FontItalic.Font = new Font(_fontItalic, FontStyle.Italic);
             }
 
-            _fontUnderline = _coreUML.DefaultFont;
-            _fontUnderline = new Font(_fontUnderline, FontStyle.Regular);
+            FontUnderline.Font = new Font(_fontUnderline, FontStyle.Regular);
             if (_coreUML.DefaultFont.Underline)
             {
                 FontUnderline.Font = new Font(_fontUnderline, FontStyle.Underline);
             }
 
-            _fontSize = _coreUML.DefaultFont;
             _fontSize = new Font(_fontSize.FontFamily, 8);
             FontSize.Text = _coreUML.DefaultFont.Size.ToString();
         }
@@ -194,46 +202,11 @@ namespace Project_UML.Core.FormsUML
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             _crntMH.MouseDown(e.Location);
-
-            //    case Act.Clear:
-            //        foreach (AbstractArrow arrow in _arrows)
-            //        {
-            //            selected = arrow.CheckSelection(_point);
-            //            if (selected)
-            //            {
-            //                _arrows.Remove(arrow);
-            //                UpdPicture();
-            //                break;
-            //            }
-            //        }
-            //        break;
-            //    case Act.Rectangle:
-            //        _currentBox = new BestRectangles(e.X, e.Y);
-            //        _currentBox.Draw(_graphics);
-            //        break;
-            //}
         }
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             _crntMH.MouseUp(e.Location);
-            //switch (_act)
-            //{
-            //    
-            //    //case Act.Rectangle:
-            //    case Act.Rectangle:
-            //        if (_isTapped) _bitmap = (Bitmap)_bitmapTmp.Clone();
-            //        //_boxes.Add(_currentBox);
-            //        //_currentBox.Select(_graphics);
-            //        pictureBox1.Invalidate();
-            //        break;
-
-            //}
-            ////CoreUML.Figures.Add(_currentArrow.Points[0].X);
-            ////CoreUML.Figures.Add(_currentArrow.Points[0].Y);
-            ////CoreUML.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].X);
-            ////CoreUML.Figures.Add(_currentArrow.Points[_currentArrow.Points.Count - 1].Y);
-            //_isTapped = false;
         }
 
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -304,9 +277,9 @@ namespace Project_UML.Core.FormsUML
             //}
             foreach (IFigure figure in _coreUML.SelectedFigures)
             {
-                _coreUML.WriteLogsActs(figure, false);
+                _coreUML.WriteLogs(figure, false);
                 _coreUML.Figures.Remove(figure);
-                _coreUML.WriteLogsActs(null, true);
+                _coreUML.WriteLogs(null, true);
             }
             _coreUML.SelectedFigures.Clear();
             _coreUML.UpdPicture();
@@ -366,7 +339,6 @@ namespace Project_UML.Core.FormsUML
         /// <param name="e"></param>
         private void KeyDown_Control(object sender, KeyEventArgs e)
         {
-            
             if (e.Control)
             {
                 switch(e.KeyCode)
@@ -405,7 +377,7 @@ namespace Project_UML.Core.FormsUML
                         _coreUML.LoadTmpFigure();
                         return;
                     case Keys.Z:
-                        Press_Z();
+                        Press_Z(_coreUML.Logs);
                         return;
                     case Keys.R:
                         _coreUML.ReverseArrow();
@@ -416,9 +388,18 @@ namespace Project_UML.Core.FormsUML
                         return;
                     case Keys.L:
                         Press_L();                        
-                        MessageBox.Show("Загружено");
                         return;
                 } 
+            }
+
+            if(e.Alt)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Z:
+                        Press_Revert_Z(_coreUML.LogsBack);
+                        return;
+                }
             }
 
             switch(e.KeyCode)
@@ -435,33 +416,39 @@ namespace Project_UML.Core.FormsUML
             }
         }
 
-        private void Press_Z()
+        private void Press_Revert_Z(List<LogActs> logs)
         {
-            _coreUML.CheckCountLogs();
-            if (_coreUML.Logs.Count > 0)
+            if (_isClearLog)
             {
-                if (!(_coreUML.Logs[_coreUML.Logs.Count - 1].New is null))
-                {
-                    int index = _coreUML.Figures.IndexOf(_coreUML.Logs[_coreUML.Logs.Count - 1].New);
-                    if (!(_coreUML.Logs[_coreUML.Logs.Count - 1].Previous is null))
-                    {
-                        LogNewFigureIsNull(index);
-                    }
-                    else
-                    {
-                        if (index != -1)
-                        {
-                            _coreUML.Figures.RemoveAt(index);
-                        }
-                    } 
-                }
-                else
-                {
-                    _coreUML.Figures.Add(_coreUML.Logs[_coreUML.Logs.Count - 1].Previous);
-                }
-                _coreUML.SelectedFigures.Clear();
-                _coreUML.Logs.RemoveAt(_coreUML.Logs.Count - 1);
-                _coreUML.UpdPicture();                
+                _coreUML.Logs.Clear();
+            }
+            _isClearLog = false;
+            _isClearLogBack = true;
+            _isUndo = false;
+            if (logs.Count > 0)
+            {
+                
+                UndoAct(logs[logs.Count - 1], logs);
+            }
+            else
+            {
+                MessageBox.Show("Нет действий для отмены");
+            }
+            
+        }
+        private void Press_Z(List<LogActs> logs)
+        {
+            if (_isClearLogBack)
+            {
+                _coreUML.LogsBack.Clear();
+                _isClearLogBack = false;
+            }
+            _isClearLog = true;
+            _isUndo = true;
+            _coreUML.CheckCountLogs();
+            if (logs.Count > 0)
+            {                
+                UndoAct(logs[logs.Count - 1], logs);
             }
             else
             {
@@ -469,16 +456,82 @@ namespace Project_UML.Core.FormsUML
             }
         }
 
-        private void LogNewFigureIsNull(int index)
+        private void UndoAct(LogActs log, List<LogActs> list)
         {
-            foreach (LogActs log in _coreUML.Logs)
+            if (!(log.New is null))
             {
-                if (log.New == _coreUML.Figures[index])
+                if (_isUndo)
                 {
-                    log.New = _coreUML.Logs[_coreUML.Logs.Count - 1].Previous;
+                    _coreUML.WriteLogsBack(log.New, true);
+                }
+                else
+                {
+                    _coreUML.WriteLogs(log.New, false);
+                }
+                int index = _coreUML.Figures.IndexOf(log.New);
+                if (!(log.Previous is null))
+                {
+                    if (_isUndo)
+                    {
+                        _coreUML.WriteLogsBack(log.Previous, false);
+                    }
+                    else
+                    {
+                        _coreUML.WriteLogs(log.Previous, true);
+                    }
+                    LogNewFigureIsNull(index, log, list);
+                }
+                else
+                {
+                    if (_isUndo)
+                    {
+                        _coreUML.WriteLogsBack(null, false);
+                    }
+                    else
+                    {
+                        _coreUML.WriteLogs(null, true);
+                    }
+                    if (index != -1)
+                    {
+                        _coreUML.Figures.RemoveAt(index);
+                    }
                 }
             }
-            _coreUML.Figures[index] = _coreUML.Logs[_coreUML.Logs.Count - 1].Previous;
+            else
+            {
+                if (_isUndo)
+                {
+                    _coreUML.WriteLogsBack(null, true);
+                }
+                else
+                {
+                    _coreUML.WriteLogs(null, false);
+                }
+                _coreUML.Figures.Add(log.Previous);
+                if (_isUndo)
+                {
+                    _coreUML.WriteLogsBack(log.Previous, false);
+                }
+                else
+                {
+                    _coreUML.WriteLogs(log.Previous, true);
+                }
+            }
+            _coreUML.SelectedFigures.Clear();
+            
+            list.RemoveAt(list.Count - 1);
+            _coreUML.UpdPicture();
+        }
+        private void LogNewFigureIsNull(int index, LogActs log, List<LogActs> list)
+        {
+            foreach (LogActs act in list)
+            {
+                if (act.New == _coreUML.Figures[index])
+                {
+                    act.New = log.Previous;
+                }
+            }
+            _coreUML.Figures[index] = log.Previous;
         }
         
         private void Press_L()
@@ -487,6 +540,14 @@ namespace Project_UML.Core.FormsUML
             if (_data != null)
             {
                 Dispose();
+            }
+            if (_coreUML.MyPath == "")
+            {
+                MessageBox.Show("Последнее сохранение не определено, повторите попытку, после создания нового сохранения");
+            }
+            else
+            {
+                MessageBox.Show("Загружено");
             }
         }
         private void Press_F1()
@@ -558,17 +619,7 @@ namespace Project_UML.Core.FormsUML
         {
             _crntMH = new MouseHandlerOnMove();
         }
-        
-        private void NewProject_FormClosing(Object sender, FormClosingEventArgs e)
-        {
-            if (!(_help is null))
-            {
-                _help.Dispose();
-            }
-            SaveSettings save = new SaveSettings();
-            save.WriteSettings();
-            _menu.Close();
-        }
+               
 
         private void buttonUpdateRectText_Click(object sender, EventArgs e)
         {
@@ -577,26 +628,46 @@ namespace Project_UML.Core.FormsUML
                 string selectedArea = comboBox1.SelectedItem.ToString();
 
                 string areaText = richTextBox1.Text;
-                foreach (IFigure figure in _coreUML.SelectedFigures)
-                {
-                    switch (selectedArea)
+                switch (selectedArea)
                     {
-                        case "Name":
-                            _coreUML.ChangeName(areaText);
+                        case "Name":                            
+                            _coreUML.ChangeName(areaText, 0);
                         break;
                         case "Field":
-
+                            _coreUML.ChangeName(areaText, 1);
                             break;
                         case "Property":
-
+                            _coreUML.ChangeName(areaText, 2);
                             break;
                         case "Methods":
-
+                            _coreUML.ChangeName(areaText, 3);
                             break;
                     }
+            }
+        }
+        private void buttonGetCurrentText_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem != null && _crntMH.CoreUML.SelectedFigures != null)
+            {
+                string selectedArea = comboBox1.SelectedItem.ToString();
+
+                string areaText = richTextBox1.Text;
+                switch (selectedArea)
+                {
+                    case "Name":
+                        richTextBox1.Text = _coreUML.GetName(0);
+                        break;
+                    case "Field":
+                        richTextBox1.Text = _coreUML.GetName(1);
+                        break;
+                    case "Property":
+                        richTextBox1.Text = _coreUML.GetName(2);
+                        break;
+                    case "Methods":
+                        richTextBox1.Text = _coreUML.GetName(3);
+                        break;
                 }
-                
-            }            
+            }
         }
 
         private void Font_Click(object sender, EventArgs e)
@@ -609,6 +680,17 @@ namespace Project_UML.Core.FormsUML
                 _coreUML.ChangeColorInSelectedFigures(ColorDialog.Color);
                 _coreUML.UpdPicture();
             }
+            PreparationFont();
         }
+
+        private void NewProject_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            if (!(_help is null))
+            {
+                _help.Dispose();
+            }            
+            _menu.Close();
+        }
+
     }
 }

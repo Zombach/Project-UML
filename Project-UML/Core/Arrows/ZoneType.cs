@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.Arrows
 {
-    public enum LinkType
+    public enum ZoneType
     {
-        First = 0,
-        Middle,
-        Last
+        FirstPoint = 0,
+        LastPoint,
+        MiddleLink,
+        FirstLink,
+        LastLink
     }
 }

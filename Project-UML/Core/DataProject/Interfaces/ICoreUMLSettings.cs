@@ -29,5 +29,9 @@ namespace Project_UML.Core.DataProject.Interfaces
         /// Шаг для сдвижения
         /// </summary>
         Step DefaultStep { get; set; }
+        /// <summary>
+        /// Путь последнего сохранения
+        /// </summary>
+        string Path { get; set; }
     }
 }

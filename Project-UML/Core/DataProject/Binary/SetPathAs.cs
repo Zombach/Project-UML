@@ -7,13 +7,13 @@ using System.Windows.Forms;
 
 namespace Project_UML.Core.DataProject.Binary
 {
-    public class Load
+    public class SetPathAs
     {
         private CoreUML _coreUML = CoreUML.GetCoreUML();
 
-        public void GetPathData()
+        public void SetPathData()
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            using (SaveFileDialog openFileDialog = new SaveFileDialog())
             {
                 openFileDialog.InitialDirectory = "../../Save";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
