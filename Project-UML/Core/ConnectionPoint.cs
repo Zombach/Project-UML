@@ -11,7 +11,9 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core
 {
+#pragma warning disable CS0659 // Тип переопределяет Object.Equals(object o), но не переопределяет Object.GetHashCode()
     public class ConnectionPoint
+#pragma warning restore CS0659 // Тип переопределяет Object.Equals(object o), но не переопределяет Object.GetHashCode()
     {
         public Axis Axis { get; set; }
         public BoxZones Zone { get; set; }

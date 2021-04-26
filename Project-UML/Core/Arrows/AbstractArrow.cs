@@ -16,7 +16,9 @@ namespace Project_UML.Core.Arrows
     /// 
     /// </summary>
     [Serializable]
+#pragma warning disable CS0659 // Тип переопределяет Object.Equals(object o), но не переопределяет Object.GetHashCode()
     public abstract class AbstractArrow : IFigure
+#pragma warning restore CS0659 // Тип переопределяет Object.Equals(object o), но не переопределяет Object.GetHashCode()
     {
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
