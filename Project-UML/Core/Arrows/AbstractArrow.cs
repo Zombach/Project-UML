@@ -285,29 +285,29 @@ namespace Project_UML.Core.Arrows
 
 
             }
-            if (SelectedZone.IndexOfEndPoint != Points.Count - 1 && SelectedZone.IndexOfStartPoint != 0 && SelectedZone.ZoneType == ZoneType.MiddleLink)
-            {
-                if (SelectedZone.Axis == Axis.X)
-                {
-                    Points[SelectedZone.IndexOfStartPoint] = new Point(e.X, Points[SelectedZone.IndexOfStartPoint].Y);
-                    Points[SelectedZone.IndexOfEndPoint] = new Point(e.X, Points[SelectedZone.IndexOfEndPoint].Y);
-                }
-                else
-                {
-                    Points[SelectedZone.IndexOfStartPoint] = new Point(Points[SelectedZone.IndexOfStartPoint].X, e.Y);
-                    Points[SelectedZone.IndexOfEndPoint] = new Point(Points[SelectedZone.IndexOfEndPoint].X, e.Y);
-                }
-            }
-            else if (SelectedZone.ZoneType == ZoneType.LastPoint)
-            {
-                HookEndPointToFigure(e);
-                //GetPoints(Points[0], e);
-            }
-            else if (SelectedZone.ZoneType == ZoneType.FirstPoint)
-            {
-                //GetPoints(e, Points[Points.Count - 1]);
-                HookStartPointToFigure(e);
-            }
+            //if (SelectedZone.IndexOfEndPoint != Points.Count - 1 && SelectedZone.IndexOfStartPoint != 0 && SelectedZone.ZoneType == ZoneType.MiddleLink)
+            //{
+            //    if (SelectedZone.Axis == Axis.X)
+            //    {
+            //        Points[SelectedZone.IndexOfStartPoint] = new Point(e.X, Points[SelectedZone.IndexOfStartPoint].Y);
+            //        Points[SelectedZone.IndexOfEndPoint] = new Point(e.X, Points[SelectedZone.IndexOfEndPoint].Y);
+            //    }
+            //    else
+            //    {
+            //        Points[SelectedZone.IndexOfStartPoint] = new Point(Points[SelectedZone.IndexOfStartPoint].X, e.Y);
+            //        Points[SelectedZone.IndexOfEndPoint] = new Point(Points[SelectedZone.IndexOfEndPoint].X, e.Y);
+            //    }
+            //}
+            //else if (SelectedZone.ZoneType == ZoneType.LastPoint)
+            //{
+            //    HookEndPointToFigure(e);
+            //    //GetPoints(Points[0], e);
+            //}
+            //else if (SelectedZone.ZoneType == ZoneType.FirstPoint)
+            //{
+            //    //GetPoints(e, Points[Points.Count - 1]);
+            //    HookStartPointToFigure(e);
+            //}
         }
 
         public void Select(Graphics graphics)
@@ -431,6 +431,7 @@ namespace Project_UML.Core.Arrows
                 newPoints.Add(currentPoint);
             }
             Points = newPoints;
+            UpdArrow();
         }
 
         public void Select()
