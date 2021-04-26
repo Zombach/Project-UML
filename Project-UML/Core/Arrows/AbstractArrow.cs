@@ -433,5 +433,18 @@ namespace Project_UML.Core.Arrows
         {
             throw new NotImplementedException();
         }
+        public override bool Equals(object obj)
+        {
+            AbstractArrow arrow = (AbstractArrow)obj;
+            for (int i = 0; i < Points.Count; i++)
+            {
+                if (this.Points[i].X!=arrow.Points[i].X 
+                    || this.Points[i].Y != arrow.Points[i].Y)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

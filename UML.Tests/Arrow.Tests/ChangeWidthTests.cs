@@ -4,11 +4,11 @@ using System.Drawing;
 using System.Collections;
 using Project_UML.Core;
 
-namespace CheckWidth.Tests
+namespace ChangeWidth.Tests
 {
     public class ChangeWidthTests
     {
-        [TestCaseSource(typeof(ChangeColorTestSource))]
+        [TestCaseSource(typeof(ChangeWidthTestSource))]
         public void ChangeWidth_WhenAlways_ShouldChangeWidth(AggregationArrow Arrow, int newWidth, float expected)
         {
             Arrow.ChangeWidth(newWidth);
@@ -16,7 +16,7 @@ namespace CheckWidth.Tests
             Assert.AreEqual(expected, actual);
         }
     }
-    public class ChangeColorTestSource : IEnumerable
+    public class ChangeWidthTestSource : IEnumerable
     {
         public IEnumerator GetEnumerator()
         {
