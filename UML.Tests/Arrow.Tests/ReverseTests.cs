@@ -3,6 +3,7 @@ using Project_UML.Core.Arrows;
 using System.Drawing;
 using System.Collections;
 using Project_UML.Core;
+using Project_UML.Core.Enum;
 
 namespace ReverseTests.Tests
 {
