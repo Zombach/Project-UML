@@ -63,14 +63,17 @@ namespace Project_UML.Core.MousHandlers
 
         public void MouseUp(Point e)
         {
-            IsTapped = false;
-            foreach (IFigure figure in CoreUML.SelectedFigures)
+            if (IsTapped)
             {
-                CoreUML.Figures.Add(figure);
+                foreach (IFigure figure in CoreUML.SelectedFigures)
+                {
+                    CoreUML.Figures.Add(figure);
+                }
+                CoreUML.UpdPicture();
+                CoreUML.DrawSelectionOfFigures();
+                CoreUML.PictureBox.Image = CoreUML.BitmapTmp;
+                IsTapped = false;
             }
-            CoreUML.UpdPicture();
-            CoreUML.DrawSelectionOfFigures();
-            CoreUML.PictureBox.Image = CoreUML.BitmapTmp;
         }
     }
 }

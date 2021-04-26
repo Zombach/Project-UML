@@ -19,6 +19,8 @@ namespace Project_UML.Core.Boxes
     [Serializable]
     public abstract class AbstractBox : IFigure, IGetFont, IChangeFont
     {
+        protected Pen _pen;
+        protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
         /// <summary>
         /// Жестко заданы точки [0] - левая верхняя точка, [1] - правая нижняя точка
         /// </summary>
@@ -43,6 +45,10 @@ namespace Project_UML.Core.Boxes
         protected Pen _pen;
         protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
         
+        public BoxZones crntZone;
+
+
+
 
         public AbstractBox(Color color, int width)
         {
@@ -72,7 +78,7 @@ namespace Project_UML.Core.Boxes
             RectMethodsHeight = 40;
         }
 
-        public AbstractBox(IFigure figure )
+        public AbstractBox(IFigure figure)
         {
             AbstractBox box = (AbstractBox)figure;
             _pen = new Pen(box._pen.Color, box._pen.Width);
@@ -198,7 +204,54 @@ namespace Project_UML.Core.Boxes
                 ))
             {
                 selected = true;
-                return selected;
+                if (!(startPoint.X > Points[1].X + inaccuracy
+                ||
+                startPoint.Y > Points[0].Y + inaccuracy
+                ||
+                endPoint.X < Points[0].X - inaccuracy
+                ||
+                endPoint.Y < Points[0].Y - inaccuracy
+                ))
+                {
+                    crntZone = BoxZones.Top;
+                }
+                else if (!(startPoint.X > Points[1].X + inaccuracy
+                ||
+                startPoint.Y > Points[1].Y + inaccuracy
+                ||
+                endPoint.X < Points[1].X - inaccuracy
+                ||
+                endPoint.Y < Points[0].Y - inaccuracy
+                ))
+                {
+                    crntZone = BoxZones.Right;
+                }
+                else if (!(startPoint.X > Points[1].X + inaccuracy
+                ||
+                startPoint.Y > Points[1].Y + inaccuracy
+                ||
+                endPoint.X < Points[0].X - inaccuracy
+                ||
+                endPoint.Y < Points[1].Y - inaccuracy
+                ))
+                {
+                    crntZone = BoxZones.Bottom;
+                }
+                else if (!(startPoint.X > Points[0].X + inaccuracy
+                ||
+                startPoint.Y > Points[1].Y + inaccuracy
+                ||
+                endPoint.X < Points[0].X - inaccuracy
+                ||
+                endPoint.Y < Points[0].Y - inaccuracy
+                ))
+                {
+                    crntZone = BoxZones.Left;
+                }
+                else
+                {
+                    crntZone = BoxZones.Center;
+                }
             }
 
             return selected;

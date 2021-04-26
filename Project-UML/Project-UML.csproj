@@ -50,9 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Act.cs" />
-    <Compile Include="Core\Arrows\Link.cs" />
-    <Compile Include="Core\Arrows\LinkType.cs" />
+    <Compile Include="Core\Arrows\ZoneOfArrow.cs" />
+    <Compile Include="Core\Arrows\ZoneType.cs" />
     <Compile Include="Core\Boxes\AbstractBox.cs" />
+    <Compile Include="Core\Boxes\BoxZones.cs" />
     <Compile Include="Core\Boxes\RectangleObject.cs" />
     <Compile Include="Core\Boxes\RectangleClass.cs" />
     <Compile Include="Core\Boxes\RectangleEnum.cs" />

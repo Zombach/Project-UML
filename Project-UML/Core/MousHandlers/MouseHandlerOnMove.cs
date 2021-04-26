@@ -95,8 +95,8 @@ namespace Project_UML.Core.MousHandlers
                 }
                 CoreUML.BitmapMain = CoreUML.BitmapTmp;
                 CoreUML.DrawSelectionOfFigures();
+                IsTapped = false;
             }
-            IsTapped = false;
         }
     }
 }

@@ -7,22 +7,28 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.Arrows
 {
-    public class Link
+    public class ZoneOfArrow
     {
+        public ZoneType ZoneType;
         public int IndexOfStartPoint;
         public int IndexOfEndPoint;
         public Axis Axis;
-        public LinkType LinkType;
 
-        public Link()
-        { }
+        public ZoneOfArrow()
+        {
+        }
 
-        public Link(int indexOfStartPoint, int indexOfEndPoint, Axis axis, LinkType linkType)
+        public ZoneOfArrow(ZoneType zoneType)
+        {
+            ZoneType = zoneType;
+        }
+
+        public ZoneOfArrow(int indexOfStartPoint, int indexOfEndPoint, Axis axis, ZoneType zoneType)
         {
             IndexOfStartPoint = indexOfStartPoint;
             IndexOfEndPoint = indexOfEndPoint;
             Axis = axis;
-            LinkType = linkType;
+            ZoneType = zoneType;
         }
     }
 }
