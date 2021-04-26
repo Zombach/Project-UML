@@ -81,7 +81,9 @@ namespace Project_UML.Core.FormsUML
 
         private void EncryptAs_Click(object sender, EventArgs e)
         {
-
+            _getPathAs = new GetPathAs();
+            _getPathAs.GetPathEncrypt();
+            string sss = _coreUML.MyPathEncrypt;
         }
         private void Menu_FormClosing(Object sender, FormClosingEventArgs e)
         {
