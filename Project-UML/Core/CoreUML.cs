@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Project_UML.Core.Interfaces;
 using Project_UML.Core.Arrows;
+using Project_UML.Core.Enum;
 using System.Drawing;
 using System.Windows.Forms;
 using Project_UML.Core.FigureFactory;

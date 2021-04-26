@@ -7,6 +7,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Project_UML.Core.Enum;
 
 namespace Project_UML.Core.Arrows
 {
@@ -46,7 +47,7 @@ namespace Project_UML.Core.Arrows
             _graphicsPath.AddLine(new Point(-12 / tmp, -16 / tmp), new Point(0, 0));
             _pen.CustomEndCap = new CustomLineCap(null, _graphicsPath, LineCap.Custom, 32 / tmp);
 
-
+            #region OLD CODE
             //GraphicsPath _graphicsPath = new GraphicsPath();
             //switch ((int)_pen.Width)
             //{
@@ -99,6 +100,7 @@ namespace Project_UML.Core.Arrows
             ////_graphicsPath.AddLine(new Point(0, -24 / tmp), new Point(-8 / tmp, -12 / tmp));
             ////_graphicsPath.AddLine(new Point(-8 / tmp, -12 / tmp), new Point(0, 0));
             ////_pen.CustomEndCap = new CustomLineCap(null, _graphicsPath, LineCap.Custom, 24 / tmp);
+            #endregion
         }
         public override void ChangeWidth(int width)
         {

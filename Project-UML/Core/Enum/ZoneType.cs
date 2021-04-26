@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_UML.Core.Arrows
+namespace Project_UML.Core.Enum
 {
     public enum ZoneType
     {

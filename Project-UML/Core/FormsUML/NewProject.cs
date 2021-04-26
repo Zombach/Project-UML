@@ -7,6 +7,7 @@ using Project_UML.Core.MousHandlers;
 using Project_UML.Core.Interfaces;
 using System.Collections.Generic;
 using Project_UML.Core.Arrows;
+using Project_UML.Core.Enum;
 using System.Windows.Forms;
 using System.Drawing;
 using Project_UML.Core.Boxes;

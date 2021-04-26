@@ -48,7 +48,6 @@ namespace Project_UML.Core.Boxes
                 RectFieldHeight = 50;
             }
 
-            
 
             RectangleHeight = RectNameHeight + RectFieldHeight;
 

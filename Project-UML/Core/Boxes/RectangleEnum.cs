@@ -43,8 +43,6 @@ namespace Project_UML.Core.Boxes
                 RectFieldHeight = 50;
             }
 
-
-
             RectangleHeight = RectNameHeight + RectFieldHeight;
 
             RectangleF rectName = new RectangleF(Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);

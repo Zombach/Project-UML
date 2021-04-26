@@ -1,6 +1,7 @@
 ﻿using Project_UML.Core.Arrows;
 using Project_UML.Core.Boxes;
 using Project_UML.Core.Interfaces.Get;
+using Project_UML.Core.Enum;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

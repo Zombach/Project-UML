@@ -2,14 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Project_UML.Core.Interfaces.Get;
 using Project_UML.Core.Interfaces.Logics;
 using Project_UML.Core.Arrows;
 using Project_UML.Core.DataProject.Structure;
 using Project_UML.Core.Interfaces.Draws;
+using Project_UML.Core.Enum;
 
 namespace Project_UML.Core.Boxes
 {
@@ -384,6 +382,7 @@ namespace Project_UML.Core.Boxes
             return point;
         }
 
+        #region OLD CODE
         //public ConnectionPoint GetConnectionPoint(Point point)
         //{
         //    Point Middle = GetMiddlePoint();
@@ -418,6 +417,8 @@ namespace Project_UML.Core.Boxes
         //    }
         //    return connectionPoint;
         //}
+        #endregion
+
         public void DrawSpecificRectangle(Graphics graphics, string rectText, Pen _pen, Font font, Brush brush, RectangleF rectF)
         {
             graphics.DrawString(rectText, font, brush, rectF);
