@@ -39,10 +39,8 @@ namespace Project_UML.Core.Boxes
         /// RectangleText[2] - property
         /// RectangleText[3] - methods
         /// </summary>
-        public List<string> RectangleText = new List<string> { "Name", "Filed", "Property", "Methods" };
-        protected Pen _pen;
-        protected static Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
-
+        public List<string> RectangleText = new List<string> {"Name", "Filed", "Property", "Methods"};
+        
         public BoxZones crntZone;
 
 

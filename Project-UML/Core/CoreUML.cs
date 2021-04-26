@@ -54,6 +54,7 @@ namespace Project_UML.Core
         /// </summary>
         public int DefaultSize { get; set; }
         public Step DefaultStep { get; set; }
+        public string MyPathEncrypt { get; set; }
         public string MyPath { get; set; }
         public string MyPathSettings { get; set; }
         public bool IsLicense { get; set; }
@@ -85,6 +86,7 @@ namespace Project_UML.Core
             DefaultStep = new Step(5, 5);
             MyPath = "";
             MyPathSettings = @"../../Resources/txt/Settings.txt";
+            MyPathEncrypt = @"../../Resources/txt/";
             IsLicense = false;
         }
 
@@ -389,6 +391,7 @@ namespace Project_UML.Core
             }
             return setting;
         }
+
         private Step SetStep(Step step, int x, int y)
         {
             step.X *= x;
