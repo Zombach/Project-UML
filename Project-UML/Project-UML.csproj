@@ -153,12 +153,6 @@
     <Compile Include="Core\FormsUML\License.Designer.cs">
       <DependentUpon>License.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\FormsUML\Loading.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Core\FormsUML\Loading.Designer.cs">
-      <DependentUpon>Loading.cs</DependentUpon>
-    </Compile>
     <Compile Include="Core\FormsUML\MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,9 +177,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Core\FormsUML\License.resx">
       <DependentUpon>License.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Core\FormsUML\Loading.resx">
-      <DependentUpon>Loading.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\FormsUML\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>

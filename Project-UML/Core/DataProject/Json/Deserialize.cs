@@ -12,7 +12,16 @@ namespace Project_UML.Core.DataProject.Json
     {
         public StructSettings DeserializerSetting(string data)
         {
-            return JsonConvert.DeserializeObject<StructSettings>(data);
+            StructSettings settings;
+            try
+            {
+                settings = JsonConvert.DeserializeObject<StructSettings>(data);
+            }
+            catch
+            {
+                settings = null;
+            }
+            return settings;
         }
     }
 }

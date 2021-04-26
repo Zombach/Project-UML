@@ -40,7 +40,11 @@ namespace Project_UML.Core.FormsUML
             InitializeComponent();
             LoadSettings load = new LoadSettings();
             StructSettings settings = load.ReadSettings();
-            _coreUML.LoadCoreUML(settings);
+            if (settings != null)
+            {
+                _coreUML.LoadCoreUML(settings);
+            }
+            _coreUML.IsLoading = true;
             UpdateSettingsForm();
             _menu = menu;
         }
@@ -615,17 +619,7 @@ namespace Project_UML.Core.FormsUML
         {
             _crntMH = new MouseHandlerOnMove();
         }
-        
-        private void NewProject_FormClosing(Object sender, FormClosingEventArgs e)
-        {
-            if (!(_help is null))
-            {
-                _help.Dispose();
-            }
-            SaveSettings save = new SaveSettings();
-            save.WriteSettings();
-            _menu.Close();
-        }
+               
 
         private void buttonUpdateRectText_Click(object sender, EventArgs e)
         {
@@ -687,6 +681,15 @@ namespace Project_UML.Core.FormsUML
                 _coreUML.UpdPicture();
             }
             PreparationFont();
+        }
+
+        private void NewProject_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            if (!(_help is null))
+            {
+                _help.Dispose();
+            }            
+            _menu.Close();
         }
 
     }

@@ -30,9 +30,10 @@ namespace Project_UML.Core.FormsUML
         private void InitializeComponent()
         {
             this.NewProject = new System.Windows.Forms.Button();
-            this.LoadProject = new System.Windows.Forms.Button();
             this.AboutUs = new System.Windows.Forms.Button();
             this.ExitProgramm = new System.Windows.Forms.Button();
+            this.Continue = new System.Windows.Forms.Button();
+            this.LoadAs = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // NewProject
@@ -44,16 +45,6 @@ namespace Project_UML.Core.FormsUML
             this.NewProject.Text = "New project";
             this.NewProject.UseVisualStyleBackColor = true;
             this.NewProject.Click += new System.EventHandler(this.NewProject_Click);
-            // 
-            // LoadProject
-            // 
-            this.LoadProject.Location = new System.Drawing.Point(63, 89);
-            this.LoadProject.Name = "LoadProject";
-            this.LoadProject.Size = new System.Drawing.Size(135, 48);
-            this.LoadProject.TabIndex = 4;
-            this.LoadProject.Text = "Load project";
-            this.LoadProject.UseVisualStyleBackColor = true;
-            this.LoadProject.Click += new System.EventHandler(this.LoadProject_Click);
             // 
             // AboutUs
             // 
@@ -75,17 +66,39 @@ namespace Project_UML.Core.FormsUML
             this.ExitProgramm.UseVisualStyleBackColor = true;
             this.ExitProgramm.Click += new System.EventHandler(this.ExitProgramm_Click);
             // 
+            // Continue
+            // 
+            this.Continue.Location = new System.Drawing.Point(64, 88);
+            this.Continue.Name = "Continue";
+            this.Continue.Size = new System.Drawing.Size(134, 48);
+            this.Continue.TabIndex = 3;
+            this.Continue.Text = "Continue";
+            this.Continue.UseVisualStyleBackColor = true;
+            this.Continue.Click += new System.EventHandler(this.Continue_Click);
+            // 
+            // LoadAs
+            // 
+            this.LoadAs.Location = new System.Drawing.Point(65, 144);
+            this.LoadAs.Name = "LoadAs";
+            this.LoadAs.Size = new System.Drawing.Size(134, 48);
+            this.LoadAs.TabIndex = 4;
+            this.LoadAs.Text = "Load as";
+            this.LoadAs.UseVisualStyleBackColor = true;
+            this.LoadAs.Click += new System.EventHandler(this.LoadAs_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(264, 337);
+            this.Controls.Add(this.LoadAs);
+            this.Controls.Add(this.Continue);
             this.Controls.Add(this.AboutUs);
             this.Controls.Add(this.ExitProgramm);
-            this.Controls.Add(this.LoadProject);
             this.Controls.Add(this.NewProject);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "MainMenu";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainMenu_FormClosing);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UML Manager";
             this.ResumeLayout(false);
@@ -94,9 +107,10 @@ namespace Project_UML.Core.FormsUML
 
         #endregion
         private System.Windows.Forms.Button NewProject;
-        private System.Windows.Forms.Button LoadProject;
         private System.Windows.Forms.Button AboutUs;
         private System.Windows.Forms.Button ExitProgramm;
+        private System.Windows.Forms.Button Continue;
+        private System.Windows.Forms.Button LoadAs;
     }
 }
 
