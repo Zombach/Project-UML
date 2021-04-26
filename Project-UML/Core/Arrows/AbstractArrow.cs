@@ -285,6 +285,8 @@ namespace Project_UML.Core.Arrows
 
 
             }
+
+            #region OLD CODE
             //if (SelectedZone.IndexOfEndPoint != Points.Count - 1 && SelectedZone.IndexOfStartPoint != 0 && SelectedZone.ZoneType == ZoneType.MiddleLink)
             //{
             //    if (SelectedZone.Axis == Axis.X)
@@ -308,6 +310,7 @@ namespace Project_UML.Core.Arrows
             //    //GetPoints(e, Points[Points.Count - 1]);
             //    HookStartPointToFigure(e);
             //}
+            #endregion
         }
 
         public void Select(Graphics graphics)
@@ -434,19 +437,9 @@ namespace Project_UML.Core.Arrows
             UpdArrow();
         }
 
-        public void Select()
-        {
-            throw new NotImplementedException();
-        }
-
         public Color GetColor()
         {
             return _pen.Color;
-        }
-
-        public float GetSize()
-        {
-            return 1f;
         }
 
         public float GetWidth()
@@ -454,20 +447,8 @@ namespace Project_UML.Core.Arrows
             return _pen.Width;
         }
 
-        public int GetHeight()
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        public ConnectionPoint GetConnectionPoint(Point point)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Point GetMiddlePoint()
-        {
-            throw new NotImplementedException();
-        }
         public override bool Equals(object obj)
         {
             AbstractArrow arrow = (AbstractArrow)obj;
@@ -480,6 +461,20 @@ namespace Project_UML.Core.Arrows
                 }
             }
             return true;
+        }
+
+        public Point GetMiddlePoint()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Select()
+        {
+            throw new NotImplementedException();
+        }
+        public ConnectionPoint GetConnectionPoint(Point point)
+        {
+            throw new NotImplementedException();
         }
     }
 }

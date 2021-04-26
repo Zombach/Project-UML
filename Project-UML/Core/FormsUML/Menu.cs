@@ -127,7 +127,6 @@ namespace Project_UML.Core.FormsUML
             {
                 MessageBox.Show("Не удалось сохранить изображение");
             }
-            //_coreUML.BitmapMain.Save(@"C:\Users\Andrew\source\repos\Zombach\Project-UML\Project-UML\Save\100.jpg", ImageFormat.Jpeg);
         }
     }
 }

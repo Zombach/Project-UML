@@ -7,7 +7,7 @@ using Project_UML.Core.Interfaces.Get;
 
 namespace Project_UML.Core.Interfaces
 {
-    public interface IGetParametr : IGetColor, IGetSize, IGetWidth
+    public interface IGetParametr : IGetColor
     {
     }
 }

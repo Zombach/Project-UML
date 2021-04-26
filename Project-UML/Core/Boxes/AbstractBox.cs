@@ -15,7 +15,7 @@ namespace Project_UML.Core.Boxes
     /// 
     /// </summary>
     [Serializable]
-    public abstract class AbstractBox : IFigure, IGetFont, IChangeFont
+    public abstract class AbstractBox : IFigure, IGetFont, IChangeFont, IGetWidth
     {
         /// <summary>
         /// Жестко заданы точки [0] - левая верхняя точка, [1] - правая нижняя точка
@@ -43,9 +43,6 @@ namespace Project_UML.Core.Boxes
         public List<string> RectangleText = new List<string> {"Name", "Filed", "Property", "Methods"};
         
         public BoxZones crntZone;
-
-
-
 
         public AbstractBox(Color color, int width)
         {
@@ -134,16 +131,6 @@ namespace Project_UML.Core.Boxes
             DataCommon.Remove(dataPoints);
         }
 
-        public void IsHovered(Point point)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Select()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Select(Graphics graphics)
         {
             List<Point> pointsOfSelection = new List<Point> { Points[0], Points[1] };
@@ -190,11 +177,6 @@ namespace Project_UML.Core.Boxes
         public Color GetColor()
         {
             return _pen.Color;
-        }
-
-        public float GetSize()
-        {
-            return 1f;
         }
 
         public bool CheckSelection(Point startPoint, Point endPoint, int inaccuracy)
@@ -275,11 +257,6 @@ namespace Project_UML.Core.Boxes
         }
 
         public int GetHeight()
-        {
-            throw new NotImplementedException();
-        }
-
-        bool IIsHovered.IsHovered(Point point)
         {
             throw new NotImplementedException();
         }
@@ -431,11 +408,6 @@ namespace Project_UML.Core.Boxes
             graphics.DrawRectangle(_pen, Rectangle.Round(rectF));
         }
 
-        public void Transform(Point e)
-        {
-            throw new NotImplementedException();
-        }
-
         public int CounterOfTextLinesInSpecificRectangle(string textFromSpecificRect)
         {
             string phrase = textFromSpecificRect;
@@ -541,6 +513,21 @@ namespace Project_UML.Core.Boxes
             }
 
             return RectangleWidth;
+        }
+
+        public void Transform(Point e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsHovered(Point point)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Select()
+        {
+            throw new NotImplementedException();
         }
     }
 }
