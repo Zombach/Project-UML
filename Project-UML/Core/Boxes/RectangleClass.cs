@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Project_UML.Core.Boxes
 {
-    class RectangleClass : AbstractBox
+    public class RectangleClass : AbstractBox
     {
         public RectangleClass(Color color, int width) : base(color, width)
         {            
@@ -30,7 +30,7 @@ namespace Project_UML.Core.Boxes
             SolidBrush brush = new SolidBrush(Color.Black);
 
             RectangleWidth = WidthOfRectangle(graphics, RectangleText, Font) + 5;
-            
+
             RectNameHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[0]) * Font.Height;
 
             if (RectNameHeight < 25)

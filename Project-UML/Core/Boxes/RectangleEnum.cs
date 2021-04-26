@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Project_UML.Core.Boxes
 {
-    class RectangleEnum : AbstractBox
+    public class RectangleEnum : AbstractBox
     {     
         
         public RectangleEnum(Color color, int width) : base(color, width)

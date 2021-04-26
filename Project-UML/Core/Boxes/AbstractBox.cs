@@ -89,7 +89,7 @@ namespace Project_UML.Core.Boxes
             RectNameHeight = box.RectNameHeight;
             RectFieldHeight = box.RectFieldHeight;
             RectPropertyHeight = box.RectPropertyHeight;
-            RectMethodsHeight = box.RectMethodsHeight;
+            RectMethodsHeight = box.RectMethodsHeight;            
         }
 
 
