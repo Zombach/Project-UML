@@ -56,6 +56,7 @@ namespace Project_UML.Core
         public Step DefaultStep { get; set; }
         public string MyPath { get; set; }
         public string MyPathSettings { get; set; }
+        public bool IsLicense { get; set; }
 
         /// <summary>
         /// Временные поля (заглушки)
@@ -67,6 +68,7 @@ namespace Project_UML.Core
         private PreparationData _data;
         private Deserialize _deserializer;
         private LogActs _log = new LogActs();
+        
 
 
         private CoreUML()
@@ -83,6 +85,7 @@ namespace Project_UML.Core
             DefaultStep = new Step(5, 5);
             MyPath = "";
             MyPathSettings = @"../../Resources/txt/Settings.txt";
+            IsLicense = false;
         }
 
 
@@ -308,6 +311,8 @@ namespace Project_UML.Core
 
         public static bool SaveDate()
         {
+            SetMyPath path = new SetMyPath();
+            path.MyPath();
             Serialize serializer = new Serialize();
             serializer.SerializationDictionary();
             return true;
@@ -322,9 +327,15 @@ namespace Project_UML.Core
             }
             else
             {
+                SelectedFigures.Clear();
+                Figures.Clear();
                 _deserializer = new Deserialize();
                 _data = _deserializer.DeserializationDictionary();
-                Loading(menu);
+                if (_data != null)
+                {
+                    Loading(menu);
+                }
+                
             }
             return _data;
         }
@@ -338,12 +349,45 @@ namespace Project_UML.Core
 
         public void LoadCoreUML(StructSettings setting)
         {
-            DefaultColor = setting.DefaultColor;
-            DefaultFont = setting.DefaultFont;
-            DefaultSize = setting.DefaultSize;
-            DefaultStep = setting.DefaultStep;
-            DefaultWidth = setting.DefaultWidth;
-            MyPath = setting.Path;
+            if (setting != null)
+            {
+                StructSettings EqSetting = SettingEquals(setting);
+                DefaultColor = EqSetting.DefaultColor;
+                DefaultFont = EqSetting.DefaultFont;
+                DefaultSize = EqSetting.DefaultSize;
+                DefaultStep = EqSetting.DefaultStep;
+                DefaultWidth = EqSetting.DefaultWidth;
+                MyPath = EqSetting.Path;
+            }
+        }
+
+        private StructSettings SettingEquals(StructSettings setting)
+        {            
+            if (setting.DefaultColor == null)
+            {
+                setting.DefaultColor = Color.Black;
+            }
+            if (setting.DefaultFont is null)
+            {
+                setting.DefaultFont = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+            }
+            if (setting.DefaultSize < -20 || setting.DefaultSize > 20)
+            {
+                setting.DefaultSize = 0;
+            }
+            if (setting.DefaultStep == null)
+            {
+                setting.DefaultStep = new Step(5);
+            }
+            if (setting.DefaultWidth <= 0 || setting.DefaultWidth > 5)
+            {
+                setting.DefaultWidth = 1;
+            }
+            if (setting.Path is null)
+            {
+                setting.Path = "";
+            }
+            return setting;
         }
         private Step SetStep(Step step, int x, int y)
         {
