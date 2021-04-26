@@ -332,12 +332,12 @@ namespace Project_UML.Core.FormsUML
             _crntMH = new MouseHandlerOnDrawRectangle(new RectangleClassFactory());
         }
 
-        #region KeyCode
         /// <summary>
         /// KeyCode управления нажатий клавиши
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        #region KeyCode
         private void KeyDown_Control(object sender, KeyEventArgs e)
         {
             if (e.Control)

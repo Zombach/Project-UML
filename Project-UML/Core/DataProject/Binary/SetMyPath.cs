@@ -25,7 +25,7 @@ namespace Project_UML.Core.DataProject.Binary
         public void MyPathImage()
         {
             DateTime _dateTime = DateTime.Now;
-            string _tmpName = $"../../Save/Image/Save_{_dateTime}.jpg";
+            string _tmpName = $"../../Save/Image/Image_{_dateTime}.jpg";
             Regex regex = new Regex(":");
             _tmpName = regex.Replace(_tmpName, ".");
             _coreUML.MyPathImage = Path.GetFullPath(_tmpName);
