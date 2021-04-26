@@ -27,5 +27,17 @@ namespace Project_UML.Core
             Zone = zone;
             DistanceInPercents = distanceInPercents;
         }
+        public override bool Equals(object obj)
+        {
+            ConnectionPoint ConnectionPoint = (ConnectionPoint)obj;
+
+            if (this.Axis != ConnectionPoint.Axis
+                || this.Zone != ConnectionPoint.Zone
+                || this.DistanceInPercents != ConnectionPoint.DistanceInPercents)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
