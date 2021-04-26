@@ -7,9 +7,11 @@ using Project_UML.Core.MousHandlers;
 using Project_UML.Core.Interfaces;
 using System.Collections.Generic;
 using Project_UML.Core.Arrows;
+using Project_UML.Core.Enum;
 using System.Windows.Forms;
 using System.Drawing;
 using Project_UML.Core.Boxes;
+
 
 namespace Project_UML.Core.FormsUML
 {
@@ -331,12 +333,12 @@ namespace Project_UML.Core.FormsUML
             _crntMH = new MouseHandlerOnDrawRectangle(new RectangleClassFactory());
         }
 
-        #region KeyCode
         /// <summary>
         /// KeyCode управления нажатий клавиши
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        #region KeyCode
         private void KeyDown_Control(object sender, KeyEventArgs e)
         {
             if (e.Control)
@@ -388,6 +390,10 @@ namespace Project_UML.Core.FormsUML
                         return;
                     case Keys.L:
                         Press_L();                        
+                        return;
+                    case Keys.P:
+                        _coreUML.SaveImage();
+                        MessageBox.Show("Изображение сохранено");
                         return;
                 } 
             }
@@ -650,8 +656,7 @@ namespace Project_UML.Core.FormsUML
             if (comboBox1.SelectedItem != null && _crntMH.CoreUML.SelectedFigures != null)
             {
                 string selectedArea = comboBox1.SelectedItem.ToString();
-
-                string areaText = richTextBox1.Text;
+                
                 switch (selectedArea)
                 {
                     case "Name":
@@ -683,6 +688,11 @@ namespace Project_UML.Core.FormsUML
             PreparationFont();
         }
 
+        private void buttonSaveImage_Click(object sender, EventArgs e)
+        {
+            _coreUML.SaveImage();
+            MessageBox.Show("Изображение сохранено");
+        }
         private void NewProject_FormClosing(Object sender, FormClosingEventArgs e)
         {
             if (!(_help is null))

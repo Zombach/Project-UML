@@ -15,7 +15,6 @@ namespace Project_UML.Core.DataProject.Binary
     /// </summary>
     public class ProcessingData
     {
-        #region Переменные
         /// <summary>
         /// Получение ядра
         /// </summary>
@@ -53,9 +52,7 @@ namespace Project_UML.Core.DataProject.Binary
             "Project_UML.Core.Boxes.RectangleInterface",
             "Project_UML.Core.Boxes.RectangleObject"
         };
-        #endregion
 
-        #region Методы
         /// <summary>
         /// Чтение записаной даты
         /// </summary>
@@ -166,6 +163,5 @@ namespace Project_UML.Core.DataProject.Binary
             }
             return _figure;
         }
-        #endregion
     }
 }

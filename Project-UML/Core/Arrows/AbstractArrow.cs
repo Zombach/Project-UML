@@ -8,6 +8,7 @@ using Project_UML.Core.Boxes;
 using Project_UML.Core.DataProject.Structure;
 using Project_UML.Core.Interfaces;
 using Project_UML.Core.Interfaces.Get;
+using Project_UML.Core.Enum;
 
 namespace Project_UML.Core.Arrows
 {
@@ -74,7 +75,6 @@ namespace Project_UML.Core.Arrows
                 Points.Add(point);
             }
             SetEndCap();
-            //Необходимо дописать конструктор стрелы
         }
 
         public virtual void SetEndCap()
@@ -141,6 +141,7 @@ namespace Project_UML.Core.Arrows
         public bool IsHovered(Point point)
         {
             bool selected = false;
+            #region OLD CODE
             //int maxX;
             //int minX;
             //int maxY;
@@ -176,6 +177,7 @@ namespace Project_UML.Core.Arrows
             //        return selected;
             //    }
             //}
+            #endregion
             return selected;
 
         }
@@ -271,6 +273,7 @@ namespace Project_UML.Core.Arrows
                         Points[SelectedZone.IndexOfEndPoint] = new Point(Points[SelectedZone.IndexOfEndPoint].X, e.Y);
                     }
                     break;
+                    #region OLD CODE
                     //case ZoneType.FirstLink:
                     //    if (StartDirectionAxis == Axis.X)
                     //    {
@@ -278,6 +281,7 @@ namespace Project_UML.Core.Arrows
                     //        Points.Insert(2, new Point(e.X))
                     //    }
                     //    break;
+                    #endregion
 
 
             }
@@ -393,6 +397,7 @@ namespace Project_UML.Core.Arrows
             GetPoints(Points[0], e);
         }
 
+        #region OLD CODE
         //public void UpdStartPoint(Point e)
         //{
         //    if (!(DataCommon[0].FirstBox is null))
@@ -413,6 +418,7 @@ namespace Project_UML.Core.Arrows
         //        EndDirectionAxis = connectionPoint.Axis;
         //    }
         //}
+        #endregion
 
         public void Move(int deltaX, int deltaY)
         {

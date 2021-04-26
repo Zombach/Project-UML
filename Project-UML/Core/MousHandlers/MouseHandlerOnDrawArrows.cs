@@ -92,6 +92,7 @@ namespace Project_UML.Core.MousHandlers
             }
         }
 
+        #region OLD CODE
         /// <summary>
         /// Необходимо перезаписать в CoreUML.List<IFigure> Figures
         /// </summary>
@@ -113,6 +114,7 @@ namespace Project_UML.Core.MousHandlers
         //    AbstractArrow arrow = (AbstractArrow)_dataCommon.Arrow;
         //    //arrow.DataCommon.Add(_dataCommon);
         //}
+        #endregion
 
         public void MouseHover(Point e)
         {

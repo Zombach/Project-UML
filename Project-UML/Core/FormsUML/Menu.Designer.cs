@@ -37,6 +37,7 @@ namespace Project_UML.Core.FormsUML
             this.Cancel = new System.Windows.Forms.Button();
             this.MainMenu = new System.Windows.Forms.Button();
             this.Encrypt = new System.Windows.Forms.CheckBox();
+            this.buttonSaveAsImage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Save
@@ -120,12 +121,23 @@ namespace Project_UML.Core.FormsUML
             this.Encrypt.UseVisualStyleBackColor = true;
             this.Encrypt.CheckedChanged += new System.EventHandler(this.Encrypt_Click);
             // 
+            // buttonSaveAsImage
+            // 
+            this.buttonSaveAsImage.Location = new System.Drawing.Point(46, 133);
+            this.buttonSaveAsImage.Name = "buttonSaveAsImage";
+            this.buttonSaveAsImage.Size = new System.Drawing.Size(75, 40);
+            this.buttonSaveAsImage.TabIndex = 9;
+            this.buttonSaveAsImage.Text = "Save As Image";
+            this.buttonSaveAsImage.UseVisualStyleBackColor = true;
+            this.buttonSaveAsImage.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.ClientSize = new System.Drawing.Size(434, 223);
+            this.Controls.Add(this.buttonSaveAsImage);
             this.Controls.Add(this.Encrypt);
             this.Controls.Add(this.MainMenu);
             this.Controls.Add(this.Cancel);
@@ -135,11 +147,11 @@ namespace Project_UML.Core.FormsUML
             this.Controls.Add(this.SaveAs);
             this.Controls.Add(this.Save);
             this.KeyPreview = true;
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Control);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Menu_FormClosing);
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Menu_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Control);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,5 +167,6 @@ namespace Project_UML.Core.FormsUML
         private System.Windows.Forms.Button Cancel;
         private System.Windows.Forms.Button MainMenu;
         private System.Windows.Forms.CheckBox Encrypt;
+        private System.Windows.Forms.Button buttonSaveAsImage;
     }
 }

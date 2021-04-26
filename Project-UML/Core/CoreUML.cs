@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Project_UML.Core.Interfaces;
 using Project_UML.Core.Arrows;
+using Project_UML.Core.Enum;
 using System.Drawing;
 using System.Windows.Forms;
 using Project_UML.Core.FigureFactory;
@@ -12,6 +13,7 @@ using Project_UML.Core.DataProject.Binary;
 using Project_UML.Core.Boxes;
 using Project_UML.Core.DataProject.Structure;
 using Project_UML.Core.FormsUML;
+using System.Drawing.Imaging;
 
 namespace Project_UML.Core
 {
@@ -59,6 +61,8 @@ namespace Project_UML.Core
         public string MyPathSettings { get; set; }
         public bool IsLicense { get; set; }
 
+        public string MyPathImage { get; set; } = "../../Save/Image/";
+
         /// <summary>
         /// Временные поля (заглушки)
         /// </summary>
@@ -84,7 +88,7 @@ namespace Project_UML.Core
             DefaultFont = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
             DefaultSize = 0;
             DefaultStep = new Step(5, 5);
-            MyPath = "";
+            MyPath = "";            
             MyPathSettings = @"../../Resources/txt/Settings.txt";
             MyPathEncrypt = @"../../Resources/txt/";
             IsLicense = false;
@@ -309,6 +313,12 @@ namespace Project_UML.Core
                 }
             }
             UpdPicture();
+        }
+        public void SaveImage()
+        {
+            SetMyPath imagePath = new SetMyPath();
+            imagePath.MyPathImage();
+            _coreUML.BitmapMain.Save(MyPathImage, ImageFormat.Jpeg);
         }
 
         public static bool SaveDate()

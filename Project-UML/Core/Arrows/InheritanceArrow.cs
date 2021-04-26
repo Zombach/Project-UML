@@ -7,6 +7,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Project_UML.Core.Enum;
 
 namespace Project_UML.Core.Arrows
 {
@@ -46,6 +47,8 @@ namespace Project_UML.Core.Arrows
             _graphicsPath.AddLine(new Point(12 / tmp, -16 / tmp), new Point(-12 / tmp, -16 / tmp));
             _graphicsPath.AddLine(new Point(-12 / tmp, -16 / tmp), new Point(0, 0));
             _pen.CustomEndCap = new CustomLineCap(null, _graphicsPath, LineCap.Custom, 16 / tmp);
+
+            #region OLD CODE
             //int tmp;
             //if (_pen.Width == 1)
             //{
@@ -60,6 +63,7 @@ namespace Project_UML.Core.Arrows
             //_graphicsPath.AddLine(new Point(12 / tmp, -24 / tmp), new Point(-12 / tmp, -24 / tmp));
             //_graphicsPath.AddLine(new Point(-12 / tmp, -24 / tmp), new Point(0, 0));
             //_pen.CustomEndCap = new CustomLineCap(null, _graphicsPath, LineCap.Custom, 24 / tmp);
+            #endregion
         }
 
         public override void ChangeWidth(int width)
@@ -68,9 +72,7 @@ namespace Project_UML.Core.Arrows
             SetEndCap();
         }
 
-
-
-
+        #region OLD CODE
         //public InheritanceArrow()
         //{
         //    _pen = new Pen(Color.Black, 4);
@@ -169,5 +171,6 @@ namespace Project_UML.Core.Arrows
         //    Points.Add(new Point(endPoint.X - _const, endPoint.Y - _const));
         //    Points.Add(new Point(endPoint.X, endPoint.Y - _const));
         //}
+        #endregion
     }
 }

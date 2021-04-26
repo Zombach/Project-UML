@@ -2,14 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Project_UML.Core.Interfaces.Get;
 using Project_UML.Core.Interfaces.Logics;
 using Project_UML.Core.Arrows;
 using Project_UML.Core.DataProject.Structure;
 using Project_UML.Core.Interfaces.Draws;
+using Project_UML.Core.Enum;
 
 namespace Project_UML.Core.Boxes
 {
@@ -384,6 +382,7 @@ namespace Project_UML.Core.Boxes
             return point;
         }
 
+        #region OLD CODE
         //public ConnectionPoint GetConnectionPoint(Point point)
         //{
         //    Point Middle = GetMiddlePoint();
@@ -418,6 +417,8 @@ namespace Project_UML.Core.Boxes
         //    }
         //    return connectionPoint;
         //}
+        #endregion
+
         public void DrawSpecificRectangle(Graphics graphics, string rectText, Pen _pen, Font font, Brush brush, RectangleF rectF)
         {
             graphics.DrawString(rectText, font, brush, rectF);
@@ -437,12 +438,10 @@ namespace Project_UML.Core.Boxes
         }
         public int WidthOfRectangle(Graphics graphics, List<string> RectangleText, Font font)
         {
-            SizeF stringNameSize = new SizeF();
-
             string phraseName = RectangleText[0];
             string[] separateLinesName = phraseName.Split('\n');
 
-            stringNameSize = graphics.MeasureString(separateLinesName[0], font);
+            SizeF stringNameSize = graphics.MeasureString(separateLinesName[0], font);
             int longestSizeName = (int)stringNameSize.Width;
 
             if (separateLinesName.Length > 0)
@@ -456,14 +455,12 @@ namespace Project_UML.Core.Boxes
                         longestSizeName = (int)stringNameSize.Width;
                     }
                 }
-            }
-
-            SizeF stringFieldSize = new SizeF();
+            }            
 
             string phraseField = RectangleText[1];
             string[] separateLinesField = phraseField.Split('\n');
 
-            stringFieldSize = graphics.MeasureString(separateLinesField[0], font);
+            SizeF stringFieldSize = graphics.MeasureString(separateLinesField[0], font);
             int longestSizeField = (int)stringFieldSize.Width;
 
             if (separateLinesField.Length > 0)
@@ -478,13 +475,12 @@ namespace Project_UML.Core.Boxes
                     }
                 }
             }
-
-            SizeF stringPropertySize = new SizeF();
-
+            
+            
             string phraseProperty = RectangleText[2];
             string[] separateLinesProperty = phraseProperty.Split('\n');
 
-            stringPropertySize = graphics.MeasureString(separateLinesProperty[0], font);
+            SizeF stringPropertySize = graphics.MeasureString(separateLinesProperty[0], font);
             int longestSizeProperty = (int)stringPropertySize.Width;
 
             if (separateLinesProperty.Length > 0)
@@ -499,13 +495,11 @@ namespace Project_UML.Core.Boxes
                     }
                 }
             }
-
-            SizeF stringMethodsSize = new SizeF();
-
+                        
             string phraseMethods = RectangleText[3];
             string[] separateLinesMethods = phraseMethods.Split('\n');
 
-            stringMethodsSize = graphics.MeasureString(separateLinesMethods[0], font);
+            SizeF stringMethodsSize = graphics.MeasureString(separateLinesMethods[0], font);
             int longestSizeMethods = (int)stringMethodsSize.Width;
 
             if (separateLinesMethods.Length > 0)

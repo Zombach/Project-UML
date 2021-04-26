@@ -49,11 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Act.cs" />
+    <Compile Include="Core\Enum\Act.cs" />
     <Compile Include="Core\Arrows\ZoneOfArrow.cs" />
-    <Compile Include="Core\Arrows\ZoneType.cs" />
+    <Compile Include="Core\Enum\ZoneType.cs" />
     <Compile Include="Core\Boxes\AbstractBox.cs" />
-    <Compile Include="Core\Boxes\BoxZones.cs" />
+    <Compile Include="Core\Enum\BoxZones.cs" />
     <Compile Include="Core\Boxes\RectangleObject.cs" />
     <Compile Include="Core\Boxes\RectangleClass.cs" />
     <Compile Include="Core\Boxes\RectangleEnum.cs" />
@@ -65,7 +65,6 @@
     <Compile Include="Core\DataProject\Binary\SetMyPath.cs" />
     <Compile Include="Core\DataProject\Binary\SetPathAs.cs" />
     <Compile Include="Core\DataProject\Interfaces\ICoreUMLSettings.cs" />
-    <Compile Include="Core\DataProject\Interfaces\ILogs.cs" />
     <Compile Include="Core\DataProject\Interfaces\IPoint.cs" />
     <Compile Include="Core\DataProject\Json\Deserialize.cs" />
     <Compile Include="Core\DataProject\Json\Serialize.cs" />
@@ -118,7 +117,7 @@
     <Compile Include="Core\Interfaces\Logics\ISelect.cs" />
     <Compile Include="Core\Arrows\AbstractArrow.cs" />
     <Compile Include="Core\Arrows\AggregationArrow.cs" />
-    <Compile Include="Core\Axis.cs" />
+    <Compile Include="Core\Enum\Axis.cs" />
     <Compile Include="Core\Arrows\CompositionArrow.cs" />
     <Compile Include="Core\Arrows\AssociationArrow.cs" />
     <Compile Include="Core\Arrows\ImplementationArrow.cs" />
