@@ -19,8 +19,6 @@ namespace Project_UML.Core.Boxes
     [Serializable]
     public abstract class AbstractBox : IFigure, IGetFont, IChangeFont
     {
-        protected Pen _pen;
-        protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
         /// <summary>
         /// Жестко заданы точки [0] - левая верхняя точка, [1] - правая нижняя точка
         /// </summary>
@@ -41,10 +39,10 @@ namespace Project_UML.Core.Boxes
         /// RectangleText[2] - property
         /// RectangleText[3] - methods
         /// </summary>
-        public List<string> RectangleText = new List<string> {"Name", "Filed", "Property", "Methods"};
+        public List<string> RectangleText = new List<string> { "Name", "Filed", "Property", "Methods" };
         protected Pen _pen;
-        protected Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
-        
+        protected static Pen _selectionPen = new Pen(Color.DodgerBlue, 3);
+
         public BoxZones crntZone;
 
 
@@ -153,6 +151,11 @@ namespace Project_UML.Core.Boxes
             }
         }
 
+        public static void DrawConnectionPoint(Graphics graphics, Point point)
+        {
+            graphics.DrawEllipse(_selectionPen, point.X - 3 / 2, point.Y - 5 / 2, 3, 3);
+        }
+
         public void Move(int deltaX, int deltaY)
         {
             List<Point> newPoints = new List<Point>();
@@ -194,13 +197,13 @@ namespace Project_UML.Core.Boxes
         {
             bool selected = false;
 
-            if (!(startPoint.X > Points[Points.Count - 1].X
+            if (!(startPoint.X > Points[1].X + inaccuracy
                 ||
-                startPoint.Y > Points[Points.Count - 1].Y
+                startPoint.Y > Points[1].Y + inaccuracy
                 ||
-                endPoint.X < Points[0].X
+                endPoint.X < Points[0].X - inaccuracy
                 ||
-                endPoint.Y < Points[0].Y
+                endPoint.Y < Points[0].Y - inaccuracy
                 ))
             {
                 selected = true;
@@ -282,46 +285,145 @@ namespace Project_UML.Core.Boxes
             return new Point((Points[0].X + Points[1].X) / 2, (Points[0].Y + Points[1].Y) / 2);
         }
 
-        public ConnectionPoint GetConnectionPoint(Point point)
+        public ConnectionPoint GetConnectionPoint(Point crntPoint, Point oppositePoint)
         {
-            Point Middle = GetMiddlePoint();
             ConnectionPoint connectionPoint = new ConnectionPoint();
-            int tmpX = Middle.X - point.X;
-            int tmpY = Middle.Y - point.Y;
-
-            if (Math.Abs(tmpX) < Math.Abs(tmpY))
+            connectionPoint.Zone = crntZone;
+            int distance;
+            if (crntZone == BoxZones.Bottom || crntZone == BoxZones.Top)
             {
                 connectionPoint.Axis = Axis.Y;
-                if (tmpY > 0)
+                if (crntPoint.X < Points[0].X + 5)
                 {
-                    connectionPoint.Point = new Point(Middle.X, Points[0].Y);
+                    distance = 5;
+                }
+                else if (crntPoint.X > Points[1].X - 5)
+                {
+                    distance = RectangleWidth - 5;
                 }
                 else
                 {
-                    connectionPoint.Point = new Point(Middle.X, Points[1].Y);
+                    distance = crntPoint.X - Points[0].X;
                 }
+                connectionPoint.DistanceInPercents = distance * 100 / RectangleWidth;
+            }
+            else if (crntZone == BoxZones.Right || crntZone == BoxZones.Left)
+            {
+                connectionPoint.Axis = Axis.X;
+                if (crntPoint.Y < Points[0].Y + 5)
+                {
+                    distance = 5;
+                }
+                else if (crntPoint.Y > Points[1].Y - 5)
+                {
+                    distance = RectangleHeight - 5;
+                }
+                else
+                {
+                    distance = crntPoint.Y - Points[0].Y;
+                }
+                connectionPoint.DistanceInPercents = distance * 100 / RectangleHeight;
             }
             else
             {
-                connectionPoint.Axis = Axis.X;
-                if (tmpX > 0)
+                Point Middle = GetMiddlePoint();
+                int tmpX = Middle.X - oppositePoint.X;
+                int tmpY = Middle.Y - oppositePoint.Y;
+                connectionPoint.DistanceInPercents = 50;
+                if (Math.Abs(tmpX) < Math.Abs(tmpY))
                 {
-                    connectionPoint.Point = new Point(Points[0].X, Middle.Y);
+                    connectionPoint.Axis = Axis.Y;
+                    if (tmpY > 0)
+                    {
+                        connectionPoint.Zone = BoxZones.Top;
+                    }
+                    else
+                    {
+                        connectionPoint.Zone = BoxZones.Bottom;
+                    }
                 }
                 else
                 {
-                    connectionPoint.Point = new Point(Points[1].X, Middle.Y);
+                    connectionPoint.Axis = Axis.X;
+                    if (tmpX > 0)
+                    {
+                        connectionPoint.Zone = BoxZones.Left;
+                    }
+                    else
+                    {
+                        connectionPoint.Zone = BoxZones.Right;
+                    }
                 }
-
             }
+
             return connectionPoint;
         }
+
+        public Point GetCordinatsOfConnectionPoint(ConnectionPoint connectionPoint)
+        {
+            Point point = new Point();
+            switch (connectionPoint.Zone)
+            {
+                case BoxZones.Bottom:
+                    point.X = Points[0].X + RectangleWidth * connectionPoint.DistanceInPercents / 100;
+                    point.Y = Points[1].Y;
+                    break;
+                case BoxZones.Top:
+                    point.X = Points[0].X + RectangleWidth * connectionPoint.DistanceInPercents / 100;
+                    point.Y = Points[0].Y;
+                    break;
+                case BoxZones.Right:
+                    point.X = Points[1].X;
+                    point.Y = Points[0].Y + RectangleHeight * connectionPoint.DistanceInPercents / 100;
+                    break;
+                case BoxZones.Left:
+                    point.X = Points[0].X;
+                    point.Y = Points[0].Y + RectangleHeight * connectionPoint.DistanceInPercents / 100;
+                    break;
+            }
+            return point;
+        }
+
+        //public ConnectionPoint GetConnectionPoint(Point point)
+        //{
+        //    Point Middle = GetMiddlePoint();
+        //    ConnectionPoint connectionPoint = new ConnectionPoint();
+        //    int tmpX = Middle.X - point.X;
+        //    int tmpY = Middle.Y - point.Y;
+
+        //    if (Math.Abs(tmpX) < Math.Abs(tmpY))
+        //    {
+        //        connectionPoint.Axis = Axis.Y;
+        //        if (tmpY > 0)
+        //        {
+        //            connectionPoint.Point = new Point(Middle.X, Points[0].Y);
+        //        }
+        //        else
+        //        {
+        //            connectionPoint.Point = new Point(Middle.X, Points[1].Y);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        connectionPoint.Axis = Axis.X;
+        //        if (tmpX > 0)
+        //        {
+        //            connectionPoint.Point = new Point(Points[0].X, Middle.Y);
+        //        }
+        //        else
+        //        {
+        //            connectionPoint.Point = new Point(Points[1].X, Middle.Y);
+        //        }
+
+        //    }
+        //    return connectionPoint;
+        //}
         public void DrawSpecificRectangle(Graphics graphics, string rectText, Pen _pen, Font font, Brush brush, RectangleF rectF)
         {
             graphics.DrawString(rectText, font, brush, rectF);
             graphics.DrawRectangle(_pen, Rectangle.Round(rectF));
         }
-        
+
         public void Transform(Point e)
         {
             throw new NotImplementedException();

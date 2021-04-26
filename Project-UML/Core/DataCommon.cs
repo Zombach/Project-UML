@@ -14,8 +14,8 @@ namespace Project_UML.Core
     public class DataCommon
     {
         public IFigure Arrow { get; set; }
-        public Point FirstPoint { get; set; }
-        public Point LastPoint { get; set; }
+        public ConnectionPoint FirstPoint { get; set; }
+        public ConnectionPoint LastPoint { get; set; }
         public IFigure FirstBox { get; set; }
         public IFigure LastBox { get; set; }
 
@@ -32,20 +32,5 @@ namespace Project_UML.Core
             LastBox = null;
         }
 
-
-
-        public void Write(Point point, bool isFirstPoint, object sender)
-        {
-            if (isFirstPoint)
-            {                
-                FirstBox = (IFigure)sender;                
-                FirstPoint = point;
-            }
-            else
-            {                
-                LastBox = (IFigure)sender;                
-                LastPoint = point;
-            }
-        }
     }
 }
