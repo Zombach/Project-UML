@@ -9,9 +9,9 @@ namespace CheckSelection.Tests
     public class CheckSelectionTests
     {
         [TestCaseSource(typeof(CheckSelectionTestSource))]
-        public void CheckSelection_WhenPointNotNull_ShouldReturnBool(AbstractArrow arrow, Point startpoint, Point endpoint, bool expected)
+        public void CheckSelection_WhenPointNotNull_ShouldReturnBool(AbstractArrow Arrow, Point startpoint, Point endpoint, bool expected)
         {
-            bool actual = arrow.CheckSelection(startpoint, endpoint);
+            bool actual = Arrow.CheckSelection(startpoint, endpoint);
             Assert.AreEqual(expected, actual);
         }
     }

@@ -9,10 +9,10 @@ namespace ReverseTests.Tests
     public class ReverseTestsTests
     {
         [TestCaseSource(typeof(ReverseTestsTestSource))]
-        public void Reverse_WhenAlways_ShouldReverse(AggregationArrow arrow, AggregationArrow expected)
+        public void Reverse_WhenAlways_ShouldReverse(AggregationArrow Arrow, AggregationArrow expected)
         {
-            arrow.Reverse();
-            AggregationArrow actual = arrow;
+            Arrow.Reverse();
+            AggregationArrow actual = Arrow;
             Assert.AreEqual(expected, actual);
         }
     }

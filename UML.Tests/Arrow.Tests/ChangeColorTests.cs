@@ -9,10 +9,10 @@ namespace ChangeColor.Tests
     public class ChangeColorTests
     {
         [TestCaseSource(typeof(ChangeColorTestSource))]
-        public void ChangeColor_WhenAlways_ShouldChangeColor(AggregationArrow arrow, Color newColor, Color expected)
+        public void ChangeColor_WhenAlways_ShouldChangeColor(AggregationArrow Arrow, Color newColor, Color expected)
         {
-            arrow.ChangeColor(newColor);
-            Color actual = arrow.GetColor();
+            Arrow.ChangeColor(newColor);
+            Color actual = Arrow.GetColor();
             Assert.AreEqual(expected, actual);
         }
     }
