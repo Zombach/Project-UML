@@ -650,8 +650,7 @@ namespace Project_UML.Core.FormsUML
             if (comboBox1.SelectedItem != null && _crntMH.CoreUML.SelectedFigures != null)
             {
                 string selectedArea = comboBox1.SelectedItem.ToString();
-
-                string areaText = richTextBox1.Text;
+                
                 switch (selectedArea)
                 {
                     case "Name":
