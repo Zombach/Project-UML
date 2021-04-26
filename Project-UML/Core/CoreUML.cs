@@ -51,6 +51,7 @@ namespace Project_UML.Core
         /// </summary>
         public List<IFigure> SelectedFigures { get; set; }
         public List<IFigure> TmpFigures { get; set; }
+        public List<IFigure> TempFig { get; set; }
         /// <summary>
         /// лист действий с фигурами, стрелками на холсте, для отмены действий.
         /// </summary>
@@ -309,10 +310,76 @@ namespace Project_UML.Core
             UpdPicture();
         }
 
-        public void SaveImage()
+        public void SwapTypeArrow()
         {
-            _coreUML.BitmapMain.Save(MyPathImage, ImageFormat.Jpeg);
+            string[] typeArrow = new string[5]
+            {
+                "Project_UML.Core.Arrows.AggregationArrow",
+                "Project_UML.Core.Arrows.AssociationArrow",
+                "Project_UML.Core.Arrows.CompositionArrow",
+                "Project_UML.Core.Arrows.ImplementationArrow",
+                "Project_UML.Core.Arrows.InheritanceArrow"
+            };
+            IFigure newFigure = null;
+            TempFig = new List<IFigure>();
+            foreach (IFigure figure in SelectedFigures)
+            {
+                if (figure is AbstractArrow arrow)
+                {
+                    WriteLogs(arrow, false);                    
+
+                    for (int i = 0; i < typeArrow.Length; i++)
+                    {
+                        if (typeArrow[i] == arrow.GetType().FullName)
+                        {
+                            int tmp = i + 1;
+                            if (tmp == 5)
+                            {
+                                tmp = 1;
+                            }
+                            var newArrow = Activator.CreateInstance(Type.GetType(typeArrow[tmp]), (IFigure)arrow);
+                            newFigure = (AbstractArrow)newArrow;
+                            break;
+                        }
+                    }
+                    WriteLogs(newFigure, true);
+                    TempFig.Add(newFigure);
+                    Figures.Remove(arrow);
+                    Figures.Add(newFigure);
+                }
+                else
+                {
+                    TempFig.Add(figure);
+                }
+            }
+            SelectedFigures.Clear();
+            SelectedFigures.AddRange(TempFig);
+            UpdPicture();
         }
+
+        public void SaveImagePrepaire(bool isAs = false)
+        {
+            if (!isAs)
+            {
+                SetMyPath pathImage = new SetMyPath();
+                pathImage.MyPathImage();
+            }
+            else
+            {
+                SetPathAs setPathAs = new SetPathAs();
+                setPathAs.SetPathImage();
+            }
+            if (_coreUML.MyPathImage != "" && _coreUML.MyPathImage != null)
+            {
+                _coreUML.SaveImage();
+                MessageBox.Show("Изображение сохранено");
+            }
+            else
+            {
+                MessageBox.Show("Не удалось сохранить изображение");
+            }
+        }
+        
 
         public static bool SaveDate()
         {
@@ -456,6 +523,11 @@ namespace Project_UML.Core
             _coreUML.SelectedFigures.Clear();
             project.Show();
             project.Loading(_data);
+        }
+
+        private void SaveImage()
+        {
+            _coreUML.BitmapMain.Save(MyPathImage, ImageFormat.Jpeg);
         }
 
         private StructSettings SettingEquals(StructSettings setting)

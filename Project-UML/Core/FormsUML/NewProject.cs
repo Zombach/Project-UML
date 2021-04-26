@@ -251,6 +251,7 @@ namespace Project_UML.Core.FormsUML
 
         private void ButtonClear_Click(object sender, EventArgs e)
         {
+            #region OLD CODE
             //_act = Act.Clear;
             //if (!(_currentArrow is null))
             //{
@@ -258,6 +259,7 @@ namespace Project_UML.Core.FormsUML
             //    _currentArrow = null;
             //UpdPicture();
             //}
+            #endregion
             foreach (IFigure figure in _coreUML.SelectedFigures)
             {
                 _coreUML.WriteLogs(figure, false);
@@ -373,8 +375,10 @@ namespace Project_UML.Core.FormsUML
                         Press_L();                        
                         return;
                     case Keys.P:
-                        _coreUML.SaveImage();
-                        MessageBox.Show("Изображение сохранено");
+                        _coreUML.SaveImagePrepaire();
+                        return;
+                    case Keys.T:
+                        Press_T();
                         return;
                 } 
             }
@@ -441,6 +445,11 @@ namespace Project_UML.Core.FormsUML
             {
                 MessageBox.Show("Сохраненых предыдущих дейстий нет");
             }
+        }
+
+        private void Press_T()
+        {
+            _coreUML.SwapTypeArrow();
         }
 
         private void UndoAct(LogActs log, List<LogActs> list)
@@ -671,17 +680,7 @@ namespace Project_UML.Core.FormsUML
 
         private void SaveImage_Click(object sender, EventArgs e)
         {
-            SetMyPath pathImage = new SetMyPath();
-            pathImage.MyPathImage();
-            if (_coreUML.MyPathImage != "")
-            {
-                _coreUML.SaveImage();
-                MessageBox.Show("Изображение сохранено");
-            }
-            else
-            {
-                MessageBox.Show("Не удалось сохранить изображение");
-            }
+            _coreUML.SaveImagePrepaire();
         }
         private void NewProject_FormClosing(Object sender, FormClosingEventArgs e)
         {

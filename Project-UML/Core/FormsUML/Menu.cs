@@ -116,17 +116,7 @@ namespace Project_UML.Core.FormsUML
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _setPathAs = new SetPathAs();
-            _setPathAs.SetPathImage();
-            if(_coreUML.MyPathImage != "")
-            {
-                _coreUML.SaveImage();
-                MessageBox.Show("Изображение сохранено");
-            }
-            else
-            {
-                MessageBox.Show("Не удалось сохранить изображение");
-            }
+            _coreUML.SaveImagePrepaire(true);
         }
     }
 }
