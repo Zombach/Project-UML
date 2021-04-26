@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -109,6 +110,11 @@ namespace Project_UML.Core.FormsUML
         {
             _project.Enabled = true;
             Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _coreUML.BitmapMain.Save(@"C:\Users\Andrew\source\repos\Zombach\Project-UML\Project-UML\Save\100.jpg", ImageFormat.Jpeg);
         }
     }
 }

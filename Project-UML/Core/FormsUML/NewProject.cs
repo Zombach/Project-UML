@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using Project_UML.Core.Boxes;
 
+
 namespace Project_UML.Core.FormsUML
 {
     /// <summary>
@@ -385,6 +386,10 @@ namespace Project_UML.Core.FormsUML
                     case Keys.L:
                         Press_L();                        
                         return;
+                    case Keys.P:
+                        _coreUML.SaveImage();
+                        MessageBox.Show("Изображение сохранено");
+                        return;
                 } 
             }
 
@@ -689,5 +694,10 @@ namespace Project_UML.Core.FormsUML
             PreparationFont();
         }
 
+        private void buttonSaveImage_Click(object sender, EventArgs e)
+        {
+            _coreUML.SaveImage();
+            MessageBox.Show("Изображение сохранено");
+        }
     }
 }

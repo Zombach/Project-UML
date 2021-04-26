@@ -9,5 +9,5 @@
     "X": 5,
     "Y": 5
   },
-  "Path": "C:\\Users\\ZLoo\\source\\Repos\\Project-UML\\Project-UML\\Save\\saq.dddd"
+  "Path": "C:\\Users\\Andrew\\source\\repos\\Zombach\\Project-UML\\Project-UML\\Save\\Save_26.04.2021 17.20.01.Мы-Програмист"
 }
