@@ -29,6 +29,7 @@ namespace Project_UML.Core.FormsUML
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.NewProject = new System.Windows.Forms.Button();
             this.AboutUs = new System.Windows.Forms.Button();
             this.ExitProgramm = new System.Windows.Forms.Button();
@@ -97,6 +98,7 @@ namespace Project_UML.Core.FormsUML
             this.Controls.Add(this.ExitProgramm);
             this.Controls.Add(this.NewProject);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(280, 376);
             this.MinimumSize = new System.Drawing.Size(280, 376);
             this.Name = "MainMenu";

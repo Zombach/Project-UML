@@ -29,6 +29,7 @@ namespace Project_UML.Core.FormsUML
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(License));
             this.LicenseText = new System.Windows.Forms.ListBox();
             this.License_CheckBox = new System.Windows.Forms.CheckBox();
             this.CreateProject_Button = new System.Windows.Forms.Button();
@@ -77,6 +78,7 @@ namespace Project_UML.Core.FormsUML
             this.Controls.Add(this.CreateProject_Button);
             this.Controls.Add(this.License_CheckBox);
             this.Controls.Add(this.LicenseText);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(456, 800);
             this.MinimumSize = new System.Drawing.Size(456, 296);

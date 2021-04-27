@@ -29,6 +29,7 @@ namespace Project_UML.Core.FormsUML
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Help));
             this.HelpText = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
@@ -49,6 +50,7 @@ namespace Project_UML.Core.FormsUML
             this.ClientSize = new System.Drawing.Size(302, 389);
             this.ControlBox = false;
             this.Controls.Add(this.HelpText);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(1550, 50);
@@ -57,7 +59,6 @@ namespace Project_UML.Core.FormsUML
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(318, 428);
             this.Name = "Help";
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Help";

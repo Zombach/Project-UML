@@ -29,6 +29,7 @@ namespace Project_UML.Core.FormsUML
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.Save = new System.Windows.Forms.Button();
             this.SaveAs = new System.Windows.Forms.Button();
             this.LoadLast = new System.Windows.Forms.Button();
@@ -170,6 +171,7 @@ namespace Project_UML.Core.FormsUML
             this.Controls.Add(this.LoadLast);
             this.Controls.Add(this.SaveAs);
             this.Controls.Add(this.Save);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(362, 262);
             this.MinimumSize = new System.Drawing.Size(362, 262);
