@@ -404,7 +404,29 @@ namespace Project_UML.Core.FormsUML
                 case Keys.F1:
                     Press_F1();
                     return;
+                case Keys.Q:
+                    Press_Q();
+                    return;
+                case Keys.W:
+                    Press_W();
+                    return;
+                case Keys.E:
+                    Press_E();
+                    return;
             }
+        }
+
+        private void Press_E()
+        {
+            _crntMH = new MouseHandlerOnSelection();
+        }
+        private void Press_W()
+        {
+            _crntMH = new MouseHandlerOnMove();
+        }
+        private void Press_Q()
+        {
+            _crntMH = new MouseHandlerOnTransform();
         }
 
         private void Press_Revert_Z(List<LogActs> logs)

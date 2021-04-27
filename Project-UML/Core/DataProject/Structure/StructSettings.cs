@@ -13,7 +13,7 @@ namespace Project_UML.Core.DataProject.Structure
         public Color DefaultColor { get; set; }
         public Font DefaultFont { get; set; }
         public int DefaultWidth { get; set; }
-        public int DefaultSize { get; set; }
+        //public int DefaultSize { get; set; }
         public Step DefaultStep { get; set; }
         public string Path { get; set; }
 
@@ -23,7 +23,7 @@ namespace Project_UML.Core.DataProject.Structure
             DefaultColor = coreUML.DefaultColor;
             DefaultFont = coreUML.DefaultFont;
             DefaultWidth = coreUML.DefaultWidth;
-            DefaultSize = coreUML.DefaultSize;
+            //DefaultSize = coreUML.DefaultSize;
             DefaultStep = new Step(coreUML.DefaultStep);
             Path = coreUML.MyPath;
         }

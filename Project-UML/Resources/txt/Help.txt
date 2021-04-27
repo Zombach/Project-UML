@@ -4,7 +4,9 @@
                             Escape : Запуск меню
 
          СПИСОК КОМБИНАЦИЙ ГОРЯЧИХ КЛАВИШ
-
+                               "Q"             : Режим Трансформ
+                               "W"            : Режим Движения
+                               "E"             : Режим Выделения					 
          Control +   "WheelUp"     : ZoomUp
          Control +  "WheelDown" : ZoomDown
          Control +         "+"            : ZoomUp

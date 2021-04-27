@@ -32,7 +32,6 @@ namespace Project_UML.Core.DataProject.Structure
             Data = new List<IDataCommon>();
             for (int i = 0; i < arrow.DataCommon.Count; i++)
             {
-                Data = new List<IDataCommon>();
                 StructDataCommon structData = new StructDataCommon(arrow.DataCommon[i]);
                 Data.Add(structData);
             }

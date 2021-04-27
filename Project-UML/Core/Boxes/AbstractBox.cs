@@ -8,6 +8,7 @@ using Project_UML.Core.Arrows;
 using Project_UML.Core.DataProject.Structure;
 using Project_UML.Core.Interfaces.Draws;
 using Project_UML.Core.Enum;
+using Project_UML.Core.DataProject.Interfaces;
 
 namespace Project_UML.Core.Boxes
 {
@@ -25,6 +26,7 @@ namespace Project_UML.Core.Boxes
         public List<Point> Points { get; set; } = new List<Point>();
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
         public List<DataText> DataText { get; set; } = new List<DataText>();
+        public List<IDataCommon> IDataCommon { get; set; } = new List<IDataCommon>();
         protected Font[] Font { get; set; } = new Font[]
         {
                 CoreUML.GetCoreUML().DefaultFont,
@@ -62,28 +64,6 @@ namespace Project_UML.Core.Boxes
             _pen = new Pen(color, width); 
             RectangleWidth = 105;
         }
-
-        /// <summary>
-        /// Конструктор для развертывания фигуры по структуре
-        /// </summary>
-        /// <param name="box"></param>
-        public AbstractBox(StructBox box)
-        {
-            _pen = new Pen(box.Color, box.Width);
-            for (int i = 0; i < box.Points.Count; i++)
-            {
-                Point point = new Point(box.Points[i].Point_X, box.Points[i].Point_Y);
-                Points.Add(point);
-            }
-            Font = box.Font;
-            RectangleWidth = SizeWidth();
-            RectangleHeight = SizeHeight();
-            RectNameHeight = 20;
-            RectFieldHeight = 20;
-            RectPropertyHeight = 20;
-            RectMethodsHeight = 40;
-        }
-
         public AbstractBox(IFigure figure)
         {
             AbstractBox box = (AbstractBox)figure;
@@ -100,6 +80,24 @@ namespace Project_UML.Core.Boxes
             RectFieldHeight = box.RectFieldHeight;
             RectPropertyHeight = box.RectPropertyHeight;
             RectMethodsHeight = box.RectMethodsHeight;
+        }
+
+        /// <summary>
+        /// Конструктор для развертывания фигуры по структуре
+        /// </summary>
+        /// <param name="box"></param>
+        public AbstractBox(StructBox box)
+        {
+            _pen = new Pen(box.Color, box.Width);
+            for (int i = 0; i < box.Points.Count; i++)
+            {
+                Point point = new Point(box.Points[i].Point_X, box.Points[i].Point_Y);
+                Points.Add(point);
+            }
+            Font = box.Font;
+            RectangleWidth = SizeWidth();
+            RectangleHeight = SizeHeight();
+            IDataCommon = box.Data;
         }
 
 

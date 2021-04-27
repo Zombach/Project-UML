@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_UML.Core.DataProject.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -12,15 +13,14 @@ namespace Project_UML.Core.Interfaces
     /// </summary>
     public interface IFigure : IFigureLogics, IFigureDraws, IGetParametr
     {
+        List<Point> Points { get; set; }
+        List<DataCommon> DataCommon { get; set; }
+        List<IDataCommon> IDataCommon { get; set; }
         void Select(Graphics graphics);
         bool CheckSelection(Point startPoint, Point endPoint, int inaccuracy = 0);
 
         void Transform(Point e);
 
         Point GetMiddlePoint();
-
-        List<Point> Points { get; set; }
-        List<DataCommon> DataCommon { get; set; }
-
     }
 }

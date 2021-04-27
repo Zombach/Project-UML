@@ -3,11 +3,10 @@
   "DefaultColor": "255, 0, 128",
   "DefaultFont": "Microsoft YaHei, 8.25pt",
   "DefaultWidth": 1,
-  "DefaultSize": 15,
   "DefaultStep": {
     "$type": "Project_UML.Core.Step, Project-UML",
     "X": 5,
     "Y": 5
   },
-  "Path": "C:\\Users\\ZLoo\\source\\Repos\\Project-UML\\Project-UML\\Save\\Save_27.04.2021 3.04.44.Мы-Програмист"
+  "Path": "C:\\Users\\ZLoo\\source\\Repos\\Project-UML\\Project-UML\\Save\\Save_27.04.2021 5.00.21.Мы-Програмист"
 }

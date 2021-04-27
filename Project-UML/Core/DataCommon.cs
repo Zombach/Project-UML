@@ -1,4 +1,5 @@
 ﻿using Project_UML.Core.Arrows;
+using Project_UML.Core.Boxes;
 using Project_UML.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,8 @@ namespace Project_UML.Core
             Arrow = null;
             FirstBox = null;
             LastBox = null;
+            FirstPoint = null;
+            LastPoint = null;
         }
         public DataCommon(AbstractArrow arrow)
         {
@@ -31,6 +34,5 @@ namespace Project_UML.Core
             FirstBox = null;
             LastBox = null;
         }
-
     }
 }

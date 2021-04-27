@@ -38,7 +38,6 @@ namespace Project_UML.Core.DataProject.Structure
             Data = new List<IDataCommon>();
             for (int i = 0; i < box.DataCommon.Count; i++)
             {
-                Data = new List<IDataCommon>();
                 StructDataCommon structData = new StructDataCommon(box.DataCommon[i]);
                 Data.Add(structData);
             }
