@@ -97,10 +97,12 @@ namespace Project_UML.Core.FormsUML
             this.Controls.Add(this.ExitProgramm);
             this.Controls.Add(this.NewProject);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MaximumSize = new System.Drawing.Size(280, 376);
+            this.MinimumSize = new System.Drawing.Size(280, 376);
             this.Name = "MainMenu";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainMenu_FormClosing);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UML Manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainMenu_FormClosing);
             this.ResumeLayout(false);
 
         }

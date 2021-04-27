@@ -8,5 +8,7 @@
         int FirstBox { get; set; }
         int LastBox { get; set; }
         int Arrow { get; set; }
+        ConnectionPoint FirstPoint { get; set; }
+        ConnectionPoint LastPoint { get; set; }
     }
 }

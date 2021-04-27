@@ -231,7 +231,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\txt\" />
-    <Folder Include="Save\" />
+    <Folder Include="Save\Encrypt\" />
+    <Folder Include="Save\Image\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

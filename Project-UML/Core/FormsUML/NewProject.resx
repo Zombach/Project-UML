@@ -226,7 +226,7 @@
     <value>0</value>
   </data>
   <data name="GroupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 198</value>
+    <value>12, 167</value>
   </data>
   <data name="GroupBox2.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 66</value>
@@ -346,7 +346,7 @@
     <value>21</value>
   </data>
   <data name="ButtonSelect.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 136</value>
+    <value>6, 896</value>
   </data>
   <data name="ButtonSelect.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 25</value>
@@ -370,7 +370,7 @@
     <value>20</value>
   </data>
   <data name="ButtonClear.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 167</value>
+    <value>6, 927</value>
   </data>
   <data name="ButtonClear.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 25</value>
@@ -394,7 +394,7 @@
     <value>19</value>
   </data>
   <data name="ButtonColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 198</value>
+    <value>137, 167</value>
   </data>
   <data name="ButtonColor.Size" type="System.Drawing.Size, System.Drawing">
     <value>25, 25</value>
@@ -421,7 +421,7 @@
     <value>133, 17</value>
   </metadata>
   <data name="ButtonImplementation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 364</value>
+    <value>8, 136</value>
   </data>
   <data name="ButtonImplementation.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 25</value>
@@ -445,7 +445,7 @@
     <value>16</value>
   </data>
   <data name="ButtonRectangleObject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 395</value>
+    <value>8, 418</value>
   </data>
   <data name="ButtonRectangleObject.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 25</value>
@@ -469,7 +469,7 @@
     <value>17</value>
   </data>
   <data name="ButtonRectangleEnum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 426</value>
+    <value>8, 449</value>
   </data>
   <data name="ButtonRectangleEnum.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 25</value>
@@ -493,7 +493,7 @@
     <value>15</value>
   </data>
   <data name="ButtonRectangleInterface.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 457</value>
+    <value>8, 480</value>
   </data>
   <data name="ButtonRectangleInterface.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 25</value>
@@ -517,7 +517,7 @@
     <value>14</value>
   </data>
   <data name="ButtonRectangleClass.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 488</value>
+    <value>8, 511</value>
   </data>
   <data name="ButtonRectangleClass.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 25</value>
@@ -544,7 +544,7 @@
     <value>NoControl</value>
   </data>
   <data name="ButtonTransform.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 609</value>
+    <value>6, 831</value>
   </data>
   <data name="ButtonTransform.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 25</value>
@@ -571,7 +571,7 @@
     <value>NoControl</value>
   </data>
   <data name="ButtonMove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 689</value>
+    <value>6, 862</value>
   </data>
   <data name="ButtonMove.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 25</value>
@@ -619,7 +619,7 @@
     <value>0</value>
   </data>
   <data name="GroupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 266</value>
+    <value>12, 235</value>
   </data>
   <data name="GroupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 66</value>
@@ -655,7 +655,7 @@
     <value>Methods</value>
   </data>
   <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 730</value>
+    <value>8, 553</value>
   </data>
   <data name="comboBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 21</value>
@@ -676,7 +676,7 @@
     <value>9</value>
   </data>
   <data name="richTextBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 757</value>
+    <value>8, 580</value>
   </data>
   <data name="richTextBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 96</value>
@@ -700,7 +700,7 @@
     <value>8</value>
   </data>
   <data name="buttonUpdateRectText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 859</value>
+    <value>8, 682</value>
   </data>
   <data name="buttonUpdateRectText.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 23</value>
@@ -724,7 +724,7 @@
     <value>7</value>
   </data>
   <data name="FontChange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 334</value>
+    <value>8, 302</value>
   </data>
   <data name="FontChange.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 24</value>
@@ -754,7 +754,7 @@
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="FontBold.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 255</value>
+    <value>140, 224</value>
   </data>
   <data name="FontBold.Size" type="System.Drawing.Size, System.Drawing">
     <value>21, 20</value>
@@ -784,7 +784,7 @@
     <value>False</value>
   </data>
   <data name="FontSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 307</value>
+    <value>140, 276</value>
   </data>
   <data name="FontSize.Size" type="System.Drawing.Size, System.Drawing">
     <value>21, 20</value>
@@ -814,7 +814,7 @@
     <value>Microsoft Sans Serif, 8.25pt, style=Italic</value>
   </data>
   <data name="FontItalic.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 281</value>
+    <value>140, 250</value>
   </data>
   <data name="FontItalic.Size" type="System.Drawing.Size, System.Drawing">
     <value>21, 20</value>
@@ -847,7 +847,7 @@
     <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
   <data name="FontUnderline.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 229</value>
+    <value>140, 198</value>
   </data>
   <data name="FontUnderline.Size" type="System.Drawing.Size, System.Drawing">
     <value>21, 20</value>
@@ -874,7 +874,7 @@
     <value>2</value>
   </data>
   <data name="buttonGetCurrentText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 888</value>
+    <value>8, 711</value>
   </data>
   <data name="buttonGetCurrentText.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 23</value>
@@ -898,7 +898,7 @@
     <value>1</value>
   </data>
   <data name="buttonSaveImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 958</value>
+    <value>6, 958</value>
   </data>
   <data name="buttonSaveImage.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 23</value>

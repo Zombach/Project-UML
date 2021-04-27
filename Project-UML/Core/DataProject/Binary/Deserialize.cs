@@ -14,21 +14,27 @@ namespace Project_UML.Core.DataProject.Binary
         private CoreUML _coreUML = CoreUML.GetCoreUML();
         public PreparationData DeserializationDictionary()
         {
-            using (FileStream fileStream = new FileStream(_coreUML.MyPath, FileMode.Open, FileAccess.Read, FileShare.None))
+            try
             {
-                BinaryFormatter binary = new BinaryFormatter();
-                PreparationData data = null;
-                try
+                using (FileStream fileStream = new FileStream(_coreUML.MyPath, FileMode.Open, FileAccess.Read, FileShare.None))
                 {
-                    data = (PreparationData)binary.Deserialize(fileStream);
+                    BinaryFormatter binary = new BinaryFormatter();
+                    PreparationData data = null;
+                    {
+                        data = (PreparationData)binary.Deserialize(fileStream);
+                    }
+                    fileStream.Close();
+                    return data;
                 }
-                catch
-                {
-                    MessageBox.Show("Не корректная дата, выберите другое сохранение");
-                }
-                fileStream.Close();
-                return data;
+                
+
             }
+            catch
+            {
+                MessageBox.Show("Не корректная дата, выберите другое сохранение");
+                return null;
+            }
+            
         }
     }
 }

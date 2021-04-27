@@ -9,6 +9,7 @@ using Project_UML.Core.DataProject.Structure;
 using Project_UML.Core.Interfaces;
 using Project_UML.Core.Interfaces.Get;
 using Project_UML.Core.Enum;
+using Project_UML.Core.DataProject.Interfaces;
 
 namespace Project_UML.Core.Arrows
 {
@@ -26,6 +27,7 @@ namespace Project_UML.Core.Arrows
         public Axis EndDirectionAxis { get; set; } = Axis.X;
         public List<Point> Points { get; set; } = new List<Point>();
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
+        public List<IDataCommon> IDataCommon { get; set; } = new List<IDataCommon>();
 
         public ZoneOfArrow SelectedZone { get; set; }
 
@@ -76,8 +78,10 @@ namespace Project_UML.Core.Arrows
                 Point point = new Point(arrow.Points[i].Point_X, arrow.Points[i].Point_Y);
                 Points.Add(point);
             }
+            IDataCommon = arrow.Data;
             SetEndCap();
         }
+
 
         public virtual void SetEndCap()
         {
@@ -453,6 +457,10 @@ namespace Project_UML.Core.Arrows
 
         public override bool Equals(object obj)
         {
+            if (obj is AbstractBox)
+            {
+                return false;
+            }
             AbstractArrow arrow = (AbstractArrow)obj;
             for (int i = 0; i < Points.Count; i++)
             {

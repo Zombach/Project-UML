@@ -1,4 +1,5 @@
 ﻿using Project_UML.Core.DataProject.Binary;
+using Project_UML.Core.Encrypting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -84,7 +85,17 @@ namespace Project_UML.Core.FormsUML
         {
             _getPathAs = new GetPathAs();
             _getPathAs.GetPathEncrypt();
-            string sss = _coreUML.MyPathEncrypt;
+            EncryptSaving save = new EncryptSaving();
+            if(save.StartEncrypt() == true)
+            {
+                MessageBox.Show("Зашифровано успешно. Путь к файлу:\n" +
+                    $"{_coreUML.MyPathEncryptSave}");
+                _coreUML.MyPathEncryptSave = "";
+            }
+            else
+            {
+                MessageBox.Show("Ошибка шифрования");
+            }
         }
         private void Menu_FormClosing(Object sender, FormClosingEventArgs e)
         {
@@ -114,9 +125,31 @@ namespace Project_UML.Core.FormsUML
             Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SaveAsImage_Click(object sender, EventArgs e)
         {
             _coreUML.SaveImagePrepaire(true);
+        }
+
+        private void Decrypt_Click(object sender, EventArgs e)
+        {
+            _getPathAs = new GetPathAs();
+            _getPathAs.GetPathEncrypt();
+            DecryptSaving save = new DecryptSaving();
+            if (save.StartDecrypt() == true)
+            {
+                MessageBox.Show("Расшифровано успешно. Путь к файлу:\n" +
+                    $"{_coreUML.MyPath}");
+                _coreUML.MyPathEncryptSave = "";
+            }
+            else
+            {
+                MessageBox.Show("Ошибка шифрования");
+            }
+        }
+
+        private void SaveImage_Click(object sender, EventArgs e)
+        {
+            _coreUML.SaveImagePrepaire();
         }
     }
 }

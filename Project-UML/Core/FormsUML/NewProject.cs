@@ -404,7 +404,29 @@ namespace Project_UML.Core.FormsUML
                 case Keys.F1:
                     Press_F1();
                     return;
+                case Keys.Q:
+                    Press_Q();
+                    return;
+                case Keys.W:
+                    Press_W();
+                    return;
+                case Keys.E:
+                    Press_E();
+                    return;
             }
+        }
+
+        private void Press_E()
+        {
+            _crntMH = new MouseHandlerOnSelection();
+        }
+        private void Press_W()
+        {
+            _crntMH = new MouseHandlerOnMove();
+        }
+        private void Press_Q()
+        {
+            _crntMH = new MouseHandlerOnTransform();
         }
 
         private void Press_Revert_Z(List<LogActs> logs)
@@ -627,16 +649,16 @@ namespace Project_UML.Core.FormsUML
                 switch (selectedArea)
                     {
                         case "Name":                            
-                            _coreUML.ChangeName(areaText, 0);
+                            _coreUML.ChangeName(areaText, 0, selectedArea);
                         break;
                         case "Field":
-                            _coreUML.ChangeName(areaText, 1);
+                            _coreUML.ChangeName(areaText, 1, selectedArea);
                             break;
                         case "Property":
-                            _coreUML.ChangeName(areaText, 2);
+                            _coreUML.ChangeName(areaText, 2, selectedArea);
                             break;
                         case "Methods":
-                            _coreUML.ChangeName(areaText, 3);
+                            _coreUML.ChangeName(areaText, 3, selectedArea);
                             break;
                     }
             }

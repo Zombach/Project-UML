@@ -10,10 +10,11 @@ namespace Project_UML.Core.DataProject.Binary
 {
     public class SetMyPath
     {
+        private DateTime _dateTime;
         private CoreUML _coreUML = CoreUML.GetCoreUML();
         public void MyPath()
         {
-            DateTime _dateTime = DateTime.Now;
+            _dateTime = DateTime.Now;
             string _tmpName = $"../../Save/Save_{_dateTime}.Мы-Програмист";
             Regex regex = new Regex(":");
             _tmpName = regex.Replace(_tmpName, ".");
@@ -24,11 +25,20 @@ namespace Project_UML.Core.DataProject.Binary
 
         public void MyPathImage()
         {
-            DateTime _dateTime = DateTime.Now;
+            _dateTime = DateTime.Now;
             string _tmpName = $"../../Save/Image/Image_{_dateTime}.jpg";
             Regex regex = new Regex(":");
             _tmpName = regex.Replace(_tmpName, ".");
             _coreUML.MyPathImage = Path.GetFullPath(_tmpName);
+        }
+
+        public void MyPathEncrypt()
+        {
+            _dateTime = DateTime.Now;
+            string _tmpName = $"../../Save/Encrypt/Encry{_dateTime}.key";
+            Regex regex = new Regex(":");
+            _tmpName = regex.Replace(_tmpName, ".");
+            _coreUML.MyPathEncryptSave = Path.GetFullPath(_tmpName);
         }
     }
 }

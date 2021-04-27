@@ -39,8 +39,10 @@ namespace Project_UML.Core
         public int DefaultSize { get; set; }
         public string MyPath { get; set; }
         public string MyPathEncrypt { get; set; }
+        public string MyPathEncryptSave { get; set; }
         public string MyPathSettings { get; set; }
         public string MyPathImage { get; set; }
+        public string TmpKeyEncript { get; set; }
 
         /// <summary>
         /// Общий лист всех фигур, стрелок на холсте
@@ -83,8 +85,9 @@ namespace Project_UML.Core
             DefaultStep = new Step(5, 5);
             MyPath = "";            
             MyPathSettings = @"../../Resources/txt/Settings.txt";
-            MyPathEncrypt = @"../../Resources/txt/";
+            MyPathEncryptSave = @"../../Save/Encrypt/";
             MyPathImage = @"../../Save/Image/";
+            TmpKeyEncript = "";
             IsLicense = false;
         }
 
@@ -146,7 +149,10 @@ namespace Project_UML.Core
             Graphics.Clear(Color.White);
             foreach (IFigure figure in Figures)
             {
-                figure.Draw(Graphics);
+                if (figure != null)
+                {
+                    figure.Draw(Graphics);
+                }
             }
             if (SelectedFigures.Count != 0)
             {
@@ -407,7 +413,6 @@ namespace Project_UML.Core
                 {
                     Loading(menu);
                 }
-                
             }
             return _data;
         }
@@ -419,7 +424,7 @@ namespace Project_UML.Core
                 StructSettings EqSetting = SettingEquals(setting);
                 DefaultColor = EqSetting.DefaultColor;
                 DefaultFont = EqSetting.DefaultFont;
-                DefaultSize = EqSetting.DefaultSize;
+                //DefaultSize = EqSetting.DefaultSize;
                 DefaultStep = EqSetting.DefaultStep;
                 DefaultWidth = EqSetting.DefaultWidth;
                 MyPath = EqSetting.Path;
@@ -433,14 +438,18 @@ namespace Project_UML.Core
             return step;
         }
 
-        public void ChangeName(string name, int index)
-        {
+        public void ChangeName(string text, int index, string name)
+        {            
             foreach (IFigure figure in SelectedFigures)
-            if (figure is AbstractBox box)
             {
-                WriteLogs(box, false);
-                box.RectangleText[index] = name;
-                WriteLogs(box, true);
+                if (figure is AbstractBox box)
+                {
+                    WriteLogs(box, false);
+                    box.ChangeFont(_coreUML.DefaultFont, name);
+                    //box.ChangeColorText(_coreUML.DefaultColor, name);
+                    box.RectangleText[index] = text;
+                    WriteLogs(box, true);
+                }
             }
             UpdPicture();
         }
@@ -540,10 +549,10 @@ namespace Project_UML.Core
             {
                 setting.DefaultFont = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
             }
-            if (setting.DefaultSize < -20 || setting.DefaultSize > 20)
-            {
-                setting.DefaultSize = 0;
-            }
+            //if (setting.DefaultSize < -20 || setting.DefaultSize > 20)
+            //{
+            //    setting.DefaultSize = 0;
+            //}
             if (setting.DefaultStep == null)
             {
                 setting.DefaultStep = new Step(5);

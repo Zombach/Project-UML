@@ -36,16 +36,21 @@ namespace Project_UML.Core.FormsUML
             // 
             // LicenseText
             // 
+            this.LicenseText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LicenseText.FormattingEnabled = true;
-            this.LicenseText.Location = new System.Drawing.Point(49, 12);
+            this.LicenseText.Location = new System.Drawing.Point(34, 63);
+            this.LicenseText.MaximumSize = new System.Drawing.Size(361, 780);
+            this.LicenseText.MinimumSize = new System.Drawing.Size(361, 160);
             this.LicenseText.Name = "LicenseText";
-            this.LicenseText.Size = new System.Drawing.Size(327, 147);
+            this.LicenseText.Size = new System.Drawing.Size(361, 160);
             this.LicenseText.TabIndex = 0;
             // 
             // License_CheckBox
             // 
             this.License_CheckBox.AutoSize = true;
-            this.License_CheckBox.Location = new System.Drawing.Point(135, 165);
+            this.License_CheckBox.Location = new System.Drawing.Point(34, 22);
             this.License_CheckBox.Name = "License_CheckBox";
             this.License_CheckBox.Size = new System.Drawing.Size(152, 17);
             this.License_CheckBox.TabIndex = 1;
@@ -56,7 +61,7 @@ namespace Project_UML.Core.FormsUML
             // CreateProject_Button
             // 
             this.CreateProject_Button.Enabled = false;
-            this.CreateProject_Button.Location = new System.Drawing.Point(107, 201);
+            this.CreateProject_Button.Location = new System.Drawing.Point(192, 12);
             this.CreateProject_Button.Name = "CreateProject_Button";
             this.CreateProject_Button.Size = new System.Drawing.Size(203, 34);
             this.CreateProject_Button.TabIndex = 2;
@@ -66,18 +71,20 @@ namespace Project_UML.Core.FormsUML
             // 
             // License
             // 
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.License_FormClosing);
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(440, 257);
             this.Controls.Add(this.CreateProject_Button);
             this.Controls.Add(this.License_CheckBox);
             this.Controls.Add(this.LicenseText);
-            this.Name = "License";
             this.KeyPreview = true;
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Control);
+            this.MaximumSize = new System.Drawing.Size(456, 800);
+            this.MinimumSize = new System.Drawing.Size(456, 296);
+            this.Name = "License";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "License Agreement";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.License_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Control);
             this.ResumeLayout(false);
             this.PerformLayout();
 

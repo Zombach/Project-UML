@@ -7,6 +7,7 @@ using Project_UML.Core.FigureFactory;
 using Project_UML.Core.Arrows;
 using System;
 using System.Reflection;
+using Project_UML.Core.Boxes;
 
 namespace Project_UML.Core.DataProject.Binary
 {
@@ -84,9 +85,42 @@ namespace Project_UML.Core.DataProject.Binary
                 IFigure figure = GetFigure(_iBase[i]);
                 _iFigure.Add(figure);
             }
+            WriteDataCommon();
             return _iFigure;
         }
 
+        private void WriteDataCommon()
+        {
+            for (int i = 0; i < _iFigure.Count; i++)
+            {
+                IFigure tmp = _iFigure[i];
+                for (int j = 0; j < tmp.IDataCommon.Count; j++)
+                {
+                    DataCommon data = new DataCommon();
+                    if (tmp.IDataCommon[j].Arrow != -1)
+                    {
+                        data.Arrow = _iFigure[tmp.IDataCommon[j].Arrow];
+                    }
+                    if (tmp.IDataCommon[j].FirstPoint != null)
+                    {
+                        data.FirstPoint = tmp.IDataCommon[j].FirstPoint;
+                    }
+                    if (tmp.IDataCommon[j].LastPoint != null)
+                    {
+                        data.LastPoint = tmp.IDataCommon[j].LastPoint;
+                    }
+                    if (tmp.IDataCommon[j].FirstBox != -1)
+                    {
+                        data.FirstBox = _iFigure[tmp.IDataCommon[j].FirstBox];
+                    }
+                    if (tmp.IDataCommon[j].LastBox != -1)
+                    {
+                        data.LastBox = _iFigure[tmp.IDataCommon[j].LastBox];
+                    }
+                    tmp.DataCommon.Add(data);
+                }
+            }
+        }
         /// <summary>
         /// Определение типа хранимых данных
         /// </summary>

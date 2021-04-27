@@ -24,7 +24,7 @@ namespace Project_UML.Core.DataProject.Interfaces
         /// <summary>
         /// Размер для зумирования по умолчанию
         /// </summary>
-        int DefaultSize { get; set; }
+        //int DefaultSize { get; set; }
         /// <summary>
         /// Шаг для сдвижения
         /// </summary>
