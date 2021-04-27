@@ -9,6 +9,6 @@ namespace Project_UML.Core.Interfaces.Get
 {
     public interface IGetFont
     {
-        Font GetFont();
+        Font[] GetFont();
     }
 }

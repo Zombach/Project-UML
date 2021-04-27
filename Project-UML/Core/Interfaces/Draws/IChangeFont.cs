@@ -9,6 +9,6 @@ namespace Project_UML.Core.Interfaces.Draws
 {
     public interface IChangeFont
     {
-        void ChangeFont(Font font);
+        void ChangeFont(Font font, string name = "Name");
     }
 }

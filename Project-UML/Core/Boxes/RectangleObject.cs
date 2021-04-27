@@ -33,7 +33,7 @@ namespace Project_UML.Core.Boxes
 
             RectangleWidth = WidthOfRectangle(graphics, RectangleText, Font) + 5;
 
-            RectNameHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[0]) * Font.Height;
+            RectNameHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[0]) * Font[0].Height;
 
             if (RectNameHeight < 50)
             {
@@ -50,7 +50,7 @@ namespace Project_UML.Core.Boxes
 
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
 
-            DrawSpecificRectangle(graphics, RectangleText[0], _pen, Font, brush, rectName);
+            DrawSpecificRectangle(graphics, RectangleText[0], _pen, Font[0], brush, rectName);
         }        
     }
 }

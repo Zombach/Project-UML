@@ -433,14 +433,18 @@ namespace Project_UML.Core
             return step;
         }
 
-        public void ChangeName(string name, int index)
-        {
+        public void ChangeName(string text, int index, string name)
+        {            
             foreach (IFigure figure in SelectedFigures)
-            if (figure is AbstractBox box)
             {
-                WriteLogs(box, false);
-                box.RectangleText[index] = name;
-                WriteLogs(box, true);
+                if (figure is AbstractBox box)
+                {
+                    WriteLogs(box, false);
+                    box.ChangeFont(_coreUML.DefaultFont, name);
+                    //box.ChangeColorText(_coreUML.DefaultColor, name);
+                    box.RectangleText[index] = text;
+                    WriteLogs(box, true);
+                }
             }
             UpdPicture();
         }

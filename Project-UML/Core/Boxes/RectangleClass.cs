@@ -32,28 +32,28 @@ namespace Project_UML.Core.Boxes
 
             RectangleWidth = WidthOfRectangle(graphics, RectangleText, Font) + 5;
 
-            RectNameHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[0]) * Font.Height;
+            RectNameHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[0]) * Font[0].Height;
 
             if (RectNameHeight < 25)
             {
                 RectNameHeight = 25;
             }
 
-            RectFieldHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[1]) * Font.Height;
+            RectFieldHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[1]) * Font[1].Height;
 
             if (RectFieldHeight < 25)
             {
                 RectFieldHeight = 25;
             }
 
-            RectPropertyHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[2]) * Font.Height;
+            RectPropertyHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[2]) * Font[2].Height;
 
             if (RectPropertyHeight < 25)
             {
                 RectPropertyHeight = 25;
             }
 
-            RectMethodsHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[3]) * Font.Height;
+            RectMethodsHeight = CounterOfTextLinesInSpecificRectangle(RectangleText[3]) * Font[3].Height;
 
             if (RectMethodsHeight < 50)
             {
@@ -72,10 +72,10 @@ namespace Project_UML.Core.Boxes
 
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectNameHeight);
             
-            DrawSpecificRectangle(graphics, RectangleText[0], _pen, Font, brush, rectName);
-            DrawSpecificRectangle(graphics, RectangleText[1], _pen, Font, brush, rectField);
-            DrawSpecificRectangle(graphics, RectangleText[2], _pen, Font, brush, rectProperty);
-            DrawSpecificRectangle(graphics, RectangleText[3], _pen, Font, brush, rectMethods);
+            DrawSpecificRectangle(graphics, RectangleText[0], _pen, Font[0], brush, rectName);
+            DrawSpecificRectangle(graphics, RectangleText[1], _pen, Font[1], brush, rectField);
+            DrawSpecificRectangle(graphics, RectangleText[2], _pen, Font[2], brush, rectProperty);
+            DrawSpecificRectangle(graphics, RectangleText[3], _pen, Font[3], brush, rectMethods);
         }
     }
 }

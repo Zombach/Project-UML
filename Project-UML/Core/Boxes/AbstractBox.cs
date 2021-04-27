@@ -25,7 +25,20 @@ namespace Project_UML.Core.Boxes
         public List<Point> Points { get; set; } = new List<Point>();
         public List<DataCommon> DataCommon { get; set; } = new List<DataCommon>();
         public List<DataText> DataText { get; set; } = new List<DataText>();
-        protected Font Font { get; set; } = CoreUML.GetCoreUML().DefaultFont;
+        protected Font[] Font { get; set; } = new Font[]
+        {
+                CoreUML.GetCoreUML().DefaultFont,
+                CoreUML.GetCoreUML().DefaultFont,
+                CoreUML.GetCoreUML().DefaultFont,
+                CoreUML.GetCoreUML().DefaultFont
+        };
+        protected SolidBrush[] Brushs { get; set; } = new SolidBrush[]
+        {
+                new SolidBrush(CoreUML.GetCoreUML().DefaultColor),
+                new SolidBrush(CoreUML.GetCoreUML().DefaultColor),
+                new SolidBrush(CoreUML.GetCoreUML().DefaultColor),
+                new SolidBrush(CoreUML.GetCoreUML().DefaultColor)
+        };
         public int RectangleWidth { get; set; }
         public int RectangleHeight { get; set; }
         protected int RectNameHeight { get; set; }
@@ -47,7 +60,7 @@ namespace Project_UML.Core.Boxes
         public AbstractBox(Color color, int width)
         {
             _pen = new Pen(color, width); 
-            RectangleWidth = 105;            
+            RectangleWidth = 105;
         }
 
         /// <summary>
@@ -107,9 +120,43 @@ namespace Project_UML.Core.Boxes
             graphics.DrawRectangle(_pen, Points[0].X, Points[0].Y, RectangleWidth, RectangleHeight);
         }
 
-        public void ChangeFont(Font font)
+        public void ChangeFont(Font font, string name = "Name")
         {
-            Font = font;
+            switch(name)
+            {
+                case "Name":
+                    Font[0] = font;
+                    break;
+                case "Field":
+                    Font[1] = font;
+                    break;
+                case "Property":
+                    Font[2] = font;
+                    break;
+                case "Methods":
+                    Font[3] = font;
+                    break;
+            }
+          
+        }
+        public void ChangeColorText(Color color, string name = "Name")
+        {
+            switch (name)
+            {
+                case "Name":
+                    Brushs[0] = new SolidBrush(color);
+                    break;
+                case "Field":
+                    Brushs[1] = new SolidBrush(color);
+                    break;
+                case "Property":
+                    Brushs[2] = new SolidBrush(color);
+                    break;
+                case "Methods":
+                    Brushs[3] = new SolidBrush(color);
+                    break;
+            }
+
         }
 
         public void ChangeColor(Color color)
@@ -251,7 +298,7 @@ namespace Project_UML.Core.Boxes
             return _pen.Width;
         }
 
-        public Font GetFont()
+        public Font[] GetFont()
         {
             return Font;
         }
@@ -414,19 +461,19 @@ namespace Project_UML.Core.Boxes
             string[] separateLines = phrase.Split('\n');
             return separateLines.Length;
         }
-        public int WidthOfRectangle(Graphics graphics, List<string> RectangleText, Font font)
+        public int WidthOfRectangle(Graphics graphics, List<string> RectangleText, Font[] font)
         {
             string phraseName = RectangleText[0];
             string[] separateLinesName = phraseName.Split('\n');
 
-            SizeF stringNameSize = graphics.MeasureString(separateLinesName[0], font);
+            SizeF stringNameSize = graphics.MeasureString(separateLinesName[0], font[0]);
             int longestSizeName = (int)stringNameSize.Width;
 
             if (separateLinesName.Length > 0)
             {
                 for (int i = 0; i < separateLinesName.Length; i++)
                 {
-                    stringNameSize = graphics.MeasureString(separateLinesName[i], font);
+                    stringNameSize = graphics.MeasureString(separateLinesName[i], font[0]);
 
                     if (stringNameSize.Width > longestSizeName)
                     {
@@ -438,14 +485,14 @@ namespace Project_UML.Core.Boxes
             string phraseField = RectangleText[1];
             string[] separateLinesField = phraseField.Split('\n');
 
-            SizeF stringFieldSize = graphics.MeasureString(separateLinesField[0], font);
+            SizeF stringFieldSize = graphics.MeasureString(separateLinesField[0], font[1]);
             int longestSizeField = (int)stringFieldSize.Width;
 
             if (separateLinesField.Length > 0)
             {
                 for (int i = 0; i < separateLinesField.Length; i++)
                 {
-                    stringFieldSize = graphics.MeasureString(separateLinesField[i], font);
+                    stringFieldSize = graphics.MeasureString(separateLinesField[i], font[1]);
 
                     if (stringFieldSize.Width > longestSizeField)
                     {
@@ -458,14 +505,14 @@ namespace Project_UML.Core.Boxes
             string phraseProperty = RectangleText[2];
             string[] separateLinesProperty = phraseProperty.Split('\n');
 
-            SizeF stringPropertySize = graphics.MeasureString(separateLinesProperty[0], font);
+            SizeF stringPropertySize = graphics.MeasureString(separateLinesProperty[0], font[2]);
             int longestSizeProperty = (int)stringPropertySize.Width;
 
             if (separateLinesProperty.Length > 0)
             {
                 for (int i = 0; i < separateLinesProperty.Length; i++)
                 {
-                    stringPropertySize = graphics.MeasureString(separateLinesProperty[i], font);
+                    stringPropertySize = graphics.MeasureString(separateLinesProperty[i], font[2]);
 
                     if (stringPropertySize.Width > longestSizeProperty)
                     {
@@ -477,14 +524,14 @@ namespace Project_UML.Core.Boxes
             string phraseMethods = RectangleText[3];
             string[] separateLinesMethods = phraseMethods.Split('\n');
 
-            SizeF stringMethodsSize = graphics.MeasureString(separateLinesMethods[0], font);
+            SizeF stringMethodsSize = graphics.MeasureString(separateLinesMethods[0], font[3]);
             int longestSizeMethods = (int)stringMethodsSize.Width;
 
             if (separateLinesMethods.Length > 0)
             {
                 for (int i = 0; i < separateLinesMethods.Length; i++)
                 {
-                    stringMethodsSize = graphics.MeasureString(separateLinesMethods[i], font);
+                    stringMethodsSize = graphics.MeasureString(separateLinesMethods[i], font[3]);
 
                     if (stringMethodsSize.Width > longestSizeMethods)
                     {
@@ -517,7 +564,7 @@ namespace Project_UML.Core.Boxes
 
         public void Transform(Point e)
         {
-            throw new NotImplementedException();
+            //if (Points.Count[0].X = e.X
         }
 
         public bool IsHovered(Point point)

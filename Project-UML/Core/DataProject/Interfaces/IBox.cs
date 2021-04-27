@@ -16,6 +16,6 @@ namespace Project_UML.Core.DataProject.Interfaces
         /// <summary>
         /// Шрифт текста боксов
         /// </summary>
-        Font Font { get; set; }
+        Font[] Font { get; set; }
     }
 }

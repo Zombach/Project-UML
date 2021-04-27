@@ -17,7 +17,7 @@ namespace Project_UML.Core.DataProject.Structure
         public List<IDataCommon> Data { get; set; }
         public List<DataText> DataText { get; set; }
         public string Type { get; set; }
-        public Font Font { get; set; }
+        public Font[] Font { get; set; }
         public Color Color { get; set; }
         public float Width { get; set; }
 
