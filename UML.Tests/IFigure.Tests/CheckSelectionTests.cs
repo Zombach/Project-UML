@@ -3,16 +3,15 @@ using Project_UML.Core.Arrows;
 using System.Drawing;
 using System.Collections;
 using Project_UML.Core;
-using Project_UML.Core.Enum;
 
 namespace CheckSelection.Tests
 {
     public class CheckSelectionTests
     {
         [TestCaseSource(typeof(CheckSelectionTestSource))]
-        public void CheckSelection_WhenPointNotNull_ShouldReturnBool(AbstractArrow Arrow, Point startpoint, Point endpoint, bool expected)
+        public void CheckSelection_WhenPointNotNull_ShouldReturnBool(AbstractArrow arrow, Point startpoint, Point endpoint, bool expected)
         {
-            bool actual = Arrow.CheckSelection(startpoint, endpoint);
+            bool actual = arrow.CheckSelection(startpoint, endpoint);
             Assert.AreEqual(expected, actual);
         }
     }

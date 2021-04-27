@@ -4,16 +4,15 @@ using System.Drawing;
 using System.Collections;
 using Project_UML.Core;
 
-
 namespace ChangeColor.Tests
 {
     public class ChangeColorTests
     {
         [TestCaseSource(typeof(ChangeColorTestSource))]
-        public void ChangeColor_WhenAlways_ShouldChangeColor(AggregationArrow Arrow, Color newColor, Color expected)
+        public void ChangeColor_WhenAlways_ShouldChangeColor(AggregationArrow arrow, Color newColor, Color expected)
         {
-            Arrow.ChangeColor(newColor);
-            Color actual = Arrow.GetColor();
+            arrow.ChangeColor(newColor);
+            Color actual = arrow.GetColor();
             Assert.AreEqual(expected, actual);
         }
     }

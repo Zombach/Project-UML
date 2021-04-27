@@ -3,17 +3,16 @@ using Project_UML.Core.Arrows;
 using System.Drawing;
 using System.Collections;
 using Project_UML.Core;
-using Project_UML.Core.Enum;
 
 namespace ReverseTests.Tests
 {
     public class ReverseTestsTests
     {
         [TestCaseSource(typeof(ReverseTestsTestSource))]
-        public void Reverse_WhenAlways_ShouldReverse(AggregationArrow Arrow, AggregationArrow expected)
+        public void Reverse_WhenAlways_ShouldReverse(AggregationArrow arrow, AggregationArrow expected)
         {
-            Arrow.Reverse();
-            AggregationArrow actual = Arrow;
+            arrow.Reverse();
+            AggregationArrow actual = arrow;
             Assert.AreEqual(expected, actual);
         }
     }
