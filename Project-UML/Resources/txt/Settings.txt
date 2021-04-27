@@ -8,5 +8,5 @@
     "X": 5,
     "Y": 5
   },
-  "Path": "C:\\Users\\ZLoo\\source\\Repos\\Project-UML\\Project-UML\\Save\\Save_27.04.2021 5.00.21.Мы-Програмист"
+  "Path": "C:\\Users\\ZLoo\\source\\Repos\\Project-UML\\Project-UML\\Save\\Encrypt\\Encry27.04.2021 6.30.25.key"
 }

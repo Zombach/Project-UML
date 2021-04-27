@@ -39,8 +39,10 @@ namespace Project_UML.Core
         public int DefaultSize { get; set; }
         public string MyPath { get; set; }
         public string MyPathEncrypt { get; set; }
+        public string MyPathEncryptSave { get; set; }
         public string MyPathSettings { get; set; }
         public string MyPathImage { get; set; }
+        public string TmpKeyEncript { get; set; }
 
         /// <summary>
         /// Общий лист всех фигур, стрелок на холсте
@@ -83,8 +85,9 @@ namespace Project_UML.Core
             DefaultStep = new Step(5, 5);
             MyPath = "";            
             MyPathSettings = @"../../Resources/txt/Settings.txt";
-            MyPathEncrypt = @"../../Resources/txt/";
+            MyPathEncryptSave = @"../../Save/Encrypt/";
             MyPathImage = @"../../Save/Image/";
+            TmpKeyEncript = "";
             IsLicense = false;
         }
 

@@ -148,7 +148,7 @@
             this.button1.ForeColor = System.Drawing.Color.Transparent;
             this.button1.Location = new System.Drawing.Point(-90, -3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(1160, 520);
+            this.button1.Size = new System.Drawing.Size(1083, 520);
             this.button1.TabIndex = 10;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = false;
@@ -156,7 +156,6 @@
             // 
             // AboutUs
             // 
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AboutUs_FormClosing);
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Pink;
@@ -173,13 +172,14 @@
             this.Controls.Add(this.Logo);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(1009, 551);
             this.MinimumSize = new System.Drawing.Size(1009, 551);
             this.Name = "AboutUs";
-            this.KeyPreview = true;
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Control);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AboutUs";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AboutUs_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown_Control);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();

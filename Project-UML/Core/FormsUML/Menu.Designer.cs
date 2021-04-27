@@ -38,13 +38,15 @@ namespace Project_UML.Core.FormsUML
             this.MainMenu = new System.Windows.Forms.Button();
             this.Encrypt = new System.Windows.Forms.CheckBox();
             this.buttonSaveAsImage = new System.Windows.Forms.Button();
+            this.SaveImage = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(46, 28);
+            this.Save.Location = new System.Drawing.Point(25, 12);
             this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(75, 23);
+            this.Save.Size = new System.Drawing.Size(70, 70);
             this.Save.TabIndex = 0;
             this.Save.Text = "Save";
             this.Save.UseVisualStyleBackColor = true;
@@ -52,9 +54,9 @@ namespace Project_UML.Core.FormsUML
             // 
             // SaveAs
             // 
-            this.SaveAs.Location = new System.Drawing.Point(166, 28);
+            this.SaveAs.Location = new System.Drawing.Point(101, 12);
             this.SaveAs.Name = "SaveAs";
-            this.SaveAs.Size = new System.Drawing.Size(75, 23);
+            this.SaveAs.Size = new System.Drawing.Size(70, 70);
             this.SaveAs.TabIndex = 1;
             this.SaveAs.Text = "Save as";
             this.SaveAs.UseVisualStyleBackColor = true;
@@ -62,9 +64,9 @@ namespace Project_UML.Core.FormsUML
             // 
             // LoadLast
             // 
-            this.LoadLast.Location = new System.Drawing.Point(299, 28);
+            this.LoadLast.Location = new System.Drawing.Point(25, 88);
             this.LoadLast.Name = "LoadLast";
-            this.LoadLast.Size = new System.Drawing.Size(75, 23);
+            this.LoadLast.Size = new System.Drawing.Size(70, 70);
             this.LoadLast.TabIndex = 2;
             this.LoadLast.Text = "Load last";
             this.LoadLast.UseVisualStyleBackColor = true;
@@ -72,9 +74,9 @@ namespace Project_UML.Core.FormsUML
             // 
             // LoadAs
             // 
-            this.LoadAs.Location = new System.Drawing.Point(299, 84);
+            this.LoadAs.Location = new System.Drawing.Point(101, 88);
             this.LoadAs.Name = "LoadAs";
-            this.LoadAs.Size = new System.Drawing.Size(75, 23);
+            this.LoadAs.Size = new System.Drawing.Size(70, 70);
             this.LoadAs.TabIndex = 4;
             this.LoadAs.Text = "Load as";
             this.LoadAs.UseVisualStyleBackColor = true;
@@ -82,9 +84,9 @@ namespace Project_UML.Core.FormsUML
             // 
             // EncryptAs
             // 
-            this.EncryptAs.Location = new System.Drawing.Point(166, 82);
+            this.EncryptAs.Location = new System.Drawing.Point(177, 12);
             this.EncryptAs.Name = "EncryptAs";
-            this.EncryptAs.Size = new System.Drawing.Size(75, 23);
+            this.EncryptAs.Size = new System.Drawing.Size(70, 70);
             this.EncryptAs.TabIndex = 5;
             this.EncryptAs.Text = "Encrypt as";
             this.EncryptAs.UseVisualStyleBackColor = true;
@@ -92,9 +94,9 @@ namespace Project_UML.Core.FormsUML
             // 
             // Cancel
             // 
-            this.Cancel.Location = new System.Drawing.Point(299, 188);
+            this.Cancel.Location = new System.Drawing.Point(227, 175);
             this.Cancel.Name = "Cancel";
-            this.Cancel.Size = new System.Drawing.Size(75, 23);
+            this.Cancel.Size = new System.Drawing.Size(75, 30);
             this.Cancel.TabIndex = 6;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
@@ -102,9 +104,9 @@ namespace Project_UML.Core.FormsUML
             // 
             // MainMenu
             // 
-            this.MainMenu.Location = new System.Drawing.Point(166, 188);
+            this.MainMenu.Location = new System.Drawing.Point(127, 175);
             this.MainMenu.Name = "MainMenu";
-            this.MainMenu.Size = new System.Drawing.Size(75, 23);
+            this.MainMenu.Size = new System.Drawing.Size(75, 30);
             this.MainMenu.TabIndex = 7;
             this.MainMenu.Text = "Main Menu";
             this.MainMenu.UseVisualStyleBackColor = true;
@@ -113,7 +115,7 @@ namespace Project_UML.Core.FormsUML
             // Encrypt
             // 
             this.Encrypt.AutoSize = true;
-            this.Encrypt.Location = new System.Drawing.Point(59, 88);
+            this.Encrypt.Location = new System.Drawing.Point(42, 183);
             this.Encrypt.Name = "Encrypt";
             this.Encrypt.Size = new System.Drawing.Size(62, 17);
             this.Encrypt.TabIndex = 8;
@@ -123,20 +125,42 @@ namespace Project_UML.Core.FormsUML
             // 
             // buttonSaveAsImage
             // 
-            this.buttonSaveAsImage.Location = new System.Drawing.Point(46, 133);
+            this.buttonSaveAsImage.Location = new System.Drawing.Point(254, 88);
             this.buttonSaveAsImage.Name = "buttonSaveAsImage";
-            this.buttonSaveAsImage.Size = new System.Drawing.Size(75, 40);
+            this.buttonSaveAsImage.Size = new System.Drawing.Size(70, 70);
             this.buttonSaveAsImage.TabIndex = 9;
             this.buttonSaveAsImage.Text = "Save As Image";
             this.buttonSaveAsImage.UseVisualStyleBackColor = true;
-            this.buttonSaveAsImage.Click += new System.EventHandler(this.button1_Click);
+            this.buttonSaveAsImage.Click += new System.EventHandler(this.SaveAsImage_Click);
+            // 
+            // SaveImage
+            // 
+            this.SaveImage.Location = new System.Drawing.Point(178, 88);
+            this.SaveImage.Name = "SaveImage";
+            this.SaveImage.Size = new System.Drawing.Size(70, 70);
+            this.SaveImage.TabIndex = 10;
+            this.SaveImage.Text = "Save Image";
+            this.SaveImage.UseVisualStyleBackColor = true;
+            this.SaveImage.Click += new System.EventHandler(this.SaveImage_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(254, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(70, 70);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Decrypt as";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Decrypt_Click);
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.ClientSize = new System.Drawing.Size(434, 223);
+            this.ClientSize = new System.Drawing.Size(346, 223);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.SaveImage);
             this.Controls.Add(this.buttonSaveAsImage);
             this.Controls.Add(this.Encrypt);
             this.Controls.Add(this.MainMenu);
@@ -147,6 +171,8 @@ namespace Project_UML.Core.FormsUML
             this.Controls.Add(this.SaveAs);
             this.Controls.Add(this.Save);
             this.KeyPreview = true;
+            this.MaximumSize = new System.Drawing.Size(362, 262);
+            this.MinimumSize = new System.Drawing.Size(362, 262);
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
@@ -168,5 +194,7 @@ namespace Project_UML.Core.FormsUML
         private System.Windows.Forms.Button MainMenu;
         private System.Windows.Forms.CheckBox Encrypt;
         private System.Windows.Forms.Button buttonSaveAsImage;
+        private System.Windows.Forms.Button SaveImage;
+        private System.Windows.Forms.Button button1;
     }
 }
